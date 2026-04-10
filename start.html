@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get Started — Python & AI Workflow</title>
+<title>Get Started &mdash; Python &amp; AI Workflow</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -16,44 +16,48 @@
     <a href="index.html">Overview</a>
     <a href="tools.html">The Tools</a>
     <a href="workflow.html">How It Connects</a>
-    <a href="stacks.html">Choose Your Stack</a>
     <a href="start.html" class="active">Get Started</a>
+    <a href="ide-cursor.html" style="color: var(--accent2);">Level 2: Cursor</a>
+    <a href="claude-power.html" style="color: var(--accent2);">Level 3: Claude Advanced</a>
   </div>
-  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Overview</a>
   <a href="tools.html">The Tools</a>
   <a href="workflow.html">How It Connects</a>
-  <a href="stacks.html">Choose Your Stack</a>
   <a href="start.html">Get Started</a>
+  <a href="ide-cursor.html">Level 2: Cursor</a>
+  <a href="claude-power.html">Level 3: Claude Advanced</a>
 </div>
 
 <main>
 
 <div class="page-hero">
   <div class="container">
-    <div class="page-eyebrow">Setup guides</div>
+    <div class="page-eyebrow">Level 1 &mdash; Setup &amp; First Workflows</div>
     <h1 class="page-title">Get Started</h1>
-    <p class="page-sub">Step-by-step setup for the most common tool combinations. Pick your stack and follow the guide — from nothing to a working environment.</p>
+    <p class="page-sub">Full setup and AI-integration walkthroughs for VS Code and PyCharm. Each IDE gets two flows: first get everything working, then learn to use AI across every part of the coding process.</p>
     <div class="toc">
-      <a href="#classic">Classic Stack</a>
-      <a href="#python-first">Python-First Stack</a>
-      <a href="#ai-first">AI-First Stack</a>
-      <a href="#universal">Universal: Git & GitHub</a>
+      <a href="#vscode-setup">VS Code: Setup</a>
+      <a href="#vscode-ai">VS Code: AI Workflow</a>
+      <a href="#pycharm-setup">PyCharm: Setup</a>
+      <a href="#pycharm-ai">PyCharm: AI Workflow</a>
+      <a href="#git-setup">Git &amp; GitHub</a>
       <a href="#pitfalls">Common Pitfalls</a>
-      <a href="claude-power.html">Advanced</a>
     </div>
   </div>
 </div>
 
-<!-- Classic Stack Setup -->
-<section class="setup-section" id="classic">
+<!-- ============================================================
+     VS CODE — SETUP
+     ============================================================ -->
+<section class="setup-section" id="vscode-setup">
   <div class="container">
     <div class="setup-header">
-      <div class="setup-tag">Most recommended</div>
-      <h2>Classic Stack Setup</h2>
-      <p class="setup-sub">VS Code + venv + pip + GitHub Copilot + GitHub</p>
+      <div class="setup-tag">VS Code &mdash; Flow 1 of 2</div>
+      <h2>Setup &amp; First Run</h2>
+      <p class="setup-sub">Install Python, VS Code, create your first project, set up a virtual environment, add AI, and push to GitHub.</p>
     </div>
 
     <div class="setup-steps">
@@ -61,77 +65,79 @@
       <div class="setup-step">
         <div class="ss-num">1</div>
         <div class="ss-content">
-          <h3>Install VS Code</h3>
-          <p>Download from <strong>code.visualstudio.com</strong>. Install and open it. You'll see a welcome screen.</p>
-          <div class="ss-note">VS Code is a folder-based editor. You'll always open a folder (your project), not individual files.</div>
+          <h3>Install Python</h3>
+          <p>Download from <strong>python.org</strong>. On Windows, check &ldquo;Add Python to PATH&rdquo; during installation &mdash; this is critical. On Mac, Python may already be installed, but download the latest from python.org for a clean setup.</p>
+          <div class="code-block">python --version<br><span class="code-comment"># Should show: Python 3.12.x or similar</span></div>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">2</div>
         <div class="ss-content">
-          <h3>Install the Python extension</h3>
-          <p>Click the Extensions icon in the left sidebar (looks like four squares). Search for "Python" — the one by Microsoft has millions of installs. Click Install. This gives VS Code Python understanding: syntax highlighting, autocomplete, environment detection, and a debugger.</p>
+          <h3>Install VS Code and the Python extension</h3>
+          <p>Download from <strong>code.visualstudio.com</strong>. Once open, click the Extensions icon in the left sidebar (four squares) and search for &ldquo;Python&rdquo; &mdash; install the one by Microsoft. This gives VS Code Python understanding: syntax highlighting, autocomplete, environment detection, and a debugger.</p>
+          <div class="ss-note">VS Code is folder-based. You always open a project folder, not individual files.</div>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">3</div>
         <div class="ss-content">
-          <h3>Install Python</h3>
-          <p>Download from <strong>python.org</strong>. On Windows, check "Add Python to PATH" during installation — this is important. On Mac, Python may already be installed, but download the latest version from python.org for a clean setup.</p>
-          <p>Verify the installation by opening your terminal and typing:</p>
-          <div class="code-block">python --version</div>
-          <p>You should see a version number like <code>Python 3.12.3</code>.</p>
+          <h3>Create a project folder and virtual environment</h3>
+          <p>Go to File &rarr; Open Folder. Create a new folder (e.g. <code>my-project</code>) and open it. Then open the built-in terminal (Terminal &rarr; New Terminal) and run:</p>
+          <div class="code-block"><span class="code-comment"># Create the virtual environment</span><br>
+python -m venv .venv<br><br>
+<span class="code-comment"># Activate it (Mac/Linux)</span><br>
+source .venv/bin/activate<br><br>
+<span class="code-comment"># Activate it (Windows)</span><br>
+.venv\Scripts\activate</div>
+          <p>When activation succeeds, your prompt shows <code>(.venv)</code> at the start. VS Code may prompt you to select this as the interpreter &mdash; click Yes.</p>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">4</div>
         <div class="ss-content">
-          <h3>Create your first project and virtual environment</h3>
-          <p>Open VS Code. Go to File → Open Folder. Create a new folder called something like <code>my-project</code> and open it. Then open the built-in terminal (Terminal → New Terminal) and run:</p>
-          <div class="code-block">
-            <div class="code-comment"># Create the virtual environment</div>
-            python -m venv .venv<br><br>
-            <div class="code-comment"># Activate it (Mac/Linux)</div>
-            source .venv/bin/activate<br><br>
-            <div class="code-comment"># Activate it (Windows)</div>
-            .venv\Scripts\activate
-          </div>
-          <p>You'll see <code>(.venv)</code> appear at the start of your terminal prompt — that means it's active.</p>
-          <p>VS Code may show a notification asking "Do you want to set up a Python environment?" — click Yes and select the .venv you just created. Now VS Code knows which Python to use.</p>
+          <h3>Create your project structure and install packages</h3>
+          <p>Create a simple structure. In the terminal:</p>
+          <div class="code-block"><span class="code-comment"># Install a package (with your venv active)</span><br>
+pip install pandas requests<br><br>
+<span class="code-comment"># Save dependencies so others can recreate your environment</span><br>
+pip freeze > requirements.txt</div>
+          <p>In VS Code's file explorer, create a file called <code>main.py</code>. This is your entry point. Also create a <code>.gitignore</code> file now &mdash; paste <code>.venv/</code>, <code>__pycache__/</code>, <code>*.pyc</code>, <code>.env</code> into it.</p>
+          <div class="ss-note">Always activate your virtual environment before installing packages. If <code>(.venv)</code> isn't in your prompt, packages go into your global Python instead.</div>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">5</div>
         <div class="ss-content">
-          <h3>Install packages with pip</h3>
-          <p>With your virtual environment active, install packages and they'll be isolated to this project:</p>
-          <div class="code-block">
-            pip install pandas requests<br><br>
-            <div class="code-comment"># Save your dependencies to a file</div>
-            pip freeze > requirements.txt
-          </div>
-          <div class="ss-note">Always activate your virtual environment before installing packages. If you install without activating, packages go into your global Python — exactly what you're trying to avoid.</div>
+          <h3>Add AI: install GitHub Copilot</h3>
+          <p>In the Extensions panel, search for &ldquo;GitHub Copilot&rdquo; and install it. Also install &ldquo;GitHub Copilot Chat.&rdquo; Sign in with a GitHub account. Copilot is $10/month &mdash; free for verified students at <strong>education.github.com</strong>.</p>
+          <p>Alternatively, search for &ldquo;Gemini Code Assist&rdquo; (free with a Google account) or &ldquo;Codeium&rdquo; (permanently free for individuals).</p>
+          <p>Once installed, you'll see gray inline suggestions as you type. Press <kbd>Tab</kbd> to accept, keep typing to ignore.</p>
+          <div class="ss-note">You can use multiple AI tools simultaneously. Many developers run Copilot for inline completions and open claude.ai in a browser tab for deeper questions.</div>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">6</div>
         <div class="ss-content">
-          <h3>Add GitHub Copilot</h3>
-          <p>In VS Code's Extensions panel, search for "GitHub Copilot" and install it. You'll be prompted to sign in with a GitHub account. Copilot requires a subscription ($10/month) — but is free for verified students via <strong>education.github.com</strong>.</p>
-          <p>Once installed, Copilot shows suggestions in gray as you type. Press Tab to accept a suggestion, or keep typing to ignore it.</p>
+          <h3>Run your first script</h3>
+          <p>In <code>main.py</code>, type a simple script:</p>
+          <div class="code-block">import pandas as pd<br><br>
+data = {'name': ['Alice', 'Bob'], 'score': [92, 85]}<br>
+df = pd.DataFrame(data)<br>
+print(df)</div>
+          <p>Press <kbd>F5</kbd> to run (or right-click &rarr; Run Python File). You should see the DataFrame printed in the terminal below. If Python can't find <code>pandas</code>, check that your <code>.venv</code> interpreter is selected &mdash; press <kbd>Cmd/Ctrl+Shift+P</kbd> &rarr; &ldquo;Python: Select Interpreter&rdquo; &rarr; choose the <code>.venv</code> entry.</p>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">7</div>
         <div class="ss-content">
-          <h3>Connect to GitHub</h3>
-          <p>See the <a href="#universal">Universal: Git & GitHub</a> section below — the setup is the same regardless of which IDE you're using.</p>
+          <h3>Set up Git and push to GitHub</h3>
+          <p>See the <a href="#git-setup">Git &amp; GitHub setup section</a> below &mdash; the steps are the same regardless of which IDE you use.</p>
         </div>
       </div>
 
@@ -139,13 +145,157 @@
   </div>
 </section>
 
-<!-- Python-First Stack -->
-<section class="setup-section alt-bg" id="python-first">
+<!-- ============================================================
+     VS CODE — AI WORKFLOW
+     ============================================================ -->
+<section class="setup-section alt-bg" id="vscode-ai">
   <div class="container">
     <div class="setup-header">
-      <div class="setup-tag">Best for pure Python</div>
-      <h2>Python-First Stack Setup</h2>
-      <p class="setup-sub">PyCharm + venv (auto) + JetBrains AI + GitHub</p>
+      <div class="setup-tag">VS Code &mdash; Flow 2 of 2</div>
+      <h2>Working with AI at Level 1</h2>
+      <p class="setup-sub">A real project walkthrough &mdash; planning, writing, testing, debugging, and refactoring with AI alongside you at every step.</p>
+    </div>
+
+    <p style="font-size:0.9rem; color: var(--text2); font-weight:300; margin-bottom:2rem;">This walkthrough uses a small data analysis project as the running example: loading a CSV file, cleaning it, and computing summary statistics. The AI techniques apply to any Python project.</p>
+
+    <div class="setup-steps">
+
+      <div class="setup-step">
+        <div class="ss-num">1</div>
+        <div class="ss-content">
+          <h3>Plan with AI before writing a line</h3>
+          <p>Before you open a new file, open the Copilot Chat panel (<kbd>Ctrl+Shift+I</kbd>) or claude.ai in a browser. Describe what you're building:</p>
+          <div class="code-block"><span class="code-comment"># Example prompt</span><br>
+I want to write a Python script that:
+1. Loads a CSV file with columns: date, product, region, sales
+2. Cleans the data (handle missing values, parse dates)
+3. Computes total sales by region and by month
+4. Prints a summary table
+
+How should I structure this? What functions should I create?</div>
+          <p>Read the response carefully. You don't have to follow it exactly &mdash; but starting with a plan prevents the most common mistake: writing one big function that does everything.</p>
+          <div class="ss-note">This is one of AI's most underused capabilities. Students often go straight to writing code. Planning first with AI gets you a better structure in 5 minutes than you'd arrive at by writing for an hour.</div>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">2</div>
+        <div class="ss-content">
+          <h3>Use comments to drive inline generation</h3>
+          <p>In your Python file, write a comment describing what you want, then press Enter. Copilot reads the comment and suggests the implementation below it:</p>
+          <div class="code-block"><span class="code-comment"># Load CSV file and parse the date column as datetime</span><br>
+<span class="code-copilot"># Copilot suggests the function below &mdash; press Tab to accept:</span><br>
+def load_data(filepath):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;df = pd.read_csv(filepath, parse_dates=['date'])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return df</div>
+          <p>Read what it suggests before accepting. Is it correct? Does it match your intent? Press <kbd>Tab</kbd> to accept. If the suggestion isn't right, keep typing your own version &mdash; the suggestion disappears.</p>
+          <div class="ss-note">You're in control of scope. A focused, specific comment gets you a focused function. "Do everything" gets you something overwhelming. One comment, one function.</div>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">3</div>
+        <div class="ss-content">
+          <h3>Ask the chat panel when you're stuck</h3>
+          <p>Hit a wall? Select the problematic code, then open Copilot Chat. Ask specifically:</p>
+          <div class="code-block"><span class="code-comment"># Good: specific, includes the context</span><br>
+"This function should group sales by month, but it's returning
+an empty DataFrame. Here's the code. What's wrong?"<br><br>
+<span class="code-comment"># Less useful: vague</span><br>
+"Why isn't this working?"</div>
+          <p>The more specific your question and the more context you give (paste the code, paste the error), the more useful the answer. AI isn't magic &mdash; it responds to the quality of what you give it.</p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">4</div>
+        <div class="ss-content">
+          <h3>Debug errors with AI: read the traceback, then ask</h3>
+          <p>Run your script. If you get an error, read the traceback before pasting it to AI. Try to locate which line caused it. Then:</p>
+          <div class="code-block"><span class="code-comment"># In the Copilot Chat panel:</span><br>
+"I got this error running my data cleaning function:
+KeyError: 'sales'
+The traceback shows it's on line 14. Here's the full function.
+What does this mean and how do I fix it?"</div>
+          <p>AI will explain what a <code>KeyError</code> means (a dictionary key or DataFrame column doesn't exist), suggest why it's happening (the column might be named differently in the CSV), and show you how to fix it.</p>
+          <div class="ss-note">Reading the error yourself first builds the skill of understanding Python errors. Use AI to confirm and go deeper &mdash; not as the first line of defense.</div>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">5</div>
+        <div class="ss-content">
+          <h3>Get code explained to you</h3>
+          <p>Select any code you don't fully understand &mdash; something Copilot generated, a library function, or something you wrote last week. In the Copilot Chat panel:</p>
+          <div class="code-block">"Explain this function line by line. What does each part do
+and why is it written this way?"</div>
+          <p>This is how you learn from AI rather than just depending on it. Every function you accept without understanding is technical debt &mdash; at some point you won't be able to maintain it. Use the explanation request liberally.</p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">6</div>
+        <div class="ss-content">
+          <h3>Generate tests with AI</h3>
+          <p>Once a function is working, select it and ask Copilot Chat to write tests:</p>
+          <div class="code-block">"Write pytest tests for this function. Test:
+- The normal case with valid data
+- What happens with an empty DataFrame
+- What happens if the date column is missing"</div>
+          <p>Create a <code>tests/</code> folder and a file like <code>test_analysis.py</code>. Paste the generated tests, review them, and run them:</p>
+          <div class="code-block">pip install pytest<br>
+pytest tests/</div>
+          <div class="ss-note">AI-generated tests are a starting point, not a complete suite. They cover obvious cases &mdash; you should add tests for anything the AI missed that you know matters.</div>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">7</div>
+        <div class="ss-content">
+          <h3>Refactor working code</h3>
+          <p>Once your code works, AI can help you improve it. Select a function and ask:</p>
+          <div class="code-block">"Review this function. Is there a more Pythonic way to write it?
+Are there any edge cases I'm not handling? Keep the behavior the same."</div>
+          <p>The AI will suggest improvements: more idiomatic Python, better variable names, extracted helper functions, or missing error handling. You decide what to accept. Refactoring with AI is a great way to improve code quality <em>and</em> learn what good Python looks like.</p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">8</div>
+        <div class="ss-content">
+          <h3>Add documentation</h3>
+          <p>Select a function and ask for a docstring:</p>
+          <div class="code-block">"Write a Google-style docstring for this function,
+including parameter types, return value, and an example."</div>
+          <p>For the whole project, ask for a README:</p>
+          <div class="code-block">"Write a README.md for this project. Include: what it does,
+how to install dependencies, and how to run it."</div>
+          <p>Documentation is the thing developers skip most often. With AI it takes two minutes.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">&#128161;</div>
+      <div>
+        <strong>The principle behind all of this</strong>
+        <p>AI works best when you stay specific and stay in control. One focused prompt gets you one useful output. Vague prompts get vague code. Read everything AI generates before accepting it. When you don't understand something, ask AI to explain it &mdash; that's where the learning happens.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PYCHARM — SETUP
+     ============================================================ -->
+<section class="setup-section" id="pycharm-setup">
+  <div class="container">
+    <div class="setup-header">
+      <div class="setup-tag">PyCharm &mdash; Flow 1 of 2</div>
+      <h2>Setup &amp; First Run</h2>
+      <p class="setup-sub">Install PyCharm, create a project (virtual environment is automatic), add AI, and run your first script.</p>
     </div>
 
     <div class="setup-steps">
@@ -153,9 +303,9 @@
       <div class="setup-step">
         <div class="ss-num">1</div>
         <div class="ss-content">
-          <h3>Download PyCharm</h3>
-          <p>Go to <strong>jetbrains.com/pycharm</strong>. Download Community (free) or Professional. Students get Professional free at <strong>jetbrains.com/student</strong> — just sign up with a .edu email.</p>
-          <p>Community covers most Python development. Professional adds: web frameworks (Django, Flask), database tools, remote development, and JetBrains AI.</p>
+          <h3>Download and install PyCharm</h3>
+          <p>Go to <strong>jetbrains.com/pycharm</strong>. Download Community (free) or Professional. Students get Professional free at <strong>jetbrains.com/student</strong> &mdash; sign up with a .edu email. The student license includes JetBrains AI, the full debugger, and database tools.</p>
+          <p>Community covers all core Python development. Professional adds: web frameworks, database tools, Jupyter notebooks, and JetBrains AI.</p>
         </div>
       </div>
 
@@ -163,40 +313,52 @@
         <div class="ss-num">2</div>
         <div class="ss-content">
           <h3>Create a new project</h3>
-          <p>Open PyCharm → New Project. Choose a location. PyCharm will ask about the interpreter — select "Create new virtual environment." It creates and manages a <code>.venv</code> folder automatically. You never have to activate or deactivate it manually — PyCharm handles this for you.</p>
-          <div class="ss-note">This is one of PyCharm's biggest advantages over VS Code: virtual environment management is completely handled for you, with a UI to manage packages without touching the terminal.</div>
+          <p>Open PyCharm &rarr; New Project. Choose a location. PyCharm will show a &ldquo;Python Interpreter&rdquo; section &mdash; select &ldquo;New environment using Virtualenv.&rdquo; PyCharm creates and manages the <code>.venv</code> folder automatically. You never activate or deactivate it manually &mdash; PyCharm handles this.</p>
+          <div class="ss-note">PyCharm's biggest advantage over VS Code: virtual environment management is completely handled for you, with a UI for installing packages without touching the terminal.</div>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">3</div>
         <div class="ss-content">
-          <h3>Install packages (two ways)</h3>
-          <p><strong>Via terminal:</strong> PyCharm has a built-in terminal that automatically has the virtual environment active. Just type <code>pip install pandas</code>.</p>
-          <p><strong>Via GUI:</strong> Go to Settings → Project → Python Interpreter → the + button. Search for any package and install it with a click. No terminal required.</p>
+          <h3>Install packages</h3>
+          <p>Two options:</p>
+          <p><strong>Via GUI:</strong> Settings &rarr; Project &rarr; Python Interpreter &rarr; the &ldquo;+&rdquo; button. Search for any package and install with one click.</p>
+          <p><strong>Via terminal:</strong> PyCharm's built-in terminal (bottom of the screen) automatically has the virtual environment active. Type:</p>
+          <div class="code-block">pip install pandas requests<br>
+pip freeze > requirements.txt</div>
+          <p>Also create a <code>.gitignore</code> file in the project root with: <code>.venv/</code>, <code>__pycache__/</code>, <code>*.pyc</code>, <code>.env</code>.</p>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">4</div>
         <div class="ss-content">
-          <h3>Enable JetBrains AI (Pro only)</h3>
-          <p>In PyCharm Pro, JetBrains AI is available in the right sidebar. It has access to your entire project — open files, project structure, error logs. Click the AI chat icon to open it. You can ask questions, have it generate code, explain functions, or review your changes.</p>
-          <div class="ss-note">Community edition doesn't include JetBrains AI, but you can always use Claude or ChatGPT in a browser tab alongside it.</div>
+          <h3>Add AI: install GitHub Copilot or enable JetBrains AI</h3>
+          <p><strong>JetBrains AI (Pro/student license):</strong> Already available in the right sidebar &mdash; look for the AI chat icon. No additional installation. JetBrains AI has access to your run logs, test results, and project structure in a way external tools can't match.</p>
+          <p><strong>GitHub Copilot (Community edition):</strong> Settings &rarr; Plugins &rarr; Marketplace &rarr; search &ldquo;GitHub Copilot&rdquo; &rarr; Install. Sign in with your GitHub account. Works the same as in VS Code: inline gray suggestions, Tab to accept.</p>
+          <p><strong>Codeium (free):</strong> Same plugin marketplace, search &ldquo;Codeium.&rdquo; Free for individuals, no subscription required.</p>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">5</div>
         <div class="ss-content">
-          <h3>Explore PyCharm's Python-specific features</h3>
-          <p>Once you're set up, explore what makes PyCharm different:</p>
-          <ul class="feature-list">
-            <li><strong>Right-click any function</strong> → "Go to Definition" jumps to where it's defined, even inside libraries</li>
-            <li><strong>Ctrl/Cmd+Click</strong> on any name does the same</li>
-            <li><strong>The Debugger</strong> (click the bug icon) lets you pause code mid-execution and inspect any variable</li>
-            <li><strong>Refactoring</strong> (Right-click → Refactor → Rename) safely renames a variable everywhere it's used</li>
-          </ul>
+          <h3>Run your first script</h3>
+          <p>Create a file <code>main.py</code> and type:</p>
+          <div class="code-block">import pandas as pd<br><br>
+data = {'name': ['Alice', 'Bob'], 'score': [92, 85]}<br>
+df = pd.DataFrame(data)<br>
+print(df)</div>
+          <p>Press <kbd>Shift+F10</kbd> to run (or the green triangle in the top-right toolbar). Output appears in the Run panel at the bottom. If PyCharm shows an import error, it will offer to install the missing package inline &mdash; click the suggestion.</p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">6</div>
+        <div class="ss-content">
+          <h3>Set up Git and push to GitHub</h3>
+          <p>See the <a href="#git-setup">Git &amp; GitHub setup section</a> below. PyCharm also has a built-in Git interface: VCS &rarr; Enable Version Control Integration. You can commit, push, and view history without the terminal if you prefer.</p>
         </div>
       </div>
 
@@ -204,81 +366,129 @@
   </div>
 </section>
 
-<!-- AI-First Stack -->
-<section class="setup-section" id="ai-first">
+<!-- ============================================================
+     PYCHARM — AI WORKFLOW
+     ============================================================ -->
+<section class="setup-section alt-bg" id="pycharm-ai">
   <div class="container">
     <div class="setup-header">
-      <div class="setup-tag">Cutting-edge</div>
-      <h2>AI-First Stack Setup</h2>
-      <p class="setup-sub">Cursor + uv + Claude + GitHub</p>
+      <div class="setup-tag">PyCharm &mdash; Flow 2 of 2</div>
+      <h2>Working with AI at Level 1</h2>
+      <p class="setup-sub">PyCharm's AI is more tightly woven into the IDE than VS Code's. Here's how to use it throughout a real project.</p>
     </div>
+
+    <p style="font-size:0.9rem; color: var(--text2); font-weight:300; margin-bottom:2rem;">PyCharm surfaces most AI actions through right-click menus and the AI Chat panel. The keyboard shortcut <kbd>Alt+Enter</kbd> opens quick-fix suggestions &mdash; often the fastest path to AI help on a specific line.</p>
 
     <div class="setup-steps">
 
       <div class="setup-step">
         <div class="ss-num">1</div>
         <div class="ss-content">
-          <h3>Install Cursor</h3>
-          <p>Download from <strong>cursor.com</strong>. If you already use VS Code, Cursor will ask to import your settings, extensions, and keybindings. This makes the transition seamless — it feels identical to VS Code until you start using the AI features.</p>
+          <h3>Plan with the AI Chat panel</h3>
+          <p>Open the AI Chat panel (right sidebar or View &rarr; Tool Windows &rarr; AI Assistant). Describe what you're building &mdash; PyCharm's AI can already see your project structure, so you don't need to re-explain it:</p>
+          <div class="code-block">"I'm building a data analysis script for sales data.
+The CSV has columns: date, product, region, sales.
+How should I structure the functions? What should each one do?"</div>
+          <p>Ask for a plan, read it critically, and start from there. Don't accept a plan you don't understand.</p>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">2</div>
         <div class="ss-content">
-          <h3>Install uv</h3>
-          <p>uv replaces both pip and venv. Install it with a single command:</p>
-          <div class="code-block">
-            <div class="code-comment"># Mac/Linux</div>
-            curl -LsSf https://astral.sh/uv/install.sh | sh<br><br>
-            <div class="code-comment"># Windows (PowerShell)</div>
-            powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-          </div>
-          <p>Then create a project and environment:</p>
-          <div class="code-block">
-            uv init my-project<br>
-            cd my-project<br>
-            uv add pandas requests
-          </div>
-          <p>uv creates a virtual environment automatically and manages it for you.</p>
+          <h3>Use AI completions while you type</h3>
+          <p>Start typing a function. As you write, Copilot or JetBrains AI suggests completions inline. PyCharm's native type inference also kicks in &mdash; it knows what methods are available on a pandas DataFrame, what arguments a function expects, and what types you're working with. The AI and PyCharm's own intelligence work together.</p>
+          <p>Hold <kbd>Alt</kbd> to cycle through multiple AI suggestions if more than one is offered.</p>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">3</div>
         <div class="ss-content">
-          <h3>Set up Claude in Cursor</h3>
-          <p>Cursor supports multiple AI models. In Cursor's settings, you can select Claude (Sonnet or Opus) as the underlying model for all AI features. You'll need an Anthropic API key — get one at <strong>console.anthropic.com</strong>.</p>
-          <p>Alternatively, Cursor's own subscription gives you access to multiple models including Claude without needing a separate key.</p>
+          <h3>Use AI Actions from the right-click menu</h3>
+          <p>Select any code &rarr; right-click &rarr; <strong>AI Actions</strong>. You'll see options including:</p>
+          <ul class="feature-list">
+            <li><strong>Explain code</strong> &mdash; plain-English explanation of the selected block</li>
+            <li><strong>Suggest refactoring</strong> &mdash; improvements to structure and readability</li>
+            <li><strong>Add error handling</strong> &mdash; wraps code in try/except with appropriate handling</li>
+            <li><strong>Generate docstring</strong> &mdash; writes documentation for the function</li>
+            <li><strong>Find potential bugs</strong> &mdash; scans for common mistakes</li>
+          </ul>
+          <p>Every action shows a diff before applying. Read the diff. Accept what makes sense, reject the rest.</p>
+          <div class="ss-note">PyCharm's right-click AI menu is the fastest way to act on a specific piece of code. You don't need to write a prompt &mdash; the menu already knows the most useful actions.</div>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">4</div>
         <div class="ss-content">
-          <h3>Learn Cursor's AI features</h3>
-          <p>Cursor has several distinct AI interaction modes:</p>
-          <ul class="feature-list">
-            <li><strong>Inline completion</strong> — like Copilot, suggests code as you type</li>
-            <li><strong>Cmd+K</strong> — edit mode: highlight code, press Cmd+K, describe the change, and Cursor rewrites it</li>
-            <li><strong>Cmd+L</strong> — chat mode: ask questions about your code, with full file context</li>
-            <li><strong>Agent mode</strong> — give a larger task, and Cursor reads files, writes code, and makes changes across multiple files autonomously</li>
-          </ul>
-          <div class="ss-note">Agent mode is powerful but requires review. Always read what the agent wrote before accepting it — it can make mistakes, especially in larger codebases.</div>
+          <h3>Debug with the debugger + AI explanation</h3>
+          <p>Click in the gutter next to any line to set a breakpoint (red dot). Press <kbd>Shift+F9</kbd> to run in Debug mode. Execution pauses at the breakpoint. You can inspect every variable in the Debug panel.</p>
+          <p>When you hit an exception, the Debug panel shows the exact state of the program when it crashed. Then open AI Chat and ask:</p>
+          <div class="code-block">"My script crashed with a KeyError on line 22.
+Looking at the debug panel, the DataFrame has columns
+['date', 'product', 'Revenue'] but my code references 'sales'.
+How should I fix this and prevent it in the future?"</div>
+          <p>The combination of PyCharm's debugger (exact program state) and AI (explanation and fix) is the most powerful debugging setup available at Level 1.</p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">5</div>
+        <div class="ss-content">
+          <h3>Generate tests with AI</h3>
+          <p>Right-click on a function &rarr; <strong>Generate</strong> &rarr; <strong>Tests</strong>. PyCharm opens a dialog, creates the test file in the correct location, and &mdash; with JetBrains AI &mdash; pre-populates test cases. Review them:</p>
+          <div class="code-block"><span class="code-comment"># Review generated test cases like this one:</span><br>
+def test_load_data_missing_column():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;# What happens if 'sales' column is missing?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;# AI should have generated this edge case</div>
+          <p>Run tests with a single click from the test file (green arrow) or from the Run panel. Red = failing, green = passing. Ask AI in the chat panel to explain any failing test.</p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">6</div>
+        <div class="ss-content">
+          <h3>Rename and refactor safely</h3>
+          <p>PyCharm's refactoring tools are Python-aware, not just text search-and-replace. Right-click any variable or function name &rarr; <strong>Refactor &rarr; Rename</strong>. PyCharm renames it everywhere it's used across the entire project, understanding scope correctly.</p>
+          <p>For larger refactors, use AI Chat: &ldquo;This function is doing too many things. How should I split it up?&rdquo; Let AI propose the structure, then use PyCharm's Extract Method (right-click &rarr; Refactor &rarr; Extract &rarr; Method) to do the splitting safely.</p>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="ss-num">7</div>
+        <div class="ss-content">
+          <h3>Use AI for documentation</h3>
+          <p>Place your cursor inside any function &rarr; right-click &rarr; <strong>AI Actions &rarr; Generate Docstring</strong>. PyCharm writes the docstring based on the function's actual parameters and body. For the project README, open AI Chat:</p>
+          <div class="code-block">"Write a README.md for this project. You can see the
+files and structure &mdash; include: what it does,
+how to install, and how to run it."</div>
+          <p>JetBrains AI can see your project structure directly, so the README it generates is specific to your actual project, not a generic template.</p>
         </div>
       </div>
 
     </div>
+
+    <div class="callout">
+      <div class="callout-icon">&#128161;</div>
+      <div>
+        <strong>PyCharm + AI: what makes it different</strong>
+        <p>In VS Code, AI is an extension sitting on top of the editor. In PyCharm, the AI and the IDE share a complete picture of your project &mdash; your files, your run history, your test results. JetBrains AI can answer &ldquo;why did my last test fail?&rdquo; because it saw the test run. That shared context makes the AI answers more accurate for Python-specific questions.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- Universal: Git & GitHub -->
-<section class="setup-section alt-bg" id="universal">
+<!-- ============================================================
+     GIT & GITHUB
+     ============================================================ -->
+<section class="setup-section" id="git-setup">
   <div class="container">
     <div class="setup-header">
-      <div class="setup-tag">Works with every stack</div>
-      <h2>Git & GitHub Setup</h2>
-      <p class="setup-sub">The same process regardless of which IDE you use.</p>
+      <div class="setup-tag">Universal &mdash; same for all IDEs</div>
+      <h2>Git &amp; GitHub Setup</h2>
+      <p class="setup-sub">Version control setup is identical regardless of which IDE you're using.</p>
     </div>
 
     <div class="setup-steps">
@@ -286,13 +496,11 @@
       <div class="setup-step">
         <div class="ss-num">1</div>
         <div class="ss-content">
-          <h3>Install Git</h3>
-          <p>Download from <strong>git-scm.com</strong>. On Mac, Git may already be installed — type <code>git --version</code> in your terminal to check. On Windows, the installer will also install Git Bash (a terminal that makes Git easier to use on Windows).</p>
-          <div class="code-block">
-            <div class="code-comment"># Configure your identity (one-time setup)</div>
-            git config --global user.name "Your Name"<br>
-            git config --global user.email "you@example.com"
-          </div>
+          <h3>Install Git and configure your identity</h3>
+          <p>Download from <strong>git-scm.com</strong>. On Mac, Git may already be installed &mdash; type <code>git --version</code> to check. On Windows, the installer includes Git Bash.</p>
+          <div class="code-block"><span class="code-comment"># One-time setup &mdash; your name and email appear in commit history</span><br>
+git config --global user.name "Your Name"<br>
+git config --global user.email "you@example.com"</div>
         </div>
       </div>
 
@@ -300,7 +508,7 @@
         <div class="ss-num">2</div>
         <div class="ss-content">
           <h3>Create a GitHub account</h3>
-          <p>Go to <strong>github.com</strong> and create a free account. Your username will be public — treat it like a professional identifier. Many developers use their GitHub profile as a portfolio.</p>
+          <p>Go to <strong>github.com</strong> and create a free account. Your username is public and often serves as a professional identifier.</p>
         </div>
       </div>
 
@@ -309,61 +517,38 @@
         <div class="ss-content">
           <h3>Initialize Git in your project</h3>
           <p>In your project folder's terminal:</p>
-          <div class="code-block">
-            git init<br>
-            git add .<br>
-            git commit -m "Initial commit"
-          </div>
+          <div class="code-block">git init<br>
+git add .<br>
+git commit -m "Initial commit"</div>
+          <p>Make sure your <code>.gitignore</code> is in place before running <code>git add .</code> so your <code>.venv</code> folder isn't included.</p>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">4</div>
         <div class="ss-content">
-          <h3>Create a .gitignore file</h3>
-          <p>Before your first commit, create a file called <code>.gitignore</code> in your project root. This prevents Git from tracking files you don't want in your history — especially your virtual environment and any files with API keys or passwords.</p>
-          <div class="code-block">
-            <div class="code-comment"># .gitignore</div>
-            .venv/<br>
-            __pycache__/<br>
-            *.pyc<br>
-            .env<br>
-            .DS_Store
-          </div>
-          <div class="ss-note">Never commit API keys, passwords, or secrets to Git. Even if you delete them in a later commit, they remain in the history. Use a <code>.env</code> file for secrets and add it to .gitignore.</div>
+          <h3>Create a repository on GitHub and push</h3>
+          <p>On GitHub, click &ldquo;New repository.&rdquo; Give it a name. Don't initialize with a README (you already have code locally). Copy the commands GitHub gives you:</p>
+          <div class="code-block">git remote add origin https://github.com/yourusername/your-repo.git<br>
+git branch -M main<br>
+git push -u origin main</div>
+          <p>Your code is now on GitHub. Every future commit pushes with just <code>git push</code>.</p>
         </div>
       </div>
 
       <div class="setup-step">
         <div class="ss-num">5</div>
         <div class="ss-content">
-          <h3>Push to GitHub</h3>
-          <p>On GitHub, click "New repository." Give it a name. Don't initialize with a README (since you already have code). Copy the commands GitHub shows you — they'll look like:</p>
-          <div class="code-block">
-            git remote add origin https://github.com/yourusername/your-repo.git<br>
-            git branch -M main<br>
-            git push -u origin main
-          </div>
-          <p>Your code is now on GitHub. Every future commit can be pushed with just <code>git push</code>.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">6</div>
-        <div class="ss-content">
           <h3>The daily Git rhythm</h3>
-          <p>After setup, the loop you'll use every day is simple:</p>
-          <div class="code-block">
-            <div class="code-comment"># See what changed</div>
-            git status<br><br>
-            <div class="code-comment"># Stage your changes</div>
-            git add .<br><br>
-            <div class="code-comment"># Commit with a message</div>
-            git commit -m "Describe what changed"<br><br>
-            <div class="code-comment"># Push to GitHub</div>
-            git push
-          </div>
-          <div class="ss-note">VS Code and PyCharm both have built-in Git UIs — you can do all of this with clicks instead of commands. The Source Control panel in VS Code (left sidebar) shows your changes and lets you commit and push without the terminal.</div>
+          <div class="code-block"><span class="code-comment"># See what's changed</span><br>
+git status<br><br>
+<span class="code-comment"># Stage all changes</span><br>
+git add .<br><br>
+<span class="code-comment"># Commit with a clear message</span><br>
+git commit -m "Add data cleaning function"<br><br>
+<span class="code-comment"># Push to GitHub</span><br>
+git push</div>
+          <div class="ss-note">Both VS Code and PyCharm have visual Git interfaces. In VS Code: the Source Control panel (left sidebar). In PyCharm: VCS menu and the Commit panel. You don't have to use the terminal for Git once you're set up.</div>
         </div>
       </div>
 
@@ -371,65 +556,67 @@
   </div>
 </section>
 
-<!-- Common Pitfalls -->
-<section class="pitfalls-section" id="pitfalls">
+<!-- ============================================================
+     COMMON PITFALLS
+     ============================================================ -->
+<section class="pitfalls-section alt-bg" id="pitfalls">
   <div class="container">
-    <h2 class="section-title">Common pitfalls — and how to avoid them</h2>
-    <p class="section-intro">These are the mistakes almost everyone makes at least once. Knowing them in advance will save you hours of confusion.</p>
+    <h2 class="section-title">Common pitfalls &mdash; and how to avoid them</h2>
+    <p class="section-intro">These are the mistakes almost everyone makes at least once. Knowing them now saves hours of confusion.</p>
 
     <div class="pitfalls-list">
 
       <div class="pitfall-item">
-        <div class="pitfall-icon">⚠</div>
+        <div class="pitfall-icon">&#9888;</div>
         <div class="pitfall-content">
           <h3>Installing packages without activating your virtual environment</h3>
-          <p>If your terminal prompt doesn't show <code>(.venv)</code>, your virtual environment isn't active. Installing packages now puts them in your global Python, which defeats the entire purpose. Always check before you <code>pip install</code>.</p>
+          <p>If your terminal prompt doesn't show <code>(.venv)</code>, the environment isn't active. Packages installed now go into your global Python instead of your project's environment.</p>
           <div class="pitfall-fix">Fix: <code>source .venv/bin/activate</code> (Mac/Linux) or <code>.venv\Scripts\activate</code> (Windows)</div>
         </div>
       </div>
 
       <div class="pitfall-item">
-        <div class="pitfall-icon">⚠</div>
+        <div class="pitfall-icon">&#9888;</div>
         <div class="pitfall-content">
           <h3>Committing your .venv folder to Git</h3>
-          <p>The virtual environment folder is large, machine-specific, and completely reproducible from your requirements.txt. Committing it bloats your repository and causes errors when others try to use it. It should always be in .gitignore.</p>
-          <div class="pitfall-fix">Fix: Add <code>.venv/</code> to your .gitignore before your first commit.</div>
+          <p>The virtual environment is large, machine-specific, and fully reproducible from <code>requirements.txt</code>. It should never be in your repository.</p>
+          <div class="pitfall-fix">Fix: Add <code>.venv/</code> to <code>.gitignore</code> before your first commit.</div>
         </div>
       </div>
 
       <div class="pitfall-item">
-        <div class="pitfall-icon">⚠</div>
+        <div class="pitfall-icon">&#9888;</div>
         <div class="pitfall-content">
-          <h3>Committing API keys or passwords</h3>
-          <p>Even a brief push of a file containing an API key is a security risk. GitHub scans for common patterns. If it happens, assume the key is compromised and rotate it immediately.</p>
-          <div class="pitfall-fix">Fix: Store secrets in a <code>.env</code> file and add it to .gitignore. Use a library like <code>python-dotenv</code> to load it.</div>
+          <h3>Committing API keys or secrets</h3>
+          <p>Even a brief push of a file containing a key is a security risk. GitHub scans for key patterns. If it happens, assume the key is compromised and rotate it immediately.</p>
+          <div class="pitfall-fix">Fix: Store secrets in a <code>.env</code> file and add it to <code>.gitignore</code>. Load with <code>python-dotenv</code>.</div>
         </div>
       </div>
 
       <div class="pitfall-item">
-        <div class="pitfall-icon">⚠</div>
+        <div class="pitfall-icon">&#9888;</div>
         <div class="pitfall-content">
-          <h3>VS Code using the wrong Python interpreter</h3>
-          <p>VS Code may have multiple Python installations to choose from — your global Python, your .venv, or even a conda environment. If you installed a package and Python can't find it, your IDE is probably pointing at the wrong interpreter.</p>
-          <div class="pitfall-fix">Fix: Press Cmd/Ctrl+Shift+P → "Python: Select Interpreter" → choose the one inside your .venv folder.</div>
+          <h3>VS Code pointing at the wrong Python interpreter</h3>
+          <p>VS Code may have multiple Python installations to choose from. If a package you installed can't be found, your IDE is probably pointing at global Python instead of your <code>.venv</code>.</p>
+          <div class="pitfall-fix">Fix: <kbd>Cmd/Ctrl+Shift+P</kbd> &rarr; &ldquo;Python: Select Interpreter&rdquo; &rarr; choose the one inside <code>.venv</code>.</div>
         </div>
       </div>
 
       <div class="pitfall-item">
-        <div class="pitfall-icon">⚠</div>
+        <div class="pitfall-icon">&#9888;</div>
+        <div class="pitfall-content">
+          <h3>Accepting AI code without reading it</h3>
+          <p>AI generates plausible-looking code that can have subtle bugs. Every piece of AI-generated code you accept without reading is a bug you've agreed to be responsible for.</p>
+          <div class="pitfall-fix">Fix: Read every suggestion before pressing Tab or Apply. When you don't understand a line, ask AI to explain it.</div>
+        </div>
+      </div>
+
+      <div class="pitfall-item">
+        <div class="pitfall-icon">&#9888;</div>
         <div class="pitfall-content">
           <h3>Forgetting to update requirements.txt</h3>
-          <p>When you install a new package, your requirements.txt doesn't update automatically. If a teammate clones your repo and runs <code>pip install -r requirements.txt</code>, they won't have the new package.</p>
-          <div class="pitfall-fix">Fix: Run <code>pip freeze > requirements.txt</code> whenever you install a new package, and commit it.</div>
-        </div>
-      </div>
-
-      <div class="pitfall-item">
-        <div class="pitfall-icon">⚠</div>
-        <div class="pitfall-content">
-          <h3>Writing huge, vague Git commit messages</h3>
-          <p>"Fixed stuff" or "changes" are useless commit messages. Six months later, you won't know what changed or why. Small, specific, frequent commits are dramatically more valuable than occasional big ones.</p>
-          <div class="pitfall-fix">Fix: Commit often. Write messages like "Add error handling to data loader" — one clear sentence describing what changed.</div>
+          <p>Installing a new package doesn't automatically update <code>requirements.txt</code>. If a teammate clones your repo and installs from it, they won't have your new package.</p>
+          <div class="pitfall-fix">Fix: Run <code>pip freeze > requirements.txt</code> after installing any new package, and commit it.</div>
         </div>
       </div>
 
@@ -437,9 +624,50 @@
   </div>
 </section>
 
+<!-- NEXT STEPS -->
+<section class="setup-section" id="next-steps">
+  <div class="container">
+    <div class="setup-header">
+      <div class="setup-tag">Ready for more?</div>
+      <h2>What's next</h2>
+      <p class="setup-sub">Level 1 is solid. Here's where to go when you're ready to take AI further.</p>
+    </div>
+
+    <div class="stack-cards" style="margin-top:1.5rem;">
+      <div class="stack-card stack-python">
+        <div class="stack-tag">Level 2</div>
+        <h3>Cursor &mdash; the agentic IDE</h3>
+        <div class="stack-tools">
+          <div class="stack-tool">Reads your whole codebase</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">Edits across multiple files</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">Agent mode for larger tasks</div>
+        </div>
+        <p>Cursor is VS Code rebuilt around AI. At Level 2, you stop giving line-by-line instructions and start giving goals. Cursor plans, edits files, and shows you diffs to review. A natural next step when Level 1 starts feeling slow.</p>
+        <a href="ide-cursor.html" class="btn-primary" style="display:inline-block; margin-top:1rem;">Go to Level 2: Cursor &rarr;</a>
+      </div>
+
+      <div class="stack-card stack-ai">
+        <div class="stack-tag">Level 3</div>
+        <h3>Claude Code &mdash; terminal agent</h3>
+        <div class="stack-tools">
+          <div class="stack-tool">Full environment access</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">Reads, writes &amp; runs files</div>
+          <div class="stack-plus">+</div>
+          <div class="stack-tool">No IDE required</div>
+        </div>
+        <p>Claude Code runs in your terminal and has access to your entire computing environment. You describe what you want; it reads your files, writes code, runs it, and iterates. A different paradigm from Level 1 &mdash; the IDE becomes optional.</p>
+        <a href="claude-power.html" class="btn-primary" style="display:inline-block; margin-top:1rem;">Go to Level 3: Claude Advanced &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="page-nav">
-  <a href="stacks.html" class="btn-ghost">← Choose Your Stack</a>
-  <a href="index.html" class="btn-primary">Back to Overview →</a>
+  <a href="workflow.html" class="btn-ghost">&larr; How It Connects</a>
+  <a href="ide-cursor.html" class="btn-primary">Level 2: Cursor &rarr;</a>
 </div>
 
 </main>
@@ -450,10 +678,11 @@
       <a href="index.html">Overview</a>
       <a href="tools.html">The Tools</a>
       <a href="workflow.html">How It Connects</a>
-      <a href="stacks.html">Choose Your Stack</a>
       <a href="start.html">Get Started</a>
+      <a href="ide-cursor.html">Level 2: Cursor</a>
+      <a href="claude-power.html">Level 3: Claude Advanced</a>
     </div>
-    <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
+    <p class="footer-note">A clear guide to modern Python development &mdash; tools, workflow, and AI.</p>
   </div>
 </footer>
 
