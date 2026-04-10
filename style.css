@@ -1523,3 +1523,13 @@ td.bad { color: var(--bad); background: var(--bad-bg); }
   vertical-align: middle;   /* aligns with text baseline */
   padding: 0;               /* optional: keeps height tight */
 }
+
+
+.section-intro a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.section-intro a:visited {
+  color: inherit;
+}
