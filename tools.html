@@ -69,7 +69,7 @@
     <h3 class="sub-section-title">The main options</h3>
     <div class="tool-cards">
 
-      <a href="ide-vscode.html" class="tool-card tool-card-link">
+      <a class="tool-card tool-card-link">
         <div class="tool-card-header">
           <div class="tool-icon vscode-icon">⬡</div>
           <div>
@@ -91,7 +91,7 @@
         <div class="tool-card-cta">Deep dive + AI workflow →</div>
       </a>
 
-      <a href="ide-pycharm.html" class="tool-card tool-card-link">
+      <a class="tool-card tool-card-link">
         <div class="tool-card-header">
           <div class="tool-icon pycharm-icon">🐍</div>
           <div>
@@ -113,7 +113,7 @@
         <div class="tool-card-cta">Deep dive + AI workflow →</div>
       </a>
 
-      <a href="ide-cursor.html" class="tool-card tool-card-link">
+      <a class="tool-card tool-card-link">
         <div class="tool-card-header">
           <div class="tool-icon cursor-icon">⌛</div>
           <div>
@@ -134,25 +134,7 @@
         <div class="tool-card-cta">Deep dive + AI workflow →</div>
       </a>
 
-      <div class="tool-card">
-        <div class="tool-card-header">
-          <div class="tool-icon zed-icon">▲</div>
-          <div>
-            <h4>Zed</h4>
-            <div class="tool-by">Zed Industries · Free · Mac & Linux</div>
-          </div>
-        </div>
-        <p>A new, extremely fast editor built for performance and collaboration. Real-time multiplayer coding is built in — multiple people can edit the same file simultaneously, like Google Docs. AI integration is growing.</p>
-        <div class="tool-strengths">
-          <div class="strength-item good">Fastest editor available</div>
-          <div class="strength-item good">Built-in real-time collaboration</div>
-          <div class="strength-item neutral">Not available on Windows yet</div>
-          <div class="strength-item neutral">Smaller extension ecosystem</div>
-        </div>
-        <div class="tool-best-for">Best for: Performance-obsessed developers or teams that do a lot of pair programming.</div>
-      </div>
-
-      <div class="tool-card">
+      <div class="tool-card tool-card-link">
         <div class="tool-card-header">
           <div class="tool-icon jupyter-icon">📓</div>
           <div>
@@ -380,24 +362,6 @@
         </div>
         <div class="tool-best-for">Best for: Developers who want the fastest possible toolchain. Growing toward being the new default.</div>
       </div>
-
-      <div class="tool-card">
-        <div class="tool-card-header">
-          <div class="tool-icon poetry-icon">📖</div>
-          <div>
-            <h4>Poetry</h4>
-            <div class="tool-by">Python Poetry · Free · All platforms</div>
-          </div>
-        </div>
-        <p>A complete dependency management and packaging tool. Uses <code>pyproject.toml</code> to declare all project dependencies and manages environments automatically. More opinionated than pip, but creates a cleaner, more reproducible setup.</p>
-        <div class="tool-strengths">
-          <div class="strength-item good">Clean dependency declarations</div>
-          <div class="strength-item good">Automatic lock files for reproducibility</div>
-          <div class="strength-item neutral">More concepts to learn upfront</div>
-        </div>
-        <div class="tool-best-for">Best for: Larger projects or teams where reproducibility and clean dependency management matter.</div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -552,6 +516,9 @@
       <a href="tools.html">The Tools</a>
       <a href="workflow.html">How It Connects</a>
       <a href="start.html">Get Started</a>
+      <!-- 🌗 THEME TOGGLE BUTTON -->
+      <button id="themeToggle" class="theme-toggle">☀️</button>
+      <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
     </div>
     <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
   </div>
