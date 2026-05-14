@@ -48,6 +48,169 @@
 </div>
 
 <!-- ============================================================
+     FIRST FLOW - GET A FEEL FOR IT
+     ============================================================ -->
+<section class="alt-bg">
+  <div class="container">
+
+    <p class="section-label">Hands-on exercise</p>
+    <h2 class="section-title">Your first project — start to finish</h2>
+    <p class="section-intro">Git · GitHub · venv · pytest · the whole workflow. Opens with <strong>Windows + X → I</strong> to launch PowerShell.</p>
+
+    <div class="tryit-steps">
+
+      <div class="tryit-step">
+        <span class="ts-badge">prereqs</span>
+        <div class="ts-body">
+          <p><strong>Before you start, make sure you have:</strong></p>
+          <p>
+            Git — <a href="https://git-scm.com" target="_blank">git-scm.com</a><br>
+            GitHub CLI — <a href="https://cli.github.com" target="_blank">cli.github.com</a><br>
+            A GitHub account — <a href="https://github.com" target="_blank">github.com</a>
+          </p>
+          <p>VS Code and Python are already installed.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <span class="ts-badge">step 1</span>
+        <div class="ts-body">
+          <p><strong>Organize — Create your folder and open VS Code</strong></p>
+          <p>Press <strong>Windows + X</strong> then <strong>I</strong> to open PowerShell. Type these one at a time:</p>
+          <p>
+            <code>cd Desktop</code> &nbsp;← navigate to your Desktop<br>
+            <code>mkdir tip_calculator</code> &nbsp;← create your project folder<br>
+            <code>cd tip_calculator</code> &nbsp;← move into it<br>
+            <code>code .</code> &nbsp;← open VS Code here
+          </p>
+          <p>Switch to the terminal inside VS Code with <strong>Ctrl + `</strong> — use this for everything from here on.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <span class="ts-badge">step 2</span>
+        <div class="ts-body">
+          <p><strong>Organize — Git, virtual environment, and files</strong></p>
+          <p>Tell Git who you are — <em>one-time setup, never needs repeating:</em></p>
+          <p>
+            <code>git config --global user.email "you@example.com"</code> &nbsp;← your GitHub email<br>
+            <code>git config --global user.name "Your Name"</code> &nbsp;← your name
+          </p>
+          <p>Then set up your project:</p>
+          <p>
+            <code>git init</code> &nbsp;← create a local git repository in this folder<br>
+            <code>python -m venv .venv</code> &nbsp;← create a virtual environment called .venv<br>
+            <code>.venv\Scripts\activate</code> &nbsp;← activate it — your prompt will show (.venv)
+          </p>
+          <p>Create your project files:</p>
+          <p>
+            <code>New-Item tip_calculator.py</code> &nbsp;← your main code file<br>
+            <code>New-Item test_tip_calculator.py</code> &nbsp;← your test file<br>
+            <code>New-Item .gitignore</code> &nbsp;← tells Git what folders to skip
+          </p>
+          <p>Open <code>.gitignore</code> in VS Code, paste the following in, and save with <strong>Ctrl + S</strong>:</p>
+          <p>
+            <code>.venv/</code> &nbsp;← your virtual environment — hundreds of files, not needed on GitHub<br>
+            <code>__pycache__/</code> &nbsp;← Python's temp files, auto-created when you run code<br>
+            <code>.pytest_cache/</code> &nbsp;← pytest's temp files, auto-created when you run tests
+          </p>
+          <p>None of these belong on GitHub. They are local, auto-generated, and irrelevant to anyone else.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <span class="ts-badge">step 3</span>
+        <div class="ts-body">
+          <p><strong>Organize — Install pytest before writing anything</strong></p>
+          <p>Do this before writing any code so VS Code doesn't show errors as you type:</p>
+          <p>
+            <code>pip install pytest</code> &nbsp;← install pytest into your .venv<br>
+            <code>pip freeze > requirements.txt</code> &nbsp;← save your package list
+          </p>
+          <p><code>requirements.txt</code> is how you tell anyone who clones your project which packages to install. It replaces the need to share your <code>.venv</code> folder.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <span class="ts-badge">step 4</span>
+        <div class="ts-body">
+          <p><strong>Write — Add your code and tests</strong></p>
+          <p>pytest is a package that checks whether your code does what you expect. You write a separate test file containing functions that call your real code with specific inputs and assert what the output should be. When you run <code>pytest</code> in the terminal, it finds those functions automatically and runs them all. A dot means a test passed. An <code>F</code> means it failed, and pytest tells you exactly what went wrong.</p>
+          <p>Open <code>tip_calculator.py</code> and paste this in, then save:</p>
+          <p>
+            <code>def calculate_tip(bill_amount, tip_percent):</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;"""Calculate the tip amount for a bill."""</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;if bill_amount &lt; 0:</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise ValueError("Bill amount cannot be negative")</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;return round(bill_amount * (tip_percent / 100), 2)</code>
+          </p>
+          <p>Open <code>test_tip_calculator.py</code> and paste this in, then save:</p>
+          <p>
+            <code>import pytest</code><br>
+            <code>from tip_calculator import calculate_tip</code><br>
+            <code>&nbsp;</code><br>
+            <code>def test_standard_tip():</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;assert calculate_tip(100, 20) == 20.0</code><br>
+            <code>&nbsp;</code><br>
+            <code>def test_zero_tip():</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;assert calculate_tip(50, 0) == 0.0</code><br>
+            <code>&nbsp;</code><br>
+            <code>def test_negative_bill_raises_error():</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;with pytest.raises(ValueError):</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calculate_tip(-10, 20)</code>
+          </p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <span class="ts-badge">step 5</span>
+        <div class="ts-body">
+          <p><strong>Test — Run pytest</strong></p>
+          <p><code>pytest</code> &nbsp;← runs all test files it finds automatically</p>
+          <p>You should see:</p>
+          <p>
+            <code>collected 3 items</code><br>
+            <code>test_tip_calculator.py ...</code><br>
+            <code>3 passed in 0.12s</code>
+          </p>
+          <p>After this runs, two new folders will appear in VS Code's file explorer — <code>__pycache__/</code> and <code>.pytest_cache/</code>. pytest created these automatically. You don't need to touch them — your <code>.gitignore</code> already tells Git to ignore them.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <span class="ts-badge">step 6</span>
+        <div class="ts-body">
+          <p><strong>Share — Push to GitHub</strong></p>
+          <p>Log in to GitHub from the terminal — <em>one-time setup:</em></p>
+          <p><code>gh auth login</code> &nbsp;← follow the prompts, it will open a browser to confirm</p>
+          <p>Then create your repo and push your code in one command:</p>
+          <p><code>gh repo create tip_calculator --private --source=. --remote=origin --push</code> &nbsp;← creates the repo, links it, and pushes your code</p>
+          <p>Go to <code>github.com/yourusername/tip_calculator</code> — your files are there.</p>
+        </div>
+      </div>
+
+      <div class="tryit-step">
+        <span class="ts-badge">loop</span>
+        <div class="ts-body">
+          <p><strong>The core loop going forward</strong></p>
+          <p>
+            <code>edit code</code> &nbsp;← make changes in VS Code<br>
+            <code>pytest</code> &nbsp;← confirm everything still works<br>
+            <code>git add .</code> &nbsp;← stage all changes<br>
+            <code>git commit -m "describe what you changed"</code> &nbsp;← save a snapshot<br>
+            <code>git push</code> &nbsp;← send it to GitHub
+          </p>
+          <p>Every <code>git commit</code> is a saved snapshot. Every <code>git push</code> sends it to GitHub.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================================================
      VS CODE — SETUP
      ============================================================ -->
 <section class="setup-section" id="vscode-setup">
