@@ -101,8 +101,8 @@
       </div>
       <div class="cat-card cat-env">
         <div class="cat-num">03</div>
-        <h3>The Environment</h3>
-        <p>A self-contained Python installation for each project. Keeps your projects isolated so their dependencies don't conflict. Every professional Python project has one.</p>
+        <h3>Python Environment (venv)</h3>
+        <p>A self-contained Python installation for each project. Keeps your projects isolated so their dependencies don't conflict — this is about managing packages and versions, not about AI. Every professional Python project has one.</p>
         <div class="cat-examples">venv &middot; conda &middot; uv</div>
         <a href="tools.html#environments" class="cat-link">Learn about environments &rarr;</a>
       </div>
@@ -124,28 +124,55 @@
   </div>
 </section>
 
+<section class="mental-model">
+  <div class="container">
+    <div class="mm-label">Three questions that place any tool on the map</div>
+    <h2 class="mm-headline">Now that you know the tools, here's how to think about them together.</h2>
+    <p class="mm-body">Every developer — beginner or expert — is implicitly answering three questions. The tools above each answer one of them. More importantly, understanding these questions means you can evaluate any new tool you encounter, not just the ones on this site.</p>
+    <div class="workflow-strip">
+      <div class="ws-step">
+        <div class="ws-icon">&#9997;</div>
+        <div class="ws-label">Where do I write and review code?</div>
+        <div class="ws-sub">An editor or IDE &mdash; VS Code, PyCharm, Cursor, and others</div>
+      </div>
+      <div class="ws-arrow">&rarr;</div>
+      <div class="ws-step">
+        <div class="ws-icon">&#9654;</div>
+        <div class="ws-label">Where do I run things?</div>
+        <div class="ws-sub">A terminal &mdash; where code executes, scripts run, and agents live</div>
+      </div>
+      <div class="ws-arrow">&rarr;</div>
+      <div class="ws-step">
+        <div class="ws-icon">&#129504;</div>
+        <div class="ws-label">How much can the AI see and do?</div>
+        <div class="ws-sub">This is the levels question &mdash; and it's what determines how powerful your workflow actually is</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="levels-section">
   <div class="container">
     <div class="section-label">Stages of AI-assisted coding</div>
     <h2 class="section-title">What level are you at?</h2>
-    <p class="section-intro">AI can only help at a depth you can follow. Knowing where you are shows you what to learn next. Read more <a href="https://paulgp.substack.com/p/getting-started-with-claude-code" target="_blank">here</a>.</p>
+    <p class="section-intro">All of these levels use the same underlying AI model. What changes is how much of your environment the AI can see and act on — and how much you have to do manually in between. Knowing where you are shows you what to learn next. Read more <a href="https://paulgp.substack.com/p/getting-started-with-claude-code" target="_blank">here</a>.</p>
     <div class="levels-list">
 
       <div class="level-item level-0">
         <div class="level-badge">Level 0&ndash;1</div>
         <div class="level-content">
           <h3>Browser chat + copy-paste</h3>
-          <p>You're using ChatGPT or Claude in a browser tab. You describe a problem, get code back, paste it into your editor, run it, hit an error, copy the error back up, and repeat. Or you have Copilot in your IDE doing inline suggestions — helpful, but still basically a chat loop.</strong></p>
-          <div class="level-note">The <a href="start.html" style="color: var(--accent2);">Get Started</a> page walks you through a complete Level 1 workflow in VS Code and PyCharm &mdash; including AI from day one.</div>
+          <p>You're using ChatGPT or Claude in a browser tab. You describe a problem, get code back, paste it into your editor, run it, hit an error, copy the error back up, and repeat. Or you have Copilot in your IDE doing inline suggestions — helpful, but still basically a chat loop. The core limitation: the AI has no access to your project. It can't see your files, your errors in context, or how your code is structured. Every exchange starts from scratch.</p>
+          <div class="level-note">The <a href="start.html" style="color: var(--accent2);">Get Started</a> page walks you through a complete setup in VS Code and PyCharm &mdash; including AI from day one.</div>
         </div>
       </div>
 
       <div class="level-item level-2">
         <div class="level-badge">Level 2</div>
         <div class="level-content">
-          <h3>Agentic IDE</h3>
-          <p>You have an AI-first editor like Cursor. You tell the AI what you want, and it edits files, reads your codebase, and works across multiple files at once — still inside the editor, but with much more autonomy. The AI isn't just suggesting; it's doing. You review diffs and decide what to keep.</p>
-          <div class="level-note">See the <a href="ide-cursor.html" style="color: var(--accent2);">Cursor Guide </a> for more information.</div>
+          <h3>AI in your editor</h3>
+          <p>The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn't just suggesting — it's doing. The shift here isn't about a specific tool, it's a pattern: the AI has access to your codebase, and you're in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor — an AI-first editor that pushes this pattern further and is gaining wide popularity among developers.</p>
+          <div class="level-note">The <a href="ide-cursor.html" style="color: var(--accent2);">Level 2: AI in Your Editor</a> page demonstrates this workflow in both VS Code and PyCharm.</div>
         </div>
       </div>
 
@@ -153,7 +180,7 @@
         <div class="level-badge">Level 3</div>
         <div class="level-content">
           <h3>Dedicated coding agents</h3>
-          <p>Tools like Claude Code, OpenAI Codex CLI, and Gemini CLI run in your terminal and have access to your <em>full computing environment</em> — not just open editor files. They can think about a task, read and write any file, run scripts, see the output, and iterate autonomously. The IDE becomes optional; the terminal is the interface.</p>
+          <p>The AI moves out of the editor and into your terminal, where it has access to your <em>full computing environment</em>. This means it can run code and see the output, not just read files. It can execute scripts, install packages, use system tools, read and write anywhere on your filesystem, and iterate on its own until a task is complete. You describe an outcome; it figures out the steps. The IDE is still useful for reviewing what the agent produced, but it's no longer required to run the task. Claude Code is the primary example covered here; OpenAI Codex CLI and Gemini CLI follow the same pattern.</p>
           <div class="level-note">This is what the <a href="claude-power.html" style="color: var(--accent2);">Claude Advanced</a> section covers.</div>
         </div>
       </div>
@@ -162,7 +189,7 @@
         <div class="level-badge">Level 4</div>
         <div class="level-content">
           <h3>Connected agents</h3>
-          <p>You add external capabilities to your agent via MCP (Model Context Protocol) — connecting it to databases, live documentation, web search, and other APIs. The agent can now pull current library docs, query your database, or search the web while it codes. Superpowers, Context7, and Sequential Thinking from the Claude Advanced page are Level 4 tools.</p>
+          <p>You extend the agent with live connections to the outside world via MCP (Model Context Protocol) — a standard that lets the agent pull in information from beyond your computer: current library documentation, web search, databases, and other services. Without this, an agent is limited to what it already knows, which can lag months behind. With it, the agent can look up the exact API it needs right now, query your database while it codes, or search the web mid-task. Superpowers, Context7, and Sequential Thinking from the Claude Advanced page are Level 4 tools layered on top of a Level 3 setup.</p>
         </div>
       </div>
 
@@ -209,7 +236,7 @@
       <a href="start.html" class="qn-card">
         <div class="qn-icon">&#128640;</div>
         <h3>Get Started</h3>
-        <p>Step-by-step setup guides and AI workflows for VS Code and PyCharm. Your path from Level 0 to Level 1.</p>
+        <p>Step-by-step setup guides and AI workflows for VS Code and PyCharm. Your path into real AI-assisted coding.</p>
       </a>
     </div>
   </div>
