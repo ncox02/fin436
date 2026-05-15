@@ -82,3 +82,28 @@ toggleBtn.addEventListener('click', () => {
   toggleBtn.textContent = next === 'light' ? '🌙' : '☀️';
   localStorage.setItem('theme', next);
 });
+
+// OS toggle for start.html — Windows is the default
+function setOS(os) {
+  const body = document.body;
+  const btnMac = document.getElementById('btnMac');
+  const btnWin = document.getElementById('btnWin');
+  if (!btnMac || !btnWin) return;
+
+  if (os === 'mac') {
+    body.classList.add('platform-mac');
+    btnMac.classList.add('active');
+    btnWin.classList.remove('active');
+  } else {
+    body.classList.remove('platform-mac');
+    btnWin.classList.add('active');
+    btnMac.classList.remove('active');
+  }
+  localStorage.setItem('preferredOS', os);
+}
+
+// Restore saved OS preference on page load
+(function () {
+  const saved = localStorage.getItem('preferredOS');
+  if (saved === 'mac') setOS('mac');
+})();

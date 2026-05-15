@@ -25,788 +25,331 @@
   <a href="tools.html">The Tools</a>
   <a href="workflow.html">How It Connects</a>
   <a href="start.html">Get Started</a>
-  <a href="ide-cursor.html">Level 2: Cursor</a>
+  <a href="ide-cursor.html">Level 2: AI in Your Editor</a>
   <a href="claude-power.html">Level 3: Claude Advanced</a>
 </div>
 
 <main>
 
+<!-- ============================================================
+     FIRST PROJECT — LEAD SECTION
+     ============================================================ -->
 <div class="page-hero">
   <div class="container">
-    <div class="page-eyebrow">Setup guides</div>
-    <h1 class="page-title">Get Started</h1>
-    <p class="page-sub">Full setup and AI-integration walkthroughs for VS Code and PyCharm. Each IDE gets two flows: first get everything working, then learn to use AI across every part of the coding process.</p>
+    <h1 class="page-title">Get started</h1>
+    <p class="page-sub">The whole workflow. Do this first.</p>
     <div class="toc">
-      <a href="#vscode-setup">VS Code: Setup</a>
-      <a href="#vscode-ai">VS Code: AI Workflow</a>
-      <a href="#pycharm-setup">PyCharm: Setup</a>
-      <a href="#pycharm-ai">PyCharm: AI Workflow</a>
-      <a href="#git-setup">Git &amp; GitHub</a>
-      <a href="#pitfalls">Common Pitfalls</a>
+      <a href="#first-project">Try it out</a>
+      <a href="#next-steps">What's Next</a>
     </div>
   </div>
 </div>
 
 <!-- ============================================================
-     FIRST FLOW - GET A FEEL FOR IT
+     FIRST PROJECT WALKTHROUGH
+     ============================================================ -->
+<section id="first-project">
+  <div class="container">
+
+    <!-- OS TOGGLE -->
+    <div class="os-toggle-wrap">
+      <span class="os-toggle-label">Platform:</span>
+      <div class="os-toggle">
+        <button id="btnWin" class="os-toggle-btn active" onclick="setOS('win')">Windows</button>
+        <button id="btnMac" class="os-toggle-btn" onclick="setOS('mac')">Mac</button>
+      </div>
+    </div>
+    
+    <div class="page-eyebrow">Hands-on exercise &middot; ~5 minutes</div>
+    <div class="tryit-steps">
+      
+  <!-- PREREQS -->
+  <div class="tryit-step">
+    <span class="ts-badge">prereqs</span>
+    <div class="ts-body">
+      <p><strong>Make sure you have:</strong></p>
+      <p>
+        Python &mdash; <a href="https://python.org" target="_blank" style="color: var(--accent2);">python.org</a><br>
+        Git &mdash; <a href="https://git-scm.com" target="_blank" style="color: var(--accent2);">git-scm.com</a><br>
+        GitHub CLI &mdash; <a href="https://cli.github.com" target="_blank" style="color: var(--accent2);">cli.github.com</a><br>
+        A GitHub account &mdash; <a href="https://github.com" target="_blank" style="color: var(--accent2);">github.com</a>
+      </p>
+      <p>VS Code and Python are already installed if you followed the setup guides.</p>
+    </div>
+  </div>
+
+  <!-- STEP 1 — ORGANIZE -->
+  <div class="tryit-step">
+    <span class="ts-badge">step 1</span>
+    <div class="ts-body">
+      <p><strong>Organize &mdash; Folder, Git, virtual environment, and files</strong></p>
+
+      <p class="os-win">Press <strong>Windows&nbsp;+&nbsp;X</strong> then <strong>I</strong> to open PowerShell. Type these one at a time:</p>
+      <p class="os-mac">Open Terminal from Spotlight (<strong>Cmd&nbsp;+&nbsp;Space</strong>, type &ldquo;Terminal&rdquo;). Type these one at a time:</p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>cd Desktop</code> &nbsp;&larr; navigate to your Desktop<br>
+<code>mkdir tip_calculator</code> &nbsp;&larr; create your project folder<br>
+<code>cd tip_calculator</code> &nbsp;&larr; move into it<br>
+<code>code .</code> &nbsp;&larr; open VS Code here
+        </div>
+      </div>
+
+      <p>Switch to the terminal inside VS Code with <strong>Ctrl&nbsp;+&nbsp;`</strong> &mdash; use this for everything from here on.</p>
+      <p>Tell Git who you are &mdash; <em>one-time setup, never needs repeating:</em></p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>git config --global user.email "you@example.com"</code> &nbsp;&larr; your GitHub email<br>
+<code>git config --global user.name "Your Name"</code> &nbsp;&larr; your name
+        </div>
+      </div>
+
+      <p>Then set up your project:</p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>git init</code> &nbsp;&larr; create a local git repository in this folder<br>
+<code>python -m venv .venv</code> &nbsp;&larr; create a virtual environment called .venv<br>
+<span class="os-win"><code>.venv\Scripts\activate</code> &nbsp;&larr; activate it &mdash; your prompt will show (.venv)</span><span class="os-mac"><code>source .venv/bin/activate</code> &nbsp;&larr; activate it &mdash; your prompt will show (.venv)</span>
+        </div>
+      </div>
+
+      <p>Create your project files:</p>
+
+      <div class="code-block-labeled os-win">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>New-Item tip_calculator.py</code> &nbsp;&larr; your main code file<br>
+<code>New-Item test_tip_calculator.py</code> &nbsp;&larr; your test file<br>
+<code>New-Item .gitignore</code> &nbsp;&larr; tells Git what folders to skip
+        </div>
+      </div>
+
+      <div class="code-block-labeled os-mac">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>touch tip_calculator.py</code> &nbsp;&larr; your main code file<br>
+<code>touch test_tip_calculator.py</code> &nbsp;&larr; your test file<br>
+<code>touch .gitignore</code> &nbsp;&larr; tells Git what folders to skip
+        </div>
+      </div>
+
+      <p>Open <code>.gitignore</code> in VS Code, paste the following in, and save with <span class="os-win"><strong>Ctrl&nbsp;+&nbsp;S</strong></span><span class="os-mac"><strong>Cmd&nbsp;+&nbsp;S</strong></span>:</p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">text</div>
+        <div class="code-block">
+<code>.venv/</code> &nbsp;&larr; your virtual environment &mdash; hundreds of files, not needed on GitHub<br>
+<code>__pycache__/</code> &nbsp;&larr; Python&rsquo;s temp files, auto-created when you run code<br>
+<code>.pytest_cache/</code> &nbsp;&larr; pytest&rsquo;s temp files, auto-created when you run tests
+        </div>
+      </div>
+
+      <p>None of these belong on GitHub. They are local, auto-generated, and irrelevant to anyone else.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 — INSTALL -->
+  <div class="tryit-step">
+    <span class="ts-badge">step 2</span>
+    <div class="ts-body">
+      <p><strong>Organize &mdash; Install pytest before writing anything</strong></p>
+      <p>Do this before writing any code so VS Code doesn&rsquo;t show errors as you type:</p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>pip install pytest</code> &nbsp;&larr; install pytest into your .venv<br>
+<code>pip freeze > requirements.txt</code> &nbsp;&larr; save your package list
+        </div>
+      </div>
+
+      <p><code>requirements.txt</code> is how you tell anyone who clones your project which packages to install. It replaces the need to share your <code>.venv</code> folder.</p>
+    </div>
+  </div>
+
+  <!-- STEP 3 — WRITE -->
+  <div class="tryit-step">
+    <span class="ts-badge">step 3</span>
+    <div class="ts-body">
+      <p><strong>Write &mdash; Add your code and tests</strong></p>
+      <p>pytest is a package that checks whether your code does what you expect. You write a separate test file containing functions that call your real code with specific inputs and assert what the output should be. When you run <code>pytest</code> in the terminal, it finds those functions automatically and runs them all. A dot means a test passed. An <code>F</code> means it failed, and pytest tells you exactly what went wrong.</p>
+      <p>Open <code>tip_calculator.py</code> and paste this in, then save:</p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">python</div>
+        <div class="code-block">
+def calculate_tip(bill_amount, tip_percent):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"""Calculate the tip amount for a bill."""<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if bill_amount &lt; 0:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise ValueError("Bill amount cannot be negative")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return round(bill_amount * (tip_percent / 100), 2)
+        </div>
+      </div>
+
+      <p>Open <code>test_tip_calculator.py</code> and paste this in, then save:</p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">python</div>
+        <div class="code-block">
+import pytest<br>
+from tip_calculator import calculate_tip<br>
+<br>
+def test_standard_tip():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;assert calculate_tip(100, 20) == 20.0<br>
+<br>
+def test_zero_tip():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;assert calculate_tip(50, 0) == 0.0<br>
+<br>
+def test_negative_bill_raises_error():<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with pytest.raises(ValueError):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calculate_tip(-10, 20)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 — TEST -->
+  <div class="tryit-step">
+    <span class="ts-badge">step 4</span>
+    <div class="ts-body">
+      <p><strong>Test &mdash; Run pytest</strong></p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>pytest</code> &nbsp;&larr; runs all test files it finds automatically
+        </div>
+      </div>
+
+      <p>You should see:</p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">output</div>
+        <div class="code-block">
+collected 3 items<br>
+test_tip_calculator.py ...<br>
+3 passed in 0.12s
+        </div>
+      </div>
+
+      <p>After this runs, two new folders will appear in VS Code&rsquo;s file explorer &mdash; <code>__pycache__/</code> and <code>.pytest_cache/</code>. pytest created these automatically. You don&rsquo;t need to touch them &mdash; your <code>.gitignore</code> already tells Git to ignore them.</p>
+    </div>
+  </div>
+
+  <!-- STEP 5 — SHARE -->
+  <div class="tryit-step">
+    <span class="ts-badge">step 5</span>
+    <div class="ts-body">
+      <p><strong>Share &mdash; Push to GitHub</strong></p>
+      <p>Log in to GitHub from the terminal &mdash; <em>one-time setup:</em></p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>gh auth login</code> &nbsp;&larr; follow the prompts, it will open a browser to confirm
+        </div>
+      </div>
+
+      <p>Then create your repo and push your code in one command:</p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>gh repo create tip_calculator --private --source=. --remote=origin --push</code> &nbsp;&larr; creates the repo, links it, and pushes your code
+        </div>
+      </div>
+
+      <p>Go to <code>github.com/yourusername/tip_calculator</code> &mdash; your files are there.</p>
+    </div>
+  </div>
+
+  <!-- LOOP -->
+  <div class="tryit-step">
+    <span class="ts-badge">loop</span>
+    <div class="ts-body">
+      <p><strong>The core loop going forward</strong></p>
+
+      <div class="code-block-labeled">
+        <div class="code-block-lang">bash</div>
+        <div class="code-block">
+<code>edit code</code> &nbsp;&larr; make changes in VS Code<br>
+<code>pytest</code> &nbsp;&larr; confirm everything still works<br>
+<code>git add .</code> &nbsp;&larr; stage all changes<br>
+<code>git commit -m "describe what you changed"</code> &nbsp;&larr; save a snapshot<br>
+<code>git push</code> &nbsp;&larr; send it to GitHub
+        </div>
+      </div>
+
+      <p>Every <code>git commit</code> is a saved snapshot. Every <code>git push</code> sends it to GitHub.</p>
+    </div>
+  </div>
+
+</div><!-- /tryit-steps -->
+  </div>
+</section>
+
+
+<!-- ============================================================
+     LEVEL HUB
      ============================================================ -->
 <section class="alt-bg">
   <div class="container">
+    <div class="section-label">Where to go next</div>
+    <h2 class="section-title">Choose your next level</h2>
+    <div class="qn-grid">
 
-    <p class="section-label">Hands-on exercise</p>
-    <h2 class="section-title">Your first project — start to finish</h2>
-    <p class="section-intro">Git · GitHub · venv · pytest · the whole workflow. Opens with <strong>Windows + X → I</strong> to launch PowerShell.</p>
+      <a href="ide-cursor.html" class="qn-card">
+        <div class="hub-level-badge hub-level-2">Level 2</div>
+        <h3>AI inside your editor</h3>
+        <p>Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code, PyCharm, and Cursor.</p>
+        <div class="hub-card-time">&#9679; ~20 minutes</div>
+      </a>
 
-    <div class="tryit-steps">
+      <a href="claude-power.html" class="qn-card">
+        <div class="hub-level-badge hub-level-3">Level 3</div>
+        <h3>Coding agent in your terminal</h3>
+        <p>The AI runs in your terminal with access to your full environment. It reads files, executes code, installs packages, and iterates until the task is done.</p>
+        <div class="hub-card-time">&#9679; ~25 minutes</div>
+      </a>
 
-      <div class="tryit-step">
-        <span class="ts-badge">prereqs</span>
-        <div class="ts-body">
-          <p><strong>Before you start, make sure you have:</strong></p>
-          <p>
-            Git — <a href="https://git-scm.com" target="_blank">git-scm.com</a><br>
-            GitHub CLI — <a href="https://cli.github.com" target="_blank">cli.github.com</a><br>
-            A GitHub account — <a href="https://github.com" target="_blank">github.com</a>
-          </p>
-          <p>VS Code and Python are already installed.</p>
-        </div>
-      </div>
-
-      <div class="tryit-step">
-        <span class="ts-badge">step 1</span>
-        <div class="ts-body">
-          <p><strong>Organize — Create your folder and open VS Code</strong></p>
-          <p>Press <strong>Windows + X</strong> then <strong>I</strong> to open PowerShell. Type these one at a time:</p>
-          <p>
-            <code>cd Desktop</code> &nbsp;← navigate to your Desktop<br>
-            <code>mkdir tip_calculator</code> &nbsp;← create your project folder<br>
-            <code>cd tip_calculator</code> &nbsp;← move into it<br>
-            <code>code .</code> &nbsp;← open VS Code here
-          </p>
-          <p>Switch to the terminal inside VS Code with <strong>Ctrl + `</strong> — use this for everything from here on.</p>
-        </div>
-      </div>
-
-      <div class="tryit-step">
-        <span class="ts-badge">step 2</span>
-        <div class="ts-body">
-          <p><strong>Organize — Git, virtual environment, and files</strong></p>
-          <p>Tell Git who you are — <em>one-time setup, never needs repeating:</em></p>
-          <p>
-            <code>git config --global user.email "you@example.com"</code> &nbsp;← your GitHub email<br>
-            <code>git config --global user.name "Your Name"</code> &nbsp;← your name
-          </p>
-          <p>Then set up your project:</p>
-          <p>
-            <code>git init</code> &nbsp;← create a local git repository in this folder<br>
-            <code>python -m venv .venv</code> &nbsp;← create a virtual environment called .venv<br>
-            <code>.venv\Scripts\activate</code> &nbsp;← activate it — your prompt will show (.venv)
-          </p>
-          <p>Create your project files:</p>
-          <p>
-            <code>New-Item tip_calculator.py</code> &nbsp;← your main code file<br>
-            <code>New-Item test_tip_calculator.py</code> &nbsp;← your test file<br>
-            <code>New-Item .gitignore</code> &nbsp;← tells Git what folders to skip
-          </p>
-          <p>Open <code>.gitignore</code> in VS Code, paste the following in, and save with <strong>Ctrl + S</strong>:</p>
-          <p>
-            <code>.venv/</code> &nbsp;← your virtual environment — hundreds of files, not needed on GitHub<br>
-            <code>__pycache__/</code> &nbsp;← Python's temp files, auto-created when you run code<br>
-            <code>.pytest_cache/</code> &nbsp;← pytest's temp files, auto-created when you run tests
-          </p>
-          <p>None of these belong on GitHub. They are local, auto-generated, and irrelevant to anyone else.</p>
-        </div>
-      </div>
-
-      <div class="tryit-step">
-        <span class="ts-badge">step 3</span>
-        <div class="ts-body">
-          <p><strong>Organize — Install pytest before writing anything</strong></p>
-          <p>Do this before writing any code so VS Code doesn't show errors as you type:</p>
-          <p>
-            <code>pip install pytest</code> &nbsp;← install pytest into your .venv<br>
-            <code>pip freeze > requirements.txt</code> &nbsp;← save your package list
-          </p>
-          <p><code>requirements.txt</code> is how you tell anyone who clones your project which packages to install. It replaces the need to share your <code>.venv</code> folder.</p>
-        </div>
-      </div>
-
-      <div class="tryit-step">
-        <span class="ts-badge">step 4</span>
-        <div class="ts-body">
-          <p><strong>Write — Add your code and tests</strong></p>
-          <p>pytest is a package that checks whether your code does what you expect. You write a separate test file containing functions that call your real code with specific inputs and assert what the output should be. When you run <code>pytest</code> in the terminal, it finds those functions automatically and runs them all. A dot means a test passed. An <code>F</code> means it failed, and pytest tells you exactly what went wrong.</p>
-          <p>Open <code>tip_calculator.py</code> and paste this in, then save:</p>
-          <p>
-            <code>def calculate_tip(bill_amount, tip_percent):</code><br>
-            <code>&nbsp;&nbsp;&nbsp;&nbsp;"""Calculate the tip amount for a bill."""</code><br>
-            <code>&nbsp;&nbsp;&nbsp;&nbsp;if bill_amount &lt; 0:</code><br>
-            <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;raise ValueError("Bill amount cannot be negative")</code><br>
-            <code>&nbsp;&nbsp;&nbsp;&nbsp;return round(bill_amount * (tip_percent / 100), 2)</code>
-          </p>
-          <p>Open <code>test_tip_calculator.py</code> and paste this in, then save:</p>
-          <p>
-            <code>import pytest</code><br>
-            <code>from tip_calculator import calculate_tip</code><br>
-            <code>&nbsp;</code><br>
-            <code>def test_standard_tip():</code><br>
-            <code>&nbsp;&nbsp;&nbsp;&nbsp;assert calculate_tip(100, 20) == 20.0</code><br>
-            <code>&nbsp;</code><br>
-            <code>def test_zero_tip():</code><br>
-            <code>&nbsp;&nbsp;&nbsp;&nbsp;assert calculate_tip(50, 0) == 0.0</code><br>
-            <code>&nbsp;</code><br>
-            <code>def test_negative_bill_raises_error():</code><br>
-            <code>&nbsp;&nbsp;&nbsp;&nbsp;with pytest.raises(ValueError):</code><br>
-            <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;calculate_tip(-10, 20)</code>
-          </p>
-        </div>
-      </div>
-
-      <div class="tryit-step">
-        <span class="ts-badge">step 5</span>
-        <div class="ts-body">
-          <p><strong>Test — Run pytest</strong></p>
-          <p><code>pytest</code> &nbsp;← runs all test files it finds automatically</p>
-          <p>You should see:</p>
-          <p>
-            <code>collected 3 items</code><br>
-            <code>test_tip_calculator.py ...</code><br>
-            <code>3 passed in 0.12s</code>
-          </p>
-          <p>After this runs, two new folders will appear in VS Code's file explorer — <code>__pycache__/</code> and <code>.pytest_cache/</code>. pytest created these automatically. You don't need to touch them — your <code>.gitignore</code> already tells Git to ignore them.</p>
-        </div>
-      </div>
-
-      <div class="tryit-step">
-        <span class="ts-badge">step 6</span>
-        <div class="ts-body">
-          <p><strong>Share — Push to GitHub</strong></p>
-          <p>Log in to GitHub from the terminal — <em>one-time setup:</em></p>
-          <p><code>gh auth login</code> &nbsp;← follow the prompts, it will open a browser to confirm</p>
-          <p>Then create your repo and push your code in one command:</p>
-          <p><code>gh repo create tip_calculator --private --source=. --remote=origin --push</code> &nbsp;← creates the repo, links it, and pushes your code</p>
-          <p>Go to <code>github.com/yourusername/tip_calculator</code> — your files are there.</p>
-        </div>
-      </div>
-
-      <div class="tryit-step">
-        <span class="ts-badge">loop</span>
-        <div class="ts-body">
-          <p><strong>The core loop going forward</strong></p>
-          <p>
-            <code>edit code</code> &nbsp;← make changes in VS Code<br>
-            <code>pytest</code> &nbsp;← confirm everything still works<br>
-            <code>git add .</code> &nbsp;← stage all changes<br>
-            <code>git commit -m "describe what you changed"</code> &nbsp;← save a snapshot<br>
-            <code>git push</code> &nbsp;← send it to GitHub
-          </p>
-          <p>Every <code>git commit</code> is a saved snapshot. Every <code>git push</code> sends it to GitHub.</p>
-        </div>
-      </div>
+      <a href="claude-power.html#level-4-transition" class="qn-card">
+        <div class="hub-level-badge hub-level-4">Level 4</div>
+        <h3>Connected agents</h3>
+        <p>Extend the agent with live connections to docs, databases, and the web via MCP. The agent can look up the exact API it needs mid-task.</p>
+        <div class="hub-card-time">&#9679; ~15 minutes</div>
+      </a>
 
     </div>
   </div>
 </section>
-
 
 
 <!-- ============================================================
-     VS CODE — SETUP
+     WHAT'S NEXT — DETAIL CARDS
      ============================================================ -->
-<section class="setup-section" id="vscode-setup">
-  <div class="container">
-    <div class="setup-header">
-      <div class="setup-tag">VS Code &mdash; Flow 1 of 2</div>
-      <h2>Setup &amp; First Run</h2>
-      <p class="setup-sub">Install Python, VS Code, create your first project, set up a virtual environment, add AI, and push to GitHub.</p>
-    </div>
-
-    <div class="setup-steps">
-
-      <div class="setup-step">
-        <div class="ss-num">1</div>
-        <div class="ss-content">
-          <h3>Install Python</h3>
-          <p>Download from <strong>python.org</strong>. On Windows, check &ldquo;Add Python to PATH&rdquo; during installation &mdash; this is critical. On Mac, Python may already be installed, but download the latest from python.org for a clean setup.</p>
-          <div class="code-block">python --version<br><span class="code-comment"># Should show: Python 3.12.x or similar</span></div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">2</div>
-        <div class="ss-content">
-          <h3>Install VS Code and the Python extension</h3>
-          <p>Download from <strong>code.visualstudio.com</strong>. Once open, click the Extensions icon in the left sidebar (four squares) and search for &ldquo;Python&rdquo; &mdash; install the one by Microsoft. This gives VS Code Python understanding: syntax highlighting, autocomplete, environment detection, and a debugger.</p>
-          <div class="ss-note">VS Code is folder-based. You always open a project folder, not individual files.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">3</div>
-        <div class="ss-content">
-          <h3>Create a project folder and virtual environment</h3>
-          <p>Go to File &rarr; Open Folder. Create a new folder (e.g. <code>my-project</code>) and open it. Then open the built-in terminal (Terminal &rarr; New Terminal) and run:</p>
-          <div class="code-block"><span class="code-comment"># Create the virtual environment</span><br>
-python -m venv .venv<br><br>
-<span class="code-comment"># Activate it (Mac/Linux)</span><br>
-source .venv/bin/activate<br><br>
-<span class="code-comment"># Activate it (Windows)</span><br>
-.venv\Scripts\activate</div>
-          <p>When activation succeeds, your prompt shows <code>(.venv)</code> at the start. VS Code may prompt you to select this as the interpreter &mdash; click Yes.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">4</div>
-        <div class="ss-content">
-          <h3>Create your project structure and install packages</h3>
-          <p>Create a simple structure. In the terminal:</p>
-          <div class="code-block"><span class="code-comment"># Install a package (with your venv active)</span><br>
-pip install pandas requests<br><br>
-<span class="code-comment"># Save dependencies so others can recreate your environment</span><br>
-pip freeze > requirements.txt</div>
-          <p>In VS Code's file explorer, create a file called <code>main.py</code>. This is your entry point. Also create a <code>.gitignore</code> file now &mdash; paste <code>.venv/</code>, <code>__pycache__/</code>, <code>*.pyc</code>, <code>.env</code> into it.</p>
-          <div class="ss-note">Always activate your virtual environment before installing packages. If <code>(.venv)</code> isn't in your prompt, packages go into your global Python instead.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">5</div>
-        <div class="ss-content">
-          <h3>Add AI: install GitHub Copilot</h3>
-          <p>In the Extensions panel, search for &ldquo;GitHub Copilot&rdquo; and install it. Also install &ldquo;GitHub Copilot Chat.&rdquo; Sign in with a GitHub account. Copilot is $10/month &mdash; free for verified students at <strong>education.github.com</strong>.</p>
-          <p>Alternatively, search for &ldquo;Gemini Code Assist&rdquo; (free with a Google account) or &ldquo;Codeium&rdquo; (permanently free for individuals).</p>
-          <p>Once installed, you'll see gray inline suggestions as you type. Press <kbd>Tab</kbd> to accept, keep typing to ignore.</p>
-          <div class="ss-note">You can use multiple AI tools simultaneously. Many developers run Copilot for inline completions and open claude.ai in a browser tab for deeper questions.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">6</div>
-        <div class="ss-content">
-          <h3>Run your first script</h3>
-          <p>In <code>main.py</code>, type a simple script:</p>
-          <div class="code-block">import pandas as pd<br><br>
-data = {'name': ['Alice', 'Bob'], 'score': [92, 85]}<br>
-df = pd.DataFrame(data)<br>
-print(df)</div>
-          <p>Press <kbd>F5</kbd> to run (or right-click &rarr; Run Python File). You should see the DataFrame printed in the terminal below. If Python can't find <code>pandas</code>, check that your <code>.venv</code> interpreter is selected &mdash; press <kbd>Cmd/Ctrl+Shift+P</kbd> &rarr; &ldquo;Python: Select Interpreter&rdquo; &rarr; choose the <code>.venv</code> entry.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">7</div>
-        <div class="ss-content">
-          <h3>Set up Git and push to GitHub</h3>
-          <p>See the <a href="#git-setup">Git &amp; GitHub setup section</a> below &mdash; the steps are the same regardless of which IDE you use.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     VS CODE — AI WORKFLOW
-     ============================================================ -->
-<section class="setup-section alt-bg" id="vscode-ai">
-  <div class="container">
-    <div class="setup-header">
-      <div class="setup-tag">VS Code &mdash; Flow 2 of 2</div>
-      <h2>Working with AI at Level 1</h2>
-      <p class="setup-sub">A real project walkthrough &mdash; planning, writing, testing, debugging, and refactoring with AI alongside you at every step.</p>
-    </div>
-
-    <p style="font-size:0.9rem; color: var(--text2); font-weight:300; margin-bottom:2rem;">This walkthrough uses a small data analysis project as the running example: loading a CSV file, cleaning it, and computing summary statistics. The AI techniques apply to any Python project.</p>
-
-    <div class="setup-steps">
-
-      <div class="setup-step">
-        <div class="ss-num">1</div>
-        <div class="ss-content">
-          <h3>Plan with AI before writing a line</h3>
-          <p>Before you open a new file, open the Copilot Chat panel (<kbd>Ctrl+Shift+I</kbd>) or claude.ai in a browser. Describe what you're building:</p>
-          <div class="code-block"><span class="code-comment"># Example prompt</span><br>
-I want to write a Python script that:
-1. Loads a CSV file with columns: date, product, region, sales
-2. Cleans the data (handle missing values, parse dates)
-3. Computes total sales by region and by month
-4. Prints a summary table
-
-How should I structure this? What functions should I create?</div>
-          <p>Read the response carefully. You don't have to follow it exactly &mdash; but starting with a plan prevents the most common mistake: writing one big function that does everything.</p>
-          <div class="ss-note">This is one of AI's most underused capabilities. Students often go straight to writing code. Planning first with AI gets you a better structure in 5 minutes than you'd arrive at by writing for an hour.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">2</div>
-        <div class="ss-content">
-          <h3>Use comments to drive inline generation</h3>
-          <p>In your Python file, write a comment describing what you want, then press Enter. Copilot reads the comment and suggests the implementation below it:</p>
-          <div class="code-block"><span class="code-comment"># Load CSV file and parse the date column as datetime</span><br>
-<span class="code-copilot"># Copilot suggests the function below &mdash; press Tab to accept:</span><br>
-def load_data(filepath):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;df = pd.read_csv(filepath, parse_dates=['date'])<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return df</div>
-          <p>Read what it suggests before accepting. Is it correct? Does it match your intent? Press <kbd>Tab</kbd> to accept. If the suggestion isn't right, keep typing your own version &mdash; the suggestion disappears.</p>
-          <div class="ss-note">You're in control of scope. A focused, specific comment gets you a focused function. "Do everything" gets you something overwhelming. One comment, one function.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">3</div>
-        <div class="ss-content">
-          <h3>Ask the chat panel when you're stuck</h3>
-          <p>Hit a wall? Select the problematic code, then open Copilot Chat. Ask specifically:</p>
-          <div class="code-block"><span class="code-comment"># Good: specific, includes the context</span><br>
-"This function should group sales by month, but it's returning
-an empty DataFrame. Here's the code. What's wrong?"<br><br>
-<span class="code-comment"># Less useful: vague</span><br>
-"Why isn't this working?"</div>
-          <p>The more specific your question and the more context you give (paste the code, paste the error), the more useful the answer. AI isn't magic &mdash; it responds to the quality of what you give it.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">4</div>
-        <div class="ss-content">
-          <h3>Debug errors with AI: read the traceback, then ask</h3>
-          <p>Run your script. If you get an error, read the traceback before pasting it to AI. Try to locate which line caused it. Then:</p>
-          <div class="code-block"><span class="code-comment"># In the Copilot Chat panel:</span><br>
-"I got this error running my data cleaning function:
-KeyError: 'sales'
-The traceback shows it's on line 14. Here's the full function.
-What does this mean and how do I fix it?"</div>
-          <p>AI will explain what a <code>KeyError</code> means (a dictionary key or DataFrame column doesn't exist), suggest why it's happening (the column might be named differently in the CSV), and show you how to fix it.</p>
-          <div class="ss-note">Reading the error yourself first builds the skill of understanding Python errors. Use AI to confirm and go deeper &mdash; not as the first line of defense.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">5</div>
-        <div class="ss-content">
-          <h3>Get code explained to you</h3>
-          <p>Select any code you don't fully understand &mdash; something Copilot generated, a library function, or something you wrote last week. In the Copilot Chat panel:</p>
-          <div class="code-block">"Explain this function line by line. What does each part do
-and why is it written this way?"</div>
-          <p>This is how you learn from AI rather than just depending on it. Every function you accept without understanding is technical debt &mdash; at some point you won't be able to maintain it. Use the explanation request liberally.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">6</div>
-        <div class="ss-content">
-          <h3>Generate tests with AI</h3>
-          <p>Once a function is working, select it and ask Copilot Chat to write tests:</p>
-          <div class="code-block">"Write pytest tests for this function. Test:
-- The normal case with valid data
-- What happens with an empty DataFrame
-- What happens if the date column is missing"</div>
-          <p>Create a <code>tests/</code> folder and a file like <code>test_analysis.py</code>. Paste the generated tests, review them, and run them:</p>
-          <div class="code-block">pip install pytest<br>
-pytest tests/</div>
-          <div class="ss-note">AI-generated tests are a starting point, not a complete suite. They cover obvious cases &mdash; you should add tests for anything the AI missed that you know matters.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">7</div>
-        <div class="ss-content">
-          <h3>Refactor working code</h3>
-          <p>Once your code works, AI can help you improve it. Select a function and ask:</p>
-          <div class="code-block">"Review this function. Is there a more Pythonic way to write it?
-Are there any edge cases I'm not handling? Keep the behavior the same."</div>
-          <p>The AI will suggest improvements: more idiomatic Python, better variable names, extracted helper functions, or missing error handling. You decide what to accept. Refactoring with AI is a great way to improve code quality <em>and</em> learn what good Python looks like.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">8</div>
-        <div class="ss-content">
-          <h3>Add documentation</h3>
-          <p>Select a function and ask for a docstring:</p>
-          <div class="code-block">"Write a Google-style docstring for this function,
-including parameter types, return value, and an example."</div>
-          <p>For the whole project, ask for a README:</p>
-          <div class="code-block">"Write a README.md for this project. Include: what it does,
-how to install dependencies, and how to run it."</div>
-          <p>Documentation is the thing developers skip most often. With AI it takes two minutes.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="callout">
-      <div class="callout-icon">&#128161;</div>
-      <div>
-        <strong>The principle behind all of this</strong>
-        <p>AI works best when you stay specific and stay in control. One focused prompt gets you one useful output. Vague prompts get vague code. Read everything AI generates before accepting it. When you don't understand something, ask AI to explain it &mdash; that's where the learning happens.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================================
-     PYCHARM — SETUP
-     ============================================================ -->
-<section class="setup-section" id="pycharm-setup">
-  <div class="container">
-    <div class="setup-header">
-      <div class="setup-tag">PyCharm &mdash; Flow 1 of 2</div>
-      <h2>Setup &amp; First Run</h2>
-      <p class="setup-sub">Install PyCharm, create a project (virtual environment is automatic), add AI, and run your first script.</p>
-    </div>
-
-    <div class="setup-steps">
-
-      <div class="setup-step">
-        <div class="ss-num">1</div>
-        <div class="ss-content">
-          <h3>Download and install PyCharm</h3>
-          <p>Go to <strong>jetbrains.com/pycharm</strong>. Download Community (free) or Professional. Students get Professional free at <strong>jetbrains.com/student</strong> &mdash; sign up with a .edu email. The student license includes JetBrains AI, the full debugger, and database tools.</p>
-          <p>Community covers all core Python development. Professional adds: web frameworks, database tools, Jupyter notebooks, and JetBrains AI.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">2</div>
-        <div class="ss-content">
-          <h3>Create a new project</h3>
-          <p>Open PyCharm &rarr; New Project. Choose a location. PyCharm will show a &ldquo;Python Interpreter&rdquo; section &mdash; select &ldquo;New environment using Virtualenv.&rdquo; PyCharm creates and manages the <code>.venv</code> folder automatically. You never activate or deactivate it manually &mdash; PyCharm handles this.</p>
-          <div class="ss-note">PyCharm's biggest advantage over VS Code: virtual environment management is completely handled for you, with a UI for installing packages without touching the terminal.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">3</div>
-        <div class="ss-content">
-          <h3>Install packages</h3>
-          <p>Two options:</p>
-          <p><strong>Via GUI:</strong> Settings &rarr; Project &rarr; Python Interpreter &rarr; the &ldquo;+&rdquo; button. Search for any package and install with one click.</p>
-          <p><strong>Via terminal:</strong> PyCharm's built-in terminal (bottom of the screen) automatically has the virtual environment active. Type:</p>
-          <div class="code-block">pip install pandas requests<br>
-pip freeze > requirements.txt</div>
-          <p>Also create a <code>.gitignore</code> file in the project root with: <code>.venv/</code>, <code>__pycache__/</code>, <code>*.pyc</code>, <code>.env</code>.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">4</div>
-        <div class="ss-content">
-          <h3>Add AI: install GitHub Copilot or enable JetBrains AI</h3>
-          <p><strong>JetBrains AI (Pro/student license):</strong> Already available in the right sidebar &mdash; look for the AI chat icon. No additional installation. JetBrains AI has access to your run logs, test results, and project structure in a way external tools can't match.</p>
-          <p><strong>GitHub Copilot (Community edition):</strong> Settings &rarr; Plugins &rarr; Marketplace &rarr; search &ldquo;GitHub Copilot&rdquo; &rarr; Install. Sign in with your GitHub account. Works the same as in VS Code: inline gray suggestions, Tab to accept.</p>
-          <p><strong>Codeium (free):</strong> Same plugin marketplace, search &ldquo;Codeium.&rdquo; Free for individuals, no subscription required.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">5</div>
-        <div class="ss-content">
-          <h3>Run your first script</h3>
-          <p>Create a file <code>main.py</code> and type:</p>
-          <div class="code-block">import pandas as pd<br><br>
-data = {'name': ['Alice', 'Bob'], 'score': [92, 85]}<br>
-df = pd.DataFrame(data)<br>
-print(df)</div>
-          <p>Press <kbd>Shift+F10</kbd> to run (or the green triangle in the top-right toolbar). Output appears in the Run panel at the bottom. If PyCharm shows an import error, it will offer to install the missing package inline &mdash; click the suggestion.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">6</div>
-        <div class="ss-content">
-          <h3>Set up Git and push to GitHub</h3>
-          <p>See the <a href="#git-setup">Git &amp; GitHub setup section</a> below. PyCharm also has a built-in Git interface: VCS &rarr; Enable Version Control Integration. You can commit, push, and view history without the terminal if you prefer.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     PYCHARM — AI WORKFLOW
-     ============================================================ -->
-<section class="setup-section alt-bg" id="pycharm-ai">
-  <div class="container">
-    <div class="setup-header">
-      <div class="setup-tag">PyCharm &mdash; Flow 2 of 2</div>
-      <h2>Working with AI at Level 1</h2>
-      <p class="setup-sub">PyCharm's AI is more tightly woven into the IDE than VS Code's. Here's how to use it throughout a real project.</p>
-    </div>
-
-    <p style="font-size:0.9rem; color: var(--text2); font-weight:300; margin-bottom:2rem;">PyCharm surfaces most AI actions through right-click menus and the AI Chat panel. The keyboard shortcut <kbd>Alt+Enter</kbd> opens quick-fix suggestions &mdash; often the fastest path to AI help on a specific line.</p>
-
-    <div class="setup-steps">
-
-      <div class="setup-step">
-        <div class="ss-num">1</div>
-        <div class="ss-content">
-          <h3>Plan with the AI Chat panel</h3>
-          <p>Open the AI Chat panel (right sidebar or View &rarr; Tool Windows &rarr; AI Assistant). Describe what you're building &mdash; PyCharm's AI can already see your project structure, so you don't need to re-explain it:</p>
-          <div class="code-block">"I'm building a data analysis script for sales data.
-The CSV has columns: date, product, region, sales.
-How should I structure the functions? What should each one do?"</div>
-          <p>Ask for a plan, read it critically, and start from there. Don't accept a plan you don't understand.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">2</div>
-        <div class="ss-content">
-          <h3>Use AI completions while you type</h3>
-          <p>Start typing a function. As you write, Copilot or JetBrains AI suggests completions inline. PyCharm's native type inference also kicks in &mdash; it knows what methods are available on a pandas DataFrame, what arguments a function expects, and what types you're working with. The AI and PyCharm's own intelligence work together.</p>
-          <p>Hold <kbd>Alt</kbd> to cycle through multiple AI suggestions if more than one is offered.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">3</div>
-        <div class="ss-content">
-          <h3>Use AI Actions from the right-click menu</h3>
-          <p>Select any code &rarr; right-click &rarr; <strong>AI Actions</strong>. You'll see options including:</p>
-          <ul class="feature-list">
-            <li><strong>Explain code</strong> &mdash; plain-English explanation of the selected block</li>
-            <li><strong>Suggest refactoring</strong> &mdash; improvements to structure and readability</li>
-            <li><strong>Add error handling</strong> &mdash; wraps code in try/except with appropriate handling</li>
-            <li><strong>Generate docstring</strong> &mdash; writes documentation for the function</li>
-            <li><strong>Find potential bugs</strong> &mdash; scans for common mistakes</li>
-          </ul>
-          <p>Every action shows a diff before applying. Read the diff. Accept what makes sense, reject the rest.</p>
-          <div class="ss-note">PyCharm's right-click AI menu is the fastest way to act on a specific piece of code. You don't need to write a prompt &mdash; the menu already knows the most useful actions.</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">4</div>
-        <div class="ss-content">
-          <h3>Debug with the debugger + AI explanation</h3>
-          <p>Click in the gutter next to any line to set a breakpoint (red dot). Press <kbd>Shift+F9</kbd> to run in Debug mode. Execution pauses at the breakpoint. You can inspect every variable in the Debug panel.</p>
-          <p>When you hit an exception, the Debug panel shows the exact state of the program when it crashed. Then open AI Chat and ask:</p>
-          <div class="code-block">"My script crashed with a KeyError on line 22.
-Looking at the debug panel, the DataFrame has columns
-['date', 'product', 'Revenue'] but my code references 'sales'.
-How should I fix this and prevent it in the future?"</div>
-          <p>The combination of PyCharm's debugger (exact program state) and AI (explanation and fix) is the most powerful debugging setup available at Level 1.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">5</div>
-        <div class="ss-content">
-          <h3>Generate tests with AI</h3>
-          <p>Right-click on a function &rarr; <strong>Generate</strong> &rarr; <strong>Tests</strong>. PyCharm opens a dialog, creates the test file in the correct location, and &mdash; with JetBrains AI &mdash; pre-populates test cases. Review them:</p>
-          <div class="code-block"><span class="code-comment"># Review generated test cases like this one:</span><br>
-def test_load_data_missing_column():<br>
-&nbsp;&nbsp;&nbsp;&nbsp;# What happens if 'sales' column is missing?<br>
-&nbsp;&nbsp;&nbsp;&nbsp;# AI should have generated this edge case</div>
-          <p>Run tests with a single click from the test file (green arrow) or from the Run panel. Red = failing, green = passing. Ask AI in the chat panel to explain any failing test.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">6</div>
-        <div class="ss-content">
-          <h3>Rename and refactor safely</h3>
-          <p>PyCharm's refactoring tools are Python-aware, not just text search-and-replace. Right-click any variable or function name &rarr; <strong>Refactor &rarr; Rename</strong>. PyCharm renames it everywhere it's used across the entire project, understanding scope correctly.</p>
-          <p>For larger refactors, use AI Chat: &ldquo;This function is doing too many things. How should I split it up?&rdquo; Let AI propose the structure, then use PyCharm's Extract Method (right-click &rarr; Refactor &rarr; Extract &rarr; Method) to do the splitting safely.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">7</div>
-        <div class="ss-content">
-          <h3>Use AI for documentation</h3>
-          <p>Place your cursor inside any function &rarr; right-click &rarr; <strong>AI Actions &rarr; Generate Docstring</strong>. PyCharm writes the docstring based on the function's actual parameters and body. For the project README, open AI Chat:</p>
-          <div class="code-block">"Write a README.md for this project. You can see the
-files and structure &mdash; include: what it does,
-how to install, and how to run it."</div>
-          <p>JetBrains AI can see your project structure directly, so the README it generates is specific to your actual project, not a generic template.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="callout">
-      <div class="callout-icon">&#128161;</div>
-      <div>
-        <strong>PyCharm + AI: what makes it different</strong>
-        <p>In VS Code, AI is an extension sitting on top of the editor. In PyCharm, the AI and the IDE share a complete picture of your project &mdash; your files, your run history, your test results. JetBrains AI can answer &ldquo;why did my last test fail?&rdquo; because it saw the test run. That shared context makes the AI answers more accurate for Python-specific questions.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================================
-     GIT & GITHUB
-     ============================================================ -->
-<section class="setup-section" id="git-setup">
-  <div class="container">
-    <div class="setup-header">
-      <div class="setup-tag">Universal &mdash; same for all IDEs</div>
-      <h2>Git &amp; GitHub Setup</h2>
-      <p class="setup-sub">Version control setup is identical regardless of which IDE you're using.</p>
-    </div>
-
-    <div class="setup-steps">
-
-      <div class="setup-step">
-        <div class="ss-num">1</div>
-        <div class="ss-content">
-          <h3>Install Git and configure your identity</h3>
-          <p>Download from <strong>git-scm.com</strong>. On Mac, Git may already be installed &mdash; type <code>git --version</code> to check. On Windows, the installer includes Git Bash.</p>
-          <div class="code-block"><span class="code-comment"># One-time setup &mdash; your name and email appear in commit history</span><br>
-git config --global user.name "Your Name"<br>
-git config --global user.email "you@example.com"</div>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">2</div>
-        <div class="ss-content">
-          <h3>Create a GitHub account</h3>
-          <p>Go to <strong>github.com</strong> and create a free account. Your username is public and often serves as a professional identifier.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">3</div>
-        <div class="ss-content">
-          <h3>Initialize Git in your project</h3>
-          <p>In your project folder's terminal:</p>
-          <div class="code-block">git init<br>
-git add .<br>
-git commit -m "Initial commit"</div>
-          <p>Make sure your <code>.gitignore</code> is in place before running <code>git add .</code> so your <code>.venv</code> folder isn't included.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">4</div>
-        <div class="ss-content">
-          <h3>Create a repository on GitHub and push</h3>
-          <p>On GitHub, click &ldquo;New repository.&rdquo; Give it a name. Don't initialize with a README (you already have code locally). Copy the commands GitHub gives you:</p>
-          <div class="code-block">git remote add origin https://github.com/yourusername/your-repo.git<br>
-git branch -M main<br>
-git push -u origin main</div>
-          <p>Your code is now on GitHub. Every future commit pushes with just <code>git push</code>.</p>
-        </div>
-      </div>
-
-      <div class="setup-step">
-        <div class="ss-num">5</div>
-        <div class="ss-content">
-          <h3>The daily Git rhythm</h3>
-          <div class="code-block"><span class="code-comment"># See what's changed</span><br>
-git status<br><br>
-<span class="code-comment"># Stage all changes</span><br>
-git add .<br><br>
-<span class="code-comment"># Commit with a clear message</span><br>
-git commit -m "Add data cleaning function"<br><br>
-<span class="code-comment"># Push to GitHub</span><br>
-git push</div>
-          <div class="ss-note">Both VS Code and PyCharm have visual Git interfaces. In VS Code: the Source Control panel (left sidebar). In PyCharm: VCS menu and the Commit panel. You don't have to use the terminal for Git once you're set up.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     COMMON PITFALLS
-     ============================================================ -->
-<section class="pitfalls-section alt-bg" id="pitfalls">
-  <div class="container">
-    <h2 class="section-title">Common pitfalls &mdash; and how to avoid them</h2>
-    <p class="section-intro">These are the mistakes almost everyone makes at least once. Knowing them now saves hours of confusion.</p>
-
-    <div class="pitfalls-list">
-
-      <div class="pitfall-item">
-        <div class="pitfall-icon">&#9888;</div>
-        <div class="pitfall-content">
-          <h3>Installing packages without activating your virtual environment</h3>
-          <p>If your terminal prompt doesn't show <code>(.venv)</code>, the environment isn't active. Packages installed now go into your global Python instead of your project's environment.</p>
-          <div class="pitfall-fix">Fix: <code>source .venv/bin/activate</code> (Mac/Linux) or <code>.venv\Scripts\activate</code> (Windows)</div>
-        </div>
-      </div>
-
-      <div class="pitfall-item">
-        <div class="pitfall-icon">&#9888;</div>
-        <div class="pitfall-content">
-          <h3>Committing your .venv folder to Git</h3>
-          <p>The virtual environment is large, machine-specific, and fully reproducible from <code>requirements.txt</code>. It should never be in your repository.</p>
-          <div class="pitfall-fix">Fix: Add <code>.venv/</code> to <code>.gitignore</code> before your first commit.</div>
-        </div>
-      </div>
-
-      <div class="pitfall-item">
-        <div class="pitfall-icon">&#9888;</div>
-        <div class="pitfall-content">
-          <h3>Committing API keys or secrets</h3>
-          <p>Even a brief push of a file containing a key is a security risk. GitHub scans for key patterns. If it happens, assume the key is compromised and rotate it immediately.</p>
-          <div class="pitfall-fix">Fix: Store secrets in a <code>.env</code> file and add it to <code>.gitignore</code>. Load with <code>python-dotenv</code>.</div>
-        </div>
-      </div>
-
-      <div class="pitfall-item">
-        <div class="pitfall-icon">&#9888;</div>
-        <div class="pitfall-content">
-          <h3>VS Code pointing at the wrong Python interpreter</h3>
-          <p>VS Code may have multiple Python installations to choose from. If a package you installed can't be found, your IDE is probably pointing at global Python instead of your <code>.venv</code>.</p>
-          <div class="pitfall-fix">Fix: <kbd>Cmd/Ctrl+Shift+P</kbd> &rarr; &ldquo;Python: Select Interpreter&rdquo; &rarr; choose the one inside <code>.venv</code>.</div>
-        </div>
-      </div>
-
-      <div class="pitfall-item">
-        <div class="pitfall-icon">&#9888;</div>
-        <div class="pitfall-content">
-          <h3>Accepting AI code without reading it</h3>
-          <p>AI generates plausible-looking code that can have subtle bugs. Every piece of AI-generated code you accept without reading is a bug you've agreed to be responsible for.</p>
-          <div class="pitfall-fix">Fix: Read every suggestion before pressing Tab or Apply. When you don't understand a line, ask AI to explain it.</div>
-        </div>
-      </div>
-
-      <div class="pitfall-item">
-        <div class="pitfall-icon">&#9888;</div>
-        <div class="pitfall-content">
-          <h3>Forgetting to update requirements.txt</h3>
-          <p>Installing a new package doesn't automatically update <code>requirements.txt</code>. If a teammate clones your repo and installs from it, they won't have your new package.</p>
-          <div class="pitfall-fix">Fix: Run <code>pip freeze > requirements.txt</code> after installing any new package, and commit it.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- NEXT STEPS -->
 <section class="setup-section" id="next-steps">
   <div class="container">
-    <div class="setup-header">
-      <div class="setup-tag">Ready for more?</div>
-      <h2>What's next</h2>
-      <p class="setup-sub">Level 1 is solid. Here's where to go when you're ready to take AI further.</p>
-    </div>
 
-    <div class="stack-cards" style="margin-top:1.5rem;">
+    <div class="stack-cards">
+
       <div class="stack-card stack-python">
         <div class="stack-tag">Level 2</div>
-        <h3>Cursor &mdash; the agentic IDE</h3>
+        <h3>AI in your editor</h3>
         <div class="stack-tools">
           <div class="stack-tool">Reads your whole codebase</div>
           <div class="stack-plus">+</div>
           <div class="stack-tool">Edits across multiple files</div>
           <div class="stack-plus">+</div>
-          <div class="stack-tool">Agent mode for larger tasks</div>
+          <div class="stack-tool">You review diffs and decide what to keep</div>
         </div>
-        <p>Cursor is VS Code rebuilt around AI. At Level 2, you stop giving line-by-line instructions and start giving goals. Cursor plans, edits files, and shows you diffs to review. A natural next step when Level 1 starts feeling slow.</p>
-        <a href="ide-cursor.html" class="btn-primary" style="display:inline-block; margin-top:1rem;">Go to Level 2: Cursor &rarr;</a>
+        <p>The AI can now read and edit your actual project files. You describe a goal; it proposes changes across multiple files at once. You&rsquo;re in the role of reviewer rather than typist. Works in VS Code with Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor.</p>
+        <a href="ide-cursor.html" class="btn-primary">Go to Level 2 &rarr;</a>
       </div>
 
       <div class="stack-card stack-ai">
@@ -819,16 +362,17 @@ git push</div>
           <div class="stack-plus">+</div>
           <div class="stack-tool">No IDE required</div>
         </div>
-        <p>Claude Code runs in your terminal and has access to your entire computing environment. You describe what you want; it reads your files, writes code, runs it, and iterates. A different paradigm from Level 1 &mdash; the IDE becomes optional.</p>
-        <a href="claude-power.html" class="btn-primary" style="display:inline-block; margin-top:1rem;">Go to Level 3: Claude Advanced &rarr;</a>
+        <p>Claude Code runs in your terminal and has access to your entire computing environment. You describe what you want; it reads your files, writes code, runs it, and iterates. A different paradigm &mdash; the IDE becomes optional.</p>
+        <a href="claude-power.html" class="btn-primary">Go to Level 3 &rarr;</a>
       </div>
+
     </div>
   </div>
 </section>
 
 <div class="page-nav">
   <a href="workflow.html" class="btn-ghost">&larr; How It Connects</a>
-  <a href="ide-cursor.html" class="btn-primary">Level 2: Cursor &rarr;</a>
+  <a href="ide-cursor.html" class="btn-primary">Level 2: AI in Your Editor &rarr;</a>
 </div>
 
 </main>
