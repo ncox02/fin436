@@ -1769,3 +1769,35 @@ body[data-ide="pycharm"] span.t-pycharm { display: inline; }
 .st  { color: var(--good); }
 .num { color: var(--neutral); }
 
+/* ===========================
+   ACCORDION EXERCISES (level2.html)
+   =========================== */
+.ex-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.ex-header:hover { background: var(--surface2); }
+
+.ex-toggle {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--text3);
+  font-family: 'DM Mono', monospace;
+  transition: transform 0.2s;
+}
+.depth-item.open .ex-toggle { transform: rotate(180deg); }
+
+.ex-body {
+  padding: 1.5rem;
+  display: none;
+  border-top: 1px solid var(--border);
+}
+.depth-item.open .ex-body { display: block; }

@@ -107,3 +107,11 @@ function setOS(os) {
   const saved = localStorage.getItem('preferredOS');
   if (saved === 'mac') setOS('mac');
 })();
+
+// Accordion for exercise cards
+document.querySelectorAll('.ex-header').forEach(function(header) {
+  header.addEventListener('click', function() {
+    var item = this.closest('.depth-item');
+    item.classList.toggle('open');
+  });
+});
