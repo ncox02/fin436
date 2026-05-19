@@ -682,7 +682,10 @@ section { padding: 5rem 0; }
   color: var(--text2);
   line-height: 1.8;
   margin: 1rem 0;
+  white-space: pre;
+  overflow-x: auto;
 }
+
 .code-block.small { font-size: 0.78rem; padding: 0.75rem 1rem; }
 .code-comment { color: var(--text3); }
 .code-block code { font-family: inherit; }
@@ -1686,7 +1689,7 @@ body.platform-mac span.os-mac { display: inline; }
 .ex-card { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.2s; }
 .ex-card:hover { border-color: var(--border2); }
 
-.ex-header { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; background: var(--surface); border-bottom: 1px solid var(--border); }
+.ex-header { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; background: var(--surface); border-bottom: 1px solid var(--border); cursor: pointer; }
 
 .ex-num { width: 34px; height: 34px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.82rem; font-weight: 500; color: #fff; flex-shrink: 0; }
 
@@ -1699,7 +1702,6 @@ body.platform-mac span.os-mac { display: inline; }
 .ex-hook { font-size: 0.81rem; color: var(--text3); font-weight: 300; font-style: italic; margin-left: auto; flex-shrink: 0; max-width: 290px; text-align: right; line-height: 1.4; }
 @media (max-width: 640px) { .ex-hook { display: none; } }
 
-.ex-body { padding: 1.5rem; }
 .ex-body p { font-size: 0.9rem; color: var(--text2); font-weight: 300; line-height: 1.72; margin-bottom: 1rem; }
 .ex-body p:last-child { margin-bottom: 0; }
 .ex-body p strong { color: var(--text); font-weight: 500; }
@@ -1754,7 +1756,6 @@ body[data-ide="pycharm"] span.t-pycharm { display: inline; }
 
 /* Scope tips */
 .scope-tip { display: flex; gap: 1rem; align-items: flex-start; }
-.scope-tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
 .scope-tip-body h5 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
 .scope-tip-body p { font-size: 0.875rem; color: var(--text2); font-weight: 300; line-height: 1.67; margin: 0; }
 
@@ -1795,7 +1796,7 @@ body[data-ide="pycharm"] span.t-pycharm { display: inline; }
 }
 .depth-item.open .ex-toggle { transform: rotate(180deg); }
 
-.ex-body {
+.depth-item .ex-body {
   padding: 1.5rem;
   display: none;
   border-top: 1px solid var(--border);

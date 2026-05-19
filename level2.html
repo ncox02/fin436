@@ -19,8 +19,8 @@
     <a href="tools.html">The Tools</a>
     <a href="workflow.html">How It Connects</a>
     <a href="start.html">Get Started</a>
-    <a href="ide-cursor.html" class="active" style="color:var(--accent2);">Level 2: AI in Editor</a>
-    <a href="claude-power.html" style="color:var(--accent2);">Level 3: Claude Advanced</a>
+    <a href="level2.html" class="active" style="color: var(--accent2);" >Level 2</a>
+    <a href="claude-power.html" style="color: var(--accent2);">Level 3</a>
   </div>
   <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
 </nav>
@@ -30,8 +30,8 @@
   <a href="tools.html">The Tools</a>
   <a href="workflow.html">How It Connects</a>
   <a href="start.html">Get Started</a>
-  <a href="ide-cursor.html">Level 2: AI in Editor</a>
-  <a href="claude-power.html">Level 3: Claude Advanced</a>
+  <a href="level2.html">Level 2</a>
+  <a href="claude-power.html">Level 3</a>
 </div>
 
 <main>
@@ -39,28 +39,19 @@
 <!-- =====================================================================
      HERO
      ===================================================================== -->
-<!-- <div class="ide-hero">
-  <div class="container">
-    <div class="ide-breadcrumb"><a href="start.html">&larr; Get Started</a></div>
-    <div class="ide-hero-inner">
-      <div>
-        <div class="ide-tag">Level 2 &mdash; AI in Your Editor &middot; VS Code &middot; PyCharm</div>
-        <h1 class="ide-title">Level 2: <br> AI in Your Editor</h1>
-        <p class="ide-subtitle">At Level 1, AI lives in a browser tab — you describe a problem, get code back, paste it in, hit an error, copy it out, and repeat. Level 2 ends that loop. Your AI assistant moves inside your editor, where it can read the file you have open, propose changes inline, and show you exactly what it wants to modify before touching anything. The exercises below show you what that actually feels like., no project required.</p>
-      </div>
-    </div> -->
 <div class="page-hero">
   <div class="container">
-    <h1 class="page-title">Level 2</h1>
-    <p class="page-sub">AI in Your Editor</p>
+    <div class="page-eyebrow">Level 2</div>
+    <h1 class="page-title">AI in Your Editor</h1>
+    <p class="page-sub">AI moves inside your editor — reads your open files, proposes changes inline, and shows you a diff before touching anything.</p>
     <div class="toc">
       <a href="#exercises">Try It</a>
       <a href="#prompting">Prompting</a>
-      <a href="#something">Editor & Context callout?</a>
-      <a href="#something">Level 3</a>
+      <a href="#callouts">Editor &amp; Context</a>
+      <a href="#next">On to Level 3</a>
     </div>
   </div>
-
+</div>
 
 <!-- =====================================================================
      THE SHIFT
@@ -68,8 +59,7 @@
 <section class="ide-section" id="the-shift">
   <div class="container">
     <div class="section-label">The shift</div>
-    <h2>This is not a faster version of copy-paste</h2>
-    <!--<p class="section-intro-sm">The browser chat approach is slow not because the AI is worse — it's because you're doing all the carrying. Level 2 eliminates that overhead by putting the AI where your code already lives.</p> -->
+    <h2>Not a faster version of copy-paste</h2>
 
     <div class="ide-explainer-grid">
       <div class="compare-col compare-col-old">
@@ -77,11 +67,11 @@
         <h3>The copy-paste loop</h3>
         <ul class="compare-list">
           <li>Switch tabs between editor and browser dozens of times per session</li>
-          <li>Manually copy code into chat, losing the surrounding context</li>
-          <li>Paste output back into the editor, often needing manual cleanup</li>
-          <li>Copy terminal errors out, paste them back into the chat</li>
-          <li>Every new chat starts from scratch — no memory of your project</li>
-          <li>Suggestions frequently conflict with code the AI hasn't seen</li>
+          <li>Copy code into chat, losing surrounding context</li>
+          <li>Paste output back, often needing manual cleanup</li>
+          <li>Copy terminal errors out, paste them back in</li>
+          <li>Every new chat starts from scratch</li>
+          <li>Suggestions conflict with code the AI hasn't seen</li>
         </ul>
       </div>
       <div class="compare-col compare-col-new">
@@ -89,11 +79,11 @@
         <h3>AI where your code lives</h3>
         <ul class="compare-list">
           <li>Chat panel lives inside your IDE — no window switching</li>
-          <li>AI reads your actual open file before you ask anything</li>
-          <li>Changes proposed inline, directly in the file you're editing</li>
-          <li>Side-by-side diff shown before anything is touched — you decide</li>
+          <li>AI reads your open file before you ask anything</li>
+          <li>Changes proposed inline, in the file you're editing</li>
+          <li>Diff shown before anything is touched — you decide</li>
           <li>Select any block and ask for targeted edits in place</li>
-          <li>Suggestions grounded in your real code, not a description of it</li>
+          <li>Suggestions grounded in your real code</li>
         </ul>
       </div>
     </div>
@@ -106,8 +96,8 @@
 <section class="ide-section alt-bg" id="exercises">
   <div class="container">
     <div class="section-label">Try it</div>
-    <h2>10 Simple Tasks with AI</h2>
-    <p class="section-intro-sm">Each exercise is self-contained. Do them in any order, skip what doesn't interest you, come back to others later. Exercises 4 through 8 share the same code block if you want to see several capabilities working on the same function — but none of them depend on completing the others first.</p>
+    <h2>10 Things to Try in Your Editor</h2>
+    <p class="section-intro-sm">Each exercise is self-contained — do them in any order. Exercises 4–8 share the same code block, but none depend on completing the others first.</p>
 
     <div class="depth-items">
 
@@ -122,7 +112,7 @@
           <div class="ex-hook">See AI reason about structure before a single file exists</div>
         </div>
         <div class="ex-body">
-          <p>Open the chat panel in your editor with no files open. Send the prompt below. Read what comes back — does the structure make sense for the project? Push back in the chat if not. When you're satisfied, ask it to list the terminal commands to create the folders and files.</p>
+          <p>Open the chat panel with no files open. Send the prompt, read what comes back, push back if the structure doesn't make sense. When satisfied, ask it to list the terminal commands to create the folders and files.</p>
 
           <div class="prompt-block"><p>I'm building a Python project that reads a folder of CSV files,
 cleans the data, and produces a summary report. Keep it simple —
@@ -130,7 +120,7 @@ no frameworks, just clean Python modules. Suggest a folder
 structure and list each file with a one-line description of its
 purpose. Don't write any code yet.</p></div>
 
-          <div class="note-block"><p><em>The key moves: describe the project in plain English, set a constraint ("no frameworks"), and say "don't write any code yet" so you control the pacing. You can substitute any project idea you already have in mind.</em></p></div>
+          <div class="note-block"><p><em>Key moves: plain-English description, explicit constraint ("no frameworks"), "don't write any code yet" keeps you in control of pacing. Swap in any project idea you already have.</em></p></div>
         </div>
       </div>
 
@@ -142,17 +132,17 @@ purpose. Don't write any code yet.</p></div>
             <div class="ex-phase">Write</div>
             <div class="ex-title">Generate code from a description</div>
           </div>
-          <div class="ex-hook">Ask AI to write a complete function from nothing but plain English</div>
+          <div class="ex-hook">A complete function from nothing but plain English</div>
         </div>
         <div class="ex-body">
-          <p>Open a new file called <code>temperature.py</code>. Open the chat panel and send the prompt below. Read what comes back before accepting — does it match what was asked? Is there anything you'd adjust?</p>
+          <p>Open a new file called <code>temperature.py</code>, open the chat panel, and send the prompt. Read what comes back before accepting — does it match? Anything to adjust?</p>
 
           <div class="prompt-block"><p>Write a Python function called convert_temperatures that takes a
 list of temperatures in Celsius and returns a new list converted
 to Fahrenheit. Handle the case where the input list is empty.
 Add a short comment explaining the formula. No external libraries.</p></div>
 
-          <div class="note-block"><p><em>No starter code, no file context — just a description. Specific constraints ("no external libraries," "handle empty input") produce tighter, more predictable results than open-ended asks. Vague prompts get vague code.</em></p></div>
+          <div class="note-block"><p><em>No starter code, no file context — just a description. Specific constraints produce tighter results. Vague prompts get vague code.</em></p></div>
         </div>
       </div>
 
@@ -167,23 +157,23 @@ Add a short comment explaining the formula. No external libraries.</p></div>
           <div class="ex-hook">Write the intention, let AI handle the implementation</div>
         </div>
         <div class="ex-body">
-          <p>Create a file called <code>summarize.py</code> and paste the code below exactly as written. Place your cursor at the end of the last comment line and press <kbd>Enter</kbd>. Wait — ghost text should appear suggesting the function body. <strong>Read it before pressing <kbd>Tab</kbd> to accept.</strong> If nothing appears after a few seconds, use the fallback prompt in the chat panel instead.</p>
+          <p>Create <code>summarize.py</code> and paste the code below. Place your cursor after the last comment line and press <kbd>Enter</kbd>. Ghost text should suggest the function body — <strong>read it before pressing <kbd>Tab</kbd></strong>. If nothing appears, use the fallback prompt instead.</p>
 
-          <div class="code-block"><span class="kw">import</span> pandas <span class="kw">as</span> pd
+          <div class="code-block">import pandas as pd
 
-<span class="kw">def</span> <span class="fn">summarize_returns</span>(filepath: str, ticker: str) -> dict:
-    <span class="cm"># Load a CSV with columns: date, ticker, close_price.</span>
-    <span class="cm"># Filter rows for the given ticker.</span>
-    <span class="cm"># Compute mean close price, max close, and min close.</span>
-    <span class="cm"># Return results as a dictionary with keys: mean, max, min.</span></div>
+def summarize_returns(filepath: str, ticker: str) -> dict:
+    # Load a CSV with columns: date, ticker, close_price.
+    # Filter rows for the given ticker.
+    # Compute mean close price, max close, and min close.
+    # Return results as a dictionary with keys: mean, max, min.</div>
 
-          <p>If Tab completion doesn't trigger, send this in the chat panel instead:</p>
+          <p>Fallback — send this in the chat panel:</p>
 
           <div class="prompt-block"><p>Complete the function body for summarize_returns based on the
 comments inside it. Use only pandas. Return the result as a
 plain dictionary.</p></div>
 
-          <div class="note-block"><p><em>The comment is doing the specification work. The more precise the comment, the more accurate the completion. Write the intention first — let AI fill in the implementation.</em></p></div>
+          <div class="note-block"><p><em>The comment is the specification. More precise comment = more accurate completion.</em></p></div>
         </div>
       </div>
 
@@ -198,35 +188,34 @@ plain dictionary.</p></div>
           <div class="ex-hook">AI explaining code is often more useful than AI writing it</div>
         </div>
         <div class="ex-body">
-          <p>Create a file called <code>pipeline.py</code> and paste the function below into it. This function works, but it has some inefficiencies and a subtle bug hiding inside it. Select the entire function, open the chat panel, and send the prompt. <strong>Exercises 5 through 8 all use this same file.</strong></p>
+          <p>Create <code>pipeline.py</code> and paste the function below. It works, but has inefficiencies and a subtle bug. Select the entire function, open the chat panel, send the prompt. <strong>Exercises 5–8 all use this file.</strong></p>
 
-          <div class="code-block"><span class="kw">import</span> pandas <span class="kw">as</span> pd
-<span class="kw">import</span> time
+          <div class="code-block">import pandas as pd
+import time
 
-<span class="kw">def</span> <span class="fn">process_sales</span>(df: pd.DataFrame, year: int) -> pd.DataFrame:
+def process_sales(df: pd.DataFrame, year: int) -> pd.DataFrame:
     results = []
-    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(df)):
+    for i in range(len(df)):
         row = df.iloc[i]
-        <span class="kw">if</span> row[<span class="st">"year"</span>] == year:
-            margin = (row[<span class="st">"revenue"</span>] - row[<span class="st">"cost"</span>]) / row[<span class="st">"revenue"</span>]
+        if row["year"] == year:
+            margin = (row["revenue"] - row["cost"]) / row["revenue"]
             results.append({
-                <span class="st">"product"</span>: row[<span class="st">"product"</span>],
-                <span class="st">"revenue"</span>: row[<span class="st">"revenue"</span>],
-                <span class="st">"margin"</span>: margin
+                "product": row["product"],
+                "revenue": row["revenue"],
+                "margin": margin
             })
     summary = pd.DataFrame(results)
-    summary = summary.sort_values(<span class="st">"margin"</span>)
-    total = <span class="num">0</span>
-    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(summary)):
-        total = total + summary.iloc[i][<span class="st">"revenue"</span>]
-    summary[<span class="st">"revenue_share"</span>] = summary[<span class="st">"revenue"</span>] / total
-    <span class="kw">return</span> summary</div>
+    summary = summary.sort_values("margin")
+    total = 0
+    for i in range(len(summary)):
+        total = total + summary.iloc[i]["revenue"]
+    summary["revenue_share"] = summary["revenue"] / total
+    return summary</div>
 
-          <div class="prompt-block"><p>Explain this function to me. Walk through what it does step by
-step, note any Python or pandas concepts worth understanding,
-and flag anything that looks inefficient or risky.</p></div>
+          <div class="prompt-block"><p>Explain this function step by step. Note any Python or pandas
+concepts worth understanding, and flag anything inefficient or risky.</p></div>
 
-          <div class="note-block"><p><em>This works on any code you didn't write — library internals, inherited projects, examples found online. Asking AI to explain before asking it to change is a habit worth building.</em></p></div>
+          <div class="note-block"><p><em>Works on any code you didn't write — inherited projects, library internals, online examples. Explain before you change.</em></p></div>
         </div>
       </div>
 
@@ -241,15 +230,15 @@ and flag anything that looks inefficient or risky.</p></div>
           <div class="ex-hook">A second pair of eyes that has read every Python bug report ever written</div>
         </div>
         <div class="ex-body">
-          <p>The <code>process_sales</code> function from Exercise 4 has a subtle bug. Select the entire function in <code>pipeline.py</code>, open the chat panel, and send the prompt. See if the AI finds it before you do.</p>
+          <p>The <code>process_sales</code> function has a subtle bug. Select it in <code>pipeline.py</code>, open the chat panel, and send the prompt. See if AI finds it before you do.</p>
 
           <div class="prompt-block"><p>Review this function for correctness. Is there any input that
-would cause it to produce a wrong result or raise an error?
-Be specific about where the problem is and why it occurs.</p></div>
+would cause a wrong result or raise an error? Be specific about
+where the problem is and why it occurs.</p></div>
 
-          <p>The bug: when <code>row["revenue"]</code> is zero, the margin calculation — <code>(row["revenue"] - row["cost"]) / row["revenue"]</code> — divides by zero, producing <code>inf</code> or raising a <code>ZeroDivisionError</code> depending on the data type. It's the kind of mistake that only surfaces on real data, easy to overlook in a code review.</p>
+          <p>The bug: when <code>row["revenue"]</code> is zero, the margin calculation divides by zero — producing <code>inf</code> or a <code>ZeroDivisionError</code> depending on data type. It only surfaces on real data.</p>
 
-          <div class="note-block"><p><em>AI reviewing code is different from AI writing code. You're using it as a quality check — not to build something new, but to stress-test something that already exists. It catches this kind of structural mistake reliably.</em></p></div>
+          <div class="note-block"><p><em>AI as a quality check, not a builder. It catches structural mistakes like this reliably.</em></p></div>
         </div>
       </div>
 
@@ -264,48 +253,47 @@ Be specific about where the problem is and why it occurs.</p></div>
           <div class="ex-hook">Give AI slow code, get fast code back — then prove it with a timer</div>
         </div>
         <div class="ex-body">
-          <p>The <code>process_sales</code> function loops over a DataFrame row by row — the slowest way to process data in pandas. Run the data generator below first to create a test file, then ask AI to rewrite the function. Finally, run the timing block to print both versions' runtimes to your terminal side by side.</p>
+          <p><code>process_sales</code> iterates row by row — the slowest way to process data in pandas. Generate test data, ask AI to rewrite it using vectorized operations, then run the timing block to compare both versions in your terminal.</p>
 
-          <p><strong>Step 1 — Create the data.</strong> Paste this into a new file and run it once to generate <code>sales_data.csv</code>:</p>
+          <p><strong>Step 1 — Create the data.</strong> Paste into a new file and run once:</p>
 
-          <div class="code-block"><span class="kw">import</span> pandas <span class="kw">as</span> pd
-<span class="kw">import</span> numpy <span class="kw">as</span> np
+          <div class="code-block">import pandas as pd
+import numpy as np
 
 df = pd.DataFrame({
-    <span class="st">"product"</span>: np.random.choice([<span class="st">"Widget"</span>, <span class="st">"Gadget"</span>, <span class="st">"Doohickey"</span>], <span class="num">50000</span>),
-    <span class="st">"year"</span>: np.random.choice([<span class="num">2022</span>, <span class="num">2023</span>, <span class="num">2024</span>], <span class="num">50000</span>),
-    <span class="st">"revenue"</span>: np.random.uniform(<span class="num">100</span>, <span class="num">10000</span>, <span class="num">50000</span>).round(<span class="num">2</span>),
-    <span class="st">"cost"</span>: np.random.uniform(<span class="num">50</span>, <span class="num">8000</span>, <span class="num">50000</span>).round(<span class="num">2</span>),
+    "product": np.random.choice(["Widget", "Gadget", "Doohickey"], 50000),
+    "year": np.random.choice([2022, 2023, 2024], 50000),
+    "revenue": np.random.uniform(100, 10000, 50000).round(2),
+    "cost": np.random.uniform(50, 8000, 50000).round(2),
 })
-df.to_csv(<span class="st">"sales_data.csv"</span>, index=<span class="kw">False</span>)
-<span class="fn">print</span>(<span class="st">"sales_data.csv created — 50,000 rows"</span>)</div>
+df.to_csv("sales_data.csv", index=False)
+print("sales_data.csv created — 50,000 rows")</div>
 
-          <p><strong>Step 2 — Ask AI to refactor.</strong> Select the original <code>process_sales</code> function in <code>pipeline.py</code> and send this prompt:</p>
+          <p><strong>Step 2 — Refactor.</strong> Select <code>process_sales</code> in <code>pipeline.py</code> and send:</p>
 
           <div class="prompt-block"><p>Refactor this function to use vectorized pandas operations instead
 of iterating row by row. Fix the division-by-zero bug in the margin
-calculation while you're at it. Name the new function
-process_sales_fast. Keep the output identical — same columns,
-same structure.</p></div>
+calculation. Name the new function process_sales_fast. Keep the
+output identical — same columns, same structure.</p></div>
 
-          <p><strong>Step 3 — Measure the difference.</strong> Add this timing block to the bottom of <code>pipeline.py</code> and run the file:</p>
+          <p><strong>Step 3 — Measure.</strong> Add this to the bottom of <code>pipeline.py</code> and run the file:</p>
 
-          <div class="code-block"><span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
-    df = pd.read_csv(<span class="st">"sales_data.csv"</span>)
+          <div class="code-block">if __name__ == "__main__":
+    df = pd.read_csv("sales_data.csv")
 
     start = time.perf_counter()
-    process_sales(df.copy(), <span class="num">2023</span>)
+    process_sales(df.copy(), 2023)
     t_original = time.perf_counter() - start
 
     start = time.perf_counter()
-    process_sales_fast(df.copy(), <span class="num">2023</span>)
+    process_sales_fast(df.copy(), 2023)
     t_fast = time.perf_counter() - start
 
-    <span class="fn">print</span>(<span class="st">f"Original:   {t_original:.4f}s"</span>)
-    <span class="fn">print</span>(<span class="st">f"Refactored: {t_fast:.4f}s"</span>)
-    <span class="fn">print</span>(<span class="st">f"Speedup:    {t_original / t_fast:.1f}x faster"</span>)</div>
+    print(f"Original:   {t_original:.4f}s")
+    print(f"Refactored: {t_fast:.4f}s")
+    print(f"Speedup:    {t_original / t_fast:.1f}x faster")</div>
 
-          <div class="note-block"><p><em>Expect a 10–50x speedup on 50,000 rows. The difference is not subtle. Vectorized pandas operations work on entire columns at once rather than one row at a time — AI knows every idiom for this and can apply them to any function immediately.</em></p></div>
+          <div class="note-block"><p><em>Expect 10–50x faster on 50,000 rows. Vectorized operations work on entire columns at once rather than one row at a time.</em></p></div>
         </div>
       </div>
 
@@ -320,20 +308,20 @@ same structure.</p></div>
           <div class="ex-hook">Make your function's contract explicit in seconds</div>
         </div>
         <div class="ex-body">
-          <p>Select the <code>process_sales_fast</code> function from Exercise 6. Trigger inline edit and send the prompt below. A side-by-side diff will appear showing exactly what it proposes to change — review it before accepting.</p>
+          <p>Select <code>process_sales_fast</code> from Exercise 6. Trigger inline edit and send the prompt. Review the diff before accepting.</p>
 
           <div class="ide-pill-toggle">
             <button class="ide-pill-btn active" onclick="setIDE('vscode')">VS Code</button>
             <button class="ide-pill-btn" onclick="setIDE('pycharm')">PyCharm</button>
           </div>
 
-          <p class="t-vscode">Inline edit shortcut: <kbd>Cmd+I</kbd> on Mac &nbsp;/&nbsp; <kbd>Ctrl+I</kbd> on Windows</p>
-          <p class="t-pycharm">Inline edit shortcut: <kbd>Ctrl+\</kbd> &nbsp;—&nbsp; or right-click the selection and choose <strong>AI Actions</strong></p>
+          <p class="t-vscode">Inline edit: <kbd>Cmd+I</kbd> Mac &nbsp;/&nbsp; <kbd>Ctrl+I</kbd> Windows</p>
+          <p class="t-pycharm">Inline edit: <kbd>Ctrl+\</kbd> &nbsp;—&nbsp; or right-click &rarr; <strong>AI Actions</strong></p>
 
           <div class="prompt-block"><p>Add complete Python type hints to all parameters and the return
 value. Use specific types — not just Any or object.</p></div>
 
-          <div class="note-block"><p><em>Type hints don't change how the code runs — they make it readable and catchable. Once hints are in place, most editors will highlight type mismatches before you run anything.</em></p></div>
+          <div class="note-block"><p><em>Type hints don't change runtime behavior — they make mismatches visible before you run anything.</em></p></div>
         </div>
       </div>
 
@@ -345,17 +333,17 @@ value. Use specific types — not just Any or object.</p></div>
             <div class="ex-phase">Document</div>
             <div class="ex-title">Generate a docstring</div>
           </div>
-          <div class="ex-hook">Professional Python code documents itself — AI writes the documentation</div>
+          <div class="ex-hook">AI writes documentation developers find tedious</div>
         </div>
         <div class="ex-body">
-          <p>A docstring is a description block that lives inside a function, right below the <code>def</code> line, wrapped in triple quotes. Python uses it as built-in documentation — call <code>help(process_sales_fast)</code> in your terminal and it prints whatever the docstring says. Most professional Python code has them; most developers find writing them tedious. AI does not.</p>
-          <p>Select the refactored, type-hinted function from Exercise 7. Open the chat panel and send the prompt below.</p>
+          <p>A docstring lives inside a function right below the <code>def</code> line, wrapped in triple quotes. Run <code>help(process_sales_fast)</code> in your terminal and Python prints it.</p>
+          <p>Select the refactored, type-hinted function from Exercise 7 and send the prompt.</p>
 
           <div class="prompt-block"><p>Write a Google-style docstring for this function. Include a
-one-line summary, a description of each parameter with its type,
-and the return value. Keep it concise.</p></div>
+one-line summary, each parameter with its type, and the return
+value. Keep it concise.</p></div>
 
-          <div class="note-block"><p><em>You can ask for different styles — NumPy and Sphinx are common alternatives. If your team has a documentation standard, specify it in the prompt and AI will follow it.</em></p></div>
+          <div class="note-block"><p><em>NumPy and Sphinx are common style alternatives. Specify your team's standard in the prompt and AI will follow it.</em></p></div>
         </div>
       </div>
 
@@ -370,16 +358,15 @@ and the return value. Keep it concise.</p></div>
           <div class="ex-hook">Ask AI to write tests for code it has already read</div>
         </div>
         <div class="ex-body">
-          <p>Make sure <code>pipeline.py</code> is open. Select the <code>process_sales_fast</code> function — with its type hints and docstring from the previous exercises — and open the chat panel. Send the prompt below.</p>
+          <p>Open <code>pipeline.py</code>. Select <code>process_sales_fast</code> and send the prompt.</p>
 
-          <div class="prompt-block"><p>Write three pytest functions for the process_sales_fast function
-I've selected — one normal case with typical data, one where no
-rows match the given year, and one where revenue is zero for some
-rows. Use only pytest and pandas. No fixtures.</p></div>
+          <div class="prompt-block"><p>Write three pytest functions for process_sales_fast — one normal
+case, one where no rows match the given year, and one where revenue
+is zero for some rows. Use only pytest and pandas. No fixtures.</p></div>
 
-          <p>Save the output to a new file called <code>test_pipeline.py</code>. Read each test before running it — make sure it's testing what it claims to test. Then run <code>pytest test_pipeline.py -v</code> in your terminal.</p>
+          <p>Save the output to <code>test_pipeline.py</code>. Read each test before running it. Then run <code>pytest test_pipeline.py -v</code>.</p>
 
-          <div class="note-block"><p><em>AI-generated tests are a starting point. They're useful for edge cases you might not have thought to write yourself — but they occasionally test the wrong thing or make incorrect assumptions about expected output. Read them before trusting them.</em></p></div>
+          <div class="note-block"><p><em>AI-generated tests are a starting point. They occasionally test the wrong thing — read them before trusting them.</em></p></div>
         </div>
       </div>
 
@@ -391,10 +378,10 @@ rows. Use only pytest and pandas. No fixtures.</p></div>
             <div class="ex-phase">Share</div>
             <div class="ex-title">Write a commit message from a diff</div>
           </div>
-          <div class="ex-hook">AI as a writing aid for the collaboration layer, not just the coding layer</div>
+          <div class="ex-hook">AI as a writing aid for the collaboration layer</div>
         </div>
         <div class="ex-body">
-          <p>No file needs to be open. Paste the diff below directly into the chat panel, then send the prompt. This simulates the moment just before committing — you have changes ready and want a clear, professional message that accurately describes what changed and why.</p>
+          <p>No file needed. Paste the diff below into the chat panel and send the prompt.</p>
 
           <div class="code-block">- def process_sales(df, year):
 + def process_sales_fast(df: pd.DataFrame, year: int) -> pd.DataFrame:
@@ -406,11 +393,11 @@ rows. Use only pytest and pandas. No fixtures.</p></div>
 +     filtered["revenue_share"] = filtered["revenue"] / filtered["revenue"].sum()
 +     return filtered.sort_values("margin")</div>
 
-          <div class="prompt-block"><p>Write a concise git commit message for this diff. Use the
-conventional commits format: a type prefix, a short summary
-line, and one optional sentence of body if needed.</p></div>
+          <div class="prompt-block"><p>Write a concise git commit message for this diff. Use conventional
+commits format: a type prefix, a short summary line, and one
+optional sentence of body if needed.</p></div>
 
-          <div class="note-block"><p><em>Conventional commits format: <code>refactor: replace iterrows with vectorized operations</code>. One line is usually enough. AI is good at distilling diffs into plain-English summaries — and consistent commit messages make project history readable by anyone who joins later.</em></p></div>
+          <div class="note-block"><p><em>Example: <code>refactor: replace iterrows with vectorized operations</code>. Consistent commit messages make history readable for anyone who joins later.</em></p></div>
         </div>
       </div>
 
@@ -425,7 +412,7 @@ line, and one optional sentence of body if needed.</p></div>
   <div class="container">
     <div class="section-label">Working well with AI</div>
     <h2>Learning to Prompt Well</h2>
-    <p class="section-intro-sm">AI will match whatever scope you give it. Ask for something small and focused, you get something small and focused. Ask something vague or enormous, and you'll get something vague or enormous — and probably lose the thread halfway through. The exercises above are deliberately contained for exactly this reason. The principles below are what make the difference between a productive session and an overwhelming one.</p>
+    <p class="section-intro-sm">AI matches whatever scope you give it. Vague or enormous gets vague or enormous back. The principles below separate a productive session from an overwhelming one.</p>
 
     <div class="depth-items">
 
@@ -434,7 +421,7 @@ line, and one optional sentence of body if needed.</p></div>
           <div class="principle-num">1</div>
           <div class="principle-body">
             <h4>Give context before the ask</h4>
-            <p>Tell AI what the project does, what role this code plays in it, and what you're trying to accomplish — before stating the specific request. Without context, AI fills in the gaps with assumptions, and those assumptions are often wrong in ways that are hard to spot. A sentence or two of setup changes the quality of the response significantly.</p>
+            <p>Describe what the project does and what role this code plays before making a request. Without context, AI fills gaps with assumptions that are often wrong in ways that are hard to spot.</p>
             <div class="principle-example">
               <span class="bad-eg">✕  "Write a function that cleans data."</span><br>
               <span class="good-eg">✓  "I'm building a sales reporting script. I have a DataFrame with revenue and cost columns that sometimes contain nulls or negative values. Write a function that drops rows where either column is null or negative."</span>
@@ -448,7 +435,7 @@ line, and one optional sentence of body if needed.</p></div>
           <div class="principle-num">2</div>
           <div class="principle-body">
             <h4>Constrain the scope explicitly</h4>
-            <p>AI will produce as much as it thinks you want. Without limits, it defaults to comprehensive — which often means more than you need, more than you can review, and more than you can debug when something goes wrong. Explicit constraints keep the output reviewable. "Under 20 lines," "no external libraries," "just the function, no explanation," and "Python 3.11 only" are all useful constraints. Use them.</p>
+            <p>Without limits, AI defaults to comprehensive — more than you need, more than you can review. "Under 20 lines," "no external libraries," "just the function, no explanation" keep the output reviewable.</p>
             <div class="principle-example">
               <span class="bad-eg">✕  "Add error handling to my project."</span><br>
               <span class="good-eg">✓  "Add a try/except block to the load_csv function only. Catch FileNotFoundError and print a clear message. Don't touch anything else."</span>
@@ -462,7 +449,7 @@ line, and one optional sentence of body if needed.</p></div>
           <div class="principle-num">3</div>
           <div class="principle-body">
             <h4>Ask for a plan before you ask for code</h4>
-            <p>For anything larger than a single function, ask AI to describe its approach before writing anything. This is what "don't write any code yet" does in Exercise 1 — it forces the AI to think out loud and gives you a chance to redirect before you're buried in output you don't want. Once you've agreed on the approach, asking for the code produces something much closer to what you actually had in mind.</p>
+            <p>For anything larger than a single function, ask AI to describe its approach first. It lets you redirect before you're buried in output you don't want.</p>
             <div class="principle-example">
               <span class="good-eg">✓  "Before writing any code, describe how you'd structure a function that does X. What edge cases would you handle?"</span>
             </div>
@@ -475,7 +462,7 @@ line, and one optional sentence of body if needed.</p></div>
           <div class="principle-num">4</div>
           <div class="principle-body">
             <h4>Tell it your level and what you want to learn</h4>
-            <p>AI adapts its output significantly based on who it thinks is reading. Saying "I'm new to pandas" produces simpler methods and more explanation. Saying "explain your reasoning alongside the code" gets you something you can learn from rather than just copy. If you want to understand what it built — ask. That's a separate prompt, and a valuable one.</p>
+            <p>"I'm new to pandas" produces simpler methods and more explanation. "Explain your reasoning alongside the code" gets you something to learn from, not just copy.</p>
             <div class="principle-example">
               <span class="good-eg">✓  "I'm learning pandas. Write this using basic operations and add a comment on each line explaining what it does."</span>
             </div>
@@ -487,55 +474,52 @@ line, and one optional sentence of body if needed.</p></div>
 
     <div class="demo-prompt-wrap">
       <div class="demo-prompt-header">
-        <div class="demo-prompt-label">Example prompt</div>
+        <div class="demo-prompt-label">Example prompt — all four principles combined</div>
       </div>
-      <div class="demo-prompt-body"><span class="ann">// context — what the project is and what this code needs to do</span>
+      <div class="demo-prompt-body">// context
 I'm building a Python script that reads monthly sales CSVs and
 produces a summary report. Each CSV has columns: product, region,
 revenue, and cost. I need a function that loads one CSV, drops rows
 where revenue or cost is missing, and returns a cleaned DataFrame.
 
-<span class="ann">// constraints — scope, libraries, style</span>
+// constraints
 Keep it under 20 lines. Use only pandas and the standard library.
 No classes — just a single function.
 
-<span class="ann">// plan before code</span>
+// plan before code
 Before writing the function, describe how you'd handle the case
 where the file doesn't exist or is empty. Then write the code.
 
-<span class="ann">// level and learning intent</span>
+// level
 I'm comfortable with Python basics but newer to pandas.
 Add a short comment on any pandas method that isn't obvious.</div>
     </div>
 
-    <h3 class="sub-section-title" style="margin-top:3rem;">When you feel lost or overwhelmed</h3>
-    <p class="section-intro-sm">Getting a response that's too long, too complex, or just not what you wanted is feedback about the prompt — not about your ability to code. These three moments come up often, and each one has a direct fix.</p>
+    <h3 class="sub-section-title">When you feel lost or overwhelmed</h3>
+    <p class="section-intro-sm">A response that's too long or too complex is feedback about the prompt, not your ability to code.</p>
 
     <div class="depth-items">
       <div class="depth-item">
         <div class="scope-tip">
-          <div class="scope-tip-icon">&#128073;</div>
           <div class="scope-tip-body">
-            <h5>The response is longer or more complex than you expected</h5>
-            <p>Push back directly in the same chat: <code>"That's more than I need — simplify it. I just want the core logic, no extra abstractions."</code> AI will revise. You don't need to start over or feel like you asked the wrong question. Simplification is a completely normal follow-up request, and AI handles it well.</p>
+            <h5>The response is more complex than you expected</h5>
+            <p>Push back in the same chat: <code>"That's more than I need — simplify it. Just the core logic, no extra abstractions."</code> Simplification is a normal follow-up and AI handles it well.</p>
           </div>
         </div>
       </div>
       <div class="depth-item">
         <div class="scope-tip">
-          <div class="scope-tip-icon">&#128257;</div>
           <div class="scope-tip-body">
             <h5>You've lost the thread mid-conversation</h5>
-            <p>Long conversations accumulate context that can start working against you — AI tries to stay consistent with earlier messages, even when you've changed direction. If a conversation feels tangled, start a fresh chat and re-state what you actually need now. <code>"Ignore the previous approach. Let's start over — I need something simpler."</code> A clean slate is faster than untangling.</p>
+            <p>Long conversations accumulate context that works against you. Start fresh: <code>"Ignore the previous approach. Let's start over — I need something simpler."</code></p>
           </div>
         </div>
       </div>
       <div class="depth-item">
         <div class="scope-tip">
-          <div class="scope-tip-icon">&#9888;&#65039;</div>
           <div class="scope-tip-body">
-            <h5>AI produced something that looks right but might not be</h5>
-            <p>Confidence is not correctness. AI can write fluent, well-structured code that has a subtle logic error, makes a wrong assumption about your data, or uses an API slightly incorrectly. Running the code is always the check — not reading it and assuming it's fine. When something fails, paste the exact error back into the chat rather than trying to interpret it yourself first.</p>
+            <h5>It looks right but might not be</h5>
+            <p>Confidence is not correctness. AI can produce fluent code with a subtle logic error or wrong assumption. Running the code is always the check. When something fails, paste the exact error back into the chat.</p>
           </div>
         </div>
       </div>
@@ -544,35 +528,41 @@ Add a short comment on any pandas method that isn't obvious.</div>
   </div>
 </section>
 
-<!-- THIS SHOULD BE AT THE BOTTOM ... -->
-  <div class="ide-explainer-grid" style="margin-top:2rem;">
-    <div class="callout-card">
-      <div class="callout-card-icon">&#127757;</div>
-      <div>
-        <div class="callout-card-title">Your editor, your choice</div>
-        <p>VS Code with GitHub Copilot and PyCharm with JetBrains AI Assistant are the most common starting points and what this page references. But they are not the only options. Cursor is a fork of VS Code rebuilt with in-context, inline AI editing as its core purpose rather than a plugin layer — popular and worth a look once you're comfortable with the fundamentals. Zed, Windsurf, and others follow the same idea.</p>
+<!-- =====================================================================
+     EDITOR & CONTEXT CALLOUTS
+     ===================================================================== -->
+<section class="ide-section alt-bg" id="callouts">
+  <div class="container">
+    <div class="section-label">Good to know</div>
+    <h2>Editor &amp; Context</h2>
+
+    <div class="ide-explainer-grid">
+      <div class="callout-card">
+        <div>
+          <div class="callout-card-title">Your editor, your choice</div>
+          <p>VS Code with GitHub Copilot and PyCharm with JetBrains AI Assistant are the most common starting points. Cursor is a fork of VS Code rebuilt with in-context, inline AI editing as its core purpose rather than a plugin — popular and worth a look. Zed, Windsurf, and others follow the same idea. The capability matters; the specific tool is secondary.</p>
+        </div>
       </div>
-    </div>
-    <div class="callout-card">
-      <div class="callout-card-icon">&#128196;</div>
-      <div>
-        <div class="callout-card-title">How file context works</div>
-        <p>When you open a file and open the chat panel, the AI has already read your open file before you type anything. You can also reference files explicitly — in VS Code Copilot Chat, type <code>#filename.py</code> in your message. In PyCharm AI Assistant, the open file is included automatically and you can drag additional files into the chat. This is what makes in-editor AI different from browser chat: it is not guessing about your code. It has read it.</p>
+      <div class="callout-card">
+        <div>
+          <div class="callout-card-title">How file context works</div>
+          <p>When you open a file and open the chat panel, the AI has already read it. Reference files explicitly in VS Code Copilot Chat by typing <code>#filename.py</code> in your message. In PyCharm AI Assistant, the open file is included automatically — drag additional files into the chat to add more.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- =====================================================================
      NEXT
      ===================================================================== -->
-<section class="ide-section alt-bg" id="next">
+<section class="ide-section" id="next">
   <div class="container">
     <div class="section-label">What's next</div>
     <h2>Level 3 — AI in your terminal</h2>
     <div class="next-card">
-      <p>Level 2 keeps AI inside the editor. It reads your files and proposes changes, but it cannot run anything — you still execute code in the terminal, read the output, and carry results back into the chat manually.</p>
-      <p>Level 3 removes that constraint. A terminal agent like Claude Code lives in your command line and has access to your full computing environment: it can execute scripts, read the output, install packages, write and modify files anywhere, and iterate on its own until a task is complete. You describe an outcome; the agent handles the execution loop. The IDE is still useful for reviewing what it produced, but it is no longer required to drive the task.</p>
+      <p>In-editor AI reads your files and proposes changes — but it cannot run anything. You still execute code in the terminal and carry results back into the chat manually.</p>
+      <p>Level 3 removes that constraint. A terminal agent like Claude Code has access to your full computing environment: it executes scripts, reads the output, installs packages, modifies files, and iterates until a task is complete. You describe an outcome; the agent handles the execution loop.</p>
       <a href="claude-power.html" class="btn-primary">Go to Level 3: Claude Advanced &rarr;</a>
     </div>
   </div>
@@ -599,15 +589,19 @@ Add a short comment on any pandas method that isn't obvious.</div>
 function setIDE(ide) {
   document.body.setAttribute('data-ide', ide);
   document.querySelectorAll('.ide-pill-btn').forEach(function(btn) {
-    var label = btn.textContent.trim().toLowerCase().replace(/\s+/g, '');
-    btn.classList.toggle('active', label === ide);
+    btn.classList.toggle('active', btn.textContent.trim().toLowerCase().replace(/\s+/g,'') === ide);
   });
   localStorage.setItem('preferredIDE_l2', ide);
 }
 (function() {
-  var saved = localStorage.getItem('preferredIDE_l2');
-  if (saved === 'pycharm') setIDE('pycharm');
+  if (localStorage.getItem('preferredIDE_l2') === 'pycharm') setIDE('pycharm');
 })();
+
+document.querySelectorAll('.ex-header').forEach(function(header) {
+  header.addEventListener('click', function() {
+    this.closest('.depth-item').classList.toggle('open');
+  });
+});
 </script>
 
 </body>
