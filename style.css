@@ -1638,3 +1638,134 @@ body.platform-mac span.os-mac { display: inline; }
   border-right: 1px solid var(--border2);
   border-bottom: 1px solid var(--border2);
 }
+
+/* ===========================
+   IDE-CURSOR PAGE (ide-cursor.html)
+   =========================== */
+
+/* Compare columns — old vs new */
+.compare-col {
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.compare-col-old { border-color: rgba(248,113,113,0.14); }
+.compare-col-new { border-color: rgba(52,211,153,0.14); }
+
+.compare-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+  margin-bottom: 1rem;
+}
+.badge-old { color: var(--bad); background: var(--bad-bg); border: 1px solid rgba(248,113,113,0.2); }
+.badge-new { color: var(--good); background: var(--good-bg); border: 1px solid rgba(52,211,153,0.2); }
+
+.compare-col h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.compare-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.compare-list li { font-size: 0.875rem; color: var(--text2); font-weight: 300; line-height: 1.55; display: flex; align-items: flex-start; gap: 0.55rem; }
+.compare-list li::before { flex-shrink: 0; margin-top: 3px; font-size: 0.72rem; }
+.compare-col-old .compare-list li::before { content: '✕'; color: var(--bad); }
+.compare-col-new .compare-list li::before { content: '✓'; color: var(--good); }
+
+/* Exercise cards */
+.ex-card { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.2s; }
+.ex-card:hover { border-color: var(--border2); }
+
+.ex-header { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; background: var(--surface); border-bottom: 1px solid var(--border); }
+
+.ex-num { width: 34px; height: 34px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.82rem; font-weight: 500; color: #fff; flex-shrink: 0; }
+
+.ex-meta { display: flex; flex-direction: column; gap: 2px; }
+
+.ex-phase { font-family: 'DM Mono', monospace; font-size: 0.67rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); }
+
+.ex-title { font-family: 'Syne', sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--text); }
+
+.ex-hook { font-size: 0.81rem; color: var(--text3); font-weight: 300; font-style: italic; margin-left: auto; flex-shrink: 0; max-width: 290px; text-align: right; line-height: 1.4; }
+@media (max-width: 640px) { .ex-hook { display: none; } }
+
+.ex-body { padding: 1.5rem; }
+.ex-body p { font-size: 0.9rem; color: var(--text2); font-weight: 300; line-height: 1.72; margin-bottom: 1rem; }
+.ex-body p:last-child { margin-bottom: 0; }
+.ex-body p strong { color: var(--text); font-weight: 500; }
+
+/* Prompt block */
+.prompt-block { background: rgba(123,108,255,0.055); border: 1px solid rgba(123,108,255,0.22); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin: 1rem 0; }
+.prompt-block::before { content: 'PROMPT — copy or adapt this'; display: block; font-family: 'DM Mono', monospace; font-size: 0.63rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.65rem; }
+.prompt-block p { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--text); font-weight: 400; line-height: 1.72; margin: 0; white-space: pre-wrap; }
+
+/* Note block */
+.note-block { background: rgba(255,255,255,0.02); border-left: 3px solid var(--border2); border-radius: 0 var(--radius) var(--radius) 0; padding: 0.8rem 1.1rem; margin: 1rem 0 0; }
+.note-block p { font-size: 0.82rem; color: var(--text3); margin: 0; line-height: 1.62; font-weight: 300; }
+
+/* IDE pill toggle */
+.ide-pill-toggle { display: inline-flex; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden; margin: 0.25rem 0 1rem; }
+.ide-pill-btn { background: transparent; border: none; padding: 4px 14px; font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--text2); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.ide-pill-btn.active { background: var(--accent); color: #fff; }
+.ide-pill-btn:not(.active):hover { background: var(--surface2); color: var(--text); }
+
+/* IDE visibility toggle */
+.t-vscode { display: block; }
+.t-pycharm { display: none; }
+span.t-vscode { display: inline; }
+span.t-pycharm { display: none; }
+body[data-ide="pycharm"] .t-vscode { display: none; }
+body[data-ide="pycharm"] .t-pycharm { display: block; }
+body[data-ide="pycharm"] span.t-vscode { display: none; }
+body[data-ide="pycharm"] span.t-pycharm { display: inline; }
+
+/* Callout cards (hero row) */
+.callout-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+.callout-card-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+.callout-card-title { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.45rem; }
+.callout-card p { font-size: 0.85rem; color: var(--text2); font-weight: 300; line-height: 1.65; margin: 0; }
+
+/* Principle list (prompting section) */
+.principle-item { display: grid; grid-template-columns: 32px 1fr; gap: 1.25rem; align-items: flex-start; }
+.principle-num { width: 32px; height: 32px; background: var(--accent-glow); border: 1px solid rgba(123,108,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 500; color: var(--accent2); flex-shrink: 0; margin-top: 2px; }
+.principle-body h4 { font-family: 'Syne', sans-serif; font-size: 0.97rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+.principle-body p { font-size: 0.88rem; color: var(--text2); font-weight: 300; line-height: 1.7; margin: 0 0 0.65rem; }
+.principle-example { font-family: 'DM Mono', monospace; font-size: 0.77rem; color: var(--text3); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 1rem; line-height: 1.7; }
+.good-eg { color: var(--good); }
+.bad-eg { color: var(--bad); }
+
+/* Demo prompt block */
+.demo-prompt-wrap { border: 1px solid rgba(123,108,255,0.28); border-radius: var(--radius-lg); overflow: hidden; margin-top: 1rem; }
+.demo-prompt-header { background: rgba(123,108,255,0.07); padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(123,108,255,0.15); display: flex; align-items: center; gap: 0.75rem; }
+.demo-prompt-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); }
+.demo-prompt-sub { font-size: 0.78rem; color: var(--text3); font-weight: 300; }
+.demo-prompt-body { padding: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.79rem; color: var(--text2); line-height: 1.88; background: var(--bg); white-space: pre-wrap; }
+.demo-prompt-body .ann { color: var(--text3); font-style: italic; }
+
+/* Scope tips */
+.scope-tip { display: flex; gap: 1rem; align-items: flex-start; }
+.scope-tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+.scope-tip-body h5 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+.scope-tip-body p { font-size: 0.875rem; color: var(--text2); font-weight: 300; line-height: 1.67; margin: 0; }
+
+/* Next card */
+.next-card { background: linear-gradient(135deg, rgba(123,108,255,0.07) 0%, rgba(6,182,212,0.04) 100%); border: 1px solid rgba(123,108,255,0.18); border-radius: var(--radius-lg); padding: 2.25rem; margin-top: 1.5rem; }
+.next-card p { font-size: 0.95rem; color: var(--text2); font-weight: 300; line-height: 1.78; margin-bottom: 1rem; max-width: 640px; }
+
+/* Code syntax colors used inside .code-block */
+.cm  { color: var(--text3); }
+.kw  { color: var(--accent2); }
+.fn  { color: #67e8f9; }
+.st  { color: var(--good); }
+.num { color: var(--neutral); }
+

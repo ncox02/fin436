@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 2: AI in Your Editor — pyflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="ide-styles.css">
+
+<style>
+/* ============================================================
+   IDE-CURSOR PAGE — LOCAL STYLES
+   ============================================================ */
+
+/* ---- Toggle System ---- */
+.page-toggle-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.toggle-group-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text3);
+  font-family: 'DM Mono', monospace;
+}
+
+.dual-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border2);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.dual-toggle-btn {
+  background: transparent;
+  border: none;
+  padding: 5px 18px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.dual-toggle-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.dual-toggle-btn:not(.active):hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+/* Toggled visibility — IDE */
+.ide-vscode { display: block; }
+.ide-pycharm { display: none; }
+span.ide-vscode { display: inline; }
+span.ide-pycharm { display: none; }
+
+body[data-ide="pycharm"] .ide-vscode { display: none; }
+body[data-ide="pycharm"] .ide-pycharm { display: block; }
+body[data-ide="pycharm"] span.ide-vscode { display: none; }
+body[data-ide="pycharm"] span.ide-pycharm { display: inline; }
+
+/* Toggled visibility — OS */
+.os-mac-l2 { display: none; }
+.os-win-l2 { display: block; }
+span.os-mac-l2 { display: none; }
+span.os-win-l2 { display: inline; }
+
+body[data-os="mac"] .os-win-l2 { display: none; }
+body[data-os="mac"] .os-mac-l2 { display: block; }
+body[data-os="mac"] span.os-win-l2 { display: none; }
+body[data-os="mac"] span.os-mac-l2 { display: inline; }
+
+/* ---- Hero ---- */
+.l2-hero {
+  padding: 5rem 2rem 3.5rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.l2-hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.l2-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.l2-breadcrumb {
+  font-size: 0.8rem;
+  color: var(--text3);
+  margin-bottom: 1.75rem;
+  font-family: 'DM Mono', monospace;
+}
+
+.l2-breadcrumb a {
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.l2-breadcrumb a:hover { color: var(--text2); }
+
+.l2-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 1.25rem;
+  font-family: 'DM Mono', monospace;
+}
+
+.l2-hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  max-width: 700px;
+}
+
+.l2-hero-sub {
+  font-size: 1.07rem;
+  color: var(--text2);
+  max-width: 640px;
+  font-weight: 300;
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+}
+
+/* ---- TOC ---- */
+.l2-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.l2-toc a {
+  font-size: 0.78rem;
+  font-family: 'DM Mono', monospace;
+  color: var(--text3);
+  text-decoration: none;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.l2-toc a:hover {
+  color: var(--accent2);
+  border-color: rgba(123,108,255,0.3);
+}
+
+/* ---- Section headings ---- */
+.ide-section h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.section-intro-sm {
+  font-size: 1rem;
+  color: var(--text2);
+  font-weight: 300;
+  max-width: 620px;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+/* ---- Workflow Comparison ---- */
+.wf-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 700px) {
+  .wf-compare { grid-template-columns: 1fr; }
+}
+
+.wf-col {
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+}
+
+.wf-col-old {
+  background: var(--surface);
+  border-color: rgba(248,113,113,0.15);
+}
+
+.wf-col-new {
+  background: var(--surface);
+  border-color: rgba(52,211,153,0.15);
+}
+
+.wf-col-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+.wf-col-old .wf-col-label {
+  color: var(--bad);
+  background: var(--bad-bg);
+  border: 1px solid rgba(248,113,113,0.2);
+}
+
+.wf-col-new .wf-col-label {
+  color: var(--good);
+  background: var(--good-bg);
+  border: 1px solid rgba(52,211,153,0.2);
+}
+
+.wf-col h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.wf-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.wf-list li {
+  font-size: 0.9rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.55;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.wf-list li::before {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.wf-col-old .wf-list li::before { content: '✕'; color: var(--bad); font-size: 0.75rem; }
+.wf-col-new .wf-list li::before { content: '✓'; color: var(--good); font-size: 0.75rem; }
+
+/* ---- Callouts ---- */
+.callout {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  background: rgba(123,108,255,0.07);
+  border: 1px solid rgba(123,108,255,0.2);
+  margin-bottom: 1.5rem;
+  align-items: flex-start;
+}
+
+.callout-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.callout p {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.callout strong {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+}
+
+.callout-neutral {
+  background: rgba(251,191,36,0.06);
+  border-color: rgba(251,191,36,0.2);
+}
+
+.callout-good {
+  background: var(--good-bg);
+  border-color: rgba(52,211,153,0.25);
+}
+
+/* ---- Setup Steps ---- */
+.setup-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.setup-step {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.setup-step:last-child { border-bottom: none; }
+
+.ss-num {
+  width: 32px;
+  height: 32px;
+  background: var(--accent-glow);
+  border: 1px solid rgba(123,108,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent2);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ss-content h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.ss-content p {
+  font-size: 0.88rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+
+.ss-content p:last-child { margin-bottom: 0; }
+
+.pricing-note {
+  display: inline-flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.price-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  background: var(--surface2);
+}
+
+.price-badge.free {
+  color: var(--good);
+  background: var(--good-bg);
+  border-color: rgba(52,211,153,0.2);
+}
+
+.price-badge.paid {
+  color: var(--neutral);
+  background: var(--neutral-bg);
+  border-color: rgba(251,191,36,0.2);
+}
+
+/* ---- Global toggle strip ---- */
+.toggle-strip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.toggle-strip-label {
+  font-size: 0.75rem;
+  color: var(--text3);
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---- Walkthrough Steps ---- */
+.walkthrough-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.wt-step {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.wt-step-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.wt-step-num {
+  width: 36px;
+  height: 36px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.wt-step-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wt-step-phase {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'DM Mono', monospace;
+  color: var(--accent2);
+}
+
+.wt-step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.wt-step-body {
+  padding: 1.5rem;
+}
+
+.wt-step-body p {
+  font-size: 0.9rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.wt-step-body p:last-child { margin-bottom: 0; }
+
+.wt-step-body strong { color: var(--text); font-weight: 500; }
+
+/* ---- Code Blocks ---- */
+.code-block {
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--text2);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0.75rem 0;
+  position: relative;
+}
+
+.code-block .comment {
+  color: var(--text3);
+  font-style: italic;
+}
+
+.code-block .highlight {
+  color: var(--accent2);
+}
+
+.code-block .good {
+  color: var(--good);
+}
+
+.prompt-block {
+  background: rgba(123,108,255,0.07);
+  border: 1px solid rgba(123,108,255,0.2);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  font-size: 0.88rem;
+  color: var(--text);
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0.75rem 0;
+  position: relative;
+}
+
+.prompt-block::before {
+  content: 'PROMPT';
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent2);
+  margin-bottom: 0.5rem;
+}
+
+.prompt-block em {
+  color: var(--text2);
+  font-style: italic;
+}
+
+kbd {
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78em;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ---- Blueprint / Session Section ---- */
+.blueprint-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 700px) {
+  .blueprint-grid { grid-template-columns: 1fr; }
+}
+
+.bp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.bp-card-phase {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  color: var(--accent2);
+  margin-bottom: 0.6rem;
+}
+
+.bp-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.bp-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bp-list li {
+  font-size: 0.87rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.55;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.bp-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--text3);
+  font-size: 0.8rem;
+}
+
+/* ---- Capabilities Matrix ---- */
+.caps-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.caps-category {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.caps-cat-header {
+  background: var(--surface);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.caps-cat-icon {
+  font-size: 1.1rem;
+}
+
+.caps-cat-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.caps-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.caps-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 1.5rem;
+  align-items: start;
+}
+
+.caps-entry:last-child { border-bottom: none; }
+
+.caps-entry:nth-child(even) {
+  background: rgba(255,255,255,0.01);
+}
+
+.caps-action {
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.caps-shortcut {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent2);
+  line-height: 1.5;
+}
+
+.caps-notes {
+  font-size: 0.82rem;
+  color: var(--text3);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.caps-header-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  padding: 0.6rem 1.5rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+
+.caps-col-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  color: var(--text3);
+}
+
+@media (max-width: 700px) {
+  .caps-entry { grid-template-columns: 1fr; gap: 0.35rem; }
+  .caps-header-row { display: none; }
+  .caps-shortcut::before { content: 'Shortcut: '; color: var(--text3); }
+}
+
+/* ---- Next section ---- */
+.next-card {
+  background: linear-gradient(135deg, rgba(123,108,255,0.08) 0%, rgba(6,182,212,0.05) 100%);
+  border: 1px solid rgba(123,108,255,0.2);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  margin-top: 1rem;
+}
+
+.next-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.next-card p {
+  font-size: 0.95rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 620px;
+}
+
+/* ---- Session flow ---- */
+.session-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.session-moment {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.session-moment:last-child { border-bottom: none; }
+
+.sm-time {
+  padding: 1.5rem 1.25rem;
+  border-right: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent2);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 1.6rem;
+}
+
+.sm-content {
+  padding: 1.4rem 1.5rem;
+}
+
+.sm-content h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.sm-content p {
+  font-size: 0.87rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .session-moment { grid-template-columns: 1fr; }
+  .sm-time { padding: 1rem 1.25rem 0.25rem; border-right: none; border-bottom: 1px solid var(--border); }
+}
+
+/* ---- Code inline ---- */
+code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85em;
+  color: var(--accent2);
+  background: rgba(123,108,255,0.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+</style>
+</head>
+
+<body data-ide="vscode" data-os="win">
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">py<span>flow</span></a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="tools.html">The Tools</a>
+    <a href="workflow.html">How It Connects</a>
+    <a href="start.html">Get Started</a>
+    <a href="ide-cursor.html" class="active" style="color: var(--accent2);">Level 2: AI in Editor</a>
+    <a href="claude-power.html" style="color: var(--accent2);">Level 3: Claude Advanced</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Overview</a>
+  <a href="tools.html">The Tools</a>
+  <a href="workflow.html">How It Connects</a>
+  <a href="start.html">Get Started</a>
+  <a href="ide-cursor.html">Level 2: AI in Editor</a>
+  <a href="claude-power.html">Level 3: Claude Advanced</a>
+</div>
+
+<main>
+
+<!-- =====================
+     HERO
+     ===================== -->
+<div class="l2-hero">
+  <div class="container">
+    <div class="l2-breadcrumb"><a href="start.html">&larr; Get Started</a></div>
+    <div class="l2-eyebrow">Level 2 &mdash; AI in Your Editor &middot; VS Code &middot; PyCharm</div>
+    <h1 class="l2-hero-title">Level 2: AI in Your Editor</h1>
+    <p class="l2-hero-sub">At Level 1, AI lives in a browser tab — you copy code out, paste errors in, and manually carry context between two windows. Level 2 changes the fundamental setup: the AI moves directly into your codebase, where it can read your files, write code inline, and hand you a diff to review. You stop being a messenger and start being a reviewer. This page shows you exactly how to set that up — in VS Code and PyCharm — and how to use it well.</p>
+
+    <nav class="l2-toc">
+      <a href="#concept">The In-Editor Shift</a>
+      <a href="#setup">Environment Setup</a>
+      <a href="#walkthrough">Hands-On Walkthrough</a>
+      <a href="#blueprint">Level 2 Blueprint</a>
+      <a href="#capabilities">Capabilities Reference</a>
+      <a href="#next">What's Next</a>
+    </nav>
+  </div>
+</div>
+
+<!-- =====================
+     SECTION 2: CORE CONCEPT
+     ===================== -->
+<section class="ide-section" id="concept">
+  <div class="container">
+    <div class="section-label">The In-Editor Shift</div>
+    <h2>This is not a faster version of copy-paste</h2>
+    <p class="section-intro-sm">The old browser chat approach isn't slow because the AI is worse — it's slow because you're doing all the carrying. Switching windows, reconstructing context from scratch, manually applying suggestions, and re-copying every error. Level 2 eliminates that overhead entirely.</p>
+
+    <div class="wf-compare">
+      <div class="wf-col wf-col-old">
+        <div class="wf-col-label">The Old Way — Browser Chats</div>
+        <h3>The copy-paste loop</h3>
+        <ul class="wf-list">
+          <li>Tab-switch from editor to browser and back, dozens of times per session</li>
+          <li>Manually copy code fragments into chat, losing surrounding context</li>
+          <li>Paste AI output back into the editor, often requiring manual cleanup</li>
+          <li>Copy error messages out of the terminal, paste them into the chat</li>
+          <li>Each new chat starts from scratch — no memory of your project</li>
+          <li>AI can't see how your files relate to each other</li>
+          <li>Suggestions frequently conflict with code it hasn't seen</li>
+        </ul>
+      </div>
+      <div class="wf-col wf-col-new">
+        <div class="wf-col-label">The In-Editor Way — Level 2</div>
+        <h3>Chat in context, edit inline</h3>
+        <ul class="wf-list">
+          <li>Chat panel lives inside your IDE — no window switching</li>
+          <li>AI reads your actual project files before responding</li>
+          <li>Changes are proposed inline, directly in the file</li>
+          <li>Diffs are shown side-by-side — you review and accept or reject</li>
+          <li>Highlight any function and ask for targeted edits in place</li>
+          <li>AI sees cross-file relationships and can reason across your whole project</li>
+          <li>Suggestions are grounded in your real code structure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">&#128336;</div>
+      <div>
+        <strong>What stays the same</strong>
+        <p>Git, project architecture, virtual environments, and every core software engineering principle you've already learned remain unchanged. The five-step sequence — Organize → Write → Test → Share → Deploy — doesn't change either. Level 2 is purely about how you interact with AI at each step, not a different kind of project or a different workflow structure.</p>
+      </div>
+    </div>
+
+    <div class="callout callout-neutral">
+      <div class="callout-icon">&#9889;</div>
+      <div>
+        <strong>A note on Cursor</strong>
+        <p>This guide uses VS Code and PyCharm because they're the most widely used starting points. But Cursor — an AI-first fork of VS Code built entirely around this kind of in-context, in-editor AI interaction — is gaining broad popularity among developers for exactly the reasons this page describes. If you're already comfortable in VS Code and want an editor that takes the Level 2 approach even further by making it native rather than plugin-based, Cursor is worth a look. Your extensions, keybindings, and settings transfer over in one click.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================
+     SECTION 3: SETUP
+     ===================== -->
+<section class="ide-section alt-bg" id="setup">
+  <div class="container">
+    <div class="section-label">Environment Setup</div>
+    <h2>Getting AI inside your editor</h2>
+    <p class="section-intro-sm">Choose your editor below and follow the steps. Once setup is complete, the AI has read access to your project files and you have an inline chat panel and inline edit capability.</p>
+
+    <div class="toggle-strip">
+      <span class="toggle-strip-label">Your editor:</span>
+      <div class="toggle-group">
+        <div class="dual-toggle" id="setupIdeToggle">
+          <button class="dual-toggle-btn active" onclick="setIDE('vscode')" id="setupBtnVS">VS Code</button>
+          <button class="dual-toggle-btn" onclick="setIDE('pycharm')" id="setupBtnPC">PyCharm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VS Code path -->
+    <div class="ide-vscode">
+      <div class="setup-steps">
+        <div class="setup-step">
+          <div class="ss-num">1</div>
+          <div class="ss-content">
+            <h3>Install the GitHub Copilot extension</h3>
+            <p>Open VS Code. Go to the Extensions panel (<kbd>Ctrl+Shift+X</kbd> / <kbd>Cmd+Shift+X</kbd>). Search for <strong>GitHub Copilot</strong> and install it. Then search for <strong>GitHub Copilot Chat</strong> and install that too — the chat panel is separate from the inline completions extension.</p>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="ss-num">2</div>
+          <div class="ss-content">
+            <h3>Sign in with your GitHub account</h3>
+            <p>After installation, VS Code will prompt you to sign in to GitHub. Click <strong>Sign in to GitHub</strong> and complete the browser OAuth flow. Your GitHub account is now linked to Copilot inside the editor.</p>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="ss-num">3</div>
+          <div class="ss-content">
+            <h3>Verify it's working</h3>
+            <p>Open any <code>.py</code> file. Start typing a comment or a function signature. You should see gray ghost text appear — that's Copilot's inline completion. Press <kbd>Tab</kbd> to accept it. Then open the Chat panel via the sidebar icon (speech bubble) or <kbd>Ctrl+Alt+I</kbd> and type a question about your code.</p>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="ss-num">4</div>
+          <div class="ss-content">
+            <h3>Understand the pricing</h3>
+            <p>GitHub Copilot's <strong>Free tier</strong> includes 2,000 inline completions and 50 chat messages per month — enough to evaluate it properly. The <strong>Pro plan</strong> is approximately $10/month and removes those limits.</p>
+            <div class="pricing-note">
+              <span class="price-badge free">Free — 2,000 completions / 50 chats per month</span>
+              <span class="price-badge paid">Pro — ~$10/month, unlimited</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PyCharm path -->
+    <div class="ide-pycharm">
+      <div class="callout callout-neutral" style="margin-bottom:1.5rem;">
+        <div class="callout-icon">&#9432;</div>
+        <div>
+          <strong>Professional vs Community</strong>
+          <p>PyCharm comes in two editions. <strong>Community</strong> is free and open source. <strong>Professional</strong> is approximately $25/month and includes JetBrains AI Assistant natively. If you're on Community, use the GitHub Copilot plugin instead — the steps below cover both paths.</p>
+        </div>
+      </div>
+      <div class="setup-steps">
+        <div class="setup-step">
+          <div class="ss-num">1</div>
+          <div class="ss-content">
+            <h3>PyCharm Professional — enable JetBrains AI Assistant</h3>
+            <p>If you have PyCharm Professional, JetBrains AI Assistant is available under <strong>Settings → Plugins → Marketplace</strong>. Search for <strong>AI Assistant</strong>, install it, and restart. Sign in with your JetBrains account when prompted. The chat panel appears on the right sidebar.</p>
+            <p>The AI Assistant reads your open files and project context automatically, and supports inline code generation, chat, and code explanations out of the box.</p>
+            <div class="pricing-note">
+              <span class="price-badge paid">Included with PyCharm Professional — ~$25/month</span>
+            </div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="ss-num">2</div>
+          <div class="ss-content">
+            <h3>PyCharm Community — install GitHub Copilot plugin</h3>
+            <p>If you have PyCharm Community (free), go to <strong>Settings → Plugins → Marketplace</strong>, search for <strong>GitHub Copilot</strong>, and install it. Restart PyCharm, then go to <strong>Tools → GitHub Copilot → Login to GitHub</strong> and complete the OAuth flow in your browser.</p>
+            <p>Inline completions will appear as you type. The Copilot Chat panel is available under the <strong>Tools</strong> menu.</p>
+            <div class="pricing-note">
+              <span class="price-badge free">Community edition is free</span>
+              <span class="price-badge free">Copilot Free — 2,000 completions / 50 chats per month</span>
+              <span class="price-badge paid">Copilot Pro — ~$10/month</span>
+            </div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="ss-num">3</div>
+          <div class="ss-content">
+            <h3>Verify it's working</h3>
+            <p>Open a <code>.py</code> file and begin typing a function name or comment. Gray ghost-text completions should appear after a short pause. Press <kbd>Tab</kbd> to accept. Open the AI chat panel and ask a question about code in your project to confirm context-aware responses are working.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================
+     SECTION 4: WALKTHROUGH
+     ===================== -->
+<section class="ide-section" id="walkthrough">
+  <div class="container">
+    <div class="section-label">Hands-On Walkthrough</div>
+    <h2>Earnings surprise analysis, built in-editor</h2>
+    <p class="section-intro-sm">You'll build a script that reads a stock earnings CSV with columns <code>ticker</code>, <code>quarter</code>, <code>estimated_eps</code>, and <code>actual_eps</code>, calculates earnings surprise percentages, flags significant misses, and generates a plain-text summary. Every step is done using the in-editor AI tools you just set up.</p>
+
+    <div class="toggle-strip">
+      <span class="toggle-strip-label">Your OS:</span>
+      <div class="dual-toggle" id="walkthroughOsToggle">
+        <button class="dual-toggle-btn active" onclick="setOS('win')" id="wOsBtnWin">Windows</button>
+        <button class="dual-toggle-btn" onclick="setOS('mac')" id="wOsBtnMac">Mac</button>
+      </div>
+      <span class="toggle-strip-label" style="margin-left:0.5rem;">Your editor:</span>
+      <div class="dual-toggle" id="walkthroughIdeToggle">
+        <button class="dual-toggle-btn active" onclick="setIDE('vscode')" id="wIdeBtnVS">VS Code</button>
+        <button class="dual-toggle-btn" onclick="setIDE('pycharm')" id="wIdeBtnPC">PyCharm</button>
+      </div>
+    </div>
+
+    <div class="walkthrough-steps">
+
+      <!-- Step 1 -->
+      <div class="wt-step">
+        <div class="wt-step-header">
+          <div class="wt-step-num">1</div>
+          <div class="wt-step-meta">
+            <div class="wt-step-phase">Organize</div>
+            <div class="wt-step-title">Project initialization</div>
+          </div>
+        </div>
+        <div class="wt-step-body">
+          <p>Open a terminal and run the following to create a project folder, set up a virtual environment, and install your dependencies.</p>
+
+          <div class="os-win-l2">
+            <div class="code-block"><span class="comment"># Windows — Command Prompt or PowerShell</span>
+mkdir earnings-analysis
+cd earnings-analysis
+python -m venv venv
+venv\Scripts\activate
+pip install pandas pytest</div>
+          </div>
+          <div class="os-mac-l2">
+            <div class="code-block"><span class="comment"># macOS — Terminal</span>
+mkdir earnings-analysis
+cd earnings-analysis
+python3 -m venv venv
+source venv/bin/activate
+pip install pandas pytest</div>
+          </div>
+
+          <p>Now open the project in your editor:</p>
+          <div class="ide-vscode">
+            <div class="code-block"><span class="comment"># VS Code — run from inside the project folder</span>
+code .</div>
+          </div>
+          <div class="ide-pycharm">
+            <p>In PyCharm, go to <strong>File → Open</strong> and select the <code>earnings-analysis</code> folder. When prompted, configure the Python interpreter to use the <code>venv</code> you just created.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="wt-step">
+        <div class="wt-step-header">
+          <div class="wt-step-num">2</div>
+          <div class="wt-step-meta">
+            <div class="wt-step-phase">Organize</div>
+            <div class="wt-step-title">AI-assisted project planning</div>
+          </div>
+        </div>
+        <div class="wt-step-body">
+          <p>Before writing a single line of code, use the AI chat panel to map out a sensible folder structure for this project. This is one of the biggest advantages of in-editor AI — you get an architecture proposal grounded in your actual task before you've committed to any structure.</p>
+
+          <div class="ide-vscode">
+            <p>Open the Copilot Chat panel (<kbd>Ctrl+Alt+I</kbd> or the speech-bubble icon in the sidebar). Send this prompt:</p>
+          </div>
+          <div class="ide-pycharm">
+            <p>Open the AI Assistant chat panel (right sidebar or <strong>Tools → AI Actions → Open AI Chat</strong>). Send this prompt:</p>
+          </div>
+
+          <div class="prompt-block">I'm building a Python project called earnings-analysis. It will read a CSV file with columns: ticker, quarter, estimated_eps, actual_eps. The script should calculate earnings surprise percentage for each row, flag rows where the surprise exceeds ±5%, and produce a plain-text summary.
+
+Please propose a folder structure and list of files for this project before I create anything. Include a src/ module, a tests/ folder, and a data/ folder for the CSV. Keep it simple — no frameworks, just clean Python modules.</div>
+
+          <p><strong>Review the AI's proposal before creating any files.</strong> Does the module breakdown make sense? Is there anything you'd reorganize? Adjust the plan in the chat until it matches your intent, then create the folders and empty files manually or ask the AI to list the exact commands to do so.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="wt-step">
+        <div class="wt-step-header">
+          <div class="wt-step-num">3</div>
+          <div class="wt-step-meta">
+            <div class="wt-step-phase">Write</div>
+            <div class="wt-step-title">Core logic via inline completions</div>
+          </div>
+        </div>
+        <div class="wt-step-body">
+          <p>Open <code>src/analysis.py</code>. The most efficient way to write the core function is to type a detailed descriptive comment above the function signature, then let the AI complete it. The comment is the specification — be precise and the completion will be accurate.</p>
+
+          <div class="code-block"><span class="comment"># Calculate earnings surprise as a percentage.
+# surprise_pct = ((actual_eps - estimated_eps) / abs(estimated_eps)) * 100
+# Returns a new DataFrame with an added 'surprise_pct' column.
+# Handles the case where estimated_eps is zero by returning NaN for that row.</span>
+def calculate_surprise(df):</div>
+
+          <p>After typing the function signature, pause. Ghost text will appear after a moment, suggesting the entire function body. Read it. If it looks correct, press <kbd>Tab</kbd> to accept. If only part of it is right, accept with <kbd>Tab</kbd> and then edit — it's faster than writing from scratch.</p>
+          <p>Use the same approach for the <code>flag_significant_misses</code> function: write a precise comment describing the threshold logic, the column name to add, and the boolean values expected, then let the completion fill in the body.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="wt-step">
+        <div class="wt-step-header">
+          <div class="wt-step-num">4</div>
+          <div class="wt-step-meta">
+            <div class="wt-step-phase">Write</div>
+            <div class="wt-step-title">Refinement via inline edit</div>
+          </div>
+        </div>
+        <div class="wt-step-body">
+          <p>Now suppose you want to add a <code>generate_summary</code> function, but after writing it, you realize it needs to handle an edge case: what if the input DataFrame is empty? Select the existing function body with your cursor, then trigger inline edit:</p>
+
+          <div class="ide-vscode">
+            <p>Press <kbd>Cmd+I</kbd> (Mac) or <kbd>Ctrl+I</kbd> (Windows) with the code selected. A small inline input appears. Type your request:</p>
+          </div>
+          <div class="ide-pycharm">
+            <p>Select the function, then press <kbd>Ctrl+\</kbd> to trigger inline AI edit, or right-click and choose <strong>AI Actions → Suggest Refactoring</strong>. Type your request in the prompt field that appears:</p>
+          </div>
+
+          <div class="prompt-block">Add a guard at the top of this function that returns the string "No earnings data available." if the DataFrame is empty. Don't change anything else about the function.</div>
+
+          <p>The editor will present a <strong>side-by-side diff</strong> showing exactly what the AI proposes to change. This is the critical moment: read the diff carefully. Confirm the guard was added in the right place, that nothing else was modified, and that the indentation and style match the rest of the file. Click <strong>Accept</strong> only when you're satisfied. If it's wrong, click <strong>Discard</strong> and refine your request.</p>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="wt-step">
+        <div class="wt-step-header">
+          <div class="wt-step-num">5</div>
+          <div class="wt-step-meta">
+            <div class="wt-step-phase">Test</div>
+            <div class="wt-step-title">AI-generated test suite</div>
+          </div>
+        </div>
+        <div class="wt-step-body">
+          <p>Open <code>src/analysis.py</code>. Select all three functions — <code>calculate_surprise</code>, <code>flag_significant_misses</code>, and <code>generate_summary</code>. With the code selected, open the chat panel and send this prompt:</p>
+
+          <div class="prompt-block">I've selected three functions from my analysis module. Please generate a comprehensive pytest test file for them. Include:
+- Normal cases with typical data
+- Edge cases: empty DataFrame, single row, all-zero estimated EPS, very large surprise values, negative EPS values
+- One test that verifies the summary output contains the word "surprise"
+
+Save the output as tests/test_analysis.py and use only pytest and pandas — no other libraries.</div>
+
+          <p>Save the generated file to <code>tests/test_analysis.py</code>, then run the suite from the terminal:</p>
+
+          <div class="os-win-l2">
+            <div class="code-block">venv\Scripts\activate
+pytest tests/ -v</div>
+          </div>
+          <div class="os-mac-l2">
+            <div class="code-block">source venv/bin/activate
+pytest tests/ -v</div>
+          </div>
+
+          <p>If any tests fail, copy the failure output directly from the terminal and paste it into the chat panel:</p>
+
+          <div class="prompt-block">Here are the pytest failures:
+
+[paste your terminal output here]
+
+Please fix the function that's causing these failures. Show me the corrected code.</div>
+
+          <p>Review the proposed fix in the diff, understand what was wrong, then accept and re-run <code>pytest</code> until all tests pass.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =====================
+     SECTION 5: BLUEPRINT
+     ===================== -->
+<section class="ide-section alt-bg" id="blueprint">
+  <div class="container">
+    <div class="section-label">The Level 2 Blueprint</div>
+    <h2>The full workflow, powered by an in-editor AI</h2>
+    <p class="section-intro-sm">Here's how the four core phases of every Python project change when you're working at Level 2. The phases are identical — only the execution changes.</p>
+
+    <div class="blueprint-grid">
+      <div class="bp-card">
+        <div class="bp-card-phase">Organize</div>
+        <h3>&#128230; Plan first, file later</h3>
+        <ul class="bp-list">
+          <li>Use the chat panel to describe your project before creating any files</li>
+          <li>Ask for a folder structure and module breakdown</li>
+          <li>Review the AI's proposal critically — adjust before committing</li>
+          <li>Let AI generate the scaffolding commands once you've agreed on the structure</li>
+        </ul>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-phase">Write</div>
+        <h3>&#9997; Comment → Complete → Refine</h3>
+        <ul class="bp-list">
+          <li>Write precise comments above function signatures — the comment is the spec</li>
+          <li>Let inline completions fill in the body; press Tab to accept</li>
+          <li>For targeted changes, select the code and use inline edit (<kbd>Cmd+I</kbd> / <kbd>Ctrl+I</kbd> <span class="ide-pycharm">/ <kbd>Ctrl+\</kbd></span>)</li>
+          <li>Read every proposed diff before clicking Accept — this is the quality gate</li>
+        </ul>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-phase">Test</div>
+        <h3>&#129514; Generate → Run → Feed back</h3>
+        <ul class="bp-list">
+          <li>Select your core functions and ask the AI to generate exhaustive pytest cases</li>
+          <li>Include edge cases in your prompt — don't rely on the AI to guess them</li>
+          <li>Run pytest in the terminal; paste failures directly into the chat</li>
+          <li>Iterate on failures in the chat until all tests pass</li>
+        </ul>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-phase">Share</div>
+        <h3>&#128257; Review diffs before you commit</h3>
+        <ul class="bp-list">
+          <li>Git workflow is unchanged — <code>git add</code>, <code>git commit</code>, <code>git push</code></li>
+          <li>Before writing a commit message, ask the AI to audit your staged changes</li>
+          <li>Prompt: "Review my staged diff for bugs, style issues, or anything I should fix before committing"</li>
+          <li>Ask the AI to suggest a concise, descriptive commit message once you're satisfied</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================
+     SECTION 6: CAPABILITIES
+     ===================== -->
+<section class="ide-section" id="capabilities">
+  <div class="container">
+    <div class="section-label">Capabilities Reference</div>
+    <h2>What you can ask your editor's AI to do</h2>
+    <p class="section-intro-sm">A full reference of what's possible, organized by task type. Shortcuts are shown for your selected editor.</p>
+
+    <div class="toggle-strip">
+      <span class="toggle-strip-label">Your editor:</span>
+      <div class="dual-toggle" id="capsIdeToggle">
+        <button class="dual-toggle-btn active" onclick="setIDE('vscode')" id="cIdeBtnVS">VS Code</button>
+        <button class="dual-toggle-btn" onclick="setIDE('pycharm')" id="cIdeBtnPC">PyCharm</button>
+      </div>
+    </div>
+
+    <div class="caps-grid">
+
+      <!-- a. Writing Code -->
+      <div class="caps-category">
+        <div class="caps-cat-header">
+          <div class="caps-cat-icon">&#9997;</div>
+          <div class="caps-cat-title">a. Writing Code</div>
+        </div>
+        <div class="caps-header-row">
+          <div class="caps-col-label">What you want to do</div>
+          <div class="caps-col-label">How to trigger it</div>
+          <div class="caps-col-label">Notes</div>
+        </div>
+        <div class="caps-entries">
+          <div class="caps-entry">
+            <div class="caps-action">Inline single-line completion</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Start typing; accept with <kbd>Tab</kbd></span><span class="ide-pycharm">Start typing; accept with <kbd>Tab</kbd></span></div>
+            <div class="caps-notes">Works automatically as you type</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Multi-line function body completion</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Write a descriptive comment + function signature; <kbd>Tab</kbd> to accept</span><span class="ide-pycharm">Write a descriptive comment + function signature; <kbd>Tab</kbd> to accept</span></div>
+            <div class="caps-notes">More detail in the comment = better completion</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Generate code from a comment</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Write comment; press <kbd>Enter</kbd> to move to next line and wait</span><span class="ide-pycharm">Write comment; press <kbd>Enter</kbd>; suggestion appears inline</span></div>
+            <div class="caps-notes">Best for utility functions and boilerplate</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Generate a function from a docstring</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Write the docstring first; AI suggests the implementation below it</span><span class="ide-pycharm">Write the docstring; AI Assistant can generate the function from AI Chat</span></div>
+            <div class="caps-notes">Invert the typical order: spec first, code second</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- b. Editing Existing Code -->
+      <div class="caps-category">
+        <div class="caps-cat-header">
+          <div class="caps-cat-icon">&#9998;</div>
+          <div class="caps-cat-title">b. Editing Existing Code</div>
+        </div>
+        <div class="caps-header-row">
+          <div class="caps-col-label">What you want to do</div>
+          <div class="caps-col-label">How to trigger it</div>
+          <div class="caps-col-label">Notes</div>
+        </div>
+        <div class="caps-entries">
+          <div class="caps-entry">
+            <div class="caps-action">Inline edit of selected code</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Select code → <kbd>Cmd+I</kbd> / <kbd>Ctrl+I</kbd></span><span class="ide-pycharm">Select code → <kbd>Ctrl+\</kbd></span></div>
+            <div class="caps-notes">Presents a side-by-side diff to review before accepting</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Refactor selected code block</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Select → <kbd>Cmd+I</kbd> / <kbd>Ctrl+I</kbd> → describe refactor</span><span class="ide-pycharm">Select → right-click → AI Actions → Suggest Refactoring</span></div>
+            <div class="caps-notes">Good for extracting functions, splitting logic, renaming</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Inject error handling into a block</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Select function → <kbd>Cmd+I</kbd> → "Wrap this in try/except blocks, logging errors to stderr"</span><span class="ide-pycharm">Select function → <kbd>Ctrl+\</kbd> → describe the error handling needed</span></div>
+            <div class="caps-notes">Specify what to catch and how to handle it in your prompt</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Add Python type hints</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Select function → <kbd>Cmd+I</kbd> → "Add complete type hints to all parameters and return value"</span><span class="ide-pycharm">Select function → right-click → AI Actions → "Add type hints"</span></div>
+            <div class="caps-notes">Verify the inferred types are correct before accepting</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Fix a specific error in context</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Click the lightbulb on a red underline → "Fix with Copilot"</span><span class="ide-pycharm">Click the red underline → Alt+Enter → "Fix with AI Assistant"</span></div>
+            <div class="caps-notes">Gives the AI the exact error and surrounding context automatically</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- c. Understanding Code -->
+      <div class="caps-category">
+        <div class="caps-cat-header">
+          <div class="caps-cat-icon">&#128269;</div>
+          <div class="caps-cat-title">c. Understanding Code</div>
+        </div>
+        <div class="caps-header-row">
+          <div class="caps-col-label">What you want to do</div>
+          <div class="caps-col-label">How to trigger it</div>
+          <div class="caps-col-label">Notes</div>
+        </div>
+        <div class="caps-entries">
+          <div class="caps-entry">
+            <div class="caps-action">Explain a selected code block</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Select code → right-click → Copilot → "Explain This"</span><span class="ide-pycharm">Select code → right-click → AI Actions → "Explain Code"</span></div>
+            <div class="caps-notes">Useful for unfamiliar code, complex expressions, or inherited projects</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Chat with file context</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Open Copilot Chat → reference file with <code>#filename.py</code> in your message</span><span class="ide-pycharm">Open AI Chat → the open file is included in context automatically</span></div>
+            <div class="caps-notes">Ask questions about the file's logic, structure, or intent</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Query external library or API behavior</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Copilot Chat → ask directly, e.g. "How does pandas groupby handle NaN values?"</span><span class="ide-pycharm">AI Chat → ask the question directly in the chat panel</span></div>
+            <div class="caps-notes">Faster than tab-switching to documentation; verify against official docs for critical behavior</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- d. Testing & Debugging -->
+      <div class="caps-category">
+        <div class="caps-cat-header">
+          <div class="caps-cat-icon">&#129514;</div>
+          <div class="caps-cat-title">d. Testing &amp; Debugging</div>
+        </div>
+        <div class="caps-header-row">
+          <div class="caps-col-label">What you want to do</div>
+          <div class="caps-col-label">How to trigger it</div>
+          <div class="caps-col-label">Notes</div>
+        </div>
+        <div class="caps-entries">
+          <div class="caps-entry">
+            <div class="caps-action">Generate unit tests for a function</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Select function → right-click → Copilot → "Generate Tests"</span><span class="ide-pycharm">Select function → right-click → AI Actions → "Generate Unit Tests"</span></div>
+            <div class="caps-notes">Include edge cases in your request; the default coverage is often too optimistic</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Diagnose an active test failure</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Paste failure output into Copilot Chat with the relevant function selected</span><span class="ide-pycharm">Paste failure output into AI Chat; reference the test file explicitly</span></div>
+            <div class="caps-notes">Paste the full traceback, not just the error message line</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Explain a terminal stack trace</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Paste traceback into Copilot Chat → "Explain this error and tell me where in my code to look"</span><span class="ide-pycharm">Paste traceback into AI Chat → ask for an explanation with file context</span></div>
+            <div class="caps-notes">Always include the last 10–15 lines of the trace at minimum</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- e. Documentation & Review -->
+      <div class="caps-category">
+        <div class="caps-cat-header">
+          <div class="caps-cat-icon">&#128196;</div>
+          <div class="caps-cat-title">e. Documentation &amp; Review</div>
+        </div>
+        <div class="caps-header-row">
+          <div class="caps-col-label">What you want to do</div>
+          <div class="caps-col-label">How to trigger it</div>
+          <div class="caps-col-label">Notes</div>
+        </div>
+        <div class="caps-entries">
+          <div class="caps-entry">
+            <div class="caps-action">Write a docstring for a function</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Place cursor inside function → Copilot Chat → "Write a Google-style docstring for this function"</span><span class="ide-pycharm">Place cursor inside function → right-click → AI Actions → "Write Documentation"</span></div>
+            <div class="caps-notes">Specify the docstring style (Google, NumPy, Sphinx) in your prompt</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Review code for anti-patterns</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Select file or module → Copilot Chat → "Review this for Python anti-patterns and suggest improvements"</span><span class="ide-pycharm">Open file → AI Chat → ask for a code review with specific concerns</span></div>
+            <div class="caps-notes">Be specific: ask about error handling, naming, complexity, or PEP 8 compliance</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Summarize staged changes for a commit message</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Source Control panel → Copilot icon → "Generate Commit Message"</span><span class="ide-pycharm">Commit dialog → AI Assistant → "Generate Commit Message"</span></div>
+            <div class="caps-notes">Review and edit the suggestion; don't ship a message you didn't read</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Generate a project README</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Copilot Chat → "Generate a README.md for this project. Include setup, usage, and a description of what it does."</span><span class="ide-pycharm">AI Chat → "Generate a README.md for this project" with project files in context</span></div>
+            <div class="caps-notes">Review carefully — AI-generated READMEs often contain plausible-sounding but wrong setup instructions</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- f. Agentic Workflows -->
+      <div class="caps-category">
+        <div class="caps-cat-header">
+          <div class="caps-cat-icon">&#128640;</div>
+          <div class="caps-cat-title">f. Agentic Workflows</div>
+        </div>
+        <div class="caps-header-row">
+          <div class="caps-col-label">What you want to do</div>
+          <div class="caps-col-label">How to trigger it</div>
+          <div class="caps-col-label">Notes</div>
+        </div>
+        <div class="caps-entries">
+          <div class="caps-entry">
+            <div class="caps-action">Multi-file edits from one prompt</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Copilot Chat (Agent mode) → describe the change across files; review each file diff</span><span class="ide-pycharm">AI Chat → describe the multi-file change; apply suggestions per-file</span></div>
+            <div class="caps-notes">Review each file's diff independently before accepting — changes compound</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Scaffold a new project structure</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Copilot Chat → "Create the folder structure and empty files for this project" (describe the project)</span><span class="ide-pycharm">AI Chat → describe the structure needed; AI provides commands or creates files</span></div>
+            <div class="caps-notes">Always review before executing file-creation commands</div>
+          </div>
+          <div class="caps-entry">
+            <div class="caps-action">Fix all files impacted by a broken import</div>
+            <div class="caps-shortcut"><span class="ide-vscode">Copilot Chat (Agent mode) → "I renamed module X to Y. Find and fix all import references across the project."</span><span class="ide-pycharm">AI Chat → describe the rename; apply fixes across files using the suggestions</span></div>
+            <div class="caps-notes">Run the full test suite after this — sweeping refactors can have non-obvious side effects</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =====================
+     SECTION 7: NEXT
+     ===================== -->
+<section class="ide-section alt-bg" id="next">
+  <div class="container">
+    <div class="section-label">What's Next</div>
+    <h2>The Level 3 leap</h2>
+    <p class="section-intro-sm">Level 2 keeps AI inside the editor — a powerful upgrade, but still tethered to a UI. Level 3 removes that constraint entirely.</p>
+
+    <div class="next-card">
+      <h3>From editor plugin to environment-aware terminal agent</h3>
+      <p>At Level 2, the AI reads your files and proposes changes — but it can't actually run anything. You still carry outputs from the terminal back into the chat manually. Level 3 changes that. A terminal agent like Claude Code lives in your command line and has access to your <em>full computing environment</em>: it can execute scripts, read the output, install packages, write and modify files anywhere, and iterate on its own until a task is complete.</p>
+      <p>The key difference: at Level 2 you describe a change and review it. At Level 3, you describe an outcome and the agent figures out the execution steps — running code, reading errors, fixing them, and continuing — without you manually carrying outputs between a terminal and a chat window. The IDE is still useful for reviewing what the agent produced, but it's no longer required to drive the task.</p>
+      <a href="claude-power.html" class="btn-primary" style="display:inline-block; margin-top:1.25rem;">Go to Level 3: Claude Advanced &rarr;</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Overview</a>
+      <a href="tools.html">The Tools</a>
+      <a href="workflow.html">How It Connects</a>
+      <a href="start.html">Get Started</a>
+      <button id="themeToggle" class="theme-toggle">&#9728;&#65039;</button>
+      <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
+    </div>
+    <p class="footer-note">A clear guide to modern Python development &mdash; tools, workflow, and AI.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+// ============================================================
+//  IDE + OS TOGGLE SYSTEM
+// ============================================================
+
+function setIDE(ide) {
+  document.body.setAttribute('data-ide', ide);
+
+  // Update all IDE toggle buttons on the page
+  document.querySelectorAll('[id$="BtnVS"], [id$="IdeBtnVS"]').forEach(btn => {
+    btn.classList.toggle('active', ide === 'vscode');
+  });
+  document.querySelectorAll('[id$="BtnPC"], [id$="IdeBtnPC"]').forEach(btn => {
+    btn.classList.toggle('active', ide === 'pycharm');
+  });
+
+  // Unified approach: sync all dual-toggle buttons with data-ide-value attribute
+  document.querySelectorAll('.dual-toggle-btn[data-ide-value]').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-ide-value') === ide);
+  });
+
+  localStorage.setItem('preferredIDE', ide);
+}
+
+function setOS(os) {
+  document.body.setAttribute('data-os', os);
+
+  document.querySelectorAll('[id$="OsBtnWin"], [id$="OsWin"]').forEach(btn => {
+    btn.classList.toggle('active', os === 'win');
+  });
+  document.querySelectorAll('[id$="OsBtnMac"], [id$="OsMac"]').forEach(btn => {
+    btn.classList.toggle('active', os === 'mac');
+  });
+
+  localStorage.setItem('preferredOS_l2', os);
+}
+
+// Restore preferences on load
+(function() {
+  const savedIDE = localStorage.getItem('preferredIDE');
+  const savedOS  = localStorage.getItem('preferredOS_l2');
+
+  if (savedIDE === 'pycharm') setIDE('pycharm');
+  if (savedOS  === 'mac')     setOS('mac');
+})();
+
+// Wire up all dual-toggle buttons by their onclick attributes already in HTML
+// Additionally, sync any button groups that weren't caught by ID selectors
+// by scanning the page after load
+document.addEventListener('DOMContentLoaded', function() {
+  // Re-run active state sync after DOM is ready
+  const currentIDE = document.body.getAttribute('data-ide') || 'vscode';
+  const currentOS  = document.body.getAttribute('data-os')  || 'win';
+
+  // Force visual sync of all toggle buttons
+  document.querySelectorAll('#setupBtnVS, #wIdeBtnVS, #cIdeBtnVS').forEach(btn => {
+    if (btn) btn.classList.toggle('active', currentIDE === 'vscode');
+  });
+  document.querySelectorAll('#setupBtnPC, #wIdeBtnPC, #cIdeBtnPC').forEach(btn => {
+    if (btn) btn.classList.toggle('active', currentIDE === 'pycharm');
+  });
+  document.querySelectorAll('#wOsBtnWin').forEach(btn => {
+    if (btn) btn.classList.toggle('active', currentOS === 'win');
+  });
+  document.querySelectorAll('#wOsBtnMac').forEach(btn => {
+    if (btn) btn.classList.toggle('active', currentOS === 'mac');
+  });
+});
+</script>
+</body>
+</html>
