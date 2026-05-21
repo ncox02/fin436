@@ -1802,3 +1802,440 @@ body[data-ide="pycharm"] span.t-pycharm { display: inline; }
   border-top: 1px solid var(--border);
 }
 .depth-item.open .ex-body { display: block; }
+
+/* ===========================
+   INSIGHT CALLOUT (level2.html)
+   =========================== */
+.insight-callout {
+  border: 1px solid rgba(123,108,255,0.28);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: 2rem 0 2.5rem;
+}
+
+.insight-callout-header {
+  background: rgba(123,108,255,0.08);
+  padding: 0.85rem 1.5rem;
+  border-bottom: 1px solid rgba(123,108,255,0.18);
+}
+
+.insight-callout-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+}
+
+.insight-callout-body {
+  padding: 1.5rem;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.insight-callout-body p {
+  font-size: 0.9rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.insight-callout-body p strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.insight-folder-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  border-left: 3px solid rgba(123,108,255,0.25);
+  padding-left: 1.1rem;
+}
+
+.insight-folder-list li {
+  font-size: 0.875rem;
+  color: var(--text2);
+  font-weight: 300;
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.insight-folder-list li code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent2);
+  flex-shrink: 0;
+}
+
+.insight-folder-list li span {
+  color: var(--text3);
+  font-size: 0.83rem;
+}
+
+.insight-callout-closer {
+  border-top: 1px solid var(--border);
+  padding-top: 0.85rem !important;
+  margin-top: 0.25rem;
+}
+
+/* ===========================
+   PHASE LABELS (level2.html)
+   =========================== */
+.phase-label {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.phase-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  padding: 3px 10px;
+  border-radius: 99px;
+  flex-shrink: 0;
+}
+
+.phase-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.phase-desc {
+  font-size: 0.83rem;
+  color: var(--text3);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+
+/* ===========================
+   LEVEL 2 PAGE ADDITIONS
+   =========================== */
+
+/* Hero statement (standalone, not a sub) */
+.page-statement {
+  font-size: 0.97rem;
+  color: var(--text2);
+  font-weight: 300;
+  max-width: 600px;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--border2);
+  background: rgba(255,255,255,0.02);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.page-statement strong { color: var(--text); font-weight: 500; }
+
+/* Standardizing the Workflow — prose rows */
+.workflow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.workflow-step-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+.workflow-step-row:last-child { border-bottom: none; }
+
+.wsr-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--accent2);
+  padding: 1.1rem 1.25rem;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 1.15rem;
+}
+
+.wsr-body {
+  padding: 1rem 1.5rem;
+  font-size: 0.88rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.7;
+  background: var(--bg);
+}
+.wsr-body code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85em;
+  color: var(--accent2);
+}
+
+.wsr-muted .wsr-label { color: var(--text3); }
+.wsr-muted .wsr-body { color: var(--text3); font-style: italic; }
+
+@media (max-width: 540px) {
+  .workflow-step-row { grid-template-columns: 1fr; }
+  .wsr-label { border-right: none; border-bottom: 1px solid var(--border); padding: 0.6rem 1.25rem; }
+}
+
+/* Quote */
+.l2-quote {
+  border-left: 3px solid var(--accent);
+  padding: 0.75rem 1.5rem;
+  margin: 2rem 0 1.5rem;
+  font-style: italic;
+  color: var(--text2);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Two-key callout */
+.l2-keys {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.l2-key-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.l2-key-item span {
+  font-size: 0.85rem;
+  color: var(--text2);
+  font-weight: 300;
+}
+
+.l2-key-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border2);
+  flex-shrink: 0;
+}
+@media (max-width: 600px) { .l2-key-divider { display: none; } }
+
+.l2-keys-note {
+  font-size: 0.83rem;
+  color: var(--text3);
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+/* Group accordion */
+.group-list {
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.group-item {
+  border-bottom: 1px solid var(--border);
+}
+.group-item:last-child { border-bottom: none; }
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  background: var(--surface);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.group-header:hover { background: var(--surface2); }
+.group-item.open > .group-header { background: var(--surface2); }
+
+.group-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: var(--accent);
+  padding: 3px 10px;
+  border-radius: 99px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.group-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+  line-height: 1.4;
+}
+
+.group-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text3);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.group-body {
+  display: none;
+  padding: 1.5rem 1.5rem 0.75rem;
+  background: var(--bg);
+}
+.group-item.open > .group-body { display: block; }
+
+.group-intro {
+  font-size: 0.86rem;
+  color: var(--text3);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--border2);
+}
+
+/* Exercise list (nested inside group) */
+.ex-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.ex-item {
+  border-bottom: 1px solid var(--border);
+}
+.ex-item:last-child { border-bottom: none; }
+
+/* Override the generic .ex-header from style.css line 1692
+   for use inside .ex-list — tighter, nested styling */
+.ex-list .ex-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--surface);
+  border-bottom: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.ex-list .ex-header:hover { background: var(--surface2); }
+.ex-item.open > .ex-list .ex-header,
+.ex-item.open > .ex-header { background: var(--surface2); }
+
+.ex-list .ex-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text3);
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
+  display: block;
+  flex-shrink: 0;
+}
+
+.ex-list .ex-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+}
+
+.ex-list .ex-phase {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent2);
+}
+
+.ex-list .ex-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Ex body inside nested list */
+.ex-item > .ex-body {
+  display: none;
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+.ex-item.open > .ex-body { display: block; }
+
+.ex-item .ex-body p {
+  font-size: 0.88rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.72;
+  margin-bottom: 0.9rem;
+}
+.ex-item .ex-body p:last-child { margin-bottom: 0; }
+.ex-item .ex-body p strong { color: var(--text); font-weight: 500; }
+.ex-item .ex-body code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85em;
+  color: var(--accent2);
+}
+
+/* Takeaway block — per-exercise */
+.takeaway-block {
+  background: rgba(123,108,255,0.06);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 0.85rem 1.1rem;
+  margin-top: 1rem;
+  font-size: 0.84rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.65;
+}
+.takeaway-block strong { color: var(--text); font-weight: 500; }
