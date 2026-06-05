@@ -27,7 +27,7 @@ pyworkflow/
 └── docs/                 ← design specs and planning docs
 ```
 
-Old HTML/CSS files remain untouched as reference until migration is confirmed working, then deleted.
+Old HTML/CSS files remain as permanent reference. They are not deleted at any stage.
 
 ## Tool
 
@@ -45,18 +45,25 @@ Old HTML/CSS files remain untouched as reference until migration is confirmed wo
 2. Extract each HTML page's content into its corresponding `.qmd` file
 3. Configure navigation in `_quarto.yml`
 4. Preview locally with `quarto preview`
-5. Apply content/structural notes to: `start.qmd`, `level2.qmd`, new `level3.qmd`
-6. Delete old HTML/CSS files once new site is confirmed working
-7. Deploy with `quarto publish gh-pages`
+5. Review each `.qmd` file individually — content and structural changes applied per page
+6. Review all pages together as a whole — evaluate flow and consistency across the site
+7. Repeat steps 5–6 iteratively as changes continue over time
+8. Deploy with `quarto publish gh-pages`
 
-## Pages Needing Content/Structural Updates
+## Content Update Process
 
-- `start.qmd` — guided walkthrough notes to be applied
-- `level2.qmd` — content and structural changes pending
+Updates are iterative and ongoing, not one-time. The cycle is:
+1. Review a page's `.qmd` individually, apply changes
+2. Once all pages reviewed, evaluate the site as a whole
+3. Repeat as needed
+
+Pages with known pending work:
+- `start.qmd` — guided walkthrough, content and structural notes
+- `level2.qmd` — content and structural changes
 - `level3.qmd` — new page, does not exist yet
 
 ## Out of Scope (for now)
 
-- Custom styling / visual design
+- Custom styling / visual design (addressed after content is stable)
 - Interactive components
 - Any backend or dynamic functionality
