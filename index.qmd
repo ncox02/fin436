@@ -86,8 +86,12 @@ You're using ChatGPT or Claude in a browser tab. You describe a problem, get cod
 **Level 2: AI in your editor**
 The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn't just suggesting — it's doing. The shift here isn't about a specific tool, it's a pattern: the AI has access to your codebase, and you're in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor — an AI-first editor that pushes this pattern further and is gaining wide popularity among developers. → [Level 2: AI in Your Editor](level2.qmd)
 
+The [Level 2: AI in Your Editor](level2.qmd) page demonstrates this workflow in both VS Code and PyCharm.
+
 **Level 3: Dedicated coding agents**
 The AI moves out of the editor and into your terminal, where it has access to your *full computing environment*. This means it can run code and see the output, not just read files. It can execute scripts, install packages, use system tools, read and write anywhere on your filesystem, and iterate on its own until a task is complete. You describe an outcome; it figures out the steps. The IDE is still useful for reviewing what the agent produced, but it's no longer required to run the task. Claude Code is the primary example covered here; OpenAI Codex CLI and Gemini CLI follow the same pattern. → [Claude Advanced](claude-power.qmd)
+
+This is what the [Claude Advanced](claude-power.qmd) section covers.
 
 **Level 4: Connected agents**
 You extend the agent with live connections to the outside world via MCP (Model Context Protocol) — a standard that lets the agent pull in information from beyond your computer: current library documentation, web search, databases, and other services. Without this, an agent is limited to what it already knows, which can lag months behind. With it, the agent can look up the exact API it needs right now, query your database while it codes, or search the web mid-task. Superpowers, Context7, and Sequential Thinking from the Claude Advanced page are Level 4 tools layered on top of a Level 3 setup.
