@@ -10,27 +10,42 @@
 
 ---
 
-## File Map
+## SCOPE CHANGE (2026-06-05)
 
-| Create | Source |
-|--------|--------|
-| `_quarto.yml` | New — site config |
-| `index.qmd` | `index.html` |
-| `tools.qmd` | `tools.html` |
-| `workflow.qmd` | `workflow.html` |
-| `ides.qmd` | `ides.html` |
-| `ide-vscode.qmd` | `ide-vscode.html` |
-| `ide-pycharm.qmd` | `ide-pycharm.html` |
-| `ide-cursor.qmd` | `ide-cursor.html` |
-| `claude-power.qmd` | `claude-power.html` |
-| `start.qmd` | `start.html` |
-| `level2.qmd` | `level2.md` (already markdown) |
-| `stacks.qmd` | `stacks.html` |
-| `level3.qmd` | New — placeholder |
+Only these pages get `.qmd` files. All others are skipped:
 
-| Modify | Purpose |
-|--------|---------|
-| `.gitignore` | Exclude Quarto build output |
+| Create | Source | Status |
+|--------|--------|--------|
+| `_quarto.yml` | New — site config | ✅ DONE (commit 7258954) |
+| `index.qmd` | `index.html` | ✅ DONE (commit 804fd36) |
+| `tools.qmd` | `tools.html` | ✅ DONE (commit f22049e) |
+| `workflow.qmd` | `workflow.html` | ✅ DONE (commit 024eae1) |
+| `ides.qmd` | `ides.html` | ✅ DONE (commit 4b780a0) |
+| `ide-vscode.qmd` | `ide-vscode.html` | ✅ DONE (commit 7987911) |
+| `ide-pycharm.qmd` | `ide-pycharm.html` | ✅ DONE (commit 37930c9) |
+| `level3.qmd` | `claude-power.html` | ⬜ TODO (Task 9) |
+| `start.qmd` | `start.html` | ⬜ TODO (Task 10) |
+| `level2.qmd` | `level2.md` | ⬜ TODO (Task 11) |
+
+**SKIPPED (no .qmd):** ide-cursor, stacks, level3-placeholder
+
+**`_quarto.yml` nav must also be updated (Task 9):**
+- Remove `stacks.qmd` nav entry
+- Change `claude-power.qmd` → `level3.qmd` (keep text "Level 3" or "Claude Advanced")
+
+**Pandoc tip:** For HTML→MD conversion, use pandoc for a first pass:
+```
+pandoc -f html -t markdown start.html -o start.qmd
+pandoc -f html -t markdown claude-power.html -o level3.qmd
+```
+Then add YAML frontmatter and clean up pandoc artifacts (remove nav/footer junk).
+
+**Branch note:** All commits so far landed on `main` directly. For remaining work, consider creating a feature branch: `git checkout -b feature/quarto-remaining` before starting.
+
+| Modify | Purpose | Status |
+|--------|---------|--------|
+| `.gitignore` | Exclude Quarto build output | ✅ DONE |
+| `_quarto.yml` | Update nav (Task 9) | ⬜ TODO |
 
 ---
 
