@@ -228,4 +228,4 @@ Every AI action in PyCharm is accessible via right-click on selected code. You d
 
 ---
 
-[← VS Code](ide-vscode.qmd) | [Next: Cursor →](ide-cursor.qmd)
+[← VS Code](ide-vscode.qmd)
