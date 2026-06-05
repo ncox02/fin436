@@ -19,12 +19,8 @@ website:
             text: VS Code
           - href: ide-pycharm.qmd
             text: PyCharm
-          - href: ide-cursor.qmd
-            text: Cursor
-      - href: claude-power.qmd
+      - href: level3.qmd
         text: Claude Advanced
-      - href: stacks.qmd
-        text: Choose Your Stack
       - href: start.qmd
         text: Get Started
       - text: Levels
