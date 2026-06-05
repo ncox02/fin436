@@ -1,0 +1,229 @@
+---
+title: "Get Started"
+---
+
+The whole workflow. Do this first.
+
+## First steps {#first-project}
+
+### Prerequisites
+
+Make sure you have:
+
+- Python — [python.org](https://python.org)
+- Git — [git-scm.com](https://git-scm.com)
+- GitHub CLI — [cli.github.com](https://cli.github.com)
+- A GitHub account — [github.com](https://github.com)
+
+VS Code and Python are already installed if you followed the setup guides.
+
+### Step 1: Organize — Folder, Git, virtual environment, and files
+
+#### Windows
+
+Press **Windows + X** then **I** to open PowerShell. Type these one at a time:
+
+```bash
+cd Desktop             # navigate to your Desktop
+mkdir tip_calculator   # create your project folder
+cd tip_calculator      # move into it
+code .                 # open VS Code here
+```
+
+#### Mac
+
+Open Terminal from Spotlight (**Cmd + Space**, type "Terminal"). Type these one at a time:
+
+```bash
+cd Desktop             # navigate to your Desktop
+mkdir tip_calculator   # create your project folder
+cd tip_calculator      # move into it
+code .                 # open VS Code here
+```
+
+---
+
+Switch to the terminal inside VS Code with **Ctrl + `** — use this for everything from here on.
+
+Tell Git who you are — *one-time setup, never needs repeating:*
+
+```bash
+git config --global user.email "you@example.com"   # your GitHub email
+git config --global user.name "Your Name"           # your name
+```
+
+Then set up your project:
+
+```bash
+git init               # create a local git repository in this folder
+python -m venv .venv   # create a virtual environment called .venv
+```
+
+#### Windows (activate venv)
+
+```bash
+.venv\Scripts\activate   # activate it — your prompt will show (.venv)
+```
+
+#### Mac (activate venv)
+
+```bash
+source .venv/bin/activate   # activate it — your prompt will show (.venv)
+```
+
+Create your project files:
+
+#### Windows
+
+```bash
+New-Item tip_calculator.py        # your main code file
+New-Item test_tip_calculator.py   # your test file
+New-Item .gitignore               # tells Git what folders to skip
+```
+
+#### Mac
+
+```bash
+touch tip_calculator.py        # your main code file
+touch test_tip_calculator.py   # your test file
+touch .gitignore               # tells Git what folders to skip
+```
+
+Open `.gitignore` in VS Code, paste the following in, and save with **Ctrl + S** (Windows) or **Cmd + S** (Mac):
+
+```
+.venv/          # your virtual environment — hundreds of files, not needed on GitHub
+__pycache__/    # Python's temp files, auto-created when you run code
+.pytest_cache/  # pytest's temp files, auto-created when you run tests
+```
+
+None of these belong on GitHub. They are local, auto-generated, and irrelevant to anyone else.
+
+### Step 2: Install — pytest before writing anything
+
+Do this before writing any code so VS Code doesn't show errors as you type:
+
+```bash
+pip install pytest             # install pytest into your .venv
+pip freeze > requirements.txt  # save your package list
+```
+
+`requirements.txt` is how you tell anyone who clones your project which packages to install. It replaces the need to share your `.venv` folder.
+
+### Step 3: Write — Add your code and tests
+
+pytest is a package that checks whether your code does what you expect. You write a separate test file containing functions that call your real code with specific inputs and assert what the output should be. When you run `pytest` in the terminal, it finds those functions automatically and runs them all. A dot means a test passed. An `F` means it failed, and pytest tells you exactly what went wrong.
+
+Open `tip_calculator.py` and paste this in, then save:
+
+```python
+def calculate_tip(bill_amount, tip_percent):
+    """Calculate the tip amount for a bill."""
+    if bill_amount < 0:
+        raise ValueError("Bill amount cannot be negative")
+    return round(bill_amount * (tip_percent / 100), 2)
+```
+
+Open `test_tip_calculator.py` and paste this in, then save:
+
+```python
+import pytest
+from tip_calculator import calculate_tip
+
+def test_standard_tip():
+    assert calculate_tip(100, 20) == 20.0
+
+def test_zero_tip():
+    assert calculate_tip(50, 0) == 0.0
+
+def test_negative_bill_raises_error():
+    with pytest.raises(ValueError):
+        calculate_tip(-10, 20)
+```
+
+### Step 4: Test — Run pytest
+
+```bash
+pytest   # runs all test files it finds automatically
+```
+
+You should see:
+
+```
+collected 3 items
+test_tip_calculator.py ...
+3 passed in 0.12s
+```
+
+After this runs, two new folders will appear in VS Code's file explorer — `__pycache__/` and `.pytest_cache/`. pytest created these automatically. You don't need to touch them — your `.gitignore` already tells Git to ignore them.
+
+### Step 5: Share — Push to GitHub
+
+Log in to GitHub from the terminal — *one-time setup:*
+
+```bash
+gh auth login   # follow the prompts, it will open a browser to confirm
+```
+
+Then create your repo and push your code in one command:
+
+```bash
+gh repo create tip_calculator --private --source=. --remote=origin --push
+# creates the repo, links it, and pushes your code
+```
+
+Go to `github.com/yourusername/tip_calculator` — your files are there.
+
+### The core loop going forward
+
+```bash
+edit code                                  # make changes in VS Code
+pytest                                     # confirm everything still works
+git add .                                  # stage all changes
+git commit -m "describe what you changed"  # save a snapshot
+git push                                   # send it to GitHub
+```
+
+Every `git commit` is a saved snapshot. Every `git push` sends it to GitHub.
+
+## Choose your next level {#next-steps}
+
+### Level 2: AI inside your editor
+
+Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code, PyCharm, and Cursor. *~20 minutes*
+
+[Go to Level 2](level2.qmd)
+
+### Level 3: Coding agent in your terminal
+
+The AI runs in your terminal with access to your full environment. It reads files, executes code, installs packages, and iterates until the task is done. *~25 minutes*
+
+[Go to Level 3](level3.qmd)
+
+### Level 4: Connected agents
+
+Extend the agent with live connections to docs, databases, and the web via MCP. The agent can look up the exact API it needs mid-task. *~15 minutes*
+
+[Go to Level 3 — Level 4 section](level3.qmd#level-4-transition)
+
+## What's next
+
+### Level 2: AI in your editor
+
+- Reads your whole codebase
+- Edits across multiple files
+- You review diffs and decide what to keep
+
+The AI can now read and edit your actual project files. You describe a goal; it proposes changes across multiple files at once. You're in the role of reviewer rather than typist. Works in VS Code with Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor.
+
+[Go to Level 2](level2.qmd)
+
+### Level 3: Claude Code — terminal agent
+
+- Full environment access
+- Reads, writes & runs files
+- No IDE required
+
+Claude Code runs in your terminal and has access to your entire computing environment. You describe what you want; it reads your files, writes code, runs it, and iterates. A different paradigm — the IDE becomes optional.
+
+[Go to Level 3](level3.qmd)
