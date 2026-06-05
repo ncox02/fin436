@@ -24,8 +24,6 @@ The system diagram below shows the standard shape of a Python project. The speci
 
 - PyPI — pip install packages into your virtual env
 
-This is the standard shape of a Python project. The specific tools you choose can vary but the workflow is the same.
-
 ## How each tool category maps to the workflow
 
 The five-step workflow (Organize → Write → Test → Share → Deploy).
