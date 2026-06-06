@@ -11,7 +11,7 @@ The whole workflow. Do this first.
 Make sure you have:
 
 - Python — [python.org](https://python.org)
-- pip3 — package manager for Python
+- pip — included with Python; on some systems use `pip3` and `python3` instead of `pip` and `python`
 - Git — [git-scm.com](https://git-scm.com)
 - GitHub CLI — [cli.github.com](https://cli.github.com)
 - A GitHub account — [github.com](https://github.com)
