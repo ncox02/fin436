@@ -123,6 +123,8 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 **Phase:** Write
 
 **Action:**
+`utils.py` is the utility file from the project scaffold you created in Exercise 2 — where shared helper functions live that are used across the project.
+
 Open your `utils.py` file. Type this comment and press `Enter`:
 
 ```python
@@ -161,19 +163,19 @@ def calculate_compound_interest(principal: float, rate: float,
     # Return the final balance after the compounding period.
 ```
 
-Place your cursor at the end of the last comment line and press `Enter`. Ghost text should suggest the function body. Read it before pressing `Tab`.
-
-Fallback — send this in Copilot Chat:
+Place your cursor at the end of the last comment line. Press `Ctrl+I` to open inline edit and send:
 
 ```
-Complete the function body for calculate_compound_interest based
-on the comments inside it. Use only the standard library.
-Return a float.
+Complete this function based on the comments.
 ```
+
+Review the generated body before accepting.
+
+(You may also see ghost text appear automatically — if so, press `Tab` to accept it instead of using `Ctrl+I`.)
 
 **Note on the formula:** The function should return the **final balance** — the full amount including the original principal — using the standard compound interest formula: `A = P(1 + r/n)^(nt)`. If AI returns only the interest earned (the growth above the principal), ask it to revise: `"Return the final balance, not just the interest earned."`
 
-**Takeaway:** Writing intention before implementation produces more accurate completions than typing code directly. The comment block is the specification.
+**Takeaway:** Describing intent in comments before writing code produces accurate completions. `Ctrl+I` gives you direct control; ghost text is the passive version of the same thing.
 
 ---
 
@@ -236,10 +238,13 @@ def compare_compounding(principal: float, rate: float, years: int) -> dict:
 Select the function. Open Copilot Chat and send:
 
 ```
-Review this function for correctness. Is there any input that would
-cause a wrong result or raise an error? Be specific about where the
+Review this function for correctness. Are there any bugs — inputs
+that would produce a wrong result or raise an error? Also identify
+any edge cases I haven't handled. Be specific about where each
 problem is and why it occurs.
 ```
+
+If you see a **Copilot debug icon** appear next to the function, you can click it to trigger an automatic review — this is a newer Copilot feature that may or may not be available depending on your version. The manual prompt above always works.
 
 **Note on the bug:** This function is intended to compare how much your money grows across different compounding frequencies — it should return the **final balance** for each frequency, just like `calculate_compound_interest`. Instead, it subtracts `principal` at the end, so it returns only the **interest earned** (the growth above what you started with). The formula should be `principal * (1 + rate / n) ** (n * years)` — no subtraction. Beyond the intent mismatch, a negative rate also produces a mathematically nonsensical result with no warning because there is no input validation. See what AI catches and what fix it proposes.
 
@@ -255,7 +260,6 @@ Create `pipeline.py` and paste this function:
 
 ```python
 import pandas as pd
-import time
 
 def process_sales(df: pd.DataFrame, year: int) -> pd.DataFrame:
     results = []
@@ -277,51 +281,11 @@ def process_sales(df: pd.DataFrame, year: int) -> pd.DataFrame:
     return summary
 ```
 
-**Step 1 — Generate test data.** Paste into a new file and run it once:
+Select the entire function. Right-click and choose **Copilot → Review and Comment** (or **Refactor**, depending on your version).
 
-```python
-import pandas as pd
-import numpy as np
+Read what AI identifies. You don't need to apply the refactored version — the point is seeing AI explain why row-by-row iteration is slow and what the vectorized alternative looks like.
 
-df = pd.DataFrame({
-    "product": np.random.choice(["Widget", "Gadget", "Doohickey"], 50000),
-    "year": np.random.choice([2022, 2023, 2024], 50000),
-    "revenue": np.random.uniform(100, 10000, 50000).round(2),
-    "cost": np.random.uniform(50, 8000, 50000).round(2),
-})
-df.to_csv("sales_data.csv", index=False)
-print("sales_data.csv created — 50,000 rows")
-```
-
-**Step 2 — Ask AI to refactor.** Select `process_sales` and send:
-
-```
-Refactor this function to use vectorized pandas operations instead
-of iterating row by row. Fix the division-by-zero bug in the margin
-calculation. Name the new function process_sales_fast. Keep the
-output identical — same columns, same structure.
-```
-
-**Step 3 — Measure the difference.** Add this to the bottom of `pipeline.py` and run the file:
-
-```python
-if __name__ == "__main__":
-    df = pd.read_csv("sales_data.csv")
-
-    start = time.perf_counter()
-    process_sales(df.copy(), 2023)
-    t_original = time.perf_counter() - start
-
-    start = time.perf_counter()
-    process_sales_fast(df.copy(), 2023)
-    t_fast = time.perf_counter() - start
-
-    print(f"Original:   {t_original:.4f}s")
-    print(f"Refactored: {t_fast:.4f}s")
-    print(f"Speedup:    {t_original / t_fast:.1f}x faster")
-```
-
-**Takeaway:** Expect 10–50x faster on 50,000 rows. The terminal prints the proof. AI knows every vectorization idiom in pandas and applies them immediately.
+**Takeaway:** AI knows every vectorization idiom in pandas and can identify the performance problem with one right-click. You didn't need to search documentation or guess at the issue.
 
 ---
 
@@ -355,13 +319,15 @@ Read the explanation before applying any fix.
 **Phase:** Document
 
 **Action:**
-Place your cursor inside `calculate_compound_interest` in `compound.py`, on the line just below the `def` line. Open inline edit with `Ctrl+I` and type:
+Place your cursor inside `calculate_compound_interest` in `compound.py`, on the line just below the `def` line. Open Copilot Chat and type:
 
 ```
 /doc
 ```
 
-A Google-style docstring should be generated and inserted. Review it — does it accurately describe the parameters and return value?
+A Google-style docstring should be generated and inserted at the correct location. Review it — does it accurately describe the parameters and return value?
+
+(Note: `Ctrl+I` opens the chat panel, not a separate inline editing mode. `/doc` is the command that triggers documentation generation.)
 
 **Takeaway:** Professional documentation in under 5 seconds. `Ctrl+I` plus `/doc` is the full instruction. You described the intent with two keystrokes — AI read the function and wrote the documentation.
 
@@ -371,22 +337,21 @@ A Google-style docstring should be generated and inserted. Review it — does it
 **Phase:** Test
 
 **Action:**
-Select the `calculate_compound_interest` function. Open Copilot Chat and send:
+Open Copilot Chat and send:
 
 ```
-Write pytest functions for calculate_compound_interest. Include:
-- A normal case with typical values
-- A case where rate is 0
-- A case where years is 0
-- A case where principal is negative (should raise ValueError)
-Use only pytest. No fixtures.
+Write pytest functions for calculate_compound_interest. Cover the
+normal case, edge cases (rate of 0, years of 0), and invalid inputs
+that should raise ValueError. Use only pytest, no fixtures.
 ```
 
-Save the output to `test_compound.py`. Read each test before running it. Then run:
+Save the output to `test_compound.py`. Read each test before running it — AI-generated tests occasionally test the wrong behavior. Then run:
 
 ```
 pytest test_compound.py -v
 ```
+
+If tests fail with import or module errors, confirm your `.venv` is active and pytest is installed (`pip install pytest`).
 
 **Takeaway:** AI generates the edge cases you might not think to write yourself. Read them before trusting them — AI-generated tests occasionally test the wrong thing.
 
