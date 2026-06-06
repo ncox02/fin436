@@ -86,7 +86,7 @@ You're using ChatGPT or Claude in a browser tab. You describe a problem, get cod
 **Level 2: AI in your editor**
 The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn't just suggesting — it's doing. The shift here isn't about a specific tool, it's a pattern: the AI has access to your codebase, and you're in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, and in other editors that support in-context AI. The workflow is the same regardless of which tool you use. → [Level 2: AI in Your Editor](level2.qmd)
 
-**Level 3: Dedicated coding agents**
+**Level 3+: Dedicated coding agents**
 The AI moves out of the editor and into your terminal, where it has access to your *full computing environment*. This means it can run code and see the output, not just read files. It can execute scripts, install packages, use system tools, read and write anywhere on your filesystem, and iterate on its own until a task is complete. You describe an outcome; it figures out the steps. The IDE is still useful for reviewing what the agent produced, but it's no longer required to run the task. Claude Code is the primary example covered here; OpenAI Codex CLI and Gemini CLI follow the same pattern. → [Level 3+](level3.qmd)
 
 This is what the [Level 3+](level3.qmd) section covers.
