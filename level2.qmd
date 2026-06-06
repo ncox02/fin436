@@ -86,9 +86,9 @@ suggest commands for me to run. Keep it simple: no frameworks,
 just clean Python modules.
 ```
 
-If you are using **Copilot agent mode** (select "Agent" from the dropdown at the top of the chat panel), Copilot will create the folders and files directly. Switch to agent mode before sending this prompt.
+In agent mode, Copilot will create the folders and files directly. To switch: select "Agent" from the dropdown at the top of the chat panel before sending the prompt.
 
-If you are in standard chat mode, Copilot will give you terminal commands. Run them in the VS Code integrated terminal (`` Ctrl+` ``).
+If you are in standard chat mode instead, Copilot will give you terminal commands. Run them in the VS Code integrated terminal (`` Ctrl+` ``).
 
 **Takeaway:** AI generates and builds the project skeleton from a plain-English description. You reviewed the plan before committing to any structure — that is the right order of operations.
 
