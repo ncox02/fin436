@@ -11,11 +11,10 @@ The whole workflow. Do this first.
 Make sure you have:
 
 - Python — [python.org](https://python.org)
+- pip3 — package manager for Python
 - Git — [git-scm.com](https://git-scm.com)
 - GitHub CLI — [cli.github.com](https://cli.github.com)
 - A GitHub account — [github.com](https://github.com)
-
-VS Code and Python are already installed if you followed the setup guides.
 
 ### Step 1: Organize — Folder, Git, virtual environment, and files
 
@@ -99,7 +98,7 @@ __pycache__/    # Python's temp files, auto-created when you run code
 
 None of these belong on GitHub. They are local, auto-generated, and irrelevant to anyone else.
 
-### Step 2: Install — pytest before writing anything
+### Step 2: Install packages
 
 Do this before writing any code so VS Code doesn't show errors as you type:
 
@@ -109,6 +108,28 @@ pip freeze > requirements.txt  # save your package list
 ```
 
 `requirements.txt` is how you tell anyone who clones your project which packages to install. It replaces the need to share your `.venv` folder.
+
+> **If your virtual environment stops working (common on Python 3.13)**
+>
+> A known issue with Python 3.13 can break `.venv` after certain operations. If you see errors about missing modules or an inactive environment, delete it and start over:
+>
+> **Windows:**
+> ```bash
+> Remove-Item -Recurse -Force .venv
+> python -m venv .venv
+> .venv\Scripts\activate
+> pip install pytest
+> pip freeze > requirements.txt
+> ```
+>
+> **Mac:**
+> ```bash
+> rm -rf .venv
+> python3 -m venv .venv
+> source .venv/bin/activate
+> pip install pytest
+> pip freeze > requirements.txt
+> ```
 
 ### Step 3: Write — Add your code and tests
 
@@ -186,11 +207,21 @@ git push                                   # send it to GitHub
 
 Every `git commit` is a saved snapshot. Every `git push` sends it to GitHub.
 
+## What you just did {#summary}
+
+You completed the entire software development lifecycle. You went from an empty folder to a working project on GitHub with automated tests, version history, and a repeatable workflow.
+
+This is not a tutorial exercise—this is the real sequence that every professional team follows. Your `.venv` isolates dependencies. Your `pytest` suite ensures code correctness. Your Git history is a record you can revert to. Your GitHub repo is your backup and collaboration mechanism.
+
+The loop you now run—edit → test → commit → push—is the same loop used to build production systems at scale. You've just done it end-to-end.
+
+Everything that comes next in Levels 2, 3, and 4 builds on this foundation. You've got the framework. The next levels show you how to move faster within it.
+
 ## Choose your next level {#next-steps}
 
 ### Level 2: AI inside your editor
 
-Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code, PyCharm, and Cursor. *~20 minutes*
+Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code. *~20 minutes*
 
 [Go to Level 2](level2.qmd)
 
@@ -205,25 +236,3 @@ The AI runs in your terminal with access to your full environment. It reads file
 Extend the agent with live connections to docs, databases, and the web via MCP. The agent can look up the exact API it needs mid-task. *~15 minutes*
 
 [Go to Level 3 — Level 4 section](level3.qmd#level-4-transition)
-
-## What's next
-
-### Level 2: AI in your editor
-
-- Reads your whole codebase
-- Edits across multiple files
-- You review diffs and decide what to keep
-
-The AI can now read and edit your actual project files. You describe a goal; it proposes changes across multiple files at once. You're in the role of reviewer rather than typist. Works in VS Code with Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor.
-
-[Go to Level 2](level2.qmd)
-
-### Level 3: Claude Code — terminal agent
-
-- Full environment access
-- Reads, writes & runs files
-- No IDE required
-
-Claude Code runs in your terminal and has access to your entire computing environment. You describe what you want; it reads your files, writes code, runs it, and iterates. A different paradigm — the IDE becomes optional.
-
-[Go to Level 3](level3.qmd)
