@@ -36,7 +36,7 @@ You already know the five-step development workflow. Here is what changes at eac
 
 > "Level 2 is not about memorizing syntax â€” it is about learning how to clearly state your intent to the editor so it does the manual labor."
 
-Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens inline edit on selected code. Everything else is reading and deciding.
+Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens Copilot Chat. Everything else is reading and deciding.
 
 ---
 
@@ -161,7 +161,7 @@ def calculate_compound_interest(principal: float, rate: float,
     # Return the final balance after the compounding period.
 ```
 
-Place your cursor at the end of the last comment line. Press `Ctrl+I` to open inline edit and send:
+Place your cursor at the end of the last comment line. Press `Ctrl+I` to open Copilot Chat and send:
 
 ```
 Complete this function based on the comments.
@@ -324,8 +324,6 @@ Place your cursor inside `calculate_compound_interest` in `compound.py`, on the 
 ```
 
 A Google-style docstring should be generated and inserted at the correct location. Review it â€” does it accurately describe the parameters and return value?
-
-(Note: `Ctrl+I` opens the chat panel, not a separate inline editing mode. `/doc` is the command that triggers documentation generation.)
 
 **Takeaway:** Professional documentation in under 5 seconds. `Ctrl+I` plus `/doc` is the full instruction. You described the intent with two keystrokes â€” AI read the function and wrote the documentation.
 
