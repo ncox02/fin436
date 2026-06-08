@@ -97,3 +97,19 @@ The next session reads that file and continues cleanly.
 Treat sessions as bounded units of work. End the session when the immediate task is done, not when the window is full. If something needs to carry over, write it to a file. The discipline is keeping tasks small enough to complete within one healthy session.
 
 This also means avoiding open-ended prompts like "clean up the whole codebase." The scope is too large to complete before context degrades. Break large goals into specific, bounded tasks.
+
+---
+
+## Planning {#planning}
+
+Ad-hoc prompts produce worse results than structured ones. "Add a caching layer" leaves the agent guessing at scope, approach, and constraints. The agent makes choices — some of them wrong — and you spend time correcting them.
+
+A structured workflow replaces guessing with agreement: describe the goal and clarify requirements first, then convert those into a specific plan, then execute against the plan. Each phase is short. The execution is faster and produces fewer unintended changes.
+
+This matters more at Level 3 than at Level 2. At Level 2, a wrong direction produces a diff you can reject. At Level 3, a wrong direction can produce changes across multiple files before you notice. Explicit scoping during execution is just as important as upfront planning:
+
+```
+Refactor error handling in src/pipeline.py only. Do not change function signatures. Do not touch any other files.
+```
+
+Vague scope and broad file access reliably produce unintended changes.
