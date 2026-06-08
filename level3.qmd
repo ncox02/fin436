@@ -59,3 +59,17 @@ Never modify files in data/raw/.
 ```
 
 Keep it factual. The context file is for things that are true for every task — project structure, conventions, constraints. Specifics for the current task go in the prompt, not the context file.
+
+---
+
+## Scope of access {#scope}
+
+Terminal AI agents operate with whatever access you grant them. Most tools let you configure this: read-only, write access to specific directories, permission to run commands, network access. The defaults vary by tool — some are conservative, some are not.
+
+Start narrow. For most projects, a sensible starting scope:
+
+- Read and write files within the project directory
+- Run test and build commands you already use
+- No broader filesystem access, no network access beyond what your scripts already use
+
+An agent with write access to your filesystem and permission to run arbitrary commands can make changes you didn't intend. Review what it's done at each step, especially early in a project or with a new tool.
