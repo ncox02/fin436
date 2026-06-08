@@ -10,24 +10,6 @@
 
 ---
 
-## Flow rationale
-
-Each section answers a question raised by the previous one:
-
-1. Intro → what Level 3 is; execution vs. suggestion
-2. Five steps → the workflow the reader knows from Level 2; shows what changes at each step
-3. Interaction loop → how you actually work with it; changes how you write prompts
-4. Scope of access → what the agent can see and do; a decision the reader makes
-5. Project context → sessions start cold; a context file persists standing instructions
-6. Context window → fixed memory that degrades; the core constraint
-7. Sessions and compaction → given the constraint, how to manage sessions
-8. Planning → given sessions are finite, structured work beats ad-hoc
-9. Reasoning → structured chain-of-thought for complex tasks
-10. MCP → open standard for external tools; transition into integrations
-11. Claude Code → tool-specific from here; example session
-12. Seven integrations → each implements a concept above
-13. Quick Reference → summary table
-
 ---
 
 ## Task 1: New intro — overwrite the file
