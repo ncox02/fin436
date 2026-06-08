@@ -7,3 +7,19 @@ At Level 3, the AI runs in your terminal. You describe a goal; it reads your fil
 > **Most terminal AI tools require a paid subscription.** Free tiers typically provide access to web-based chat only — not the terminal agent. Check the pricing for whichever tool you use before getting started.
 
 Level 3 is the right tool when the task requires execution — running tests, iterating across files, working through a multi-step process. For inline suggestions while you're actively writing code, the IDE is still the natural fit. The two methods complement each other; most people use both.
+
+---
+
+## The five steps at Level 3 {#five-steps}
+
+| Step | Level 2 | Level 3 |
+|---|---|---|
+| **Organize** | Describe the goal in chat; AI proposes structure | Describe the goal; AI reads your existing files and proposes or creates structure |
+| **Write** | AI suggests edits inline; you accept or reject | AI writes to files directly; you review what changed |
+| **Test** | You run tests and bring failures back to AI | AI runs tests, reads the output, and iterates on failures itself |
+| **Share** | AI writes a commit message from your diff; you commit | AI can stage, write the message, and commit — you review before or after |
+| **Deploy** | Not covered | Scripted pipelines can be handed to the agent; it runs them and reports the result |
+
+At Level 2, you executed each step. At Level 3, you describe the goal and review the result.
+
+> *context engineering is the new prompt engineering*
