@@ -73,3 +73,27 @@ Start narrow. For most projects, a sensible starting scope:
 - No broader filesystem access, no network access beyond what your scripts already use
 
 An agent with write access to your filesystem and permission to run arbitrary commands can make changes you didn't intend. Review what it's done at each step, especially early in a project or with a new tool.
+
+---
+
+## The context window {#context-window}
+
+As a session runs, everything accumulates in a context window: your instructions, the files the agent read, the code it wrote, the test output, your feedback. This window has a fixed size, passed back and forth with every message. Once it fills, the agent starts dropping the oldest entries to make room.
+
+In practice: a session that starts well can become unreliable as context fills. The agent forgets constraints you set earlier, duplicates code it already wrote, or loses track of decisions already made. This is a fundamental property of how these models work, not a defect in any specific tool.
+
+Most terminal AI tools offer a compaction command — a way to summarize the current context and continue without starting a new session. This sounds useful but usually isn't. Compaction compresses the window, but the degraded reasoning from before the compaction still affects the session. Starting fresh with a written handoff produces better results.
+
+> *friends don't let friends compact*
+
+The rule: end sessions before context degrades. Most tools display context usage somewhere; for those that don't, it is worth finding a way to make it visible. When context approaches 50%, end the session:
+
+```
+Write a summary of what we've done and what's left to progress.md
+```
+
+The next session reads that file and continues cleanly.
+
+Treat sessions as bounded units of work. End the session when the immediate task is done, not when the window is full. If something needs to carry over, write it to a file. The discipline is keeping tasks small enough to complete within one healthy session.
+
+This also means avoiding open-ended prompts like "clean up the whole codebase." The scope is too large to complete before context degrades. Break large goals into specific, bounded tasks.
