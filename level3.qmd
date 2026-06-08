@@ -41,3 +41,21 @@ A typical sequence:
 You review what changed and decide what to do next.
 
 Understanding this loop changes how you write prompts. You are not giving instructions to someone who will ask for clarification — you are describing a goal for an agent that acts immediately. Keep goals narrow enough to review comfortably.
+
+---
+
+## Project context {#project-context}
+
+Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. If you establish a rule in one session, it doesn't exist in the next.
+
+Most terminal AI tools solve this with a project context file: a markdown file in your project root that the agent reads at the start of every session. Write your standing instructions there once.
+
+```markdown
+# Project context
+
+Python data pipeline. Use pandas for all data work.
+Every new function needs a docstring and a pytest test in tests/.
+Never modify files in data/raw/.
+```
+
+Keep it factual. The context file is for things that are true for every task — project structure, conventions, constraints. Specifics for the current task go in the prompt, not the context file.
