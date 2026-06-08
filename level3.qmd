@@ -23,3 +23,21 @@ Level 3 is the right tool when the task requires execution — running tests, it
 At Level 2, you executed each step. At Level 3, you describe the goal and review the result.
 
 > *context engineering is the new prompt engineering*
+
+---
+
+## The interaction loop {#interaction-loop}
+
+Every terminal AI agent works the same way: you describe a goal, the agent reads your files and environment, acts, reads the output, and reports back. You review and continue or redirect.
+
+A typical sequence:
+
+*You:* "Read the files in src/ and tell me what this project does."
+*Agent:* Reads the files. Returns a plain-English summary.
+
+*You:* "Write a function in pipeline.py that filters rows by date range, then write a test and run it."
+*Agent:* Writes the function. Writes the test. Runs it. Reads the failure. Fixes it. Runs it again. Reports the result.
+
+You review what changed and decide what to do next.
+
+Understanding this loop changes how you write prompts. You are not giving instructions to someone who will ask for clarification — you are describing a goal for an agent that acts immediately. Keep goals narrow enough to review comfortably.
