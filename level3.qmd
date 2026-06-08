@@ -113,3 +113,16 @@ Refactor error handling in src/pipeline.py only. Do not change function signatur
 ```
 
 Vague scope and broad file access reliably produce unintended changes.
+
+---
+
+The concepts covered so far each have a home in your project. A well-organized structure lets the agent orient itself faster and spend less of the context window getting up to speed.
+
+```
+my-project/
+├── context.md          ← standing instructions, read every session
+├── progress.md         ← handoff notes between sessions
+├── docs/
+│   └── plans/          ← implementation plans
+└── src/
+```
