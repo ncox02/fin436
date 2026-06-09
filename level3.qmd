@@ -299,3 +299,17 @@ All new functions need a test in tests/.
 ```
 
 Full documentation for `CLAUDE.md` and skills is at [code.claude.com](https://code.claude.com/docs/en/overview).
+
+---
+
+## Quick Reference {#quick-reference}
+
+| # | Integration | What it adds | Where to get it |
+|---|-------------|--------------|-----------------|
+| 01 | Statusline | Context %, session cost, model, git branch | Claude Code docs |
+| 02 | Superpowers | Sub-agent workflows: brainstorm → plan → execute | `/plugin` inside Claude Code |
+| 03 | Sequential Thinking | Chain-of-thought reasoning before complex tasks | Ask Claude: "install the sequential thinking MCP server" |
+| 04 | Context7 | Current library docs at prompt time | `/plugin` inside Claude Code |
+| 05 | Warp | Split panes, block output | [warp.dev](https://warp.dev) |
+| 06 | Happy Engineering | Full terminal access from your phone | [happy.engineering](https://happy.engineering) |
+| 07 | Skills | Reusable workflows for repetitive tasks | Create `.claude/skills/skillname.md` |
