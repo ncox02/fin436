@@ -136,3 +136,13 @@ By default, agents move directly from task to output. On routine tasks — write
 Some tools add a reasoning phase that runs before any output is produced. Before writing a line of code, the agent works through the problem explicitly: what is actually being asked, what the constraints are, what approaches exist, what the tradeoffs are. This reasoning is visible to you. If the agent's premise is wrong — it assumed you can tolerate partial writes when you can't — you catch it before it builds the wrong thing.
 
 Use it on the tasks where the right answer isn't obvious upfront. On routine tasks, it adds overhead without adding value.
+
+---
+
+## MCP {#mcp}
+
+Model Context Protocol is an open standard for connecting AI agents to external tools. Instead of pasting documentation into a prompt or building a one-off integration script, you configure an MCP server once and the agent can call it in any session.
+
+An MCP server is a small program the agent invokes natively — indistinguishable from a built-in capability once configured. Common uses: pulling current library documentation, querying a database, running a custom analysis, accessing an API. Configure it once; it is available in every session.
+
+Some are MCP servers; others are terminal tools that address the problems discussed above.
