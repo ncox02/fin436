@@ -126,3 +126,13 @@ my-project/
 │   └── plans/          ← implementation plans
 └── src/
 ```
+
+---
+
+## Reasoning {#reasoning}
+
+By default, agents move directly from task to output. On routine tasks — write this function, run these tests — that's fine. On complex tasks — design an error handling strategy, debug a failure with multiple possible causes, choose between architectures — jumping straight to output produces results that look confident but skipped the hard part.
+
+Some tools add a reasoning phase that runs before any output is produced. Before writing a line of code, the agent works through the problem explicitly: what is actually being asked, what the constraints are, what approaches exist, what the tradeoffs are. This reasoning is visible to you. If the agent's premise is wrong — it assumed you can tolerate partial writes when you can't — you catch it before it builds the wrong thing.
+
+Use it on the tasks where the right answer isn't obvious upfront. On routine tasks, it adds overhead without adding value.
