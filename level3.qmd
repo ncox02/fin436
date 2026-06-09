@@ -269,3 +269,33 @@ Skills are markdown files in `.claude/skills/` that Claude Code reads when you i
 ```
 
 Describe the repetitive task in detail and ask Claude to build the skill for you. After a few iterations, it becomes a reliable automation available in every session.
+
+---
+
+## Sandbox {#sandbox}
+
+Copy this structure into any project before your first session. Fill in `CLAUDE.md` with your project's standing instructions and you are ready to start.
+
+```
+my-project/
+├── CLAUDE.md                  ← project context, read every session
+├── progress.md                ← session handoff notes
+├── docs/
+│   └── plans/                 ← implementation plans go here
+├── .claude/
+│   └── skills/                ← custom workflows, invoked with /skill-name
+├── src/
+└── tests/
+```
+
+**`CLAUDE.md` example:**
+
+```markdown
+# Project context
+
+[One sentence: what this project is and does.]
+Never modify files in data/raw/.
+All new functions need a test in tests/.
+```
+
+Full documentation for `CLAUDE.md` and skills is at [code.claude.com](https://code.claude.com/docs/en/overview).
