@@ -146,3 +146,126 @@ Model Context Protocol is an open standard for connecting AI agents to external 
 An MCP server is a small program the agent invokes natively — indistinguishable from a built-in capability once configured. Common uses: pulling current library documentation, querying a database, running a custom analysis, accessing an API. Configure it once; it is available in every session.
 
 Some are MCP servers; others are terminal tools that address the problems discussed above.
+
+---
+
+## Claude Code {#claude-code}
+
+The concepts above apply to any terminal AI tool. Claude Code is one of them. If you want to try it, the rest of this page covers an efficient setup — the tool itself plus seven integrations that implement what we've discussed.
+
+> A project sandbox at the bottom of this page gives you a ready starting point — a folder structure that implements everything discussed, ready to copy into any project.
+
+Install Claude Code and find platform-specific setup instructions at the official documentation:
+
+**[code.claude.com/docs/en/terminal-guide#windows](https://code.claude.com/docs/en/terminal-guide#windows)**
+
+Navigate to your project and type `claude` to start a session.
+
+**Example session:**
+
+*You type:*
+```
+Read my project and summarize what it does and how it's structured.
+```
+
+*Claude does:* Reads every file in the directory. Returns a plain-English summary of structure, purpose, and main components.
+
+*You type:*
+```
+Write a function in analysis.py that groups sales by region and returns a sorted DataFrame. Write a test and run it.
+```
+
+*Claude does:* Writes the function, writes the test, runs it, reads the output, fixes any failure, reports the result.
+
+Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.
+
+---
+
+## 01 — Statusline {#statusline}
+
+*Make context usage visible — the most critical metric in a session*
+
+The statusline adds a persistent bar at the bottom of your terminal showing context window percentage, session cost, model name, elapsed time, and git status. Without it, you notice context degradation when Claude starts making mistakes. With it, you can end sessions before quality drops.
+
+Find install instructions in the Claude Code documentation or by asking Claude: `How do I install the statusline?`
+
+> **Windows note:** The setup wizard sometimes fails on Windows. If the guided setup does not complete, install manually: `npx cc-statusline@latest` in your terminal.
+
+---
+
+## 02 — Superpowers {#superpowers}
+
+*Structured sub-agent workflows — the highest-impact single install*
+
+Superpowers is a Claude Code plugin that implements the planning and sub-agent workflow described above. Instead of one session accumulating context until it degrades, your main Claude instance dispatches focused sub-agents — each with its own fresh context window. The orchestrator receives summaries, not full workloads.
+
+Superpowers enforces the brainstorm → plan → execute workflow: clarify requirements before writing anything, produce a spec, execute against it.
+
+Install via the Claude Code plugin menu — type `/plugin` inside a session and find Superpowers in the list.
+
+> If you install one thing from this page, install Superpowers.
+
+---
+
+## 03 — Sequential Thinking {#sequential-thinking}
+
+*Structured reasoning before complex tasks*
+
+Sequential Thinking is an MCP server that adds explicit chain-of-thought reasoning to Claude Code. Before acting on complex tasks, Claude works through a visible step-by-step reasoning process — understand the problem, identify constraints, consider approaches, then implement.
+
+Ask Claude to install it: `Please install the sequential thinking MCP server`
+
+---
+
+## 04 — Context7 {#context7}
+
+*Current library documentation — eliminates hallucinated APIs*
+
+Claude Code's training data has a cutoff date. When you ask it to use a library, it works from training data that may be months out of date — confidently using deprecated methods or renamed APIs. Context7 pulls current, version-specific documentation from live repositories and injects it into Claude's context at prompt time.
+
+Add `use context7` to any prompt involving a library:
+
+```
+Build a FastAPI endpoint that validates JSON input. use context7
+```
+
+Install via the Claude Code plugin menu — type `/plugin` inside a session and find Context7 in the list.
+
+---
+
+## 05 — Warp {#warp}
+
+*A better terminal for running Claude Code*
+
+Warp is a modern terminal — a replacement for Windows Terminal, Mac Terminal, or the VS Code integrated terminal. You run Claude Code inside Warp.
+
+Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran.
+
+Download from [warp.dev](https://warp.dev) — available for Mac, Linux, and Windows. Free tier covers standard use.
+
+---
+
+## 06 — Happy Engineering {#mobile}
+
+*Full terminal access from your phone*
+
+Happy Engineering runs a live terminal session on your computer that you control from your phone's browser. When you connect from your phone, you are controlling the actual terminal on your machine — every integration you have configured is available. Tasks you start on your phone continue running on your computer.
+
+Install from [happy.engineering](https://happy.engineering). Free and open source.
+
+---
+
+## 07 — Skills {#skills}
+
+*Reusable workflows for tasks you do repeatedly*
+
+Skills are markdown files in `.claude/skills/` that Claude Code reads when you invoke them. Instead of re-explaining a workflow every session, you encode it once and call it by name.
+
+```
+.claude/
+  skills/
+    add-module.md    ← invoked with /add-module
+    run-analysis.md  ← invoked with /run-analysis
+```
+
+Describe the repetitive task in detail and ask Claude to build the skill for you. After a few iterations, it becomes a reliable automation available in every session.
