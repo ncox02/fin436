@@ -2,17 +2,17 @@
 title: "Level 3: AI in Your Terminal"
 ---
 
-At Level 3, the AI runs in your terminal. You describe a goal; it reads your files, writes code, runs scripts, and iterates on failures until the task is done. You review the result. What makes this more capable than Level 2 is not what the agent can see — it is that it can execute. At Level 2, you run the tests and bring errors back to the AI. At Level 3, the agent runs that loop itself.
+At Level 3, the AI runs in your terminal. You describe a goal; it reads your files, writes code, runs scripts, and iterates on failures until the task is done. You review the result. What makes this more capable than an editor assistant is not what the agent can see — it is that it can execute. In the editor, you run the tests and bring errors back to the AI. Here, the agent runs that loop itself.
 
 > **Most terminal AI tools require a paid subscription.** Free tiers typically provide access to web-based chat only — not the terminal agent. Check the pricing for whichever tool you use before getting started.
 
-Level 3 is the right tool when the task requires execution — running tests, iterating across files, working through a multi-step process. For inline suggestions while you're actively writing code, the IDE is still the natural fit. The two methods complement each other; most people use both.
+A terminal agent is the right tool when the task requires execution — running tests, iterating across files, working through a multi-step process. For inline suggestions while you're actively writing code, the IDE is still the natural fit. The two complement each other; most people use both.
 
 ---
 
-## The five steps at Level 3 {#five-steps}
+## The new development cycle {#new-development-cycle}
 
-| Step | Level 2 | Level 3 |
+| Step | In the editor | In the terminal |
 |---|---|---|
 | **Organize** | Describe the goal in chat; AI proposes structure | Describe the goal; AI reads your existing files and proposes or creates structure |
 | **Write** | AI suggests edits inline; you accept or reject | AI writes to files directly; you review what changed |
@@ -20,122 +20,62 @@ Level 3 is the right tool when the task requires execution — running tests, it
 | **Share** | AI writes a commit message from your diff; you commit | AI can stage, write the message, and commit — you review before or after |
 | **Deploy** | Not covered | Scripted pipelines can be handed to the agent; it runs them and reports the result |
 
-At Level 2, you executed each step. At Level 3, you describe the goal and review the result.
-
-> *context engineering is the new prompt engineering*
-
 ---
 
 ## The interaction loop {#interaction-loop}
 
 Every terminal AI agent works the same way: you describe a goal, the agent reads your files and environment, acts, reads the output, and reports back. You review and continue or redirect.
 
-A typical sequence:
-
-*You:* "Read the files in src/ and tell me what this project does."
-*Agent:* Reads the files. Returns a plain-English summary.
-
-*You:* "Write a function in pipeline.py that filters rows by date range, then write a test and run it."
-*Agent:* Writes the function. Writes the test. Runs it. Reads the failure. Fixes it. Runs it again. Reports the result.
-
-You review what changed and decide what to do next.
-
 Understanding this loop changes how you write prompts. You are not giving instructions to someone who will ask for clarification — you are describing a goal for an agent that acts immediately. Keep goals narrow enough to review comfortably.
 
 ---
 
-## Project context {#project-context}
+## Your project {#your-project}
 
-Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. If you establish a rule in one session, it doesn't exist in the next.
+> **Context engineering is the new prompt engineering.**
 
-Most terminal AI tools solve this with a project context file: a markdown file in your project root that the agent reads at the start of every session. Write your standing instructions there once.
+The agent only has access to what you point it at. Your folder structure is not just organization — it defines what the agent can see, and specific files carry your standing instructions between sessions. A well-structured project makes the agent faster and more reliable from the first prompt.
 
-```markdown
-# Project context
-
-Python data pipeline. Use pandas for all data work.
-Every new function needs a docstring and a pytest test in tests/.
-Never modify files in data/raw/.
+```
+my-project/
+├── CLAUDE.md          ← standing instructions, read every session
+├── progress.md        ← handoff notes between sessions
+├── docs/
+│   └── plans/         ← implementation plans
+└── src/
 ```
 
-Keep it factual. The context file is for things that are true for every task — project structure, conventions, constraints. Specifics for the current task go in the prompt, not the context file.
+### CLAUDE.md
 
----
+Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. `CLAUDE.md` is how you fix that. Write your standing instructions there once; the agent reads it at the start of every session. Keep it factual: project structure, conventions, constraints that apply to every task. Specifics for the current task go in the prompt.
 
-## Scope of access {#scope}
+The folders you list and the directories you grant the agent access to form the same boundary. Start narrow: read and write within the project directory, run test and build commands you already use, no broader filesystem access. An agent with write access to your filesystem and permission to run arbitrary commands can make changes you didn't intend. Review what it's done at each step, especially early on.
 
-Terminal AI agents operate with whatever access you grant them. Most tools let you configure this: read-only, write access to specific directories, permission to run commands, network access. The defaults vary by tool — some are conservative, some are not.
+### The context window
 
-Start narrow. For most projects, a sensible starting scope:
+As a session runs, everything accumulates in the context window: your instructions, the files the agent read, the code it wrote, the test output, your feedback. This window has a fixed size, passed back and forth with every message. Once it fills, the agent starts dropping the oldest entries to make room.
 
-- Read and write files within the project directory
-- Run test and build commands you already use
-- No broader filesystem access, no network access beyond what your scripts already use
+In practice, a session that starts well can become unreliable as context fills. The agent forgets constraints you set earlier, duplicates code it already wrote, or loses track of decisions. This is not a defect in any specific tool — it is a fundamental property of how these models work.
 
-An agent with write access to your filesystem and permission to run arbitrary commands can make changes you didn't intend. Review what it's done at each step, especially early in a project or with a new tool.
+Most tools offer a compaction command to summarize the current context and continue without restarting. This sounds useful but usually isn't. Compaction compresses the window, but degraded reasoning from before the compaction still affects the session. Starting fresh with a written handoff produces better results.
 
----
+> **Friends don't let friends compact.**
 
-## The context window {#context-window}
+### Between sessions
 
-As a session runs, everything accumulates in a context window: your instructions, the files the agent read, the code it wrote, the test output, your feedback. This window has a fixed size, passed back and forth with every message. Once it fills, the agent starts dropping the oldest entries to make room.
-
-In practice: a session that starts well can become unreliable as context fills. The agent forgets constraints you set earlier, duplicates code it already wrote, or loses track of decisions already made. This is a fundamental property of how these models work, not a defect in any specific tool.
-
-Most terminal AI tools offer a compaction command — a way to summarize the current context and continue without starting a new session. This sounds useful but usually isn't. Compaction compresses the window, but the degraded reasoning from before the compaction still affects the session. Starting fresh with a written handoff produces better results.
-
-> *friends don't let friends compact*
-
-The rule: end sessions before context degrades. Most tools display context usage somewhere; for those that don't, it is worth finding a way to make it visible. When context approaches 50%, end the session:
+End sessions before context degrades. Most tools display context usage somewhere — if yours doesn't, it is worth making it visible. When context approaches 50%, end the session:
 
 ```
 Write a summary of what we've done and what's left to progress.md
 ```
 
-The next session reads that file and continues cleanly.
+The next session reads that file and continues cleanly. Treat sessions as bounded units of work — end when the immediate task is done, not when the window is full. Avoid open-ended prompts like "clean up the whole codebase." Break large goals into specific, bounded tasks.
 
-Treat sessions as bounded units of work. End the session when the immediate task is done, not when the window is full. If something needs to carry over, write it to a file. The discipline is keeping tasks small enough to complete within one healthy session.
+### Planning
 
-This also means avoiding open-ended prompts like "clean up the whole codebase." The scope is too large to complete before context degrades. Break large goals into specific, bounded tasks.
+Ad-hoc prompts produce worse results than structured ones. A structured workflow replaces guessing with agreement: describe the goal, clarify requirements, produce a plan in `docs/plans/`, then execute against it. Each phase is short. The execution is faster and produces fewer unintended changes.
 
----
-
-## Planning {#planning}
-
-Ad-hoc prompts produce worse results than structured ones. "Add a caching layer" leaves the agent guessing at scope, approach, and constraints. The agent makes choices — some of them wrong — and you spend time correcting them.
-
-A structured workflow replaces guessing with agreement: describe the goal and clarify requirements first, then convert those into a specific plan, then execute against the plan. Each phase is short. The execution is faster and produces fewer unintended changes.
-
-This matters more at Level 3 than at Level 2. At Level 2, a wrong direction produces a diff you can reject. At Level 3, a wrong direction can produce changes across multiple files before you notice. Explicit scoping during execution is just as important as upfront planning:
-
-```
-Refactor error handling in src/pipeline.py only. Do not change function signatures. Do not touch any other files.
-```
-
-Vague scope and broad file access reliably produce unintended changes.
-
----
-
-The concepts covered so far each have a home in your project. A well-organized structure lets the agent orient itself faster and spend less of the context window getting up to speed.
-
-```
-my-project/
-├── context.md          ← standing instructions, read every session
-├── progress.md         ← handoff notes between sessions
-├── docs/
-│   └── plans/          ← implementation plans
-└── src/
-```
-
----
-
-## Reasoning {#reasoning}
-
-By default, agents move directly from task to output. On routine tasks — write this function, run these tests — that's fine. On complex tasks — design an error handling strategy, debug a failure with multiple possible causes, choose between architectures — jumping straight to output produces results that look confident but skipped the hard part.
-
-Some tools add a reasoning phase that runs before any output is produced. Before writing a line of code, the agent works through the problem explicitly: what is actually being asked, what the constraints are, what approaches exist, what the tradeoffs are. This reasoning is visible to you. If the agent's premise is wrong — it assumed you can tolerate partial writes when you can't — you catch it before it builds the wrong thing.
-
-Use it on the tasks where the right answer isn't obvious upfront. On routine tasks, it adds overhead without adding value.
+Scope explicitly when executing. Vague file access reliably produces unintended changes — name the files and constraints before the agent starts writing.
 
 ---
 
@@ -149,7 +89,7 @@ Some are MCP servers; others are terminal tools that address the problems discus
 
 ---
 
-## Claude Code {#claude-code}
+## Try it out with Claude Code {#claude-code}
 
 The concepts above apply to any terminal AI tool. Claude Code is one of them. If you want to try it, the rest of this page covers an efficient setup — the tool itself plus seven integrations that implement what we've discussed.
 
@@ -159,25 +99,7 @@ Install Claude Code and find platform-specific setup instructions at the officia
 
 **[code.claude.com/docs/en/terminal-guide#windows](https://code.claude.com/docs/en/terminal-guide#windows)**
 
-Navigate to your project and type `claude` to start a session.
-
-**Example session:**
-
-*You type:*
-```
-Read my project and summarize what it does and how it's structured.
-```
-
-*Claude does:* Reads every file in the directory. Returns a plain-English summary of structure, purpose, and main components.
-
-*You type:*
-```
-Write a function in analysis.py that groups sales by region and returns a sorted DataFrame. Write a test and run it.
-```
-
-*Claude does:* Writes the function, writes the test, runs it, reads the output, fixes any failure, reports the result.
-
-Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.
+Navigate to your project and type `claude` to start a session. Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.
 
 ---
 
@@ -302,7 +224,7 @@ Full documentation for `CLAUDE.md` and skills is at [code.claude.com](https://co
 
 ---
 
-## Quick Reference {#quick-reference}
+## Quick reference {#quick-reference}
 
 | # | Integration | What it adds | Where to get it |
 |---|-------------|--------------|-----------------|
