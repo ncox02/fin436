@@ -1,0 +1,297 @@
+---
+title: "The Tools"
+---
+
+Every major category explained — what it does, why it exists, and which options are worth knowing.
+
+## IDEs & Code Editors
+
+Where you write and understand code.
+
+**Simply put**
+
+An IDE is like a word processor — but for code. Notepad can write code. An IDE *understands* code. It highlights mistakes as you type, lets you jump to any function definition instantly, runs your programs with one click, and shows you the output inline. It's the central place where everything else (AI, Git, environments) plugs in.
+
+**Going deeper**
+
+IDEs provide language servers (LSP) that analyze your code in real time, offering type checking, autocomplete, and inline documentation. They integrate debuggers (breakpoints, step-through execution, variable inspection), test runners, linters, and formatters. Modern editors are highly extensible via plugins — which is why the same editor can support Python, JavaScript, Rust, or SQL depending on what you install.
+
+### The main options
+
+**VS Code** — Microsoft · Free · All platforms
+
+A lightweight but powerful editor that has become the default choice for most developers. It starts fast, has an enormous extension marketplace, and supports every language. Python support comes via Microsoft's Python extension.
+
+- Free and open source
+- Massive extension library
+- Excellent AI integration (Copilot, Claude, etc.)
+- Fast startup, lightweight
+- Python features require extensions
+- Less opinionated — you configure your own workflow
+
+Best for: Most people. Especially if you work across multiple languages or want maximum flexibility.
+
+---
+
+**PyCharm** — JetBrains · Free (Community) or Paid (Pro) · All platforms
+
+Built exclusively for Python (and web development in the Pro version). PyCharm understands Python deeply out of the box — no extensions needed. It handles virtual environments, testing, databases, and debugging with more depth than VS Code's Python extension.
+
+- Deepest Python support available
+- Virtual environment management built-in
+- Excellent debugger and test runner
+- JetBrains AI built-in (Pro)
+- Heavier, slower to start than VS Code
+- Pro version costs money (~$100/yr, free for students)
+
+Best for: Developers working primarily in Python who want everything configured for them.
+
+---
+
+**Cursor** — Anysphere · Free tier + Paid · All platforms
+
+A fork of VS Code built from the ground up around AI. Every feature is designed to maximize how much AI can help — it can see your whole codebase, understand context across files, and generate entire features at once. Feels like VS Code but with a much deeper AI layer.
+
+- Most advanced AI integration available
+- Familiar if you know VS Code
+- Supports Claude, GPT-4, and others as the underlying model
+- Paid tier required for heavy AI use
+- Newer — less mature than VS Code or PyCharm
+
+Best for: Developers who want AI deeply embedded in every part of their editor experience.
+
+---
+
+**Jupyter Notebook / JupyterLab** — Project Jupyter · Free · Browser-based
+
+Not a traditional IDE — Jupyter is a notebook environment where code, output, and explanatory text live together in one document. Run a cell, see the result immediately below it. Essential in data science and research. Can also be used inside VS Code and PyCharm as an extension.
+
+- Immediate output — ideal for exploration
+- Mixes code, charts, and text in one document
+- Industry standard in data science
+- Not suited for large, structured applications
+- Version control is messier with notebooks
+
+Best for: Exploratory analysis, teaching, and research where seeing output immediately matters.
+
+## AI Assistants
+
+A collaborator that never leaves your editor.
+
+**Simply put**
+
+An AI assistant is a tool that can read your code and talk to you about it — writing new code, explaining what something does, finding bugs, suggesting improvements, or generating tests. Some live inside your IDE as extensions. Some are separate chat interfaces. Some are both. The best ones feel like having a very knowledgeable pair programmer on call at all times.
+
+**Going deeper**
+
+Modern coding AI assistants are built on large language models (LLMs) fine-tuned for code. The key distinction is **context window** — how much of your code the model can see at once. A larger context window means smarter, more coherent suggestions. IDE-integrated tools can stream completions inline (autocomplete-style), while chat-based tools let you have a full conversation about architecture, debugging, or design choices. The distinction between "inline assistant" and "chat assistant" is blurring — most tools now do both.
+
+### The main options
+
+**Claude (Anthropic)** — Anthropic · Free + Paid · Web, API, IDE extensions
+
+Claude is a general-purpose AI assistant with exceptionally strong reasoning and code abilities. Available as a web chat (claude.ai), as an API for developers, and increasingly as IDE extensions (VS Code, Cursor). Claude Code is a terminal-based agentic tool where Claude can read, write, and run files autonomously — without an IDE at all.
+
+- Excellent at explaining complex code and concepts
+- Very large context window — can read entire files at once
+- Strong at debugging, architecture, and code review
+- Claude Code for autonomous multi-file agentic workflows
+- Best at following nuanced, specific instructions
+- IDE inline integration less seamless than Copilot
+
+Best for: Understanding, explaining, and designing code. Deep problem-solving conversations. Large agentic tasks via Claude Code.
+
+---
+
+**GitHub Copilot** — GitHub / Microsoft · Paid (~$10/mo, free for students) · All major IDEs
+
+The original AI coding assistant, built directly into VS Code, PyCharm, Vim, and others. Copilot watches what you're typing and suggests completions — sometimes a single word, sometimes an entire function. Also has a chat mode. Powered by OpenAI models under the hood.
+
+- Seamlessly integrated into most editors
+- Excellent inline autocomplete
+- Tight GitHub integration
+- Subscription required after trial
+- Less strong at deep reasoning than Claude
+
+Best for: Day-to-day coding with inline suggestions. Pairs naturally with VS Code + GitHub.
+
+---
+
+**JetBrains AI** — JetBrains · Included with Pro plans · PyCharm, IntelliJ, etc.
+
+JetBrains' native AI assistant, built into PyCharm Pro and other JetBrains IDEs. Uniquely aware of your project's full context — not just open files, but run logs, test results, and error output — because it has access to everything the IDE already knows.
+
+- Deep IDE integration — understands your project fully
+- Inline suggestions + chat mode
+- Can explain why your last test run failed (reads actual output)
+- No extra subscription if you already have PyCharm Pro
+- Only useful if you're in a JetBrains IDE
+
+Best for: PyCharm users who want AI without adding another tool. Especially strong for test diagnosis and project-aware questions.
+
+---
+
+**ChatGPT** — OpenAI · Free + Paid · Web, mobile, API
+
+The most widely known AI chat interface. Strong at code generation, explanation, and debugging. Not directly embedded in IDEs by default, but can be added via extensions. The paid tier's code interpreter can actually run your code in a sandboxed environment and show you the output — no local setup needed.
+
+- Familiar, widely used interface
+- Code interpreter can run code and show output (paid tier)
+- Extremely well-documented — tutorials everywhere
+- Less IDE-integrated than Copilot or JetBrains AI
+- Context window smaller than Claude's
+
+Best for: Quick questions, learning concepts, and exploring ideas. The code interpreter is useful when you want to test code without a local environment.
+
+---
+
+**IDE-integrated vs. chat-based AI**
+
+These are different experiences, not competing ones. A chat-based AI (Claude, ChatGPT) is great for conversations — "explain this to me," "how should I structure this?" An IDE-integrated AI (Copilot, JetBrains AI) is great for inline help — completing what you're typing, suggesting the next line. Many developers use both: Copilot inside their editor for day-to-day suggestions, and Claude in a browser tab for harder questions.
+
+## Virtual Environments
+
+Keeping your projects clean and self-contained.
+
+**Simply put**
+
+Imagine you have two Python projects. Project A needs version 1 of a library. Project B needs version 2 of the same library. If you install both on the same Python installation, they conflict. A virtual environment solves this — it's a private, isolated copy of Python and its packages for each project. When you work on Project A, you activate its environment. Everything is separate.
+
+**Going deeper**
+
+A virtual environment is a directory containing a Python interpreter (or a symlink to one), a `site-packages` folder for installed libraries, and activation scripts. When activated, your shell's PATH is modified so that `python` and `pip` refer to the environment's copies, not the system installation. This makes your project reproducible: a `requirements.txt` or `pyproject.toml` captures exactly which packages and versions are needed, so anyone can recreate the environment from scratch.
+
+**The analogy**
+
+Think of a virtual environment like a shipping container. Everything your project needs is packed inside it — the right version of Python, the right libraries, nothing more. You can move the container to any machine, open it, and everything works. Without it, you're throwing your tools into a shared toolbox with everyone else's, and eventually something breaks.
+
+### The main options
+
+**venv** — Built into Python · Free · All platforms
+
+The built-in Python virtual environment tool. No installation required. Creates a `.venv` folder inside your project with everything isolated. The standard starting point for Python projects.
+
+```bash
+# Create a virtual environment
+python -m venv .venv
+
+# Activate it (Mac/Linux)
+source .venv/bin/activate
+
+# Activate it (Windows)
+.venv\Scripts\activate
+```
+
+Best for: Most Python projects. Simple, reliable, no extra installation.
+
+---
+
+**conda / Anaconda** — Anaconda Inc · Free (conda) · All platforms
+
+A package and environment manager that goes beyond Python — it can also manage non-Python dependencies (like C libraries used by NumPy or OpenCV). Anaconda comes bundled with hundreds of data science packages pre-installed. conda is the command-line tool alone.
+
+- Handles non-Python dependencies
+- Pre-packaged data science tools (Anaconda)
+- Heavier than venv
+- Can conflict with pip in subtle ways
+
+Best for: Data science work, machine learning, or projects with complex C-extension dependencies.
+
+---
+
+**uv** — Astral · Free · All platforms
+
+A new, extremely fast Python package installer and environment manager written in Rust. Replaces both pip and venv in one tool and is 10–100× faster. Rapidly gaining adoption in professional settings.
+
+- Dramatically faster than pip
+- Manages Python versions too
+- Drop-in replacement for pip and venv
+- Newer — less documentation and community resources
+
+Best for: Developers who want the fastest possible toolchain. Growing toward being the new default.
+
+## Git & GitHub
+
+How code is saved, shared, and collaborated on.
+
+**Simply put**
+
+**Git** is a tool that lives on your computer and tracks every change you make to your code — like a very detailed undo history that never expires. You can go back to any point in time, work on experiments without breaking anything, and merge changes from collaborators.
+
+**GitHub** is a website where your Git history lives in the cloud — so your code is backed up, shareable, and others can contribute. They're related but separate: Git is the technology; GitHub is the service built on top of it.
+
+**Going deeper**
+
+Git is a distributed version control system. Each repository contains a complete history of every commit — a snapshot of the codebase at a point in time. Branches allow parallel lines of development; merges (and rebases) combine them. GitHub adds: remote repository hosting, pull requests (code review workflow), Issues (bug/feature tracking), Actions (CI/CD automation), and a social layer. GitLab and Bitbucket offer similar services with different trade-offs.
+
+### Key concepts
+
+**Repository (repo)** — A folder that Git is tracking. Contains your code and its entire history.
+
+**Commit** — A saved snapshot of your code at a moment in time. Like hitting "save" — but you also write a note about what changed and why.
+
+**Branch** — A parallel version of your code. Make changes without affecting the main version. Merge when ready.
+
+**Checkout** — Switches to another branch — another version of your project. `git checkout -b` creates a new branch and moves you onto it.
+
+**Push / Pull** — Push sends your commits to GitHub. Pull brings GitHub's latest changes to your machine.
+
+**Pull Request (PR)** — A request to merge your branch into the main branch. This is where code review happens on GitHub.
+
+**Clone** — Download a repository from GitHub to your computer — gets the full history, not just the latest files.
+
+---
+
+**Git vs GitHub vs GitLab vs Bitbucket**
+
+Git is the tool. GitHub, GitLab, and Bitbucket are services that host your Git repositories online. GitHub is by far the most popular, especially for open source. GitLab is popular in enterprises and has more built-in CI/CD features. Bitbucket is common in organizations already using Atlassian tools (Jira, Confluence). The Git commands you type are identical regardless of which service you use.
+
+## Package Management
+
+Installing and managing the libraries your code needs.
+
+**Simply put**
+
+Python has a vast ecosystem of open-source libraries — tools for data analysis (pandas), making web requests (requests), machine learning (scikit-learn), and thousands more. Package managers are how you install these libraries into your project. Think of them like an app store for Python code — you ask for what you need, and the package manager downloads and installs it.
+
+**Going deeper**
+
+Python packages are distributed via PyPI (Python Package Index). A package manager resolves your package list, finds compatible versions of all dependencies (including dependencies-of-dependencies), downloads them, and places them in your virtual environment's `site-packages`. A **lock file** records the exact versions installed — so that running the same install command on another machine six months later produces the exact same environment.
+
+### The main options
+
+**pip** — Built into Python · Free
+
+The standard Python package installer. Ships with Python. Used to install packages from PyPI with a single command. Works with a `requirements.txt` file to capture and share your project's dependencies.
+
+```bash
+pip install pandas
+pip install -r requirements.txt
+pip freeze > requirements.txt
+```
+
+Best for: Most situations. If you're not sure what to use, start here.
+
+---
+
+**uv (as a package manager)** — Astral · Free
+
+uv can replace pip entirely — it's a drop-in replacement that's dramatically faster. The command interface is similar to pip, making the switch easy.
+
+```bash
+uv add pandas
+uv sync
+uv pip install -r requirements.txt
+```
+
+Best for: Developers who want the fastest possible install times.
+
+---
+
+**requirements.txt and pyproject.toml**
+
+These are the two standard ways to declare what packages your project needs. `requirements.txt` is older and simpler — a plain list of packages. `pyproject.toml` is the modern standard — it also contains project metadata, tool configuration, and works with Poetry and uv. Both serve the same purpose: if someone else clones your project, they can install exactly what you're using.
+
+---
+
+[← Overview](index.qmd) | [How It Connects →](workflow.qmd)
