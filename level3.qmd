@@ -38,22 +38,22 @@ The agent only has access to what you point it at. Your folder structure is not 
 
 ```
 my-project/
-├── CLAUDE.md          ← standing instructions, read every session
+├── context.md         ← standing instructions, read every session
 ├── progress.md        ← handoff notes between sessions
 ├── docs/
 │   └── plans/         ← implementation plans
 └── src/
 ```
 
-### CLAUDE.md
+### The context file
 
-Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. `CLAUDE.md` is how you fix that. Write your standing instructions there once; the agent reads it at the start of every session. Keep it factual: project structure, conventions, constraints that apply to every task. Specifics for the current task go in the prompt.
+Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. A context file — a markdown file in your project root — is how you fix that. Write your standing instructions there once; the agent reads it at the start of every session. Keep it factual: project structure, conventions, constraints that apply to every task. Specifics for the current task go in the prompt.
 
 The folders you list and the directories you grant the agent access to form the same boundary. Start narrow: read and write within the project directory, run test and build commands you already use, no broader filesystem access. An agent with write access to your filesystem and permission to run arbitrary commands can make changes you didn't intend. Review what it's done at each step, especially early on.
 
 ### The context window
 
-As a session runs, everything accumulates in the context window: your instructions, the files the agent read, the code it wrote, the test output, your feedback. This window has a fixed size, passed back and forth with every message. Once it fills, the agent starts dropping the oldest entries to make room.
+The context window is the total amount of text — instructions, files, code, and conversation history — that the model can hold at once. As a session runs, everything accumulates there: your instructions, the files the agent read, the code it wrote, the test output, your feedback. This window has a fixed size, passed back and forth with every message. Once it fills, the agent starts dropping the oldest entries to make room.
 
 In practice, a session that starts well can become unreliable as context fills. The agent forgets constraints you set earlier, duplicates code it already wrote, or loses track of decisions. This is not a defect in any specific tool — it is a fundamental property of how these models work.
 
@@ -85,7 +85,6 @@ Model Context Protocol is an open standard for connecting AI agents to external 
 
 An MCP server is a small program the agent invokes natively — indistinguishable from a built-in capability once configured. Common uses: pulling current library documentation, querying a database, running a custom analysis, accessing an API. Configure it once; it is available in every session.
 
-Some are MCP servers; others are terminal tools that address the problems discussed above.
 
 ---
 
@@ -97,7 +96,7 @@ The concepts above apply to any terminal AI tool. Claude Code is one of them. If
 
 Install Claude Code and find platform-specific setup instructions at the official documentation:
 
-**[code.claude.com/docs/en/terminal-guide#windows](https://code.claude.com/docs/en/terminal-guide#windows)**
+**[Install Claude Code](https://code.claude.com/docs/en/terminal-guide#windows)**
 
 Navigate to your project and type `claude` to start a session. Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.
 
@@ -163,7 +162,7 @@ Warp is a modern terminal — a replacement for Windows Terminal, Mac Terminal, 
 
 Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran.
 
-Download from [warp.dev](https://warp.dev) — available for Mac, Linux, and Windows. Free tier covers standard use.
+Download from [Warp](https://warp.dev) — available for Mac, Linux, and Windows. Free to use.
 
 ---
 
@@ -171,9 +170,9 @@ Download from [warp.dev](https://warp.dev) — available for Mac, Linux, and Win
 
 *Full terminal access from your phone*
 
-Happy Engineering runs a live terminal session on your computer that you control from your phone's browser. When you connect from your phone, you are controlling the actual terminal on your machine — every integration you have configured is available. Tasks you start on your phone continue running on your computer.
+Happy Engineering runs a live terminal session on your computer that you control from your phone's browser. Setup takes about a minute — no accounts, no configuration, simpler than any remote-access alternative. When you connect from your phone, you are controlling the actual terminal on your machine — every integration you have configured is available. Tasks you start on your phone continue running on your computer.
 
-Install from [happy.engineering](https://happy.engineering). Free and open source.
+Install from [Happy Engineering](https://happy.engineering). Free and open source.
 
 ---
 
@@ -196,7 +195,7 @@ Describe the repetitive task in detail and ask Claude to build the skill for you
 
 ## Sandbox {#sandbox}
 
-Copy this structure into any project before your first session. Fill in `CLAUDE.md` with your project's standing instructions and you are ready to start.
+Create a dedicated folder anywhere on your computer and drop in this structure. It gives you a clean place to experiment without touching any existing project — open it in your terminal and you are ready to go.
 
 ```
 my-project/
@@ -210,17 +209,7 @@ my-project/
 └── tests/
 ```
 
-**`CLAUDE.md` example:**
-
-```markdown
-# Project context
-
-[One sentence: what this project is and does.]
-Never modify files in data/raw/.
-All new functions need a test in tests/.
-```
-
-Full documentation for `CLAUDE.md` and skills is at [code.claude.com](https://code.claude.com/docs/en/overview).
+Full documentation for `CLAUDE.md` and skills is in the [official docs](https://code.claude.com/docs/en/overview).
 
 ---
 
