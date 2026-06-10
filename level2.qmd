@@ -2,17 +2,11 @@
 title: "Level 2: AI in Your Editor"
 ---
 
-**pyflow — VS Code Edition**
-
----
-
-Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two tools: the **Main Editor Window** and the **Copilot Chat Sidebar**. Do not open Claude Code, the terminal, or any external agent panel yet. Those are Level 3.
+Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two tools: the **Main Editor Window** and the **Copilot Chat Sidebar**.
 
 ---
 
 ## Standardizing the workflow
-
-You already know the five-step development workflow. Here is what changes at each step when AI lives inside your editor.
 
 | Step | Before | After |
 |------|--------|-------|
@@ -30,6 +24,21 @@ Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens Copilot Cha
 
 Twelve exercises across four phases. Each one proves a specific capability that browser chat cannot match. Do them in order — the compound interest project builds across phases and the terminal does not appear until Exercise 9.
 
+| | Exercise | AI capability |
+|--|----------|--------------|
+| 1 | [Blueprint prompt](#ex1) | Copilot Chat plans project structure from a plain-English description |
+| 2 | [Scaffold generation](#ex2) | Agent mode creates folders and files directly |
+| 3 | [Comment-driven generation](#ex3) | Ghost text completes a function from a comment spec |
+| 4 | [Finish starter code](#ex4) | Inline edit completes a function from its comments |
+| 5 | [Cross-file context](#ex5) | `#filename` references give the AI access to multiple files at once |
+| 6 | [Explain a block](#ex6) | Right-click → Explain generates an on-demand explanation |
+| 7 | [Spot a bug](#ex7) | Copilot Chat reviews a function for bugs and edge cases |
+| 8 | [Refactor for performance](#ex8) | Right-click → Review identifies a performance problem and the fix |
+| 9 | [Terminal crash fix](#ex9) | Terminal error hook connects a crash directly to AI |
+| 10 | [Generate a docstring](#ex10) | `/doc` generates documentation in two keystrokes |
+| 11 | [Generate pytest cases](#ex11) | Copilot Chat generates a full test suite from a description |
+| 12 | [Git commit via sparkle button](#ex12) | Sparkle button generates a commit message from the staged diff |
+
 ---
 
 ## Phase A: Organize & plan
@@ -38,7 +47,7 @@ Twelve exercises across four phases. Each one proves a specific capability that 
 
 ---
 
-### Exercise 1 — Blueprint prompt
+### Exercise 1 — Blueprint prompt {#ex1}
 **Phase:** Organize
 
 **Action:**
@@ -57,7 +66,7 @@ Read the response. If anything is unclear, ask a follow-up before moving on.
 
 ---
 
-### Exercise 2 — Scaffold generation
+### Exercise 2 — Scaffold generation {#ex2}
 **Phase:** Organize
 
 **Action:**
@@ -103,7 +112,7 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 
 ---
 
-### Exercise 3 — Comment-driven generation
+### Exercise 3 — Comment-driven generation {#ex3}
 **Phase:** Write
 
 **Action:**
@@ -130,7 +139,7 @@ message for each invalid case. No external libraries.
 
 ---
 
-### Exercise 4 — Finish starter code
+### Exercise 4 — Finish starter code {#ex4}
 **Phase:** Write
 
 **Action:**
@@ -163,7 +172,7 @@ Review the generated body before accepting.
 
 ---
 
-### Exercise 5 — Cross-file context
+### Exercise 5 — Cross-file context {#ex5}
 **Phase:** Write
 
 **Action:**
@@ -188,7 +197,7 @@ Review what it generates. Check that the import path is correct and the function
 
 ---
 
-### Exercise 6 — Explain a block
+### Exercise 6 — Explain a block {#ex6}
 **Phase:** Understand
 
 **Action:**
@@ -205,7 +214,7 @@ Would this function catch that mistake?
 
 ---
 
-### Exercise 7 — Spot a bug
+### Exercise 7 — Spot a bug {#ex7}
 **Phase:** Debug
 
 **Action:**
@@ -236,7 +245,7 @@ If you see a **Copilot debug icon** appear next to the function, you can click i
 
 ---
 
-### Exercise 8 — Refactor for performance
+### Exercise 8 — Refactor for performance {#ex8}
 **Phase:** Refactor
 
 **Action:**
@@ -273,7 +282,7 @@ Read what AI identifies. You don't need to apply the refactored version — the 
 
 ---
 
-### Exercise 9 — Terminal crash fix
+### Exercise 9 — Terminal crash fix {#ex9}
 **Phase:** Debug
 
 **Action:**
@@ -299,7 +308,7 @@ Read the explanation before applying any fix.
 
 ---
 
-### Exercise 10 — Generate a docstring
+### Exercise 10 — Generate a docstring {#ex10}
 **Phase:** Document
 
 **Action:**
@@ -315,7 +324,7 @@ A Google-style docstring should be generated and inserted at the correct locatio
 
 ---
 
-### Exercise 11 — Generate pytest cases
+### Exercise 11 — Generate pytest cases {#ex11}
 **Phase:** Test
 
 **Action:**
@@ -337,7 +346,7 @@ If tests fail with import or module errors, confirm your `.venv` is active and p
 
 ---
 
-### Exercise 12 — Git commit via sparkle button
+### Exercise 12 — Git commit via sparkle button {#ex12}
 **Phase:** Share
 
 **Action:**
@@ -348,25 +357,6 @@ In the commit message input box at the top of the Source Control panel, look for
 Review the message, edit if needed, then commit.
 
 **Takeaway:** AI writes the commit message by reading what actually changed — not what you tell it changed. This is the native UI doing what browser chat cannot: reading your diff directly without you copying it out first.
-
----
-
-## What we just did {#concepts}
-
-Twelve exercises, each using a different AI capability:
-
-- **Exercise 1 — Blueprint prompt:** Copilot Chat planned project structure from a plain-English description — no files open yet
-- **Exercise 2 — Scaffold generation:** Agent mode created the folder and file structure directly
-- **Exercise 3 — Comment-driven generation:** Ghost text completed a function from a comment spec
-- **Exercise 4 — Finish starter code:** Inline edit (`Ctrl+I`) completed a function from its comments
-- **Exercise 5 — Cross-file context:** `#filename` references gave the AI simultaneous access to two files mid-conversation
-- **Exercise 6 — Explain a block:** Right-click → Explain generated an on-demand explanation of selected code
-- **Exercise 7 — Spot a bug:** Copilot Chat reviewed a function for bugs and edge cases in one prompt
-- **Exercise 8 — Refactor for performance:** Right-click → Review and Comment identified a performance problem and the vectorized fix
-- **Exercise 9 — Terminal crash fix:** The terminal error hook connected a crash directly to AI without copy-pasting
-- **Exercise 10 — Generate a docstring:** `/doc` generated professional documentation in two keystrokes
-- **Exercise 11 — Generate pytest cases:** Copilot Chat generated a full test suite from a plain-English description
-- **Exercise 12 — Git commit via sparkle button:** The Source Control sparkle button generated a commit message by reading the staged diff
 
 ---
 
@@ -419,21 +409,6 @@ Then write the code.
 I'm comfortable with Python basics but newer to financial math.
 Add a comment explaining the compound interest formula.
 ```
-
----
-
-## When you feel lost
-
-A response that's too long or too complex is feedback about the prompt — not your ability to code.
-
-**The response is more complex than expected.**
-Push back in the same chat: *"That's more than I need — simplify it. Just the core logic, no extra abstractions."*
-
-**You've lost the thread mid-conversation.**
-Long conversations accumulate context that works against you. Start fresh: *"Ignore the previous approach. Let's start over — I need something simpler."*
-
-**It looks right but might not be.**
-Confidence is not correctness. Running the code is always the check. When something fails, paste the exact error back into the chat.
 
 ---
 
