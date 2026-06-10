@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>The Tools – PyWorkflow</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">PyWorkflow</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./tools.html" aria-current="page"> 
+<span class="menu-text">The Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./workflow.html"> 
+<span class="menu-text">How It Connects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./start.html"> 
+<span class="menu-text">Get Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./level2.html"> 
+<span class="menu-text">Level 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./level3.html"> 
+<span class="menu-text">Level 3+</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ides-code-editors" id="toc-ides-code-editors" class="nav-link active" data-scroll-target="#ides-code-editors">IDEs &amp; Code Editors</a>
+  <ul class="collapse">
+  <li><a href="#the-main-options" id="toc-the-main-options" class="nav-link" data-scroll-target="#the-main-options">The main options</a></li>
+  </ul></li>
+  <li><a href="#ai-assistants" id="toc-ai-assistants" class="nav-link" data-scroll-target="#ai-assistants">AI Assistants</a>
+  <ul class="collapse">
+  <li><a href="#the-main-options-1" id="toc-the-main-options-1" class="nav-link" data-scroll-target="#the-main-options-1">The main options</a></li>
+  </ul></li>
+  <li><a href="#virtual-environments" id="toc-virtual-environments" class="nav-link" data-scroll-target="#virtual-environments">Virtual Environments</a>
+  <ul class="collapse">
+  <li><a href="#the-main-options-2" id="toc-the-main-options-2" class="nav-link" data-scroll-target="#the-main-options-2">The main options</a></li>
+  </ul></li>
+  <li><a href="#git-github" id="toc-git-github" class="nav-link" data-scroll-target="#git-github">Git &amp; GitHub</a>
+  <ul class="collapse">
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts">Key concepts</a></li>
+  </ul></li>
+  <li><a href="#package-management" id="toc-package-management" class="nav-link" data-scroll-target="#package-management">Package Management</a>
+  <ul class="collapse">
+  <li><a href="#the-main-options-3" id="toc-the-main-options-3" class="nav-link" data-scroll-target="#the-main-options-3">The main options</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Tools</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Every major category explained — what it does, why it exists, and which options are worth knowing.</p>
+<section id="ides-code-editors" class="level2">
+<h2 class="anchored" data-anchor-id="ides-code-editors">IDEs &amp; Code Editors</h2>
+<p>Where you write and understand code.</p>
+<p><strong>Simply put</strong></p>
+<p>An IDE is like a word processor — but for code. Notepad can write code. An IDE <em>understands</em> code. It highlights mistakes as you type, lets you jump to any function definition instantly, runs your programs with one click, and shows you the output inline. It’s the central place where everything else (AI, Git, environments) plugs in.</p>
+<p><strong>Going deeper</strong></p>
+<p>IDEs provide language servers (LSP) that analyze your code in real time, offering type checking, autocomplete, and inline documentation. They integrate debuggers (breakpoints, step-through execution, variable inspection), test runners, linters, and formatters. Modern editors are highly extensible via plugins — which is why the same editor can support Python, JavaScript, Rust, or SQL depending on what you install.</p>
+<section id="the-main-options" class="level3">
+<h3 class="anchored" data-anchor-id="the-main-options">The main options</h3>
+<p><strong>VS Code</strong> — Microsoft · Free · All platforms</p>
+<p>A lightweight but powerful editor that has become the default choice for most developers. It starts fast, has an enormous extension marketplace, and supports every language. Python support comes via Microsoft’s Python extension.</p>
+<ul>
+<li>Free and open source</li>
+<li>Massive extension library</li>
+<li>Excellent AI integration (Copilot, Claude, etc.)</li>
+<li>Fast startup, lightweight</li>
+<li>Python features require extensions</li>
+<li>Less opinionated — you configure your own workflow</li>
+</ul>
+<p>Best for: Most people. Especially if you work across multiple languages or want maximum flexibility.</p>
+<hr>
+<p><strong>PyCharm</strong> — JetBrains · Free (Community) or Paid (Pro) · All platforms</p>
+<p>Built exclusively for Python (and web development in the Pro version). PyCharm understands Python deeply out of the box — no extensions needed. It handles virtual environments, testing, databases, and debugging with more depth than VS Code’s Python extension.</p>
+<ul>
+<li>Deepest Python support available</li>
+<li>Virtual environment management built-in</li>
+<li>Excellent debugger and test runner</li>
+<li>JetBrains AI built-in (Pro)</li>
+<li>Heavier, slower to start than VS Code</li>
+<li>Pro version costs money (~$100/yr, free for students)</li>
+</ul>
+<p>Best for: Developers working primarily in Python who want everything configured for them.</p>
+<hr>
+<p><strong>Cursor</strong> — Anysphere · Free tier + Paid · All platforms</p>
+<p>A fork of VS Code built from the ground up around AI. Every feature is designed to maximize how much AI can help — it can see your whole codebase, understand context across files, and generate entire features at once. Feels like VS Code but with a much deeper AI layer.</p>
+<ul>
+<li>Most advanced AI integration available</li>
+<li>Familiar if you know VS Code</li>
+<li>Supports Claude, GPT-4, and others as the underlying model</li>
+<li>Paid tier required for heavy AI use</li>
+<li>Newer — less mature than VS Code or PyCharm</li>
+</ul>
+<p>Best for: Developers who want AI deeply embedded in every part of their editor experience.</p>
+<hr>
+<p><strong>Jupyter Notebook / JupyterLab</strong> — Project Jupyter · Free · Browser-based</p>
+<p>Not a traditional IDE — Jupyter is a notebook environment where code, output, and explanatory text live together in one document. Run a cell, see the result immediately below it. Essential in data science and research. Can also be used inside VS Code and PyCharm as an extension.</p>
+<ul>
+<li>Immediate output — ideal for exploration</li>
+<li>Mixes code, charts, and text in one document</li>
+<li>Industry standard in data science</li>
+<li>Not suited for large, structured applications</li>
+<li>Version control is messier with notebooks</li>
+</ul>
+<p>Best for: Exploratory analysis, teaching, and research where seeing output immediately matters.</p>
+</section>
+</section>
+<section id="ai-assistants" class="level2">
+<h2 class="anchored" data-anchor-id="ai-assistants">AI Assistants</h2>
+<p>A collaborator that never leaves your editor.</p>
+<p><strong>Simply put</strong></p>
+<p>An AI assistant is a tool that can read your code and talk to you about it — writing new code, explaining what something does, finding bugs, suggesting improvements, or generating tests. Some live inside your IDE as extensions. Some are separate chat interfaces. Some are both. The best ones feel like having a very knowledgeable pair programmer on call at all times.</p>
+<p><strong>Going deeper</strong></p>
+<p>Modern coding AI assistants are built on large language models (LLMs) fine-tuned for code. The key distinction is <strong>context window</strong> — how much of your code the model can see at once. A larger context window means smarter, more coherent suggestions. IDE-integrated tools can stream completions inline (autocomplete-style), while chat-based tools let you have a full conversation about architecture, debugging, or design choices. The distinction between “inline assistant” and “chat assistant” is blurring — most tools now do both.</p>
+<section id="the-main-options-1" class="level3">
+<h3 class="anchored" data-anchor-id="the-main-options-1">The main options</h3>
+<p><strong>Claude (Anthropic)</strong> — Anthropic · Free + Paid · Web, API, IDE extensions</p>
+<p>Claude is a general-purpose AI assistant with exceptionally strong reasoning and code abilities. Available as a web chat (claude.ai), as an API for developers, and increasingly as IDE extensions (VS Code, Cursor). Claude Code is a terminal-based agentic tool where Claude can read, write, and run files autonomously — without an IDE at all.</p>
+<ul>
+<li>Excellent at explaining complex code and concepts</li>
+<li>Very large context window — can read entire files at once</li>
+<li>Strong at debugging, architecture, and code review</li>
+<li>Claude Code for autonomous multi-file agentic workflows</li>
+<li>Best at following nuanced, specific instructions</li>
+<li>IDE inline integration less seamless than Copilot</li>
+</ul>
+<p>Best for: Understanding, explaining, and designing code. Deep problem-solving conversations. Large agentic tasks via Claude Code.</p>
+<hr>
+<p><strong>GitHub Copilot</strong> — GitHub / Microsoft · Paid (~$10/mo, free for students) · All major IDEs</p>
+<p>The original AI coding assistant, built directly into VS Code, PyCharm, Vim, and others. Copilot watches what you’re typing and suggests completions — sometimes a single word, sometimes an entire function. Also has a chat mode. Powered by OpenAI models under the hood.</p>
+<ul>
+<li>Seamlessly integrated into most editors</li>
+<li>Excellent inline autocomplete</li>
+<li>Tight GitHub integration</li>
+<li>Subscription required after trial</li>
+<li>Less strong at deep reasoning than Claude</li>
+</ul>
+<p>Best for: Day-to-day coding with inline suggestions. Pairs naturally with VS Code + GitHub.</p>
+<hr>
+<p><strong>JetBrains AI</strong> — JetBrains · Included with Pro plans · PyCharm, IntelliJ, etc.</p>
+<p>JetBrains’ native AI assistant, built into PyCharm Pro and other JetBrains IDEs. Uniquely aware of your project’s full context — not just open files, but run logs, test results, and error output — because it has access to everything the IDE already knows.</p>
+<ul>
+<li>Deep IDE integration — understands your project fully</li>
+<li>Inline suggestions + chat mode</li>
+<li>Can explain why your last test run failed (reads actual output)</li>
+<li>No extra subscription if you already have PyCharm Pro</li>
+<li>Only useful if you’re in a JetBrains IDE</li>
+</ul>
+<p>Best for: PyCharm users who want AI without adding another tool. Especially strong for test diagnosis and project-aware questions.</p>
+<hr>
+<p><strong>ChatGPT</strong> — OpenAI · Free + Paid · Web, mobile, API</p>
+<p>The most widely known AI chat interface. Strong at code generation, explanation, and debugging. Not directly embedded in IDEs by default, but can be added via extensions. The paid tier’s code interpreter can actually run your code in a sandboxed environment and show you the output — no local setup needed.</p>
+<ul>
+<li>Familiar, widely used interface</li>
+<li>Code interpreter can run code and show output (paid tier)</li>
+<li>Extremely well-documented — tutorials everywhere</li>
+<li>Less IDE-integrated than Copilot or JetBrains AI</li>
+<li>Context window smaller than Claude’s</li>
+</ul>
+<p>Best for: Quick questions, learning concepts, and exploring ideas. The code interpreter is useful when you want to test code without a local environment.</p>
+<hr>
+<p><strong>IDE-integrated vs.&nbsp;chat-based AI</strong></p>
+<p>These are different experiences, not competing ones. A chat-based AI (Claude, ChatGPT) is great for conversations — “explain this to me,” “how should I structure this?” An IDE-integrated AI (Copilot, JetBrains AI) is great for inline help — completing what you’re typing, suggesting the next line. Many developers use both: Copilot inside their editor for day-to-day suggestions, and Claude in a browser tab for harder questions.</p>
+</section>
+</section>
+<section id="virtual-environments" class="level2">
+<h2 class="anchored" data-anchor-id="virtual-environments">Virtual Environments</h2>
+<p>Keeping your projects clean and self-contained.</p>
+<p><strong>Simply put</strong></p>
+<p>Imagine you have two Python projects. Project A needs version 1 of a library. Project B needs version 2 of the same library. If you install both on the same Python installation, they conflict. A virtual environment solves this — it’s a private, isolated copy of Python and its packages for each project. When you work on Project A, you activate its environment. Everything is separate.</p>
+<p><strong>Going deeper</strong></p>
+<p>A virtual environment is a directory containing a Python interpreter (or a symlink to one), a <code>site-packages</code> folder for installed libraries, and activation scripts. When activated, your shell’s PATH is modified so that <code>python</code> and <code>pip</code> refer to the environment’s copies, not the system installation. This makes your project reproducible: a <code>requirements.txt</code> or <code>pyproject.toml</code> captures exactly which packages and versions are needed, so anyone can recreate the environment from scratch.</p>
+<p><strong>The analogy</strong></p>
+<p>Think of a virtual environment like a shipping container. Everything your project needs is packed inside it — the right version of Python, the right libraries, nothing more. You can move the container to any machine, open it, and everything works. Without it, you’re throwing your tools into a shared toolbox with everyone else’s, and eventually something breaks.</p>
+<section id="the-main-options-2" class="level3">
+<h3 class="anchored" data-anchor-id="the-main-options-2">The main options</h3>
+<p><strong>venv</strong> — Built into Python · Free · All platforms</p>
+<p>The built-in Python virtual environment tool. No installation required. Creates a <code>.venv</code> folder inside your project with everything isolated. The standard starting point for Python projects.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a virtual environment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it (Mac/Linux)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it (Windows)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Best for: Most Python projects. Simple, reliable, no extra installation.</p>
+<hr>
+<p><strong>conda / Anaconda</strong> — Anaconda Inc · Free (conda) · All platforms</p>
+<p>A package and environment manager that goes beyond Python — it can also manage non-Python dependencies (like C libraries used by NumPy or OpenCV). Anaconda comes bundled with hundreds of data science packages pre-installed. conda is the command-line tool alone.</p>
+<ul>
+<li>Handles non-Python dependencies</li>
+<li>Pre-packaged data science tools (Anaconda)</li>
+<li>Heavier than venv</li>
+<li>Can conflict with pip in subtle ways</li>
+</ul>
+<p>Best for: Data science work, machine learning, or projects with complex C-extension dependencies.</p>
+<hr>
+<p><strong>uv</strong> — Astral · Free · All platforms</p>
+<p>A new, extremely fast Python package installer and environment manager written in Rust. Replaces both pip and venv in one tool and is 10–100× faster. Rapidly gaining adoption in professional settings.</p>
+<ul>
+<li>Dramatically faster than pip</li>
+<li>Manages Python versions too</li>
+<li>Drop-in replacement for pip and venv</li>
+<li>Newer — less documentation and community resources</li>
+</ul>
+<p>Best for: Developers who want the fastest possible toolchain. Growing toward being the new default.</p>
+</section>
+</section>
+<section id="git-github" class="level2">
+<h2 class="anchored" data-anchor-id="git-github">Git &amp; GitHub</h2>
+<p>How code is saved, shared, and collaborated on.</p>
+<p><strong>Simply put</strong></p>
+<p><strong>Git</strong> is a tool that lives on your computer and tracks every change you make to your code — like a very detailed undo history that never expires. You can go back to any point in time, work on experiments without breaking anything, and merge changes from collaborators.</p>
+<p><strong>GitHub</strong> is a website where your Git history lives in the cloud — so your code is backed up, shareable, and others can contribute. They’re related but separate: Git is the technology; GitHub is the service built on top of it.</p>
+<p><strong>Going deeper</strong></p>
+<p>Git is a distributed version control system. Each repository contains a complete history of every commit — a snapshot of the codebase at a point in time. Branches allow parallel lines of development; merges (and rebases) combine them. GitHub adds: remote repository hosting, pull requests (code review workflow), Issues (bug/feature tracking), Actions (CI/CD automation), and a social layer. GitLab and Bitbucket offer similar services with different trade-offs.</p>
+<section id="key-concepts" class="level3">
+<h3 class="anchored" data-anchor-id="key-concepts">Key concepts</h3>
+<p><strong>Repository (repo)</strong> — A folder that Git is tracking. Contains your code and its entire history.</p>
+<p><strong>Commit</strong> — A saved snapshot of your code at a moment in time. Like hitting “save” — but you also write a note about what changed and why.</p>
+<p><strong>Branch</strong> — A parallel version of your code. Make changes without affecting the main version. Merge when ready.</p>
+<p><strong>Checkout</strong> — Switches to another branch — another version of your project. <code>git checkout -b</code> creates a new branch and moves you onto it.</p>
+<p><strong>Push / Pull</strong> — Push sends your commits to GitHub. Pull brings GitHub’s latest changes to your machine.</p>
+<p><strong>Pull Request (PR)</strong> — A request to merge your branch into the main branch. This is where code review happens on GitHub.</p>
+<p><strong>Clone</strong> — Download a repository from GitHub to your computer — gets the full history, not just the latest files.</p>
+<hr>
+<p><strong>Git vs GitHub vs GitLab vs Bitbucket</strong></p>
+<p>Git is the tool. GitHub, GitLab, and Bitbucket are services that host your Git repositories online. GitHub is by far the most popular, especially for open source. GitLab is popular in enterprises and has more built-in CI/CD features. Bitbucket is common in organizations already using Atlassian tools (Jira, Confluence). The Git commands you type are identical regardless of which service you use.</p>
+</section>
+</section>
+<section id="package-management" class="level2">
+<h2 class="anchored" data-anchor-id="package-management">Package Management</h2>
+<p>Installing and managing the libraries your code needs.</p>
+<p><strong>Simply put</strong></p>
+<p>Python has a vast ecosystem of open-source libraries — tools for data analysis (pandas), making web requests (requests), machine learning (scikit-learn), and thousands more. Package managers are how you install these libraries into your project. Think of them like an app store for Python code — you ask for what you need, and the package manager downloads and installs it.</p>
+<p><strong>Going deeper</strong></p>
+<p>Python packages are distributed via PyPI (Python Package Index). A package manager resolves your package list, finds compatible versions of all dependencies (including dependencies-of-dependencies), downloads them, and places them in your virtual environment’s <code>site-packages</code>. A <strong>lock file</strong> records the exact versions installed — so that running the same install command on another machine six months later produces the exact same environment.</p>
+<section id="the-main-options-3" class="level3">
+<h3 class="anchored" data-anchor-id="the-main-options-3">The main options</h3>
+<p><strong>pip</strong> — Built into Python · Free</p>
+<p>The standard Python package installer. Ships with Python. Used to install packages from PyPI with a single command. Works with a <code>requirements.txt</code> file to capture and share your project’s dependencies.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pandas</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Best for: Most situations. If you’re not sure what to use, start here.</p>
+<hr>
+<p><strong>uv (as a package manager)</strong> — Astral · Free</p>
+<p>uv can replace pip entirely — it’s a drop-in replacement that’s dramatically faster. The command interface is similar to pip, making the switch easy.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pandas</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> sync</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Best for: Developers who want the fastest possible install times.</p>
+<hr>
+<p><strong>requirements.txt and pyproject.toml</strong></p>
+<p>These are the two standard ways to declare what packages your project needs. <code>requirements.txt</code> is older and simpler — a plain list of packages. <code>pyproject.toml</code> is the modern standard — it also contains project metadata, tool configuration, and works with Poetry and uv. Both serve the same purpose: if someone else clones your project, they can install exactly what you’re using.</p>
+<hr>
+<p><a href="./index.html">← Overview</a> | <a href="./workflow.html">How It Connects →</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

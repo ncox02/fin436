@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>level3-execution-handoff – PyWorkflow</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">PyWorkflow</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../tools.html"> 
+<span class="menu-text">The Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../workflow.html"> 
+<span class="menu-text">How It Connects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../start.html"> 
+<span class="menu-text">Get Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../level2.html"> 
+<span class="menu-text">Level 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../level3.html"> 
+<span class="menu-text">Level 3+</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#level3.qmd-execution-handoff" id="toc-level3.qmd-execution-handoff" class="nav-link active" data-scroll-target="#level3.qmd-execution-handoff">level3.qmd Execution Handoff</a>
+  <ul class="collapse">
+  <li><a href="#context" id="toc-context" class="nav-link" data-scroll-target="#context">Context</a></li>
+  <li><a href="#execution-rules" id="toc-execution-rules" class="nav-link" data-scroll-target="#execution-rules">Execution rules</a></li>
+  <li><a href="#plan-document-cleanup-do-this-first-separate-commit" id="toc-plan-document-cleanup-do-this-first-separate-commit" class="nav-link" data-scroll-target="#plan-document-cleanup-do-this-first-separate-commit">Plan document cleanup (do this first, separate commit)</a></li>
+  <li><a href="#final-page-structure" id="toc-final-page-structure" class="nav-link" data-scroll-target="#final-page-structure">Final page structure</a>
+  <ul class="collapse">
+  <li><a href="#task-1-intro-overwrites-the-file" id="toc-task-1-intro-overwrites-the-file" class="nav-link" data-scroll-target="#task-1-intro-overwrites-the-file">Task 1 — Intro (overwrites the file)</a></li>
+  <li><a href="#task-2-five-steps-section" id="toc-task-2-five-steps-section" class="nav-link" data-scroll-target="#task-2-five-steps-section">Task 2 — Five steps section</a></li>
+  <li><a href="#task-3-interaction-loop" id="toc-task-3-interaction-loop" class="nav-link" data-scroll-target="#task-3-interaction-loop">Task 3 — Interaction loop</a></li>
+  <li><a href="#task-4-project-context" id="toc-task-4-project-context" class="nav-link" data-scroll-target="#task-4-project-context">Task 4 — Project context</a></li>
+  <li><a href="#task-5-scope-of-access" id="toc-task-5-scope-of-access" class="nav-link" data-scroll-target="#task-5-scope-of-access">Task 5 — Scope of access</a></li>
+  <li><a href="#task-6-the-context-window-merged" id="toc-task-6-the-context-window-merged" class="nav-link" data-scroll-target="#task-6-the-context-window-merged">Task 6 — The context window (merged)</a></li>
+  <li><a href="#task-7-planning" id="toc-task-7-planning" class="nav-link" data-scroll-target="#task-7-planning">Task 7 — Planning</a></li>
+  <li><a href="#task-8-generic-project-structure-diagram-new" id="toc-task-8-generic-project-structure-diagram-new" class="nav-link" data-scroll-target="#task-8-generic-project-structure-diagram-new">Task 8 — Generic project structure diagram (new)</a></li>
+  <li><a href="#task-9-reasoning-rewritten" id="toc-task-9-reasoning-rewritten" class="nav-link" data-scroll-target="#task-9-reasoning-rewritten">Task 9 — Reasoning (rewritten)</a></li>
+  <li><a href="#task-10-mcp-modified-transition-sentence" id="toc-task-10-mcp-modified-transition-sentence" class="nav-link" data-scroll-target="#task-10-mcp-modified-transition-sentence">Task 10 — MCP (modified transition sentence)</a></li>
+  <li><a href="#task-11-claude-code-intro-and-seven-integrations-modified" id="toc-task-11-claude-code-intro-and-seven-integrations-modified" class="nav-link" data-scroll-target="#task-11-claude-code-intro-and-seven-integrations-modified">Task 11 — Claude Code intro and seven integrations (modified)</a></li>
+  <li><a href="#task-12-sandbox-section-new" id="toc-task-12-sandbox-section-new" class="nav-link" data-scroll-target="#task-12-sandbox-section-new">Task 12 — Sandbox section (new)</a></li>
+  <li><a href="#task-13-quick-reference-table" id="toc-task-13-quick-reference-table" class="nav-link" data-scroll-target="#task-13-quick-reference-table">Task 13 — Quick Reference table</a></li>
+  </ul></li>
+  <li><a href="#summary-of-section-renumbering-vs-original-plan" id="toc-summary-of-section-renumbering-vs-original-plan" class="nav-link" data-scroll-target="#summary-of-section-renumbering-vs-original-plan">Summary of section renumbering vs original plan</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="level3.qmd-execution-handoff" class="level1">
+<h1>level3.qmd Execution Handoff</h1>
+<section id="context" class="level2">
+<h2 class="anchored" data-anchor-id="context">Context</h2>
+<ul>
+<li><strong>Branch:</strong> <code>feature/quarto-remaining</code></li>
+<li><strong>Terminal 1 (level2.qmd):</strong> Complete. Three commits landed on this branch — all <code>level2.qmd</code> only. Do not touch <code>level2.qmd</code>.</li>
+<li><strong>Terminal 2 (level3.qmd):</strong> This terminal. <code>level3.qmd</code> has not been touched yet. All work below is agreed and ready to execute.</li>
+<li><strong>Plan file:</strong> <code>docs/superpowers/plans/2026-06-06-level3-rewrite.md</code> — the original plan. This handoff supersedes it wherever the two conflict. Where a section below says “same as plan,” use the exact content from that plan file.</li>
+</ul>
+<hr>
+</section>
+<section id="execution-rules" class="level2">
+<h2 class="anchored" data-anchor-id="execution-rules">Execution rules</h2>
+<ul>
+<li>Work one section at a time. Write the section, verify it, commit, then move to the next.</li>
+<li><code>git add level3.qmd</code> only — never <code>git add .</code> or <code>git add</code> any other file.</li>
+<li>Commit message format: <code>feat: level3 — [section name]</code></li>
+<li>Do not run <code>quarto preview</code>.</li>
+<li>The first task overwrites the file. Every subsequent task appends.</li>
+<li>All content decisions are final. Do not deviate or improve on wording without user confirmation.</li>
+</ul>
+<hr>
+</section>
+<section id="plan-document-cleanup-do-this-first-separate-commit" class="level2">
+<h2 class="anchored" data-anchor-id="plan-document-cleanup-do-this-first-separate-commit">Plan document cleanup (do this first, separate commit)</h2>
+<p>Remove the <code>## Flow rationale</code> section from <code>docs/superpowers/plans/2026-06-06-level3-rewrite.md</code> (lines 13–30 of that file — the section between the goal/architecture block and Task 1). It duplicates the self-review section at the bottom.</p>
+<pre><code>git add docs/superpowers/plans/2026-06-06-level3-rewrite.md
+git commit -m "fix: level3 plan — remove duplicate flow rationale section"</code></pre>
+<hr>
+</section>
+<section id="final-page-structure" class="level2">
+<h2 class="anchored" data-anchor-id="final-page-structure">Final page structure</h2>
+<p>Sections in order. Full agreed content for every section that differs from the original plan. Where content is unchanged, “same as plan” is noted with the task number.</p>
+<hr>
+<section id="task-1-intro-overwrites-the-file" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-intro-overwrites-the-file">Task 1 — Intro (overwrites the file)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Level 3: AI in Your Terminal"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>At Level 3, the AI runs in your terminal. You describe a goal; it reads your files, writes code, runs scripts, and iterates on failures until the task is done. You review the result. What makes this more capable than Level 2 is not what the agent can see — it is that it can execute. At Level 2, you run the tests and bring errors back to the AI. At Level 3, the agent runs that loop itself.</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Most terminal AI tools require a paid subscription.** Free tiers typically provide access to web-based chat only — not the terminal agent. Check the pricing for whichever tool you use before getting started.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Level 3 is the right tool when the task requires execution — running tests, iterating across files, working through a multi-step process. For inline suggestions while you're actively writing code, the IDE is still the natural fit. The two methods complement each other; most people use both.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verify: title correct, no tagline, paid subscription callout present, Level 2 vs 3 guidance present.</p>
+<p>Commit: <code>feat: level3 — new intro</code></p>
+<hr>
+</section>
+<section id="task-2-five-steps-section" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-five-steps-section">Task 2 — Five steps section</h3>
+<p>Same as plan (Task 2). Append after a <code>---</code> divider.</p>
+<p>After appending, also append this standalone line (no heading, no surrounding text, just the blockquote):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *context engineering is the new prompt engineering*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verify: five-step table present, standalone phrase present immediately after the closing sentence of the five steps section.</p>
+<p>Commit: <code>feat: level3 — five steps section</code></p>
+<hr>
+</section>
+<section id="task-3-interaction-loop" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-interaction-loop">Task 3 — Interaction loop</h3>
+<p>Same as plan (Task 3). Append after a <code>---</code> divider.</p>
+<p>Commit: <code>feat: level3 — interaction loop section</code></p>
+<hr>
+</section>
+<section id="task-4-project-context" class="level3">
+<h3 class="anchored" data-anchor-id="task-4-project-context">Task 4 — Project context</h3>
+<p>Same as plan (Task 5 in the original plan — note the renumbering). Append after a <code>---</code> divider.</p>
+<p>Commit: <code>feat: level3 — project context section</code></p>
+<hr>
+</section>
+<section id="task-5-scope-of-access" class="level3">
+<h3 class="anchored" data-anchor-id="task-5-scope-of-access">Task 5 — Scope of access</h3>
+<p>Same as plan (Task 4 in the original plan — note the renumbering). Append after a <code>---</code> divider.</p>
+<p>Commit: <code>feat: level3 — scope of access section</code></p>
+<hr>
+</section>
+<section id="task-6-the-context-window-merged" class="level3">
+<h3 class="anchored" data-anchor-id="task-6-the-context-window-merged">Task 6 — The context window (merged)</h3>
+<p>This section replaces both Tasks 6 and 7 from the original plan. The content is reordered. Append after a <code>---</code> divider.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## The context window {#context-window}</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>As a session runs, everything accumulates in a context window: your instructions, the files the agent read, the code it wrote, the test output, your feedback. This window has a fixed size, passed back and forth with every message. Once it fills, the agent starts dropping the oldest entries to make room.</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>In practice: a session that starts well can become unreliable as context fills. The agent forgets constraints you set earlier, duplicates code it already wrote, or loses track of decisions already made. This is a fundamental property of how these models work, not a defect in any specific tool.</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Most terminal AI tools offer a compaction command — a way to summarize the current context and continue without starting a new session. This sounds useful but usually isn't. Compaction compresses the window, but the degraded reasoning from before the compaction still affects the session. Starting fresh with a written handoff produces better results.</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; *friends don't let friends compact*</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>The rule: end sessions before context degrades. Most tools display context usage somewhere; for those that don't, it is worth finding a way to make it visible. When context approaches 50%, end the session:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Write a summary of what we’ve done and what’s left to progress.md</p>
+<pre><code>
+The next session reads that file and continues cleanly.
+
+Treat sessions as bounded units of work. End the session when the immediate task is done, not when the window is full. If something needs to carry over, write it to a file. The discipline is keeping tasks small enough to complete within one healthy session.
+
+This also means avoiding open-ended prompts like "clean up the whole codebase." The scope is too large to complete before context degrades. Break large goals into specific, bounded tasks.</code></pre>
+<p>Verify: one section (not two), compaction paragraph appears before the <em>friends don’t let friends compact</em> line, 50% rule present, progress.md prompt present, bounded tasks paragraph present.</p>
+<p>Commit: <code>feat: level3 — context window section</code></p>
+<hr>
+</section>
+<section id="task-7-planning" class="level3">
+<h3 class="anchored" data-anchor-id="task-7-planning">Task 7 — Planning</h3>
+<p>Same as plan (Task 8 in the original plan). Append after a <code>---</code> divider.</p>
+<p>Commit: <code>feat: level3 — planning section</code></p>
+<hr>
+</section>
+<section id="task-8-generic-project-structure-diagram-new" class="level3">
+<h3 class="anchored" data-anchor-id="task-8-generic-project-structure-diagram-new">Task 8 — Generic project structure diagram (new)</h3>
+<p>Append after a <code>---</code> divider.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>The concepts covered so far each have a home in your project. A well-organized structure lets the agent orient itself faster and spend less of the context window getting up to speed.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>my-project/ ├── context.md ← standing instructions, read every session ├── progress.md ← handoff notes between sessions ├── docs/ │ └── plans/ ← implementation plans └── src/</p>
+<pre><code></code></pre>
+<p>No section heading. No closing sentence. The diagram follows the prose directly.</p>
+<p>Verify: prose present, directory tree present, no heading, no Claude-specific names.</p>
+<p>Commit: <code>feat: level3 — generic project structure diagram</code></p>
+<hr>
+</section>
+<section id="task-9-reasoning-rewritten" class="level3">
+<h3 class="anchored" data-anchor-id="task-9-reasoning-rewritten">Task 9 — Reasoning (rewritten)</h3>
+<p>Do not use the Reasoning content from the original plan. Use the agreed rewrite below. Append after a <code>---</code> divider.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reasoning {#reasoning}</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>By default, agents move directly from task to output. On routine tasks — write this function, run these tests — that's fine. On complex tasks — design an error handling strategy, debug a failure with multiple possible causes, choose between architectures — jumping straight to output produces results that look confident but skipped the hard part.</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>Some tools add a reasoning phase that runs before any output is produced. Before writing a line of code, the agent works through the problem explicitly: what is actually being asked, what the constraints are, what approaches exist, what the tradeoffs are. This reasoning is visible to you. If the agent's premise is wrong — it assumed you can tolerate partial writes when you can't — you catch it before it builds the wrong thing.</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>Use it on the tasks where the right answer isn't obvious upfront. On routine tasks, it adds overhead without adding value.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verify: no mention of “structured reasoning” as a general concept, no prompt examples, three paragraphs, final sentence present.</p>
+<p>Commit: <code>feat: level3 — reasoning section</code></p>
+<hr>
+</section>
+<section id="task-10-mcp-modified-transition-sentence" class="level3">
+<h3 class="anchored" data-anchor-id="task-10-mcp-modified-transition-sentence">Task 10 — MCP (modified transition sentence)</h3>
+<p>Append after a <code>---</code> divider. Use the MCP section from the original plan (Task 10) but replace the final sentence with the agreed version.</p>
+<p>Original final sentence (remove this): &gt; The integrations below cover specific MCP servers worth using with Claude Code.</p>
+<p>Replace with: &gt; Some are MCP servers; others are terminal tools that address the problems discussed above.</p>
+<p>Commit: <code>feat: level3 — MCP section</code></p>
+<hr>
+</section>
+<section id="task-11-claude-code-intro-and-seven-integrations-modified" class="level3">
+<h3 class="anchored" data-anchor-id="task-11-claude-code-intro-and-seven-integrations-modified">Task 11 — Claude Code intro and seven integrations (modified)</h3>
+<p>Append after a <code>---</code> divider. Use Task 11 from the original plan as the base, with the following changes:</p>
+<p><strong>Change 1 — Replace the opening two sentences of the Claude Code section:</strong></p>
+<p>Original (remove): &gt; The concepts above apply to any terminal AI tool. The rest of this page is specific to Claude Code.</p>
+<p>Replace with: &gt; The concepts above apply to any terminal AI tool. Claude Code is one of them. If you want to try it, the rest of this page covers an efficient setup — the tool itself plus seven integrations that implement what we’ve discussed.</p>
+<p><strong>Change 2 — Add sandbox suggestion after the transition, before the install link:</strong></p>
+<p>Insert this line after the transition paragraph and before “Install Claude Code…”:</p>
+<blockquote class="blockquote">
+<p>A project sandbox at the bottom of this page gives you a ready starting point — a folder structure that implements everything discussed, ready to copy into any project.</p>
+</blockquote>
+<p><strong>Change 3 — IDE callout: change from blockquote to plain prose:</strong></p>
+<p>Original (remove the blockquote formatting): &gt; <strong>Claude Code alongside your IDE.</strong> Many developers keep VS Code open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.</p>
+<p>Replace with plain prose (no <code>&gt;</code> prefix, no bold heading):</p>
+<p>Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.</p>
+<p><strong>All seven integrations (01–07):</strong> Same as original plan except one change in the Statusline section (#01):</p>
+<p>The <code>/compact</code> callout in Statusline currently reads: &gt; <strong>On /compact:</strong> As described in the sessions section above, starting fresh with a written summary produces better results than relying on /compact.</p>
+<p>The “sessions section above” no longer exists by that name — it is now “The context window.” The context window section also already covers this ground with “friends don’t let friends compact.” Remove the callout from Statusline entirely — it is redundant.</p>
+<p>Verify: transition sentence correct, sandbox suggestion present before install link, IDE note is plain prose not a blockquote, all seven integrations present.</p>
+<p>Commit: <code>feat: level3 — claude code intro and seven integrations</code></p>
+<hr>
+</section>
+<section id="task-12-sandbox-section-new" class="level3">
+<h3 class="anchored" data-anchor-id="task-12-sandbox-section-new">Task 12 — Sandbox section (new)</h3>
+<p>Append after a <code>---</code> divider. This section goes after Skills (#07) and before Quick Reference.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sandbox {#sandbox}</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Copy this structure into any project before your first session. Fill in <span class="in">`CLAUDE.md`</span> with your project's standing instructions and you are ready to start.</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="in">my-project/</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="in">├── CLAUDE.md                  ← project context, read every session</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">├── progress.md                ← session handoff notes</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="in">├── docs/</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── plans/                 ← implementation plans go here</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="in">├── .claude/</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="in">│   └── skills/                ← custom workflows, invoked with /skill-name</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="in">├── src/</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="in">└── tests/</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>**`CLAUDE.md` example:**</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># Project context</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">One sentence: what this project is and does.</span><span class="co">]</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>Never modify files in data/raw/.</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>All new functions need a test in tests/.</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>Full documentation for <span class="in">`CLAUDE.md`</span> and skills is at <span class="co">[</span><span class="ot">docs.anthropic.com</span><span class="co">](https://docs.anthropic.com/en/docs/claude-code/overview)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verify: section heading is <code>## Sandbox</code>, directory tree present with correct annotations, CLAUDE.md example present, docs link present, no skills file example.</p>
+<p>Commit: <code>feat: level3 — sandbox section</code></p>
+<hr>
+</section>
+<section id="task-13-quick-reference-table" class="level3">
+<h3 class="anchored" data-anchor-id="task-13-quick-reference-table">Task 13 — Quick Reference table</h3>
+<p>Same as original plan (Task 12). Column headers must be: <code>#</code>, <code>Integration</code>, <code>What it adds</code>, <code>Where to get it</code> — not “How to install.”</p>
+<p>Commit: <code>feat: level3 — quick reference table</code></p>
+<hr>
+</section>
+</section>
+<section id="summary-of-section-renumbering-vs-original-plan" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-section-renumbering-vs-original-plan">Summary of section renumbering vs original plan</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>This handoff</th>
+<th>Original plan</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Task 1</td>
+<td>Task 1</td>
+<td>Intro — sentence fixed, Level 2/3 guidance added</td>
+</tr>
+<tr class="even">
+<td>Task 2</td>
+<td>Task 2</td>
+<td>Five steps — phrase appended after</td>
+</tr>
+<tr class="odd">
+<td>Task 3</td>
+<td>Task 3</td>
+<td>Interaction loop — unchanged</td>
+</tr>
+<tr class="even">
+<td>Task 4</td>
+<td>Task 5</td>
+<td>Project context — moved up</td>
+</tr>
+<tr class="odd">
+<td>Task 5</td>
+<td>Task 4</td>
+<td>Scope of access — moved down</td>
+</tr>
+<tr class="even">
+<td>Task 6</td>
+<td>Tasks 6+7</td>
+<td>Context window — merged and reordered</td>
+</tr>
+<tr class="odd">
+<td>Task 7</td>
+<td>Task 8</td>
+<td>Planning — unchanged</td>
+</tr>
+<tr class="even">
+<td>Task 8</td>
+<td>(new)</td>
+<td>Generic project structure diagram</td>
+</tr>
+<tr class="odd">
+<td>Task 9</td>
+<td>Task 9</td>
+<td>Reasoning — fully rewritten</td>
+</tr>
+<tr class="even">
+<td>Task 10</td>
+<td>Task 10</td>
+<td>MCP — transition sentence changed</td>
+</tr>
+<tr class="odd">
+<td>Task 11</td>
+<td>Task 11</td>
+<td>Claude Code + integrations — 3 changes</td>
+</tr>
+<tr class="even">
+<td>Task 12</td>
+<td>(new)</td>
+<td>Sandbox section</td>
+</tr>
+<tr class="odd">
+<td>Task 13</td>
+<td>Task 12</td>
+<td>Quick Reference — unchanged</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

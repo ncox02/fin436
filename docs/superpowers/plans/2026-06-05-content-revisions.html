@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>content-revisions – PyWorkflow</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">PyWorkflow</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../tools.html"> 
+<span class="menu-text">The Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../workflow.html"> 
+<span class="menu-text">How It Connects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../start.html"> 
+<span class="menu-text">Get Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../level2.html"> 
+<span class="menu-text">Level 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../level3.html"> 
+<span class="menu-text">Level 3+</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#site-content-revisions-implementation-plan" id="toc-site-content-revisions-implementation-plan" class="nav-link active" data-scroll-target="#site-content-revisions-implementation-plan">Site Content Revisions Implementation Plan</a>
+  <ul class="collapse">
+  <li><a href="#task-1-nav-restructure-delete-ide-pages" id="toc-task-1-nav-restructure-delete-ide-pages" class="nav-link" data-scroll-target="#task-1-nav-restructure-delete-ide-pages">Task 1: Nav restructure + delete IDE pages</a></li>
+  <li><a href="#task-2-start.qmd-updates" id="toc-task-2-start.qmd-updates" class="nav-link" data-scroll-target="#task-2-start.qmd-updates">Task 2: start.qmd updates</a></li>
+  <li><a href="#task-3-level2.qmd-structural-changes" id="toc-task-3-level2.qmd-structural-changes" class="nav-link" data-scroll-target="#task-3-level2.qmd-structural-changes">Task 3: level2.qmd — structural changes</a></li>
+  <li><a href="#task-4-level2.qmd-exercise-accuracy-fixes" id="toc-task-4-level2.qmd-exercise-accuracy-fixes" class="nav-link" data-scroll-target="#task-4-level2.qmd-exercise-accuracy-fixes">Task 4: level2.qmd — exercise accuracy fixes</a></li>
+  <li><a href="#task-5-level3.qmd-full-rewrite" id="toc-task-5-level3.qmd-full-rewrite" class="nav-link" data-scroll-target="#task-5-level3.qmd-full-rewrite">Task 5: level3.qmd — full rewrite</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference">Quick Reference</a></li>
+  <li><a href="#final-verification" id="toc-final-verification" class="nav-link" data-scroll-target="#final-verification">Final verification</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="site-content-revisions-implementation-plan" class="level1">
+<h1>Site Content Revisions Implementation Plan</h1>
+<blockquote class="blockquote">
+<p><strong>For agentic workers:</strong> REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (<code>- [ ]</code>) syntax for tracking.</p>
+</blockquote>
+<p><strong>Goal:</strong> Apply professor feedback — nav restructure, three page deletions, start/level2/level3 content revisions, accuracy fixes.</p>
+<p><strong>Architecture:</strong> Direct edits to <code>.qmd</code> source files and <code>_quarto.yml</code>. No new files. Three IDE pages deleted. Verify with <code>quarto preview</code> after each task. All changes on <code>feature/quarto-remaining</code> branch.</p>
+<p><strong>Tech Stack:</strong> Quarto, Markdown. No build scripts — <code>quarto preview</code> is the verification step after each task.</p>
+<hr>
+<section id="task-1-nav-restructure-delete-ide-pages" class="level2">
+<h2 class="anchored" data-anchor-id="task-1-nav-restructure-delete-ide-pages">Task 1: Nav restructure + delete IDE pages</h2>
+<p><strong>Files:</strong> - Modify: <code>_quarto.yml</code> - Delete: <code>ides.qmd</code>, <code>ide-vscode.qmd</code>, <code>ide-pycharm.qmd</code> - Modify: <code>index.qmd</code> (stale link text + Level 2 description)</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 1: Replace <code>_quarto.yml</code> nav</strong></label></li>
+</ul>
+<p>Full new file content:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"PyWorkflow"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Overview</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> tools.qmd</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> The Tools</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> workflow.qmd</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> How It Connects</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> start.qmd</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Get Started</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> level2.qmd</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Level 2</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> level3.qmd</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Level 3+</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 2: Delete the three IDE pages</strong></label></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm ides.qmd ide-vscode.qmd ide-pycharm.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 3: Fix “Claude Advanced” link text in <code>index.qmd</code> (2 instances)</strong></label></li>
+</ul>
+<p>Line ~92: change <code>[Claude Advanced](level3.qmd)</code> to <code>[Level 3+](level3.qmd)</code></p>
+<p>Line ~94: change <code>[Claude Advanced](level3.qmd)</code> to <code>[Level 3+](level3.qmd)</code></p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 4: Update Level 2 description in <code>index.qmd</code> (lines ~87–89)</strong></label></li>
+</ul>
+<p>Replace:</p>
+<pre><code>This works in VS Code with GitHub Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor — an AI-first editor that pushes this pattern further and is gaining wide popularity among developers. → [Level 2: AI in Your Editor](level2.qmd)
+
+The [Level 2: AI in Your Editor](level2.qmd) page demonstrates this workflow in both VS Code and PyCharm.</code></pre>
+<p>With:</p>
+<pre><code>This works in VS Code with GitHub Copilot agent mode, and in other editors that support in-context AI. The workflow is the same regardless of which tool you use. → [Level 2: AI in Your Editor](level2.qmd)</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 5: Verify with <code>quarto preview</code></strong></label></li>
+</ul>
+<p>Click every nav item. Confirm: Overview, The Tools, How It Connects, Get Started, Level 2, Level 3+ all render. No 404s. No IDE nav links.</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 6: Commit</strong></label></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add _quarto.yml index.qmd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: remove IDE pages, reorder nav, fix stale link text in index"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="task-2-start.qmd-updates" class="level2">
+<h2 class="anchored" data-anchor-id="task-2-start.qmd-updates">Task 2: start.qmd updates</h2>
+<p><strong>Files:</strong> - Modify: <code>start.qmd</code></p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 1: Remove stale IDE reference (line ~18)</strong></label></li>
+</ul>
+<p>Delete this line entirely:</p>
+<pre><code>VS Code and Python are already installed if you followed the setup guides.</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 2: Add pip to Prerequisites</strong></label></li>
+</ul>
+<p>Replace the Prerequisites list with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Python — <span class="co">[</span><span class="ot">python.org</span><span class="co">](https://python.org)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>pip — included with Python; on some systems use <span class="in">`pip3`</span> and <span class="in">`python3`</span> instead of <span class="in">`pip`</span> and <span class="in">`python`</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Git — <span class="co">[</span><span class="ot">git-scm.com</span><span class="co">](https://git-scm.com)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>GitHub CLI — <span class="co">[</span><span class="ot">cli.github.com</span><span class="co">](https://cli.github.com)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A GitHub account — <span class="co">[</span><span class="ot">github.com</span><span class="co">](https://github.com)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 3: Rename Step 2 heading and add venv recovery note</strong></label></li>
+</ul>
+<p>Change heading from:</p>
+<pre><code>### Step 2: Install — pytest before writing anything</code></pre>
+<p>To:</p>
+<pre><code>### Step 2: Install packages</code></pre>
+<p>After the two <code>pip</code> commands in Step 2, insert:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **If your virtual environment stops working (common on Python 3.13)**</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; A known issue with Python 3.13 can break </span><span class="in">`.venv`</span><span class="at"> after certain operations. If you see errors about missing modules or an inactive environment, delete it and start over:</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Windows:**</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ```bash</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Remove-Item -Recurse -Force .venv</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; python -m venv .venv</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; .venv\Scripts\activate</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; pip install pytest</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; pip freeze &gt; requirements.txt</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ```</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">&gt;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Mac:**</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ```bash</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; rm -rf .venv</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; python3 -m venv .venv</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; source .venv/bin/activate</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; pip install pytest</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; pip freeze &gt; requirements.txt</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 4: Update Level 2 link description in “Choose your next level”</strong></label></li>
+</ul>
+<p>Find (around line 192–194):</p>
+<pre><code>Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code, PyCharm, and Cursor. *~20 minutes*</code></pre>
+<p>Replace with:</p>
+<pre><code>Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code. *~20 minutes*</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 5: Remove the duplicate “What’s next” section</strong></label></li>
+</ul>
+<p>The file ends with two sections covering Level 2/3 links: “Choose your next level” and then “What’s next”. Delete the entire <code>## What's next</code> section (everything from that heading to end of file). The file should end after the Level 4 link under “Choose your next level”.</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 6: Add “What you just did” summary before “Choose your next level”</strong></label></li>
+</ul>
+<p>Insert immediately before the <code>## Choose your next level</code> heading:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## What you just did {#summary}</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>You set up a professional Python development environment from scratch. Here is what each piece is for:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Virtual environment (`.venv`)** — An isolated Python installation for this project. Packages you install here don't affect any other project. The <span class="in">`(.venv)`</span> in your terminal prompt confirms it's active.</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**pytest** — A testing framework that checks whether your code does what you expect. <span class="in">`requirements.txt`</span> records that your project needs it so anyone who clones the repo can recreate your setup with <span class="in">`pip install -r requirements.txt`</span>.</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Git repository** — A record of every change to your code. Every <span class="in">`git commit`</span> is a named snapshot you can return to.</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**GitHub** — A remote copy of your repository. <span class="in">`git push`</span> sends your latest commits there — your backup and sharing mechanism.</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>The workflow you ran — organize → install → write → test → share — is the same sequence every Python project follows. You've done it once end-to-end. Everything that comes next builds on this foundation.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 7: Verify with <code>quarto preview</code></strong></label></li>
+</ul>
+<p>Navigate to Get Started. Confirm: pip in prerequisites, Step 2 heading updated, venv recovery note present, no “setup guides” reference, “What you just did” section appears before “Choose your next level”, Level 2 description says VS Code only, no duplicate “What’s next” at bottom.</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 8: Commit</strong></label></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add start.qmd</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: start.qmd — pip prereq, venv recovery, summary section, remove duplicates"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="task-3-level2.qmd-structural-changes" class="level2">
+<h2 class="anchored" data-anchor-id="task-3-level2.qmd-structural-changes">Task 3: level2.qmd — structural changes</h2>
+<p><strong>Files:</strong> - Modify: <code>level2.qmd</code></p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 1: Reformat “Standardizing the Workflow” to Before/After</strong></label></li>
+</ul>
+<p>Find the Standardizing the Workflow section. The five steps currently read as <code>**Step:** Before sentence. After sentence.</code></p>
+<p>Replace the body of the section with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>You already know the five-step development workflow. Here is what changes at each step when AI lives inside your editor.</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>**Organize**</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>**Before:** In a browser, you describe your project in a chat window with no file access.</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>**After:** In the editor, you open the chat sidebar and describe what you want to build — AI proposes structure and logic before a single file exists.</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>**Write**</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>**Before:** In a browser, you copy code from chat, switch windows, and paste manually.</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>**After:** In the editor, ghost text appears inline as you type — press <span class="in">`Tab`</span> to accept, no switching.</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>**Test**</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>**Before:** In a browser, you copy the error message, open a new chat, and re-explain the context.</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>**After:** In the editor, you click the Copilot icon next to the terminal error and AI reads the crash log directly.</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>**Share**</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>**Before:** In a browser, you write your own commit message.</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>**After:** In the editor, you click the sparkle button in the Source Control panel and AI reads your diff and writes it.</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>**Deploy:** Out of scope for Level 2.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 2: Rewrite Exercise 1 — Blueprint Prompt (Option B)</strong></label></li>
+</ul>
+<p>Replace the Exercise 1 Action + Takeaway with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>**Action:**</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Open VS Code. Open the Copilot Chat sidebar. Do not open any files yet. Send this prompt:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>I want to build a Python project that calculates compound interest over time for a given principal, rate, and number of years. It should also compare different compounding frequencies (annual, monthly, daily). Before writing any code, describe the structure and logic — what functions are needed, what they take as input, and what they return.</p>
+<pre><code>
+Read the response. If anything is unclear, ask a follow-up before moving on.
+
+**Takeaway:** AI reasons about structure before a single file exists. This is the right order of operations — understand the design first, then build it. The session keeps this context available for every exercise that follows.</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 3: Rewrite Exercise 2 — Scaffold Generation (Option B)</strong></label></li>
+</ul>
+<p>Replace the Exercise 2 Action + Takeaway with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>**Action:**</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>In the same chat session, send this prompt:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now create the folder and file structure for this project. I need you to actually create the folders and empty files — not just suggest commands for me to run. Keep it simple: no frameworks, just clean Python modules.</p>
+<pre><code>
+If you are using **Copilot agent mode** (select "Agent" from the dropdown at the top of the chat panel), Copilot will create the folders and files directly. Switch to agent mode before sending this prompt.
+
+If you are in standard chat mode, Copilot will give you terminal commands. Run them in the VS Code integrated terminal (`` Ctrl+` ``).
+
+**Takeaway:** AI generates and builds the project skeleton from a plain-English description. You reviewed the plan before committing to any structure — that is the right order of operations.</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 4: Update “Editor &amp; Context” section</strong></label></li>
+</ul>
+<p>Find the “Editor &amp; Context” section near the bottom of the file.</p>
+<p><strong>Remove the last sentence</strong> of the editor paragraph (currently ends with “The capability matters; the specific tool is secondary.” — delete that sentence only).</p>
+<p><strong>Replace the file context explanation</strong> (the paragraph mentioning <code>#filename</code>) with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">### How file context works</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>When you open a file and open the Copilot Chat sidebar, the AI has already read your open file. For files you want to reference explicitly, open them in VS Code first — Copilot reads all open files as part of its context. You can also attach specific files using the file attachment button in the chat panel.</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>File context becomes meaningful starting at Exercise 5. The earlier exercises work from plain-English descriptions alone.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 5: Replace the IDE section intro</strong></label></li>
+</ul>
+<p>Find the paragraph discussing PyCharm, Cursor, Zed, Windsurf. Replace with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">### Your editor, your choice</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Everything on this page uses VS Code with GitHub Copilot. If you are using PyCharm, Cursor, or another AI-capable editor, the exercises map directly — the features have different names but the same purpose. Ask your editor's AI assistant to walk you through the equivalent of each exercise. Refactor, inline edit, explain, and test generation all exist in every major AI editor.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 6: Add concept list at end of page</strong></label></li>
+</ul>
+<p>After the “What Comes Next: Level 3” section at the end of the file, append:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Want to understand what you just used? {#concepts}</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">The exercises above introduced several concepts worth exploring on their own. Ask AI about any of these to go deeper:</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">- **Module** — a `.py` file that can be imported by other files</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">- **Import** — how one Python file uses code defined in another</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">- **Helper function** — a small function with one job, called by larger functions</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">- **Type annotation** — `def f(x: float) -&gt; float:` — declaring what types a function expects and returns</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">- **Virtual environment** — why Python projects isolate their packages</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">- **pytest fixture** — reusable setup code for tests</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">- **Vectorization** — why operating on whole arrays is faster than looping row-by-row</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">- **Docstring** — the standard way to document what a function does</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">- **Stack trace** — how to read a Python error from bottom to top</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 7: Verify with <code>quarto preview</code></strong></label></li>
+</ul>
+<p>Navigate to Level 2. Confirm: Standardizing the Workflow shows Before/After, Exercises 1–2 describe agent scaffold creation, Editor &amp; Context has no <code>#filename</code> syntax and no last sentence, concept list at bottom.</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 8: Commit</strong></label></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add level2.qmd</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: level2 structural — before/after workflow, ex 1-2 rewrite, concept list, editor section"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="task-4-level2.qmd-exercise-accuracy-fixes" class="level2">
+<h2 class="anchored" data-anchor-id="task-4-level2.qmd-exercise-accuracy-fixes">Task 4: level2.qmd — exercise accuracy fixes</h2>
+<p><strong>Files:</strong> - Modify: <code>level2.qmd</code></p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 1: Exercise 3 — explain utils.py before asking user to open it</strong></label></li>
+</ul>
+<p>Add this line immediately before “Open your <code>utils.py</code> file”:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="in">`utils.py`</span> is the utility file from the project scaffold you created in Exercise 2 — where shared helper functions live that are used across the project.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 2: Exercise 4 — lead with Ctrl+I, demote ghost text</strong></label></li>
+</ul>
+<p>Replace the Action block with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>**Action:**</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Create <span class="in">`compound.py`</span> and paste this starter code:</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_compound_interest(principal: <span class="bu">float</span>, rate: <span class="bu">float</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                                years: <span class="bu">int</span>, n: <span class="bu">int</span> <span class="op">=</span> <span class="dv">12</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate compound interest using the standard formula.</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># principal: starting amount</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rate: annual interest rate as a decimal (e.g. 0.05 for 5%)</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># years: number of years to compound</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n: compounding frequency per year (default: monthly)</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the final balance after the compounding period.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Place your cursor at the end of the last comment line. Press <code>Ctrl+I</code> to open inline edit and send:</p>
+<pre><code>Complete this function based on the comments.</code></pre>
+<p>Review the generated body before accepting.</p>
+<p>(You may also see ghost text appear automatically — if so, press <code>Tab</code> to accept it instead of using <code>Ctrl+I</code>.)</p>
+<pre><code>
+Replace the Takeaway with:
+```markdown
+**Takeaway:** Describing intent in comments before writing code produces accurate completions. `Ctrl+I` gives you direct control; ghost text is the passive version of the same thing.</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 3: Exercise 7 — add edge cases to the prompt</strong></label></li>
+</ul>
+<p>Replace the prompt block and the sentence about the Copilot debug feature with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Select the function. Open Copilot Chat and send:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Review this function for correctness. Are there any bugs — inputs that would produce a wrong result or raise an error? Also identify any edge cases I haven’t handled. Be specific about where each problem is and why it occurs.</p>
+<pre><code>
+If you see a **Copilot debug icon** appear next to the function, you can click it to trigger an automatic review — this is a newer Copilot feature that may or may not be available depending on your version. The manual prompt above always works.</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 4: Exercise 8 — simplify to right-click Refactor</strong></label></li>
+</ul>
+<p>Replace the entire Action block (Steps 1–3, test data generation, speed measurement) with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>**Action:**</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>Create <span class="in">`pipeline.py`</span> and paste this function:</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_sales(df: pd.DataFrame, year: <span class="bu">int</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> []</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df)):</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> df.iloc[i]</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">"year"</span>] <span class="op">==</span> year:</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>            margin <span class="op">=</span> (row[<span class="st">"revenue"</span>] <span class="op">-</span> row[<span class="st">"cost"</span>]) <span class="op">/</span> row[<span class="st">"revenue"</span>]</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>            results.append({</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">"product"</span>: row[<span class="st">"product"</span>],</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"revenue"</span>: row[<span class="st">"revenue"</span>],</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"margin"</span>: margin</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> pd.DataFrame(results)</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> summary.sort_values(<span class="st">"margin"</span>)</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(summary)):</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> total <span class="op">+</span> summary.iloc[i][<span class="st">"revenue"</span>]</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    summary[<span class="st">"revenue_share"</span>] <span class="op">=</span> summary[<span class="st">"revenue"</span>] <span class="op">/</span> total</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Select the entire function. Right-click and choose <strong>Copilot → Review and Comment</strong> (or <strong>Refactor</strong>, depending on your version).</p>
+<p>Read what AI identifies. You don’t need to apply the refactored version — the point is seeing AI explain why row-by-row iteration is slow and what the vectorized alternative looks like.</p>
+<pre><code>
+Replace the Takeaway with:
+```markdown
+**Takeaway:** AI knows every vectorization idiom in pandas and can identify the performance problem with one right-click. You didn't need to search documentation or guess at the issue.</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 5: Exercise 10 — fix Ctrl+I description</strong></label></li>
+</ul>
+<p>Replace the Action block with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>**Action:**</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>Place your cursor inside <span class="in">`calculate_compound_interest`</span> in <span class="in">`compound.py`</span>, on the line just below the <span class="in">`def`</span> line. Open Copilot Chat and type:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>/doc</p>
+<pre><code>
+A Google-style docstring should be generated and inserted at the correct location. Review it — does it accurately describe the parameters and return value?
+
+(Note: `Ctrl+I` opens the chat panel, not a separate inline editing mode. `/doc` is the command that triggers documentation generation.)</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 6: Exercise 11 — shorten prompt, add edge cases</strong></label></li>
+</ul>
+<p>Replace the prompt block with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="an">Open Copilot Chat and send:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Write pytest functions for calculate_compound_interest. Cover the normal case, edge cases (rate of 0, years of 0), and invalid inputs that should raise ValueError. Use only pytest, no fixtures.</p>
+<pre><code>
+Save the output to `test_compound.py`. Read each test before running it — AI-generated tests occasionally test the wrong behavior. Then run:
+</code></pre>
+<p>pytest test_compound.py -v</p>
+<pre><code>
+If tests fail with import or module errors, confirm your `.venv` is active and pytest is installed (`pip install pytest`).</code></pre>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 7: Verify with <code>quarto preview</code></strong></label></li>
+</ul>
+<p>Navigate to Level 2. Confirm: Ex 3 explains utils.py, Ex 4 leads with Ctrl+I, Ex 7 includes edge cases, Ex 8 has no test data or speed comparison, Ex 10 describes /doc in chat, Ex 11 has shortened prompt.</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 8: Commit</strong></label></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add level2.qmd</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"fix: level2 exercise accuracy — utils.py, ctrl+i, edge cases, refactor, /doc, pytest"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="task-5-level3.qmd-full-rewrite" class="level2">
+<h2 class="anchored" data-anchor-id="task-5-level3.qmd-full-rewrite">Task 5: level3.qmd — full rewrite</h2>
+<p><strong>Files:</strong> - Modify: <code>level3.qmd</code></p>
+<p>Replace the entire file with the following content:</p>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Step 1: Write new <code>level3.qmd</code></strong></label></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Level 3: Claude Code and Beyond"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>*Dedicated coding agent — AI in your terminal with full environment access*</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>At Level 3, the AI moves out of the editor and into your terminal. It can read files, write code, run scripts, install packages, and iterate on its own until a task is complete. Seven integrations make it significantly more capable.</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Paid subscription required.** Claude Code requires an Anthropic account with a paid plan ($20/month Pro). It is not available on the free tier.</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Claude Code is the example on this page.** Other terminal-level tools exist — Aider, Cursor agent mode, Gemini CLI, and others follow the same principles. The integrations below are Claude Code-specific, but the workflow concepts apply across tools.</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Before and after {#before-after}</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> Level 2 <span class="pp">|</span> Level 3+ <span class="pp">|</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Where AI lives** <span class="pp">|</span> Inside your editor <span class="pp">|</span> In your terminal <span class="pp">|</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **What AI can see** <span class="pp">|</span> Open files, project folder <span class="pp">|</span> Everything on your machine <span class="pp">|</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **What AI can do** <span class="pp">|</span> Propose changes, generate code <span class="pp">|</span> Run code, install packages, read output, iterate <span class="pp">|</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Your role** <span class="pp">|</span> Review diffs, accept or reject <span class="pp">|</span> Describe the goal, come back to results <span class="pp">|</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **The constraint** <span class="pp">|</span> AI suggests but cannot execute <span class="pp">|</span> No constraint — AI acts <span class="pp">|</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>The five-step workflow is still there. What changes is who does the manual steps. At Level 2, you run tests and copy the output back into chat. At Level 3, the agent runs the tests itself and iterates on the failure without you in the loop.</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting started {#getting-started}</span></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>Install Claude Code and find platform-specific setup instructions at the official terminal guide:</span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>**[code.claude.com/docs/en/terminal-guide#windows](https://code.claude.com/docs/en/terminal-guide#windows)**</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>Once installed, navigate to your project and type <span class="in">`claude`</span> to start a session. You talk to it in plain English. It reads your files, writes code, runs scripts, sees the output, and reports back.</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>**Example session:**</span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>*You type:*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Read my project and summarize what it does and how it’s structured.</p>
+<pre><code>
+*Claude does:* Reads every file in the directory and gives a plain-English summary of the project's structure, purpose, and main components.
+
+*You type:*</code></pre>
+<p>Write a function in analysis.py that groups sales by region and returns a sorted DataFrame. Then write a test for it and run it.</p>
+<pre><code>
+*Claude does:* Writes the function, writes the test, runs it, reads the output, fixes any failure, and reports the result.
+
+&gt; **Claude Code alongside your IDE.** Many developers keep VS Code open to read and review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed. They complement each other.
+
+---
+
+## The core problem: context {#context}
+
+Before installing any integrations, understand the most important concept for working effectively with Claude Code: the context window.
+
+When a session starts, Claude knows nothing about your project. As you give commands, all of that information accumulates in a context window — a fixed-size memory passed back and forth with every message. Once it's full, Claude starts forgetting earlier entries to make room for new ones.
+
+In practice, a session can start sharp and become unreliable as context fills — forgetting constraints you set earlier, writing duplicate code, losing track of decisions already made. This is a fundamental property of how these models work.
+
+&gt; **The rule: don't let context go past ~50%**
+&gt;
+&gt; The statusline (integration 01 below) shows the exact percentage. When it approaches 50%, end the session and start fresh. Before ending:
+&gt;
+&gt; ```
+&gt; Write a summary of what we've done and what's left to progress.md
+&gt; ```
+&gt;
+&gt; The next session starts by reading that file.
+
+---
+
+## 01 — Statusline {#statusline}
+
+*Make context usage visible — the most critical metric in a session*
+
+The statusline adds a persistent bar at the bottom of your terminal showing context window percentage, session cost, model name, elapsed time, and git status. Without it, you only notice context degradation when Claude starts making mistakes. With it, you can end sessions before quality drops.
+
+Find install instructions in the Claude Code documentation or by asking Claude: `How do I install the statusline?`
+
+&gt; **Windows note:** The setup wizard sometimes fails on Windows. If the guided setup doesn't complete, install manually: `npx cc-statusline@latest` in your terminal.
+
+&gt; **On /compact: don't rely on it.** Claude Code has a `/compact` command that summarizes the conversation and starts fresh. It's tempting but usually counterproductive — some degraded context remains after compaction. A clean session start with a written summary produces better results.
+
+---
+
+## 02 — Superpowers {#superpowers}
+
+*Structured sub-agent workflows — the highest-impact single install*
+
+Superpowers is a Claude Code plugin that enables sub-agent workflows: instead of one session accumulating context until it degrades, your main Claude instance acts as an orchestrator and dispatches specialized sub-agents to do focused work — each in its own fresh context window. Code writer, code reviewer, test writer — each starts fresh. The orchestrator receives summaries, not full workloads.
+
+Superpowers also enforces a planning workflow: brainstorm first, write a spec, implement from the spec. This alone produces significantly better output quality than ad-hoc requests.
+
+Install via the Claude Code plugin menu — type `/plugin` inside a session and find Superpowers in the list.
+
+&gt; If you install one thing from this page, install Superpowers. The shift from ad-hoc requests to plan-driven development with sub-agents is the biggest quality jump available in Claude Code.
+
+---
+
+## 03 — Sequential Thinking {#sequential-thinking}
+
+*Deeper reasoning for complex problems*
+
+Sequential Thinking is an MCP server that adds structured chain-of-thought reasoning to Claude Code. Before acting on complex tasks, Claude works through a visible step-by-step reasoning process — understand the problem, identify constraints, consider approaches, then implement. You can catch wrong reasoning before it produces wrong code.
+
+**What MCP means:** Model Context Protocol is an open standard that lets Claude Code connect to external tools as built-in capabilities. You configure an MCP server once; it's available in every session.
+
+Ask Claude to install it for you: `Please install the sequential thinking MCP server`
+
+---
+
+## 04 — Context7 {#context7}
+
+*Up-to-date library documentation — eliminates hallucinated APIs*
+
+Claude Code's training data has a cutoff date. When you ask it to use a library, it works from training data that may be months out of date — confidently using deprecated methods or renamed APIs. Context7 fixes this. It's a Claude plugin that pulls current, version-specific documentation from live repositories and injects it into Claude's context when you ask about a library.
+
+Use it by adding `use context7` to any prompt involving a library:
+</code></pre>
+<p>Build a FastAPI endpoint that validates JSON input. use context7</p>
+<pre><code>
+Install via the Claude Code plugin menu — type `/plugin` inside a session and find Context7 in the list.
+
+---
+
+## 05 — Warp {#warp}
+
+*A better terminal for running Claude Code*
+
+Warp is a modern terminal application — a replacement for Windows Terminal, Mac Terminal, or the terminal built into VS Code. You run Claude Code *inside* Warp.
+
+The key features for Claude Code use: split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran.
+
+Download from [warp.dev](https://warp.dev) — available for Mac, Linux, and Windows. Free tier covers standard use.
+
+---
+
+## 06 — Happy Engineering {#mobile}
+
+*Full terminal access from your phone*
+
+Happy Engineering runs a live terminal session on your computer that you control from your phone's browser. When you connect from your phone, you are controlling the actual terminal on your machine — Superpowers, Context7, everything you've configured is available. Tasks you start on your phone continue running on your computer.
+
+Install from [happy.engineering](https://happy.engineering). Free and open source.
+
+---
+
+## 07 — Skills {#skills}
+
+*Custom reusable workflows for tasks you do repeatedly*
+
+Skills are markdown files in `.claude/skills/` that Claude Code reads when you invoke them. Instead of re-explaining a process every session, you encode it once and call it with `/skill-name`.
+</code></pre>
+<p>.claude/ skills/ add-module.md ← invoked with /add-module run-analysis.md ← invoked with /run-analysis</p>
+<pre><code>
+Build skills using Superpowers — describe the repetitive task in detail and ask it to create the skill for you. After a few feedback iterations, the skill becomes a reliable automation available in every session.
+
+---
+
+## Prompting and workflow {#prompting}
+
+Level 3 requires different habits than Level 2. At Level 2, a vague prompt produces a suggestion you can reject. At Level 3, a vague prompt can produce file changes across your project before you realize the direction is wrong.
+
+**Scope every request explicitly.**
+</code></pre>
+<p>❌ “Clean up my codebase” ✅ “Refactor the error handling in src/pipeline.py only. Don’t change function signatures. Don’t touch any other files.”</p>
+<pre><code>
+**CLAUDE.md — persistent session context.**
+
+`CLAUDE.md` is a markdown file in your project root that Claude Code reads at the start of every session. Write your standing instructions here once — project structure, conventions, what to avoid. Every session starts with that context already loaded.
+
+```markdown
+# Project context
+
+Python data pipeline. Use pandas for all data work.
+Every new function needs a docstring and a test in tests/.
+Never modify files in data/raw/.</code></pre>
+<p><strong>Skills — explicit invocation.</strong></p>
+<p>Skills do not activate automatically unless you configure them to in CLAUDE.md. Invoke them by name (<code>/skill-name</code>). To have Claude use a skill automatically on a category of task, add the instruction to CLAUDE.md:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># In CLAUDE.md</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>Before implementing any new feature, use the brainstorming skill.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To exclude a skill from a specific task: “Don’t use the debugging skill for this — just make the fix.”</p>
+<p><strong>Keep sessions short.</strong></p>
+<p>End sessions when the task is complete, not when context is full. A clean session start with a written summary always produces better results than continuing a degraded session.</p>
+<hr>
+</section>
+<section id="quick-reference" class="level2">
+<h2 class="anchored" data-anchor-id="quick-reference">Quick Reference</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Integration</th>
+<th>What it adds</th>
+<th>Where to get it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>01</td>
+<td>Statusline</td>
+<td>Context %, session cost, model, git branch</td>
+<td>Claude Code docs</td>
+</tr>
+<tr class="even">
+<td>02</td>
+<td>Superpowers</td>
+<td>Sub-agent workflows: brainstorm → plan → execute</td>
+<td><code>/plugin</code> inside Claude Code</td>
+</tr>
+<tr class="odd">
+<td>03</td>
+<td>Sequential Thinking</td>
+<td>Chain-of-thought reasoning before complex tasks</td>
+<td>Ask Claude: “install the sequential thinking MCP server”</td>
+</tr>
+<tr class="even">
+<td>04</td>
+<td>Context7</td>
+<td>Current library docs at prompt time</td>
+<td><code>/plugin</code> inside Claude Code</td>
+</tr>
+<tr class="odd">
+<td>05</td>
+<td>Warp</td>
+<td>Split panes, file panel, block output</td>
+<td><a href="https://warp.dev">warp.dev</a></td>
+</tr>
+<tr class="even">
+<td>06</td>
+<td>Happy Engineering</td>
+<td>Full terminal access from your phone</td>
+<td><a href="https://happy.engineering">happy.engineering</a></td>
+</tr>
+<tr class="odd">
+<td>07</td>
+<td>Skills</td>
+<td>Reusable workflows for repetitive tasks</td>
+<td>Create <code>.claude/skills/skillname.md</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code>
+- [ ] **Step 2: Verify with `quarto preview`**
+
+Navigate to Level 3+. Confirm: title is "Level 3: Claude Code and Beyond", paid subscription callout at top, Before/After table is the first section after intro, no setup code blocks (Windows wizard note with `npx cc-statusline@latest` is the only command shown), no keyboard shortcuts in Warp section, prompting section present, Quick Reference table header says "Quick Reference" only.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add level3.qmd
+git commit -m "feat: rewrite level3 — before/after, stripped setup, prompting/workflow section, quick reference"</code></pre>
+<hr>
+</section>
+<section id="final-verification" class="level2">
+<h2 class="anchored" data-anchor-id="final-verification">Final verification</h2>
+<ul class="task-list">
+<li><label><input type="checkbox"><code>quarto preview</code> — click through every page end-to-end</label></li>
+<li><label><input type="checkbox">Nav order: Overview → The Tools → How It Connects → Get Started → Level 2 → Level 3+</label></li>
+<li><label><input type="checkbox">No references to deleted IDE pages anywhere</label></li>
+<li><label><input type="checkbox">No “Claude Advanced” link text remaining</label></li>
+<li><label><input type="checkbox">No “Cursor” as Level 2 tool (Cursor in index.qmd overview as example IDE is fine)</label></li>
+<li><label><input type="checkbox">Quick Reference heading does not say “all seven”</label></li>
+<li><label><input type="checkbox">Run <code>superpowers:finishing-a-development-branch</code> to merge</label></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

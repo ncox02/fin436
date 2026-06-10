@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Level 2: AI in Your Editor – PyWorkflow</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">PyWorkflow</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tools.html"> 
+<span class="menu-text">The Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./workflow.html"> 
+<span class="menu-text">How It Connects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./start.html"> 
+<span class="menu-text">Get Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./level2.html" aria-current="page"> 
+<span class="menu-text">Level 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./level3.html"> 
+<span class="menu-text">Level 3+</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#standardizing-the-workflow" id="toc-standardizing-the-workflow" class="nav-link active" data-scroll-target="#standardizing-the-workflow">Standardizing the workflow</a></li>
+  <li><a href="#the-exercises" id="toc-the-exercises" class="nav-link" data-scroll-target="#the-exercises">The exercises</a></li>
+  <li><a href="#phase-a-organize-plan" id="toc-phase-a-organize-plan" class="nav-link" data-scroll-target="#phase-a-organize-plan">Phase A: Organize &amp; plan</a>
+  <ul class="collapse">
+  <li><a href="#ex1" id="toc-ex1" class="nav-link" data-scroll-target="#ex1">Exercise 1 — Blueprint prompt</a></li>
+  <li><a href="#ex2" id="toc-ex2" class="nav-link" data-scroll-target="#ex2">Exercise 2 — Scaffold generation</a></li>
+  </ul></li>
+  <li><a href="#phase-b-writing-code" id="toc-phase-b-writing-code" class="nav-link" data-scroll-target="#phase-b-writing-code">Phase B: Writing code</a>
+  <ul class="collapse">
+  <li><a href="#ex3" id="toc-ex3" class="nav-link" data-scroll-target="#ex3">Exercise 3 — Comment-driven generation</a></li>
+  <li><a href="#ex4" id="toc-ex4" class="nav-link" data-scroll-target="#ex4">Exercise 4 — Finish starter code</a></li>
+  <li><a href="#ex5" id="toc-ex5" class="nav-link" data-scroll-target="#ex5">Exercise 5 — Cross-file context</a></li>
+  </ul></li>
+  <li><a href="#phase-c-understand-debug-refactor" id="toc-phase-c-understand-debug-refactor" class="nav-link" data-scroll-target="#phase-c-understand-debug-refactor">Phase C: Understand, debug &amp; refactor</a>
+  <ul class="collapse">
+  <li><a href="#ex6" id="toc-ex6" class="nav-link" data-scroll-target="#ex6">Exercise 6 — Explain a block</a></li>
+  <li><a href="#ex7" id="toc-ex7" class="nav-link" data-scroll-target="#ex7">Exercise 7 — Spot a bug</a></li>
+  <li><a href="#ex8" id="toc-ex8" class="nav-link" data-scroll-target="#ex8">Exercise 8 — Refactor for performance</a></li>
+  <li><a href="#ex9" id="toc-ex9" class="nav-link" data-scroll-target="#ex9">Exercise 9 — Terminal crash fix</a></li>
+  </ul></li>
+  <li><a href="#phase-d-test-document-share" id="toc-phase-d-test-document-share" class="nav-link" data-scroll-target="#phase-d-test-document-share">Phase D: Test, document &amp; share</a>
+  <ul class="collapse">
+  <li><a href="#ex10" id="toc-ex10" class="nav-link" data-scroll-target="#ex10">Exercise 10 — Generate a docstring</a></li>
+  <li><a href="#ex11" id="toc-ex11" class="nav-link" data-scroll-target="#ex11">Exercise 11 — Generate pytest cases</a></li>
+  <li><a href="#ex12" id="toc-ex12" class="nav-link" data-scroll-target="#ex12">Exercise 12 — Git commit via sparkle button</a></li>
+  </ul></li>
+  <li><a href="#prompt-engineering" id="toc-prompt-engineering" class="nav-link" data-scroll-target="#prompt-engineering">Prompt engineering</a>
+  <ul class="collapse">
+  <li><a href="#give-context-before-the-ask" id="toc-give-context-before-the-ask" class="nav-link" data-scroll-target="#give-context-before-the-ask">1. Give context before the ask</a></li>
+  <li><a href="#constrain-the-scope-explicitly" id="toc-constrain-the-scope-explicitly" class="nav-link" data-scroll-target="#constrain-the-scope-explicitly">2. Constrain the scope explicitly</a></li>
+  <li><a href="#ask-for-a-plan-before-you-ask-for-code" id="toc-ask-for-a-plan-before-you-ask-for-code" class="nav-link" data-scroll-target="#ask-for-a-plan-before-you-ask-for-code">3. Ask for a plan before you ask for code</a></li>
+  <li><a href="#tell-it-your-level-and-what-you-want-to-learn" id="toc-tell-it-your-level-and-what-you-want-to-learn" class="nav-link" data-scroll-target="#tell-it-your-level-and-what-you-want-to-learn">4. Tell it your level and what you want to learn</a></li>
+  <li><a href="#example-prompt-combining-all-four" id="toc-example-prompt-combining-all-four" class="nav-link" data-scroll-target="#example-prompt-combining-all-four">Example prompt combining all four</a></li>
+  </ul></li>
+  <li><a href="#editor-context" id="toc-editor-context" class="nav-link" data-scroll-target="#editor-context">Editor &amp; context</a>
+  <ul class="collapse">
+  <li><a href="#your-editor-your-choice" id="toc-your-editor-your-choice" class="nav-link" data-scroll-target="#your-editor-your-choice">Your editor, your choice</a></li>
+  <li><a href="#how-file-context-works" id="toc-how-file-context-works" class="nav-link" data-scroll-target="#how-file-context-works">How file context works</a></li>
+  </ul></li>
+  <li><a href="#what-comes-next-level-3" id="toc-what-comes-next-level-3" class="nav-link" data-scroll-target="#what-comes-next-level-3">What comes next: Level 3</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Level 2: AI in Your Editor</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two tools: the <strong>Main Editor Window</strong> and the <strong>Copilot Chat Sidebar</strong>.</p>
+<hr>
+<section id="standardizing-the-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="standardizing-the-workflow">Standardizing the workflow</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 38%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Organize</strong></td>
+<td>In a browser, describe your project in a chat window with no file access</td>
+<td>In the editor, open the chat sidebar and describe what you want to build — AI proposes structure and logic before a single file exists</td>
+</tr>
+<tr class="even">
+<td><strong>Write</strong></td>
+<td>In a browser, copy code from chat, switch windows, paste manually</td>
+<td>In the editor, ghost text appears inline as you type — press <code>Tab</code> to accept, no switching</td>
+</tr>
+<tr class="odd">
+<td><strong>Test</strong></td>
+<td>In a browser, copy the error message, open a new chat, re-explain the context</td>
+<td>In the editor, click the Copilot icon next to the terminal error and AI reads the crash log directly</td>
+</tr>
+<tr class="even">
+<td><strong>Share</strong></td>
+<td>In a browser, write your own commit message</td>
+<td>In the editor, click the sparkle button in the Source Control panel and AI reads your diff and writes it</td>
+</tr>
+<tr class="odd">
+<td><strong>Deploy</strong></td>
+<td>Out of scope for this level</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Level 2 has two keys: <code>Tab</code> accepts what AI proposes. <code>Ctrl+I</code> opens Copilot Chat. Everything else is reading and deciding.</p>
+<hr>
+</section>
+<section id="the-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="the-exercises">The exercises</h2>
+<p>Twelve exercises across four phases. Each one proves a specific capability that browser chat cannot match. Do them in order — the compound interest project builds across phases and the terminal does not appear until Exercise 9.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Exercise</th>
+<th>AI capability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><a href="#ex1">Blueprint prompt</a></td>
+<td>Copilot Chat plans project structure from a plain-English description</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><a href="#ex2">Scaffold generation</a></td>
+<td>Agent mode creates folders and files directly</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><a href="#ex3">Comment-driven generation</a></td>
+<td>Ghost text completes a function from a comment spec</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><a href="#ex4">Finish starter code</a></td>
+<td>Inline edit completes a function from its comments</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><a href="#ex5">Cross-file context</a></td>
+<td><code>#filename</code> references give the AI access to multiple files at once</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><a href="#ex6">Explain a block</a></td>
+<td>Right-click → Explain generates an on-demand explanation</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><a href="#ex7">Spot a bug</a></td>
+<td>Copilot Chat reviews a function for bugs and edge cases</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><a href="#ex8">Refactor for performance</a></td>
+<td>Right-click → Review identifies a performance problem and the fix</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><a href="#ex9">Terminal crash fix</a></td>
+<td>Terminal error hook connects a crash directly to AI</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><a href="#ex10">Generate a docstring</a></td>
+<td><code>/doc</code> generates documentation in two keystrokes</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><a href="#ex11">Generate pytest cases</a></td>
+<td>Copilot Chat generates a full test suite from a description</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td><a href="#ex12">Git commit via sparkle button</a></td>
+<td>Sparkle button generates a commit message from the staged diff</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="phase-a-organize-plan" class="level2">
+<h2 class="anchored" data-anchor-id="phase-a-organize-plan">Phase A: Organize &amp; plan</h2>
+<p><em>Before writing a single line of code, use AI to think through structure. This is the habit that separates organized projects from tangled ones.</em></p>
+<hr>
+<section id="ex1" class="level3">
+<h3 class="anchored" data-anchor-id="ex1">Exercise 1 — Blueprint prompt</h3>
+<p><strong>Phase:</strong> Organize</p>
+<p><strong>Action:</strong> Open VS Code. Open the Copilot Chat sidebar. Do not open any files yet. Send this prompt:</p>
+<pre><code>I want to build a Python project that calculates compound interest
+over time for a given principal, rate, and number of years. It
+should also compare different compounding frequencies (annual,
+monthly, daily). Before writing any code, describe the structure
+and logic — what functions are needed, what they take as input,
+and what they return.</code></pre>
+<p>Read the response. If anything is unclear, ask a follow-up before moving on.</p>
+<hr>
+</section>
+<section id="ex2" class="level3">
+<h3 class="anchored" data-anchor-id="ex2">Exercise 2 — Scaffold generation</h3>
+<p><strong>Phase:</strong> Organize</p>
+<p><strong>Action:</strong> In the same chat session, send this prompt:</p>
+<pre><code>Now create the folder and file structure for this project. I need
+you to actually create the folders and empty files — not just
+suggest commands for me to run. Keep it simple: no frameworks,
+just clean Python modules.</code></pre>
+<p>In agent mode, Copilot will create the folders and files directly. To switch: select “Agent” from the dropdown at the top of the chat panel before sending the prompt.</p>
+<p>If you are in standard chat mode instead, Copilot will give you terminal commands. Run them in the VS Code integrated terminal (<code>Ctrl+`</code>).</p>
+<p><strong>Takeaway:</strong> AI generates and builds the project skeleton from a plain-English description. You reviewed the plan before committing to any structure — that is the right order of operations.</p>
+<hr>
+<blockquote class="blockquote">
+<h3 id="why-this-works-and-how-to-scale-it" class="anchored">Why this works — and how to scale it</h3>
+<p>You just described a goal in plain English and got back a structure. That is not a trick — it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.</p>
+<p>When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints. Those are completely different quality levels — and the difference compounds over time.</p>
+<p>In serious AI-assisted codebases, the folder structure reflects this:</p>
+<ul>
+<li><strong><code>spec/</code></strong> — what the thing is: goals, constraints, non-goals</li>
+<li><strong><code>design/</code></strong> — how it is structured: architecture, data model, component map</li>
+<li><strong><code>context/</code></strong> — what AI needs to know each session: current state, decisions made, open questions</li>
+<li><strong><code>tasks/</code></strong> — discrete, completable units of work</li>
+</ul>
+<p>You are not there yet — this is Level 2. But the habit starts here: write down what you are building before you ask AI to build it. The documents are the project. The chat is just execution.</p>
+<p>If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying. The fix is not a better prompt — it is better documents.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="phase-b-writing-code" class="level2">
+<h2 class="anchored" data-anchor-id="phase-b-writing-code">Phase B: Writing code</h2>
+<p><em>Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now — you will not need it until Exercise 9.</em></p>
+<hr>
+<section id="ex3" class="level3">
+<h3 class="anchored" data-anchor-id="ex3">Exercise 3 — Comment-driven generation</h3>
+<p><strong>Phase:</strong> Write</p>
+<p><strong>Action:</strong> <code>utils.py</code> is the utility file from the project scaffold you created in Exercise 2 — where shared helper functions live that are used across the project.</p>
+<p>Open your <code>utils.py</code> file. Type this comment and press <code>Enter</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate that principal, rate, and years are all positive numbers.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Raise a ValueError with a descriptive message if any are not.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wait. Ghost text should appear suggesting the full function body. Read it carefully before pressing <code>Tab</code> to accept.</p>
+<p>Fallback — if nothing appears after a few seconds, send this in Copilot Chat:</p>
+<pre><code>Write a Python function that validates principal, rate, and years
+are all positive numbers. Raise a ValueError with a descriptive
+message for each invalid case. No external libraries.</code></pre>
+<p><strong>Takeaway:</strong> A clear comment is a specification. The more precisely you describe the intent, the more accurately AI executes it. You described what you wanted — AI wrote the syntax. That is the trade at Level 2.</p>
+<hr>
+</section>
+<section id="ex4" class="level3">
+<h3 class="anchored" data-anchor-id="ex4">Exercise 4 — Finish starter code</h3>
+<p><strong>Phase:</strong> Write</p>
+<p><strong>Action:</strong> Create <code>compound.py</code> and paste this starter code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_compound_interest(principal: <span class="bu">float</span>, rate: <span class="bu">float</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                years: <span class="bu">int</span>, n: <span class="bu">int</span> <span class="op">=</span> <span class="dv">12</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate compound interest using the standard formula.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># principal: starting amount</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rate: annual interest rate as a decimal (e.g. 0.05 for 5%)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># years: number of years to compound</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n: compounding frequency per year (default: monthly)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the final balance after the compounding period.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Place your cursor at the end of the last comment line. Press <code>Ctrl+I</code> to open Copilot Chat and send:</p>
+<pre><code>Complete this function based on the comments.</code></pre>
+<p>Review the generated body before accepting.</p>
+<p>(You may also see ghost text appear automatically — if so, press <code>Tab</code> to accept it instead of using <code>Ctrl+I</code>.)</p>
+<p><strong>Note on the formula:</strong> The function should return the <strong>final balance</strong> — the full amount including the original principal — using the standard compound interest formula: <code>A = P(1 + r/n)^(nt)</code>. If AI returns only the interest earned (the growth above the principal), ask it to revise: <code>"Return the final balance, not just the interest earned."</code></p>
+<p><strong>Takeaway:</strong> Describing intent in comments before writing code produces accurate completions. <code>Ctrl+I</code> gives you direct control; ghost text is the passive version of the same thing.</p>
+<hr>
+</section>
+<section id="ex5" class="level3">
+<h3 class="anchored" data-anchor-id="ex5">Exercise 5 — Cross-file context</h3>
+<p><strong>Phase:</strong> Write</p>
+<p><strong>Action:</strong> Create a second file called <code>main.py</code>. Open Copilot Chat and send:</p>
+<pre><code>I have a file called #compound.py that contains a function called
+calculate_compound_interest. In #main.py, import that function and
+call it with a principal of 1000, a rate of 0.05, and 10 years.
+Print the result formatted to two decimal places.</code></pre>
+<p>Review what it generates. Check that the import path is correct and the function call matches the signature in <code>compound.py</code>.</p>
+<p><strong>Takeaway:</strong> The <code>#</code> symbol pulls a specific file into context mid-conversation. AI sees across files simultaneously. Browser chat would require copy-pasting both files before asking the same question.</p>
+<hr>
+</section>
+</section>
+<section id="phase-c-understand-debug-refactor" class="level2">
+<h2 class="anchored" data-anchor-id="phase-c-understand-debug-refactor">Phase C: Understand, debug &amp; refactor</h2>
+<p><em>Four exercises that use AI as a reviewer and optimizer. This is where in-editor AI earns its place.</em></p>
+<hr>
+<section id="ex6" class="level3">
+<h3 class="anchored" data-anchor-id="ex6">Exercise 6 — Explain a block</h3>
+<p><strong>Phase:</strong> Understand</p>
+<p><strong>Action:</strong> Select the entire <code>calculate_compound_interest</code> function in <code>compound.py</code>. Right-click and choose <strong>Copilot → Explain This</strong>.</p>
+<p>Read the explanation. Then send this follow-up in chat:</p>
+<pre><code>What would happen if rate were passed as 5 instead of 0.05?
+Would this function catch that mistake?</code></pre>
+<p><strong>Takeaway:</strong> AI as an on-demand explainer for your own code. Works on any code you didn’t write too — inherited projects, library internals, examples from online.</p>
+<hr>
+</section>
+<section id="ex7" class="level3">
+<h3 class="anchored" data-anchor-id="ex7">Exercise 7 — Spot a bug</h3>
+<p><strong>Phase:</strong> Debug</p>
+<p><strong>Action:</strong> Add this function to <code>compound.py</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_compounding(principal: <span class="bu">float</span>, rate: <span class="bu">float</span>, years: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label, n <span class="kw">in</span> [(<span class="st">"annual"</span>, <span class="dv">1</span>), (<span class="st">"monthly"</span>, <span class="dv">12</span>), (<span class="st">"daily"</span>, <span class="dv">365</span>)]:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        results[label] <span class="op">=</span> principal <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> rate <span class="op">/</span> n) <span class="op">**</span> (n <span class="op">*</span> years) <span class="op">-</span> principal</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Select the function. Open Copilot Chat and send:</p>
+<pre><code>Review this function for correctness. Are there any bugs — inputs
+that would produce a wrong result or raise an error? Also identify
+any edge cases I haven't handled. Be specific about where each
+problem is and why it occurs.</code></pre>
+<p>If you see a <strong>Copilot debug icon</strong> appear next to the function, you can click it to trigger an automatic review — this is a newer Copilot feature that may or may not be available depending on your version. The manual prompt above always works.</p>
+<p><strong>Note on the bug:</strong> This function is intended to compare how much your money grows across different compounding frequencies — it should return the <strong>final balance</strong> for each frequency, just like <code>calculate_compound_interest</code>. Instead, it subtracts <code>principal</code> at the end, so it returns only the <strong>interest earned</strong> (the growth above what you started with). The formula should be <code>principal * (1 + rate / n) ** (n * years)</code> — no subtraction. Beyond the intent mismatch, a negative rate also produces a mathematically nonsensical result with no warning because there is no input validation. See what AI catches and what fix it proposes.</p>
+<p><strong>Takeaway:</strong> AI as a quality check. This kind of structural review would take careful reading and testing to catch manually. It took one prompt.</p>
+<hr>
+</section>
+<section id="ex8" class="level3">
+<h3 class="anchored" data-anchor-id="ex8">Exercise 8 — Refactor for performance</h3>
+<p><strong>Phase:</strong> Refactor</p>
+<p><strong>Action:</strong> Create <code>pipeline.py</code> and paste this function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_sales(df: pd.DataFrame, year: <span class="bu">int</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> []</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df)):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        row <span class="op">=</span> df.iloc[i]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> row[<span class="st">"year"</span>] <span class="op">==</span> year:</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            margin <span class="op">=</span> (row[<span class="st">"revenue"</span>] <span class="op">-</span> row[<span class="st">"cost"</span>]) <span class="op">/</span> row[<span class="st">"revenue"</span>]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>            results.append({</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"product"</span>: row[<span class="st">"product"</span>],</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"revenue"</span>: row[<span class="st">"revenue"</span>],</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"margin"</span>: margin</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>            })</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> pd.DataFrame(results)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    summary <span class="op">=</span> summary.sort_values(<span class="st">"margin"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(summary)):</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        total <span class="op">=</span> total <span class="op">+</span> summary.iloc[i][<span class="st">"revenue"</span>]</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    summary[<span class="st">"revenue_share"</span>] <span class="op">=</span> summary[<span class="st">"revenue"</span>] <span class="op">/</span> total</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Select the entire function. Right-click and choose <strong>Copilot → Review and Comment</strong> (or <strong>Refactor</strong>, depending on your version).</p>
+<p>Read what AI identifies. You don’t need to apply the refactored version — the point is seeing AI explain why row-by-row iteration is slow and what the vectorized alternative looks like.</p>
+<p><strong>Takeaway:</strong> AI knows every vectorization idiom in pandas and can identify the performance problem with one right-click. You didn’t need to search documentation or guess at the issue.</p>
+<hr>
+</section>
+<section id="ex9" class="level3">
+<h3 class="anchored" data-anchor-id="ex9">Exercise 9 — Terminal crash fix</h3>
+<p><strong>Phase:</strong> Debug</p>
+<p><strong>Action:</strong> This is the first exercise where the terminal appears. Open it in VS Code with <code>Ctrl+`</code>.</p>
+<p>In <code>main.py</code>, deliberately introduce a type error by passing a string instead of a number:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> calculate_compound_interest(<span class="st">"1000"</span>, <span class="fl">0.05</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run the file. The terminal will show a <code>TypeError</code>. Look for the small <strong>Copilot icon</strong> that appears next to the error output in the terminal panel. Click it and select <strong>Explain using Copilot</strong> or <strong>Fix using Copilot</strong>.</p>
+<p>Read the explanation before applying any fix.</p>
+<p><strong>Takeaway:</strong> The terminal error hook connects execution failures directly to AI without copy-pasting. AI reads the crash log, the stack trace, and your code simultaneously. This is the first preview of what Level 3 looks like — where AI lives in the terminal full-time.</p>
+<hr>
+</section>
+</section>
+<section id="phase-d-test-document-share" class="level2">
+<h2 class="anchored" data-anchor-id="phase-d-test-document-share">Phase D: Test, document &amp; share</h2>
+<p><em>Three exercises that close the loop — verification, documentation, and version control. Each uses a native VS Code UI element.</em></p>
+<hr>
+<section id="ex10" class="level3">
+<h3 class="anchored" data-anchor-id="ex10">Exercise 10 — Generate a docstring</h3>
+<p><strong>Phase:</strong> Document</p>
+<p><strong>Action:</strong> Place your cursor inside <code>calculate_compound_interest</code> in <code>compound.py</code>, on the line just below the <code>def</code> line. Open Copilot Chat and type:</p>
+<pre><code>/doc</code></pre>
+<p>A Google-style docstring should be generated and inserted at the correct location. Review it — does it accurately describe the parameters and return value?</p>
+<p><strong>Takeaway:</strong> Professional documentation in under 5 seconds. <code>Ctrl+I</code> plus <code>/doc</code> is the full instruction. You described the intent with two keystrokes — AI read the function and wrote the documentation.</p>
+<hr>
+</section>
+<section id="ex11" class="level3">
+<h3 class="anchored" data-anchor-id="ex11">Exercise 11 — Generate pytest cases</h3>
+<p><strong>Phase:</strong> Test</p>
+<p><strong>Action:</strong> Open Copilot Chat and send:</p>
+<pre><code>Write pytest functions for calculate_compound_interest. Cover the
+normal case, edge cases (rate of 0, years of 0), and invalid inputs
+that should raise ValueError. Use only pytest, no fixtures.</code></pre>
+<p>Save the output to <code>test_compound.py</code>. Read each test before running it — AI-generated tests occasionally test the wrong behavior. Then run:</p>
+<pre><code>pytest test_compound.py -v</code></pre>
+<p>If tests fail with import or module errors, confirm your <code>.venv</code> is active and pytest is installed (<code>pip install pytest</code>).</p>
+<hr>
+</section>
+<section id="ex12" class="level3">
+<h3 class="anchored" data-anchor-id="ex12">Exercise 12 — Git commit via sparkle button</h3>
+<p><strong>Phase:</strong> Share</p>
+<p><strong>Action:</strong> Stage all your changes using the Source Control panel in VS Code (the branch icon in the left sidebar).</p>
+<p>In the commit message input box at the top of the Source Control panel, look for the <strong>sparkle / Copilot icon</strong>. Click it. AI reads your staged diff and generates a commit message.</p>
+<p>Review the message, edit if needed, then commit.</p>
+<p><strong>Takeaway:</strong> AI writes the commit message by reading what actually changed — not what you tell it changed. This is the native UI doing what browser chat cannot: reading your diff directly without you copying it out first.</p>
+<hr>
+</section>
+</section>
+<section id="prompt-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="prompt-engineering">Prompt engineering</h2>
+<p>AI matches whatever scope you give it. These four principles separate productive sessions from overwhelming ones.</p>
+<section id="give-context-before-the-ask" class="level3">
+<h3 class="anchored" data-anchor-id="give-context-before-the-ask">1. Give context before the ask</h3>
+<p>Describe what the project does and what role this code plays before making the request. Without context, AI fills gaps with assumptions.</p>
+<ul>
+<li><strong>Too thin:</strong> “Write a function that validates input.”</li>
+<li><strong>With context:</strong> “I’m building a compound interest calculator. Write a function that validates that principal, rate, and years are all positive numbers and raises a ValueError with a descriptive message for each invalid case.”</li>
+</ul>
+</section>
+<section id="constrain-the-scope-explicitly" class="level3">
+<h3 class="anchored" data-anchor-id="constrain-the-scope-explicitly">2. Constrain the scope explicitly</h3>
+<p>Without limits, AI defaults to comprehensive — more than you need, more than you can review. Explicit constraints keep the output manageable.</p>
+<ul>
+<li><strong>Too open:</strong> “Add error handling.”</li>
+<li><strong>Constrained:</strong> “Add a try/except block to the calculate_compound_interest call in main.py only. Catch ValueError and print the message. Don’t touch anything else.”</li>
+</ul>
+</section>
+<section id="ask-for-a-plan-before-you-ask-for-code" class="level3">
+<h3 class="anchored" data-anchor-id="ask-for-a-plan-before-you-ask-for-code">3. Ask for a plan before you ask for code</h3>
+<p>For anything larger than a single function, ask AI to describe its approach first. Exercise 1 does this explicitly — it is the right habit for any new project.</p>
+<ul>
+<li>“Before writing any code, describe how you’d structure a function that compares compounding frequencies. What edge cases would you handle?”</li>
+</ul>
+</section>
+<section id="tell-it-your-level-and-what-you-want-to-learn" class="level3">
+<h3 class="anchored" data-anchor-id="tell-it-your-level-and-what-you-want-to-learn">4. Tell it your level and what you want to learn</h3>
+<p>“I’m new to pandas” produces simpler methods and more explanation. “Explain your reasoning alongside the code” gets you something to learn from, not just copy.</p>
+<ul>
+<li>“I’m learning pandas. Write this using basic operations and add a comment on each line explaining what it does.”</li>
+</ul>
+</section>
+<section id="example-prompt-combining-all-four" class="level3">
+<h3 class="anchored" data-anchor-id="example-prompt-combining-all-four">Example prompt combining all four</h3>
+<pre><code>// context
+I'm building a compound interest calculator in Python. I have a
+function called calculate_compound_interest that takes principal,
+rate, years, and n (compounding frequency). I need a function that
+compares the final balance across annual, monthly, and daily
+compounding for the same inputs.
+
+// constraints
+Keep it under 15 lines. Use only the standard library.
+Return a plain dictionary with frequency labels as keys.
+
+// plan before code
+Before writing the function, describe how the outputs will differ
+across compounding frequencies and what edge cases exist.
+Then write the code.
+
+// level
+I'm comfortable with Python basics but newer to financial math.
+Add a comment explaining the compound interest formula.</code></pre>
+<hr>
+</section>
+</section>
+<section id="editor-context" class="level2">
+<h2 class="anchored" data-anchor-id="editor-context">Editor &amp; context</h2>
+<section id="your-editor-your-choice" class="level3">
+<h3 class="anchored" data-anchor-id="your-editor-your-choice">Your editor, your choice</h3>
+<p>Everything on this page uses VS Code with GitHub Copilot. If you are using PyCharm, Cursor, or another AI-capable editor, the exercises map directly — the features have different names but the same purpose. Ask your editor’s AI assistant to walk you through the equivalent of each exercise. Refactor, inline edit, explain, and test generation all exist in every major AI editor.</p>
+</section>
+<section id="how-file-context-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-file-context-works">How file context works</h3>
+<p>When you open a file and open the Copilot Chat sidebar, the AI has already read your open file. For files you want to reference explicitly, open them in VS Code first — Copilot reads all open files as part of its context. You can also attach specific files using the file attachment button in the chat panel.</p>
+<p>File context becomes meaningful starting at Exercise 5. The earlier exercises work from plain-English descriptions alone.</p>
+<hr>
+</section>
+</section>
+<section id="what-comes-next-level-3" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-next-level-3">What comes next: Level 3</h2>
+<p>Level 2 keeps AI inside the editor. It reads your files and proposes changes — but it cannot run anything. You still execute code in the terminal and carry results back into the chat manually.</p>
+<p>Level 3 removes that constraint. A terminal agent like Claude Code has access to your full computing environment: it executes scripts, reads the output, installs packages, modifies files, and iterates until a task is complete. Exercise 9 above was the first preview of that boundary. Level 3 is what happens when you remove it entirely.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

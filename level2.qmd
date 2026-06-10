@@ -1,0 +1,431 @@
+---
+title: "Level 2: AI in Your Editor"
+---
+
+Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two tools: the **Main Editor Window** and the **Copilot Chat Sidebar**.
+
+---
+
+## Standardizing the workflow
+
+| Step | Before | After |
+|------|--------|-------|
+| **Organize** | In a browser, describe your project in a chat window with no file access | In the editor, open the chat sidebar and describe what you want to build — AI proposes structure and logic before a single file exists |
+| **Write** | In a browser, copy code from chat, switch windows, paste manually | In the editor, ghost text appears inline as you type — press `Tab` to accept, no switching |
+| **Test** | In a browser, copy the error message, open a new chat, re-explain the context | In the editor, click the Copilot icon next to the terminal error and AI reads the crash log directly |
+| **Share** | In a browser, write your own commit message | In the editor, click the sparkle button in the Source Control panel and AI reads your diff and writes it |
+| **Deploy** | Out of scope for this level | — |
+
+Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens Copilot Chat. Everything else is reading and deciding.
+
+---
+
+## The exercises
+
+Twelve exercises across four phases. Each one proves a specific capability that browser chat cannot match. Do them in order — the compound interest project builds across phases and the terminal does not appear until Exercise 9.
+
+| | Exercise | AI capability |
+|--|----------|--------------|
+| 1 | [Blueprint prompt](#ex1) | Copilot Chat plans project structure from a plain-English description |
+| 2 | [Scaffold generation](#ex2) | Agent mode creates folders and files directly |
+| 3 | [Comment-driven generation](#ex3) | Ghost text completes a function from a comment spec |
+| 4 | [Finish starter code](#ex4) | Inline edit completes a function from its comments |
+| 5 | [Cross-file context](#ex5) | `#filename` references give the AI access to multiple files at once |
+| 6 | [Explain a block](#ex6) | Right-click → Explain generates an on-demand explanation |
+| 7 | [Spot a bug](#ex7) | Copilot Chat reviews a function for bugs and edge cases |
+| 8 | [Refactor for performance](#ex8) | Right-click → Review identifies a performance problem and the fix |
+| 9 | [Terminal crash fix](#ex9) | Terminal error hook connects a crash directly to AI |
+| 10 | [Generate a docstring](#ex10) | `/doc` generates documentation in two keystrokes |
+| 11 | [Generate pytest cases](#ex11) | Copilot Chat generates a full test suite from a description |
+| 12 | [Git commit via sparkle button](#ex12) | Sparkle button generates a commit message from the staged diff |
+
+---
+
+## Phase A: Organize & plan
+
+*Before writing a single line of code, use AI to think through structure. This is the habit that separates organized projects from tangled ones.*
+
+---
+
+### Exercise 1 — Blueprint prompt {#ex1}
+**Phase:** Organize
+
+**Action:**
+Open VS Code. Open the Copilot Chat sidebar. Do not open any files yet. Send this prompt:
+
+```
+I want to build a Python project that calculates compound interest
+over time for a given principal, rate, and number of years. It
+should also compare different compounding frequencies (annual,
+monthly, daily). Before writing any code, describe the structure
+and logic — what functions are needed, what they take as input,
+and what they return.
+```
+
+Read the response. If anything is unclear, ask a follow-up before moving on.
+
+---
+
+### Exercise 2 — Scaffold generation {#ex2}
+**Phase:** Organize
+
+**Action:**
+In the same chat session, send this prompt:
+
+```
+Now create the folder and file structure for this project. I need
+you to actually create the folders and empty files — not just
+suggest commands for me to run. Keep it simple: no frameworks,
+just clean Python modules.
+```
+
+In agent mode, Copilot will create the folders and files directly. To switch: select "Agent" from the dropdown at the top of the chat panel before sending the prompt.
+
+If you are in standard chat mode instead, Copilot will give you terminal commands. Run them in the VS Code integrated terminal (`` Ctrl+` ``).
+
+**Takeaway:** AI generates and builds the project skeleton from a plain-English description. You reviewed the plan before committing to any structure — that is the right order of operations.
+
+---
+
+> ### Why this works — and how to scale it
+>
+> You just described a goal in plain English and got back a structure. That is not a trick — it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.
+>
+> When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints. Those are completely different quality levels — and the difference compounds over time.
+>
+> In serious AI-assisted codebases, the folder structure reflects this:
+>
+> - **`spec/`** — what the thing is: goals, constraints, non-goals
+> - **`design/`** — how it is structured: architecture, data model, component map
+> - **`context/`** — what AI needs to know each session: current state, decisions made, open questions
+> - **`tasks/`** — discrete, completable units of work
+>
+> You are not there yet — this is Level 2. But the habit starts here: write down what you are building before you ask AI to build it. The documents are the project. The chat is just execution.
+>
+> If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying. The fix is not a better prompt — it is better documents.
+
+---
+
+## Phase B: Writing code
+
+*Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now — you will not need it until Exercise 9.*
+
+---
+
+### Exercise 3 — Comment-driven generation {#ex3}
+**Phase:** Write
+
+**Action:**
+`utils.py` is the utility file from the project scaffold you created in Exercise 2 — where shared helper functions live that are used across the project.
+
+Open your `utils.py` file. Type this comment and press `Enter`:
+
+```python
+# Validate that principal, rate, and years are all positive numbers.
+# Raise a ValueError with a descriptive message if any are not.
+```
+
+Wait. Ghost text should appear suggesting the full function body. Read it carefully before pressing `Tab` to accept.
+
+Fallback — if nothing appears after a few seconds, send this in Copilot Chat:
+
+```
+Write a Python function that validates principal, rate, and years
+are all positive numbers. Raise a ValueError with a descriptive
+message for each invalid case. No external libraries.
+```
+
+**Takeaway:** A clear comment is a specification. The more precisely you describe the intent, the more accurately AI executes it. You described what you wanted — AI wrote the syntax. That is the trade at Level 2.
+
+---
+
+### Exercise 4 — Finish starter code {#ex4}
+**Phase:** Write
+
+**Action:**
+Create `compound.py` and paste this starter code:
+
+```python
+def calculate_compound_interest(principal: float, rate: float,
+                                years: int, n: int = 12) -> float:
+    # Calculate compound interest using the standard formula.
+    # principal: starting amount
+    # rate: annual interest rate as a decimal (e.g. 0.05 for 5%)
+    # years: number of years to compound
+    # n: compounding frequency per year (default: monthly)
+    # Return the final balance after the compounding period.
+```
+
+Place your cursor at the end of the last comment line. Press `Ctrl+I` to open Copilot Chat and send:
+
+```
+Complete this function based on the comments.
+```
+
+Review the generated body before accepting.
+
+(You may also see ghost text appear automatically — if so, press `Tab` to accept it instead of using `Ctrl+I`.)
+
+**Note on the formula:** The function should return the **final balance** — the full amount including the original principal — using the standard compound interest formula: `A = P(1 + r/n)^(nt)`. If AI returns only the interest earned (the growth above the principal), ask it to revise: `"Return the final balance, not just the interest earned."`
+
+**Takeaway:** Describing intent in comments before writing code produces accurate completions. `Ctrl+I` gives you direct control; ghost text is the passive version of the same thing.
+
+---
+
+### Exercise 5 — Cross-file context {#ex5}
+**Phase:** Write
+
+**Action:**
+Create a second file called `main.py`. Open Copilot Chat and send:
+
+```
+I have a file called #compound.py that contains a function called
+calculate_compound_interest. In #main.py, import that function and
+call it with a principal of 1000, a rate of 0.05, and 10 years.
+Print the result formatted to two decimal places.
+```
+
+Review what it generates. Check that the import path is correct and the function call matches the signature in `compound.py`.
+
+**Takeaway:** The `#` symbol pulls a specific file into context mid-conversation. AI sees across files simultaneously. Browser chat would require copy-pasting both files before asking the same question.
+
+---
+
+## Phase C: Understand, debug & refactor
+
+*Four exercises that use AI as a reviewer and optimizer. This is where in-editor AI earns its place.*
+
+---
+
+### Exercise 6 — Explain a block {#ex6}
+**Phase:** Understand
+
+**Action:**
+Select the entire `calculate_compound_interest` function in `compound.py`. Right-click and choose **Copilot → Explain This**.
+
+Read the explanation. Then send this follow-up in chat:
+
+```
+What would happen if rate were passed as 5 instead of 0.05?
+Would this function catch that mistake?
+```
+
+**Takeaway:** AI as an on-demand explainer for your own code. Works on any code you didn't write too — inherited projects, library internals, examples from online.
+
+---
+
+### Exercise 7 — Spot a bug {#ex7}
+**Phase:** Debug
+
+**Action:**
+Add this function to `compound.py`:
+
+```python
+def compare_compounding(principal: float, rate: float, years: int) -> dict:
+    results = {}
+    for label, n in [("annual", 1), ("monthly", 12), ("daily", 365)]:
+        results[label] = principal * (1 + rate / n) ** (n * years) - principal
+    return results
+```
+
+Select the function. Open Copilot Chat and send:
+
+```
+Review this function for correctness. Are there any bugs — inputs
+that would produce a wrong result or raise an error? Also identify
+any edge cases I haven't handled. Be specific about where each
+problem is and why it occurs.
+```
+
+If you see a **Copilot debug icon** appear next to the function, you can click it to trigger an automatic review — this is a newer Copilot feature that may or may not be available depending on your version. The manual prompt above always works.
+
+**Note on the bug:** This function is intended to compare how much your money grows across different compounding frequencies — it should return the **final balance** for each frequency, just like `calculate_compound_interest`. Instead, it subtracts `principal` at the end, so it returns only the **interest earned** (the growth above what you started with). The formula should be `principal * (1 + rate / n) ** (n * years)` — no subtraction. Beyond the intent mismatch, a negative rate also produces a mathematically nonsensical result with no warning because there is no input validation. See what AI catches and what fix it proposes.
+
+**Takeaway:** AI as a quality check. This kind of structural review would take careful reading and testing to catch manually. It took one prompt.
+
+---
+
+### Exercise 8 — Refactor for performance {#ex8}
+**Phase:** Refactor
+
+**Action:**
+Create `pipeline.py` and paste this function:
+
+```python
+import pandas as pd
+
+def process_sales(df: pd.DataFrame, year: int) -> pd.DataFrame:
+    results = []
+    for i in range(len(df)):
+        row = df.iloc[i]
+        if row["year"] == year:
+            margin = (row["revenue"] - row["cost"]) / row["revenue"]
+            results.append({
+                "product": row["product"],
+                "revenue": row["revenue"],
+                "margin": margin
+            })
+    summary = pd.DataFrame(results)
+    summary = summary.sort_values("margin")
+    total = 0
+    for i in range(len(summary)):
+        total = total + summary.iloc[i]["revenue"]
+    summary["revenue_share"] = summary["revenue"] / total
+    return summary
+```
+
+Select the entire function. Right-click and choose **Copilot → Review and Comment** (or **Refactor**, depending on your version).
+
+Read what AI identifies. You don't need to apply the refactored version — the point is seeing AI explain why row-by-row iteration is slow and what the vectorized alternative looks like.
+
+**Takeaway:** AI knows every vectorization idiom in pandas and can identify the performance problem with one right-click. You didn't need to search documentation or guess at the issue.
+
+---
+
+### Exercise 9 — Terminal crash fix {#ex9}
+**Phase:** Debug
+
+**Action:**
+This is the first exercise where the terminal appears. Open it in VS Code with `` Ctrl+` ``.
+
+In `main.py`, deliberately introduce a type error by passing a string instead of a number:
+
+```python
+result = calculate_compound_interest("1000", 0.05, 10)
+```
+
+Run the file. The terminal will show a `TypeError`. Look for the small **Copilot icon** that appears next to the error output in the terminal panel. Click it and select **Explain using Copilot** or **Fix using Copilot**.
+
+Read the explanation before applying any fix.
+
+**Takeaway:** The terminal error hook connects execution failures directly to AI without copy-pasting. AI reads the crash log, the stack trace, and your code simultaneously. This is the first preview of what Level 3 looks like — where AI lives in the terminal full-time.
+
+---
+
+## Phase D: Test, document & share
+
+*Three exercises that close the loop — verification, documentation, and version control. Each uses a native VS Code UI element.*
+
+---
+
+### Exercise 10 — Generate a docstring {#ex10}
+**Phase:** Document
+
+**Action:**
+Place your cursor inside `calculate_compound_interest` in `compound.py`, on the line just below the `def` line. Open Copilot Chat and type:
+
+```
+/doc
+```
+
+A Google-style docstring should be generated and inserted at the correct location. Review it — does it accurately describe the parameters and return value?
+
+**Takeaway:** Professional documentation in under 5 seconds. `Ctrl+I` plus `/doc` is the full instruction. You described the intent with two keystrokes — AI read the function and wrote the documentation.
+
+---
+
+### Exercise 11 — Generate pytest cases {#ex11}
+**Phase:** Test
+
+**Action:**
+Open Copilot Chat and send:
+
+```
+Write pytest functions for calculate_compound_interest. Cover the
+normal case, edge cases (rate of 0, years of 0), and invalid inputs
+that should raise ValueError. Use only pytest, no fixtures.
+```
+
+Save the output to `test_compound.py`. Read each test before running it — AI-generated tests occasionally test the wrong behavior. Then run:
+
+```
+pytest test_compound.py -v
+```
+
+If tests fail with import or module errors, confirm your `.venv` is active and pytest is installed (`pip install pytest`).
+
+---
+
+### Exercise 12 — Git commit via sparkle button {#ex12}
+**Phase:** Share
+
+**Action:**
+Stage all your changes using the Source Control panel in VS Code (the branch icon in the left sidebar).
+
+In the commit message input box at the top of the Source Control panel, look for the **sparkle / Copilot icon**. Click it. AI reads your staged diff and generates a commit message.
+
+Review the message, edit if needed, then commit.
+
+**Takeaway:** AI writes the commit message by reading what actually changed — not what you tell it changed. This is the native UI doing what browser chat cannot: reading your diff directly without you copying it out first.
+
+---
+
+## Prompt engineering
+
+AI matches whatever scope you give it. These four principles separate productive sessions from overwhelming ones.
+
+### 1. Give context before the ask
+Describe what the project does and what role this code plays before making the request. Without context, AI fills gaps with assumptions.
+
+- **Too thin:** "Write a function that validates input."
+- **With context:** "I'm building a compound interest calculator. Write a function that validates that principal, rate, and years are all positive numbers and raises a ValueError with a descriptive message for each invalid case."
+
+### 2. Constrain the scope explicitly
+Without limits, AI defaults to comprehensive — more than you need, more than you can review. Explicit constraints keep the output manageable.
+
+- **Too open:** "Add error handling."
+- **Constrained:** "Add a try/except block to the calculate_compound_interest call in main.py only. Catch ValueError and print the message. Don't touch anything else."
+
+### 3. Ask for a plan before you ask for code
+For anything larger than a single function, ask AI to describe its approach first. Exercise 1 does this explicitly — it is the right habit for any new project.
+
+- "Before writing any code, describe how you'd structure a function that compares compounding frequencies. What edge cases would you handle?"
+
+### 4. Tell it your level and what you want to learn
+"I'm new to pandas" produces simpler methods and more explanation. "Explain your reasoning alongside the code" gets you something to learn from, not just copy.
+
+- "I'm learning pandas. Write this using basic operations and add a comment on each line explaining what it does."
+
+### Example prompt combining all four
+
+```
+// context
+I'm building a compound interest calculator in Python. I have a
+function called calculate_compound_interest that takes principal,
+rate, years, and n (compounding frequency). I need a function that
+compares the final balance across annual, monthly, and daily
+compounding for the same inputs.
+
+// constraints
+Keep it under 15 lines. Use only the standard library.
+Return a plain dictionary with frequency labels as keys.
+
+// plan before code
+Before writing the function, describe how the outputs will differ
+across compounding frequencies and what edge cases exist.
+Then write the code.
+
+// level
+I'm comfortable with Python basics but newer to financial math.
+Add a comment explaining the compound interest formula.
+```
+
+---
+
+## Editor & context
+
+### Your editor, your choice
+Everything on this page uses VS Code with GitHub Copilot. If you are using PyCharm, Cursor, or another AI-capable editor, the exercises map directly — the features have different names but the same purpose. Ask your editor's AI assistant to walk you through the equivalent of each exercise. Refactor, inline edit, explain, and test generation all exist in every major AI editor.
+
+### How file context works
+When you open a file and open the Copilot Chat sidebar, the AI has already read your open file. For files you want to reference explicitly, open them in VS Code first — Copilot reads all open files as part of its context. You can also attach specific files using the file attachment button in the chat panel.
+
+File context becomes meaningful starting at Exercise 5. The earlier exercises work from plain-English descriptions alone.
+
+---
+
+## What comes next: Level 3
+
+Level 2 keeps AI inside the editor. It reads your files and proposes changes — but it cannot run anything. You still execute code in the terminal and carry results back into the chat manually.
+
+Level 3 removes that constraint. A terminal agent like Claude Code has access to your full computing environment: it executes scripts, reads the output, installs packages, modifies files, and iterates until a task is complete. Exercise 9 above was the first preview of that boundary. Level 3 is what happens when you remove it entirely.
