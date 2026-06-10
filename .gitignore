@@ -1,2 +1,8 @@
 /_site
-/.quarto
+/.quarto/
+**/*.quarto_ipynb
+
+# Internal planning docs — not for public repo
+docs/superpowers/
+docs/quarto-feedback.txt
+progress.md
