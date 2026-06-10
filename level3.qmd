@@ -144,12 +144,6 @@ Ask Claude to install it: `Please install the sequential thinking MCP server`
 
 Claude Code's training data has a cutoff date. When you ask it to use a library, it works from training data that may be months out of date — confidently using deprecated methods or renamed APIs. Context7 pulls current, version-specific documentation from live repositories and injects it into Claude's context at prompt time.
 
-Add `use context7` to any prompt involving a library:
-
-```
-Build a FastAPI endpoint that validates JSON input. use context7
-```
-
 Install via the Claude Code plugin menu — type `/plugin` inside a session and find Context7 in the list.
 
 ---
