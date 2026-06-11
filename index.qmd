@@ -2,7 +2,7 @@
 title: "Python & AI — The Modern Workflow"
 ---
 
-## How code is actually written, shared, and built.
+## How code is written, shared, and built.
 
 Learn the essential tools of modern Python development and how they work together in a real workflow.
 
@@ -10,28 +10,26 @@ Learn the essential tools of modern Python development and how they work togethe
 
 ---
 
-## The core idea
+## The core workflow
 
-Before the details, here's the whole picture.
-
-This is the basic sequence every Python project follows. Once you see it, everything else fits into place.
+This is the basic sequence every Python project follows.
 
 | Step | Focus |
 |------|-------|
-| Organize | Env + packages |
-| Write | IDE + AI assistant |
-| Test | Run + debug |
-| Share | Git + GitHub |
-| Deploy | Ship + iterate |
+| Organize | Set up your environment and install packages |
+| Write | Use your IDE and AI assistant to write code |
+| Test | Run code and debug errors |
+| Share | Track changes with Git and sync to GitHub |
+| Deploy | Ship your project and iterate |
 
 ---
 
-## Every tool fits into one of these roles.
+## What you'll need
 
 No matter how many tools you see, they all do one of five things:
 
 **01 — The Editor / IDE**
-Where you write and read code. An IDE (Integrated Development Environment) is a text editor with superpowers — it understands your code, highlights errors, helps you navigate, and runs your programs.
+Where you write and read code. An IDE (Integrated Development Environment) is a text editor with superpowers: it understands your code, highlights errors, helps you navigate, and runs your programs.
 *Examples: VS Code · PyCharm · Cursor*
 
 [Learn about IDEs →](tools.qmd#ides)
@@ -43,7 +41,7 @@ A model that helps you write, explain, debug, and refactor code. Can live inside
 [Learn about AI tools →](tools.qmd#ai)
 
 **03 — Python Environment (venv)**
-A self-contained Python installation for each project. Keeps your projects isolated so their dependencies don't conflict — this is about managing packages and versions, not about AI. Every professional Python project has one.
+A self-contained Python installation for each project. Keeps your projects isolated so their dependencies don't conflict. This is about managing packages and versions, not about AI. Every professional Python project has one.
 *Examples: venv · conda · uv*
 
 [Learn about environments →](tools.qmd#environments)
@@ -62,35 +60,33 @@ How you install, update, and manage the libraries your code depends on. Works al
 
 ---
 
-## Three questions that place any tool on the map
+## Three questions
 
-Now that you know the tools, here's how to think about them together.
-
-Every developer — beginner or expert — is implicitly answering three questions. The tools above each answer one of them. More importantly, understanding these questions means you can evaluate any new tool you encounter, not just the ones on this site.
+Every developer, beginner or expert, is implicitly answering three questions. Understanding these questions means you can evaluate any new tool you encounter, not just the ones on this site.
 
 | Question | Answer |
 |----------|--------|
-| Where do I write and review code? | An editor or IDE — VS Code, PyCharm, Cursor, and others |
-| Where do I run things? | A terminal — where code executes, scripts run, and agents live |
-| How much can the AI see and do? | This is the levels question — and it's what determines how powerful your workflow actually is |
+| Where do I write and review code? | An editor or IDE: VS Code, PyCharm, Cursor, and others |
+| Where do I run things? | A terminal: where code executes, scripts run, and agents live |
+| How much can the AI see and do? | This is the levels question, and it's what determines how powerful your workflow is |
 
 ---
 
-## What level are you at?
+## Five levels of AI integration
 
-All of these levels use the same underlying AI model. What changes is how much of your environment the AI can see and act on — and how much you have to do manually in between. Knowing where you are shows you what to learn next. Read more [here](https://paulgp.substack.com/p/getting-started-with-claude-code).
+All of these levels use the same underlying AI model. What changes is how much of your environment the AI can see and act on, and how much you have to do manually in between. Knowing where you are shows you what to learn next. Read more [here](https://paulgp.substack.com/p/getting-started-with-claude-code).
 
 **Level 0–1: Browser chat + copy-paste**
-You're using ChatGPT or Claude in a browser tab. You describe a problem, get code back, paste it into your editor, run it, hit an error, copy the error back up, and repeat. Or you have Copilot in your IDE doing inline suggestions — helpful, but still basically a chat loop. The core limitation: the AI has no access to your project. It can't see your files, your errors in context, or how your code is structured. Every exchange starts from scratch. The [Get Started](start.qmd) page walks you through a complete setup in VS Code and PyCharm — including AI from day one.
+You're using ChatGPT or Claude in a browser tab. You describe a problem, get code back, paste it into your editor, run it, hit an error, copy the error back up, and repeat. Or you have Copilot in your IDE doing inline suggestions, helpful but still basically a chat loop. The core limitation: the AI has no access to your project. It can't see your files, your errors in context, or how your code is structured. Every exchange starts from scratch. The [Get Started](start.qmd) page walks you through a complete setup in VS Code and PyCharm, including AI from day one.
 
 **Level 2: AI in your editor**
-The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn't just suggesting — it's doing. The shift here isn't about a specific tool, it's a pattern: the AI has access to your codebase, and you're in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, and in other editors that support in-context AI. The workflow is the same regardless of which tool you use. → [Level 2: AI in Your Editor](level2.qmd)
+The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn't just suggesting; it's doing. The shift here isn't about a specific tool, it's a pattern: the AI has access to your codebase, and you're in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, and in other editors that support in-context AI. The workflow is the same regardless of which tool you use. → [Level 2: AI in Your Editor](level2.qmd)
 
 **Level 3+: Dedicated coding agents**
 The AI moves out of the editor and into your terminal, where it has access to your *full computing environment*. This means it can run code and see the output, not just read files. It can execute scripts, install packages, use system tools, read and write anywhere on your filesystem, and iterate on its own until a task is complete. You describe an outcome; it figures out the steps. The IDE is still useful for reviewing what the agent produced, but it's no longer required to run the task. Claude Code is the primary example covered here; OpenAI Codex CLI and Gemini CLI follow the same pattern. → [Level 3+](level3.qmd)
 
 **Level 4: Connected agents**
-You extend the agent with live connections to the outside world via MCP (Model Context Protocol) — a standard that lets the agent pull in information from beyond your computer: current library documentation, web search, databases, and other services. Without this, an agent is limited to what it already knows, which can lag months behind. With it, the agent can look up the exact API it needs right now, query your database while it codes, or search the web mid-task. Superpowers, Context7, and Sequential Thinking from the Level 3+ page are Level 4 tools layered on top of a Level 3 setup.
+You extend the agent with live connections to the outside world via MCP (Model Context Protocol), a standard that lets the agent pull in information from beyond your computer: current library documentation, web search, databases, and other services. Without this, an agent is limited to what it already knows, which can lag months behind. With it, the agent can look up the exact API it needs right now, query your database while it codes, or search the web mid-task. Superpowers, Context7, and Sequential Thinking from the Level 3+ page are Level 4 tools layered on top of a Level 3 setup.
 
 **Level 5: Fully autonomous runs**
 You give the agent a goal, set it running in a container, and come back an hour later. Real, but requires significant setup, careful scoping, and thorough review of the result.
@@ -101,7 +97,7 @@ All levels use the same underlying AI model. The difference is how much structur
 
 > "The tools change. The workflow doesn't."
 
-Once you understand the tools on their own, the next step is seeing how they fit together into a single workflow. No matter which editor, AI assistant, or package manager you use, every project follows the same underlying sequence of setup, writing, testing, and sharing.
+No matter which editor, AI assistant, or package manager you use, every project follows the same underlying sequence of setup, writing, testing, and sharing.
 
 Learning the pattern means you can switch tools at any time without starting from scratch.
 
@@ -111,6 +107,6 @@ Learning the pattern means you can switch tools at any time without starting fro
 
 ## Where do you want to start?
 
-- [The Tools](tools.qmd) — Deep dives into every major tool category — IDEs, AI assistants, environments, Git, and packages.
-- [How It Connects](workflow.qmd) — See how the tools map to each step of the workflow and what a real project structure looks like.
-- [Get Started](start.qmd) — Step-by-step setup guides and AI workflows for VS Code and PyCharm. Your path into real AI-assisted coding.
+- [The Tools](tools.qmd): Deep dives into every major tool category, including IDEs, AI assistants, environments, Git, and packages.
+- [How It Connects](workflow.qmd): See how the tools map to each step of the workflow and what a real project structure looks like.
+- [Get Started](start.qmd): Step-by-step setup guides and AI workflows for VS Code and PyCharm. Your path into real AI-assisted coding.

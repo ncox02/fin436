@@ -10,11 +10,11 @@ The whole workflow. Do this first.
 
 Make sure you have:
 
-- Python — [python.org](https://python.org)
-- pip — included with Python; on some systems use `pip3` and `python3` instead of `pip` and `python`
-- Git — [git-scm.com](https://git-scm.com)
-- GitHub CLI — [cli.github.com](https://cli.github.com)
-- A GitHub account — [github.com](https://github.com)
+- Python: [python.org](https://python.org)
+- pip: included with Python; on some systems use `pip3` and `python3` instead of `pip` and `python`
+- Git: [git-scm.com](https://git-scm.com)
+- GitHub CLI: [cli.github.com](https://cli.github.com)
+- A GitHub account: [github.com](https://github.com)
 
 ### Step 1: Organize — Folder, Git, virtual environment, and files
 
@@ -42,9 +42,9 @@ code .                 # open VS Code here
 
 ---
 
-Switch to the terminal inside VS Code with **Ctrl + `** — use this for everything from here on.
+Switch to the terminal inside VS Code with **Ctrl + `** and use this for everything from here on.
 
-Tell Git who you are — *one-time setup, never needs repeating:*
+Tell Git who you are (*one-time setup, never needs repeating*):
 
 ```bash
 git config --global user.email "you@example.com"   # your GitHub email
@@ -180,7 +180,7 @@ After this runs, two new folders will appear in VS Code's file explorer — `__p
 
 ### Step 5: Share — Push to GitHub
 
-Log in to GitHub from the terminal — *one-time setup:*
+Log in to GitHub from the terminal (*one-time setup*):
 
 ```bash
 gh auth login   # follow the prompts, it will open a browser to confirm
@@ -209,30 +209,24 @@ Every `git commit` is a saved snapshot. Every `git push` sends it to GitHub.
 
 ## What you just did {#summary}
 
-You completed the entire software development lifecycle. You went from an empty folder to a working project on GitHub with automated tests, version history, and a repeatable workflow.
+You completed the entire software development lifecycle: from an empty folder to a working project on GitHub with automated tests, version history, and a repeatable workflow.
 
-This is not a tutorial exercise—this is the real sequence that every professional team follows. Your `.venv` isolates dependencies. Your `pytest` suite ensures code correctness. Your Git history is a record you can revert to. Your GitHub repo is your backup and collaboration mechanism.
+Your `.venv` isolates dependencies. Your `pytest` suite ensures code correctness. Your Git history is a record you can revert to. Your GitHub repo is your backup and collaboration mechanism.
 
-The loop you now run—edit → test → commit → push—is the same loop used to build production systems at scale. You've just done it end-to-end.
+The loop you now run (edit → test → commit → push) is the same loop used to build production systems at scale.
 
-Everything that comes next in Levels 2, 3, and 4 builds on this foundation. You've got the framework. The next levels show you how to move faster within it.
+Everything that comes next in Levels 2, 3, and 4 builds on this foundation. The next levels show you how to move faster within it.
 
-## Choose your next level {#next-steps}
+## What's next {#next-steps}
 
 ### Level 2: AI inside your editor
 
-Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code. *~20 minutes*
+Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code.
 
 [Go to Level 2](level2.qmd)
 
 ### Level 3: Coding agent in your terminal
 
-The AI runs in your terminal with access to your full environment. It reads files, executes code, installs packages, and iterates until the task is done. *~25 minutes*
+The AI runs in your terminal with access to your full environment. It reads files, executes code, installs packages, and iterates until the task is done.
 
 [Go to Level 3](level3.qmd)
-
-### Level 4: Connected agents
-
-Extend the agent with live connections to docs, databases, and the web via MCP. The agent can look up the exact API it needs mid-task. *~15 minutes*
-
-[Go to Level 3 — Level 4 section](level3.qmd#level-4-transition)
