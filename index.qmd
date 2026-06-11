@@ -60,7 +60,7 @@ How you install, update, and manage the libraries your code depends on. Works al
 
 ---
 
-## How to evaluate any tool
+## Three questions
 
 Every developer, beginner or expert, is implicitly answering three questions. Understanding these questions means you can evaluate any new tool you encounter, not just the ones on this site.
 

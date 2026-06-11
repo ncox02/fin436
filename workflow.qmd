@@ -4,8 +4,6 @@ title: "How It Connects"
 
 ## System overview
 
-The system diagram below shows the standard shape of a Python project. The specific tools you choose can vary but the workflow is the same.
-
 <!-- mermaid fallback — kept for reference
 ```{mermaid}
 flowchart LR

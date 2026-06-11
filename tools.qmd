@@ -2,8 +2,6 @@
 title: "The Tools"
 ---
 
-Every major category explained: what it does, why it exists, and which options are worth knowing.
-
 ## IDEs & Code Editors {#ides}
 
 Where you write and understand code.
