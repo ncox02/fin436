@@ -2,29 +2,39 @@
 title: "How It Connects"
 ---
 
-Tools alone don't tell the story. Here's how they form a system and where every tool fits together.
-
-## The whole system, at a glance
+## System overview
 
 The system diagram below shows the standard shape of a Python project. The specific tools you choose can vary but the workflow is the same.
 
-**Your machine**
+```{mermaid}
+flowchart LR
+    PyPI[("PyPI\nPackage Registry")]
 
-- IDE / Editor (VS Code · PyCharm · Cursor) ↔ AI Assistant (Claude · Copilot · JetBrains AI) ↔ Virtual Env (venv · conda · uv)
+    subgraph machine["Your Machine"]
+        direction TB
+        ide["IDE / Editor\nVS Code · PyCharm · Cursor"]
+        ai["AI Assistant\nClaude · Copilot · JetBrains AI"]
+        env["Virtual Environment\nvenv · conda · uv"]
+        ide <--> ai
+        ide <--> env
+    end
 
-**Version control (local)**
+    git["Git\n(local version control)"]
 
-- Git — Tracks every change · Branches · History · Merges
+    subgraph cloud["The Cloud"]
+        direction LR
+        github["GitHub\nremote repo · pull requests"]
+        cicd["CI/CD\nGitHub Actions"]
+        app["Deployed App"]
+        github --> cicd --> app
+    end
 
-**The cloud**
+    PyPI --> env
+    machine --> git
+    git --> github
+```
 
-- GitHub (Remote repo · Pull requests · Issues) → CI/CD (GitHub Actions · Auto-test · Deploy) → Deployed app (Server · Cloud · Users)
-
-**Package registry**
-
-- PyPI — pip install packages into your virtual env
-
-## How each tool category maps to the workflow
+## Tools in the workflow
 
 The five-step workflow (Organize → Write → Test → Share → Deploy).
 
@@ -34,7 +44,7 @@ Before you write a single line, you create a virtual environment for your projec
 
 **Write — IDE + AI assistant**
 
-Your IDE is where you spend most of your time. It understands your code, shows errors as you type, lets you navigate your project instantly, and runs your programs. Your AI assistant lives alongside it — either as an inline suggestion engine (Copilot), a chat panel in the sidebar, or both. The two work together: the IDE understands your project structure; the AI helps you build it.
+Your IDE is where you spend most of your time. It understands your code, shows errors as you type, lets you navigate your project instantly, and runs your programs. Your AI assistant lives alongside it: either as an inline suggestion engine (Copilot), a chat panel in the sidebar, or both. The two work together: the IDE understands your project structure; the AI helps you build it.
 
 **Test — IDE debugger + AI for diagnosis**
 
@@ -48,9 +58,7 @@ Git tracks every change you make, building a history you can always return to. G
 
 Once your code is on GitHub, automated pipelines (GitHub Actions, etc.) can run your tests, build your application, and deploy it to a server every time you push. For most Python projects starting out, this step is optional — but it's where the workflow ultimately leads.
 
-## Where AI fits at each stage
-
-AI doesn't replace any part of this workflow. It accelerates every part of it. Here's specifically where it adds value at each step.
+## Where AI fits in
 
 **Before you write**
 
@@ -70,7 +78,7 @@ Ask AI to review your working code: "Is there a more Pythonic way to write this?
 
 **For testing**
 
-Ask AI to generate unit tests for your functions. It reads the function's logic and proposes test cases — including edge cases you might not have thought of. You review and refine.
+Ask AI to generate unit tests for your functions. It reads the function's logic and proposes test cases, including edge cases you might not have thought of. You review and refine.
 
 **For documentation**
 
@@ -94,10 +102,10 @@ my-project/
 └── README.md       ← what this project is and how to run it
 ```
 
-- **.venv/** — Your virtual environment lives here. It's specific to your machine and can always be recreated from `requirements.txt`, so it is never committed to Git. This is the most important thing to put in your `.gitignore`.
-- **.gitignore** — Tells Git which files to skip. At minimum: `.venv/`, `__pycache__/`, `*.pyc`, and `.env` (environment variables and secrets — never commit these).
-- **requirements.txt** — The list of packages your project needs. Anyone who clones your project runs `pip install -r requirements.txt` to recreate your environment exactly.
-- **README.md** — The first thing anyone reads when they open your project on GitHub. Write what the project does, how to set it up, and how to run it.
+- **.venv/**: Your virtual environment lives here. It's specific to your machine and can always be recreated from `requirements.txt`, so it is never committed to Git. This is the most important thing to put in your `.gitignore`.
+- **.gitignore**: Tells Git which files to skip. At minimum: `.venv/`, `__pycache__/`, `*.pyc`, and `.env` (environment variables and secrets, never commit these).
+- **requirements.txt**: The list of packages your project needs. Anyone who clones your project runs `pip install -r requirements.txt` to recreate your environment exactly.
+- **README.md**: The first thing anyone reads when they open your project on GitHub. Write what the project does, how to set it up, and how to run it.
 
 ---
 
