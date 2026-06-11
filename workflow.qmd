@@ -6,6 +6,7 @@ title: "How It Connects"
 
 The system diagram below shows the standard shape of a Python project. The specific tools you choose can vary but the workflow is the same.
 
+<!-- mermaid fallback — kept for reference
 ```{mermaid}
 flowchart LR
     PyPI[("PyPI\nPackage Registry")]
@@ -32,6 +33,141 @@ flowchart LR
     PyPI --> env
     machine --> git
     git --> github
+```
+-->
+
+```{=html}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+.pf-diagram {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-bottom: 1rem;
+}
+.pf-diagram-section { margin-bottom: 1.5rem; }
+.pf-section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #77778a;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+.pf-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.pf-row.single { justify-content: center; }
+.pf-box {
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 0.875rem 1.25rem;
+  flex: 1;
+  min-width: 160px;
+  border: 1px solid rgba(0,0,0,0.12);
+}
+.pf-box.wide { max-width: 500px; flex: none; width: 100%; }
+.pf-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1f;
+  margin-bottom: 3px;
+}
+.pf-sub { font-size: 0.72rem; color: #77778a; font-family: 'DM Mono', monospace; }
+.pf-box-ide    { border-top: 2px solid #5b4bff; }
+.pf-box-ai     { border-top: 2px solid #0891b2; }
+.pf-box-env    { border-top: 2px solid #059669; }
+.pf-box-git    { border-top: 2px solid #ea580c; }
+.pf-box-github { border-top: 2px solid #6e5494; }
+.pf-box-ci     { border-top: 2px solid #d97706; }
+.pf-box-deploy { border-top: 2px solid #059669; }
+.pf-box-pypi   { border-top: 2px solid #7c3aed; }
+.pf-connector  { color: #77778a; font-size: 1.2rem; flex-shrink: 0; }
+.pf-down-arrow {
+  text-align: center;
+  color: #77778a;
+  font-size: 0.8rem;
+  margin-top: 0.75rem;
+  font-family: 'DM Mono', monospace;
+}
+.pf-aside { margin-top: -0.5rem; display: flex; justify-content: flex-end; }
+.pf-aside-box  { max-width: 250px; flex: none; }
+.pf-caption {
+  font-size: 0.83rem;
+  color: #77778a;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+@media (max-width: 700px) { .pf-row { flex-direction: column; } }
+</style>
+
+<div class="pf-diagram">
+  <div class="pf-diagram-section">
+    <div class="pf-section-label">Your Machine</div>
+    <div class="pf-row">
+      <div class="pf-box pf-box-ide">
+        <div class="pf-title">IDE / Editor</div>
+        <div class="pf-sub">VS Code &middot; PyCharm &middot; Cursor</div>
+      </div>
+      <div class="pf-connector">&harr;</div>
+      <div class="pf-box pf-box-ai">
+        <div class="pf-title">AI Assistant</div>
+        <div class="pf-sub">Claude &middot; Copilot &middot; JetBrains AI</div>
+      </div>
+      <div class="pf-connector">&harr;</div>
+      <div class="pf-box pf-box-env">
+        <div class="pf-title">Virtual Env</div>
+        <div class="pf-sub">venv &middot; conda &middot; uv</div>
+      </div>
+    </div>
+    <div class="pf-down-arrow">&darr; Git commit</div>
+  </div>
+
+  <div class="pf-diagram-section">
+    <div class="pf-section-label">Version Control (Local)</div>
+    <div class="pf-row single">
+      <div class="pf-box pf-box-git wide">
+        <div class="pf-title">Git</div>
+        <div class="pf-sub">Tracks every change &middot; Branches &middot; History &middot; Merges</div>
+      </div>
+    </div>
+    <div class="pf-down-arrow">&darr; git push</div>
+  </div>
+
+  <div class="pf-diagram-section">
+    <div class="pf-section-label">The Cloud</div>
+    <div class="pf-row">
+      <div class="pf-box pf-box-github">
+        <div class="pf-title">GitHub</div>
+        <div class="pf-sub">Remote repo &middot; Pull requests &middot; Issues</div>
+      </div>
+      <div class="pf-connector">&rarr;</div>
+      <div class="pf-box pf-box-ci">
+        <div class="pf-title">CI/CD</div>
+        <div class="pf-sub">GitHub Actions &middot; Auto-test &middot; Deploy</div>
+      </div>
+      <div class="pf-connector">&rarr;</div>
+      <div class="pf-box pf-box-deploy">
+        <div class="pf-title">Deployed app</div>
+        <div class="pf-sub">Server &middot; Cloud &middot; Users</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf-aside">
+    <div class="pf-box pf-box-pypi pf-aside-box">
+      <div class="pf-title">PyPI</div>
+      <div class="pf-sub">pip install &uarr; to your virtual env</div>
+    </div>
+  </div>
+</div>
+
+<p class="pf-caption">This is the standard shape of a Python project. The specific tools you choose can vary but the workflow is the same.</p>
 ```
 
 ## Tools in the workflow
