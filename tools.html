@@ -71,7 +71,7 @@
 
       <a class="tool-card tool-card-link">
         <div class="tool-card-header">
-          <div class="tool-icon vscode-icon">⬡</div>
+          <div class="tool-icon vscode-icon"></div>
           <div>
             <h4>VS Code</h4>
             <div class="tool-by">Microsoft · Free · All platforms</div>
@@ -93,7 +93,7 @@
 
       <a class="tool-card tool-card-link">
         <div class="tool-card-header">
-          <div class="tool-icon pycharm-icon">🐍</div>
+          <div class="tool-icon pycharm-icon"></div>
           <div>
             <h4>PyCharm</h4>
             <div class="tool-by">JetBrains · Free (Community) or Paid (Pro) · All platforms</div>
@@ -115,7 +115,7 @@
 
       <a class="tool-card tool-card-link">
         <div class="tool-card-header">
-          <div class="tool-icon cursor-icon">⌛</div>
+          <div class="tool-icon cursor-icon"></div>
           <div>
             <h4>Cursor</h4>
             <div class="tool-by">Anysphere · Free tier + Paid · All platforms</div>
@@ -136,7 +136,7 @@
 
       <div class="tool-card tool-card-link">
         <div class="tool-card-header">
-          <div class="tool-icon jupyter-icon">📓</div>
+          <div class="tool-icon jupyter-icon"></div>
           <div>
             <h4>Jupyter Notebook / JupyterLab</h4>
             <div class="tool-by">Project Jupyter · Free · Browser-based</div>
@@ -172,105 +172,14 @@
     <div class="explainer-block">
       <div class="explainer-simple">
         <div class="explainer-label">Simply put</div>
-        <p>An AI assistant is a tool that can read your code and talk to you about it — writing new code, explaining what something does, finding bugs, suggesting improvements, or generating tests. Some live inside your IDE as extensions. Some are separate chat interfaces. Some are both. The best ones feel like having a very knowledgeable pair programmer on call at all times.</p>
+        <p>An AI assistant is a tool that can read your code and talk to you about it &mdash; writing new code, explaining what something does, finding bugs, suggesting improvements, or generating tests. Some live inside your IDE as extensions. Some are separate chat interfaces. Some are both. The best ones feel like having a very knowledgeable pair programmer on call at all times.</p>
       </div>
       <div class="explainer-deep">
         <div class="explainer-label">Going deeper</div>
-        <p>Modern coding AI assistants are built on large language models (LLMs) fine-tuned for code. The key distinction is <strong>context window</strong> — how much of your code the model can see at once. A larger context window means smarter, more coherent suggestions. IDE-integrated tools can stream completions inline (autocomplete-style), while chat-based tools let you have a full conversation about architecture, debugging, or design choices. The distinction between "inline assistant" and "chat assistant" is blurring — most tools now do both.</p>
+        <p>Modern coding AI assistants are built on large language models (LLMs) fine-tuned for code. The key distinction is <strong>context window</strong> &mdash; how much of your code the model can see at once. A larger context window means smarter, more coherent suggestions. IDE-integrated tools can stream completions inline (autocomplete-style), while chat-based tools let you have a full conversation about architecture, debugging, or design choices. The distinction between &ldquo;inline assistant&rdquo; and &ldquo;chat assistant&rdquo; is blurring &mdash; most tools now do both.</p>
       </div>
     </div>
 
-    <h3 class="sub-section-title">The main options</h3>
-    <div class="tool-cards">
-
-      <div class="tool-card">
-        <div class="tool-card-header">
-          <div class="tool-icon claude-icon">◆</div>
-          <div>
-            <h4>Claude (Anthropic)</h4>
-            <div class="tool-by">Anthropic · Free + Paid · Web, API, IDE extensions</div>
-          </div>
-          <div class="tool-badge">Strong reasoning</div>
-        </div>
-        <p>Claude is a general-purpose AI assistant with exceptionally strong reasoning and code abilities. Available as a web chat (claude.ai), as an API for developers, and increasingly as IDE extensions (VS Code, Cursor). Claude Code is a terminal-based agentic tool where Claude can read, write, and run files autonomously — without an IDE at all.</p>
-        <div class="tool-strengths">
-          <div class="strength-item good">Excellent at explaining complex code and concepts</div>
-          <div class="strength-item good">Very large context window — can read entire files at once</div>
-          <div class="strength-item good">Strong at debugging, architecture, and code review</div>
-          <div class="strength-item good">Claude Code for autonomous multi-file agentic workflows</div>
-          <div class="strength-item good">Best at following nuanced, specific instructions</div>
-          <div class="strength-item neutral">IDE inline integration less seamless than Copilot</div>
-        </div>
-        <div class="tool-best-for">Best for: Understanding, explaining, and designing code. Deep problem-solving conversations. Large agentic tasks via Claude Code.</div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-card-header">
-          <div class="tool-icon copilot-icon">✦</div>
-          <div>
-            <h4>GitHub Copilot</h4>
-            <div class="tool-by">GitHub / Microsoft · Paid (~$10/mo, free for students) · All major IDEs</div>
-          </div>
-          <div class="tool-badge popular">Most used</div>
-        </div>
-        <p>The original AI coding assistant, built directly into VS Code, PyCharm, Vim, and others. Copilot watches what you're typing and suggests completions — sometimes a single word, sometimes an entire function. Also has a chat mode. Powered by OpenAI models under the hood.</p>
-        <div class="tool-strengths">
-          <div class="strength-item good">Seamlessly integrated into most editors</div>
-          <div class="strength-item good">Excellent inline autocomplete</div>
-          <div class="strength-item good">Tight GitHub integration</div>
-          <div class="strength-item neutral">Subscription required after trial</div>
-          <div class="strength-item neutral">Less strong at deep reasoning than Claude</div>
-        </div>
-        <div class="tool-best-for">Best for: Day-to-day coding with inline suggestions. Pairs naturally with VS Code + GitHub.</div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-card-header">
-          <div class="tool-icon jb-icon">🧠</div>
-          <div>
-            <h4>JetBrains AI</h4>
-            <div class="tool-by">JetBrains · Included with Pro plans · PyCharm, IntelliJ, etc.</div>
-          </div>
-        </div>
-        <p>JetBrains' native AI assistant, built into PyCharm Pro and other JetBrains IDEs. Uniquely aware of your project's full context — not just open files, but run logs, test results, and error output — because it has access to everything the IDE already knows.</p>
-        <div class="tool-strengths">
-          <div class="strength-item good">Deep IDE integration — understands your project fully</div>
-          <div class="strength-item good">Inline suggestions + chat mode</div>
-          <div class="strength-item good">Can explain why your last test run failed (reads actual output)</div>
-          <div class="strength-item good">No extra subscription if you already have PyCharm Pro</div>
-          <div class="strength-item neutral">Only useful if you're in a JetBrains IDE</div>
-        </div>
-        <div class="tool-best-for">Best for: PyCharm users who want AI without adding another tool. Especially strong for test diagnosis and project-aware questions.</div>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-card-header">
-          <div class="tool-icon chatgpt-icon">⬡</div>
-          <div>
-            <h4>ChatGPT</h4>
-            <div class="tool-by">OpenAI · Free + Paid · Web, mobile, API</div>
-          </div>
-        </div>
-        <p>The most widely known AI chat interface. Strong at code generation, explanation, and debugging. Not directly embedded in IDEs by default, but can be added via extensions. The paid tier's code interpreter can actually run your code in a sandboxed environment and show you the output — no local setup needed.</p>
-        <div class="tool-strengths">
-          <div class="strength-item good">Familiar, widely used interface</div>
-          <div class="strength-item good">Code interpreter can run code and show output (paid tier)</div>
-          <div class="strength-item good">Extremely well-documented — tutorials everywhere</div>
-          <div class="strength-item neutral">Less IDE-integrated than Copilot or JetBrains AI</div>
-          <div class="strength-item neutral">Context window smaller than Claude's</div>
-        </div>
-        <div class="tool-best-for">Best for: Quick questions, learning concepts, and exploring ideas. The code interpreter is useful when you want to test code without a local environment.</div>
-      </div>
-
-    </div>
-
-    <div class="callout">
-      <div class="callout-icon">💡</div>
-      <div>
-        <strong>IDE-integrated vs. chat-based AI</strong>
-        <p>These are different experiences, not competing ones. A chat-based AI (Claude, ChatGPT) is great for conversations — "explain this to me," "how should I structure this?" An IDE-integrated AI (Copilot, JetBrains AI) is great for inline help — completing what you're typing, suggesting the next line. Many developers use both: Copilot inside their editor for day-to-day suggestions, and Claude in a browser tab for harder questions.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -306,7 +215,7 @@
 
       <div class="tool-card">
         <div class="tool-card-header">
-          <div class="tool-icon venv-icon">📦</div>
+          <div class="tool-icon venv-icon"></div>
           <div>
             <h4>venv</h4>
             <div class="tool-by">Built into Python · Free · All platforms</div>
@@ -327,7 +236,7 @@
 
       <div class="tool-card">
         <div class="tool-card-header">
-          <div class="tool-icon conda-icon">🐍</div>
+          <div class="tool-icon conda-icon"></div>
           <div>
             <h4>conda / Anaconda</h4>
             <div class="tool-by">Anaconda Inc · Free (conda) · All platforms</div>
@@ -346,7 +255,7 @@
 
       <div class="tool-card">
         <div class="tool-card-header">
-          <div class="tool-icon uv-icon">⚡</div>
+          <div class="tool-icon uv-icon"></div>
           <div>
             <h4>uv</h4>
             <div class="tool-by">Astral · Free · All platforms</div>
@@ -424,7 +333,7 @@
     </div>
 
     <div class="callout">
-      <div class="callout-icon">💡</div>
+      <div class="callout-icon"></div>
       <div>
         <strong>Git vs GitHub vs GitLab vs Bitbucket</strong>
         <p>Git is the tool. GitHub, GitLab, and Bitbucket are services that host your Git repositories online. GitHub is by far the most popular, especially for open source. GitLab is popular in enterprises and has more built-in CI/CD features. Bitbucket is common in organizations already using Atlassian tools (Jira, Confluence). The Git commands you type are identical regardless of which service you use.</p>
@@ -459,7 +368,7 @@
 
       <div class="tool-card">
         <div class="tool-card-header">
-          <div class="tool-icon pip-icon">📥</div>
+          <div class="tool-icon pip-icon"></div>
           <div>
             <h4>pip</h4>
             <div class="tool-by">Built into Python · Free</div>
@@ -477,7 +386,7 @@
 
       <div class="tool-card">
         <div class="tool-card-header">
-          <div class="tool-icon uv-icon">⚡</div>
+          <div class="tool-icon uv-icon"></div>
           <div>
             <h4>uv (as a package manager)</h4>
             <div class="tool-by">Astral · Free</div>
@@ -496,7 +405,7 @@
     </div>
 
     <div class="callout">
-      <div class="callout-icon">📋</div>
+      <div class="callout-icon"></div>
       <div>
         <strong>requirements.txt and pyproject.toml</strong>
         <p>These are the two standard ways to declare what packages your project needs. <code>requirements.txt</code> is older and simpler — a plain list of packages. <code>pyproject.toml</code> is the modern standard — it also contains project metadata, tool configuration, and works with Poetry and uv. Both serve the same purpose: if someone else clones your project, they can install exactly what you're using.</p>
@@ -521,7 +430,7 @@
       <a href="workflow.html">How It Connects</a>
       <a href="start.html">Get Started</a>
       <!-- 🌗 THEME TOGGLE BUTTON -->
-      <button id="themeToggle" class="theme-toggle">☀️</button>
+      <button id="themeToggle" class="theme-toggle"></button>
       <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
     </div>
     <p class="footer-note">A clear guide to modern Python development — tools, workflow, and AI.</p>
