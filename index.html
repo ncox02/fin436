@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python &amp; AI — The Modern Workflow – PyWorkflow</title>
+<title>Python &amp; AI — The Modern Workflow – Python &amp; AI</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -42,13 +42,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-787e033c7b6f65c9dfccb6078e5d2d34.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -74,68 +74,83 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">PyWorkflow</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Overview</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./tools.html"> 
-<span class="menu-text">The Tools</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./workflow.html"> 
-<span class="menu-text">How It Connects</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./start.html"> 
-<span class="menu-text">Get Started</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./level2.html"> 
-<span class="menu-text">Level 2</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./level3.html"> 
-<span class="menu-text">Level 3+</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python &amp; AI</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How It Connects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get Started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./level2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Level 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./level3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Level 3+</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#how-code-is-actually-written-shared-and-built." id="toc-how-code-is-actually-written-shared-and-built." class="nav-link active" data-scroll-target="#how-code-is-actually-written-shared-and-built.">How code is actually written, shared, and built.</a></li>
-  <li><a href="#the-core-idea" id="toc-the-core-idea" class="nav-link" data-scroll-target="#the-core-idea">The core idea</a></li>
-  <li><a href="#every-tool-fits-into-one-of-these-roles." id="toc-every-tool-fits-into-one-of-these-roles." class="nav-link" data-scroll-target="#every-tool-fits-into-one-of-these-roles.">Every tool fits into one of these roles.</a></li>
-  <li><a href="#three-questions-that-place-any-tool-on-the-map" id="toc-three-questions-that-place-any-tool-on-the-map" class="nav-link" data-scroll-target="#three-questions-that-place-any-tool-on-the-map">Three questions that place any tool on the map</a></li>
-  <li><a href="#what-level-are-you-at" id="toc-what-level-are-you-at" class="nav-link" data-scroll-target="#what-level-are-you-at">What level are you at?</a></li>
+  <li><a href="#how-code-is-written-shared-and-built." id="toc-how-code-is-written-shared-and-built." class="nav-link active" data-scroll-target="#how-code-is-written-shared-and-built.">How code is written, shared, and built.</a></li>
+  <li><a href="#the-core-workflow" id="toc-the-core-workflow" class="nav-link" data-scroll-target="#the-core-workflow">The core workflow</a></li>
+  <li><a href="#what-youll-need" id="toc-what-youll-need" class="nav-link" data-scroll-target="#what-youll-need">What you’ll need</a></li>
+  <li><a href="#three-questions" id="toc-three-questions" class="nav-link" data-scroll-target="#three-questions">Three questions</a></li>
+  <li><a href="#five-levels-of-ai-integration" id="toc-five-levels-of-ai-integration" class="nav-link" data-scroll-target="#five-levels-of-ai-integration">Five levels of AI integration</a></li>
   <li><a href="#where-do-you-want-to-start" id="toc-where-do-you-want-to-start" class="nav-link" data-scroll-target="#where-do-you-want-to-start">Where do you want to start?</a></li>
   </ul>
 </nav>
@@ -162,16 +177,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="how-code-is-actually-written-shared-and-built." class="level2">
-<h2 class="anchored" data-anchor-id="how-code-is-actually-written-shared-and-built.">How code is actually written, shared, and built.</h2>
+<section id="how-code-is-written-shared-and-built." class="level2">
+<h2 class="anchored" data-anchor-id="how-code-is-written-shared-and-built.">How code is written, shared, and built.</h2>
 <p>Learn the essential tools of modern Python development and how they work together in a real workflow.</p>
 <p>→ <a href="./tools.html">Explore the tools</a> · <a href="./workflow.html">See how they connect</a></p>
 <hr>
 </section>
-<section id="the-core-idea" class="level2">
-<h2 class="anchored" data-anchor-id="the-core-idea">The core idea</h2>
-<p>Before the details, here’s the whole picture.</p>
-<p>This is the basic sequence every Python project follows. Once you see it, everything else fits into place.</p>
+<section id="the-core-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-core-workflow">The core workflow</h2>
+<p>This is the basic sequence every Python project follows.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -182,36 +196,36 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Organize</td>
-<td>Env + packages</td>
+<td>Set up your environment and install packages</td>
 </tr>
 <tr class="even">
 <td>Write</td>
-<td>IDE + AI assistant</td>
+<td>Use your IDE and AI assistant to write code</td>
 </tr>
 <tr class="odd">
 <td>Test</td>
-<td>Run + debug</td>
+<td>Run code and debug errors</td>
 </tr>
 <tr class="even">
 <td>Share</td>
-<td>Git + GitHub</td>
+<td>Track changes with Git and sync to GitHub</td>
 </tr>
 <tr class="odd">
 <td>Deploy</td>
-<td>Ship + iterate</td>
+<td>Ship your project and iterate</td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
-<section id="every-tool-fits-into-one-of-these-roles." class="level2">
-<h2 class="anchored" data-anchor-id="every-tool-fits-into-one-of-these-roles.">Every tool fits into one of these roles.</h2>
+<section id="what-youll-need" class="level2">
+<h2 class="anchored" data-anchor-id="what-youll-need">What you’ll need</h2>
 <p>No matter how many tools you see, they all do one of five things:</p>
-<p><strong>01 — The Editor / IDE</strong> Where you write and read code. An IDE (Integrated Development Environment) is a text editor with superpowers — it understands your code, highlights errors, helps you navigate, and runs your programs. <em>Examples: VS Code · PyCharm · Cursor</em></p>
+<p><strong>01 — The Editor / IDE</strong> Where you write and read code. An IDE (Integrated Development Environment) is a text editor with superpowers: it understands your code, highlights errors, helps you navigate, and runs your programs. <em>Examples: VS Code · PyCharm · Cursor</em></p>
 <p><a href="./tools.html#ides">Learn about IDEs →</a></p>
 <p><strong>02 — The AI Assistant</strong> A model that helps you write, explain, debug, and refactor code. Can live inside your IDE or as a separate chat interface. Transforms what a solo developer can accomplish in a day. <em>Examples: Claude · GitHub Copilot · ChatGPT · JetBrains AI</em></p>
 <p><a href="./tools.html#ai">Learn about AI tools →</a></p>
-<p><strong>03 — Python Environment (venv)</strong> A self-contained Python installation for each project. Keeps your projects isolated so their dependencies don’t conflict — this is about managing packages and versions, not about AI. Every professional Python project has one. <em>Examples: venv · conda · uv</em></p>
+<p><strong>03 — Python Environment (venv)</strong> A self-contained Python installation for each project. Keeps your projects isolated so their dependencies don’t conflict. This is about managing packages and versions, not about AI. Every professional Python project has one. <em>Examples: venv · conda · uv</em></p>
 <p><a href="./tools.html#environments">Learn about environments →</a></p>
 <p><strong>04 — Version Control</strong> A system that tracks every change to your code, lets you go back in time, and enables multiple people to work on the same project without overwriting each other. <em>Examples: Git · GitHub · GitLab · Bitbucket</em></p>
 <p><a href="./tools.html#git">Learn about Git &amp; GitHub →</a></p>
@@ -219,10 +233,9 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="./tools.html#packages">Learn about packages →</a></p>
 <hr>
 </section>
-<section id="three-questions-that-place-any-tool-on-the-map" class="level2">
-<h2 class="anchored" data-anchor-id="three-questions-that-place-any-tool-on-the-map">Three questions that place any tool on the map</h2>
-<p>Now that you know the tools, here’s how to think about them together.</p>
-<p>Every developer — beginner or expert — is implicitly answering three questions. The tools above each answer one of them. More importantly, understanding these questions means you can evaluate any new tool you encounter, not just the ones on this site.</p>
+<section id="three-questions" class="level2">
+<h2 class="anchored" data-anchor-id="three-questions">Three questions</h2>
+<p>Every developer, beginner or expert, is implicitly answering three questions. Understanding these questions means you can evaluate any new tool you encounter, not just the ones on this site.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 55%">
@@ -237,34 +250,34 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td>Where do I write and review code?</td>
-<td>An editor or IDE — VS Code, PyCharm, Cursor, and others</td>
+<td>An editor or IDE: VS Code, PyCharm, Cursor, and others</td>
 </tr>
 <tr class="even">
 <td>Where do I run things?</td>
-<td>A terminal — where code executes, scripts run, and agents live</td>
+<td>A terminal: where code executes, scripts run, and agents live</td>
 </tr>
 <tr class="odd">
 <td>How much can the AI see and do?</td>
-<td>This is the levels question — and it’s what determines how powerful your workflow actually is</td>
+<td>This is the levels question, and it’s what determines how powerful your workflow is</td>
 </tr>
 </tbody>
 </table>
 <hr>
 </section>
-<section id="what-level-are-you-at" class="level2">
-<h2 class="anchored" data-anchor-id="what-level-are-you-at">What level are you at?</h2>
-<p>All of these levels use the same underlying AI model. What changes is how much of your environment the AI can see and act on — and how much you have to do manually in between. Knowing where you are shows you what to learn next. Read more <a href="https://paulgp.substack.com/p/getting-started-with-claude-code">here</a>.</p>
-<p><strong>Level 0–1: Browser chat + copy-paste</strong> You’re using ChatGPT or Claude in a browser tab. You describe a problem, get code back, paste it into your editor, run it, hit an error, copy the error back up, and repeat. Or you have Copilot in your IDE doing inline suggestions — helpful, but still basically a chat loop. The core limitation: the AI has no access to your project. It can’t see your files, your errors in context, or how your code is structured. Every exchange starts from scratch. The <a href="./start.html">Get Started</a> page walks you through a complete setup in VS Code and PyCharm — including AI from day one.</p>
-<p><strong>Level 2: AI in your editor</strong> The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn’t just suggesting — it’s doing. The shift here isn’t about a specific tool, it’s a pattern: the AI has access to your codebase, and you’re in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, and in other editors that support in-context AI. The workflow is the same regardless of which tool you use. → <a href="./level2.html">Level 2: AI in Your Editor</a></p>
+<section id="five-levels-of-ai-integration" class="level2">
+<h2 class="anchored" data-anchor-id="five-levels-of-ai-integration">Five levels of AI integration</h2>
+<p>All of these levels use the same underlying AI model. What changes is how much of your environment the AI can see and act on, and how much you have to do manually in between. Knowing where you are shows you what to learn next. Read more <a href="https://paulgp.substack.com/p/getting-started-with-claude-code">here</a>.</p>
+<p><strong>Level 0–1: Browser chat + copy-paste</strong> You’re using ChatGPT or Claude in a browser tab. You describe a problem, get code back, paste it into your editor, run it, hit an error, copy the error back up, and repeat. Or you have Copilot in your IDE doing inline suggestions, helpful but still basically a chat loop. The core limitation: the AI has no access to your project. It can’t see your files, your errors in context, or how your code is structured. Every exchange starts from scratch. The <a href="./start.html">Get Started</a> page walks you through a complete setup in VS Code and PyCharm, including AI from day one.</p>
+<p><strong>Level 2: AI in your editor</strong> The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn’t just suggesting; it’s doing. The shift here isn’t about a specific tool, it’s a pattern: the AI has access to your codebase, and you’re in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, and in other editors that support in-context AI. The workflow is the same regardless of which tool you use. → <a href="./level2.html">Level 2: AI in Your Editor</a></p>
 <p><strong>Level 3+: Dedicated coding agents</strong> The AI moves out of the editor and into your terminal, where it has access to your <em>full computing environment</em>. This means it can run code and see the output, not just read files. It can execute scripts, install packages, use system tools, read and write anywhere on your filesystem, and iterate on its own until a task is complete. You describe an outcome; it figures out the steps. The IDE is still useful for reviewing what the agent produced, but it’s no longer required to run the task. Claude Code is the primary example covered here; OpenAI Codex CLI and Gemini CLI follow the same pattern. → <a href="./level3.html">Level 3+</a></p>
-<p><strong>Level 4: Connected agents</strong> You extend the agent with live connections to the outside world via MCP (Model Context Protocol) — a standard that lets the agent pull in information from beyond your computer: current library documentation, web search, databases, and other services. Without this, an agent is limited to what it already knows, which can lag months behind. With it, the agent can look up the exact API it needs right now, query your database while it codes, or search the web mid-task. Superpowers, Context7, and Sequential Thinking from the Level 3+ page are Level 4 tools layered on top of a Level 3 setup.</p>
+<p><strong>Level 4: Connected agents</strong> You extend the agent with live connections to the outside world via MCP (Model Context Protocol), a standard that lets the agent pull in information from beyond your computer: current library documentation, web search, databases, and other services. Without this, an agent is limited to what it already knows, which can lag months behind. With it, the agent can look up the exact API it needs right now, query your database while it codes, or search the web mid-task. Superpowers, Context7, and Sequential Thinking from the Level 3+ page are Level 4 tools layered on top of a Level 3 setup.</p>
 <p><strong>Level 5: Fully autonomous runs</strong> You give the agent a goal, set it running in a container, and come back an hour later. Real, but requires significant setup, careful scoping, and thorough review of the result.</p>
 <p>All levels use the same underlying AI model. The difference is how much structure, access, and autonomy you give it.</p>
 <hr>
 <blockquote class="blockquote">
 <p>“The tools change. The workflow doesn’t.”</p>
 </blockquote>
-<p>Once you understand the tools on their own, the next step is seeing how they fit together into a single workflow. No matter which editor, AI assistant, or package manager you use, every project follows the same underlying sequence of setup, writing, testing, and sharing.</p>
+<p>No matter which editor, AI assistant, or package manager you use, every project follows the same underlying sequence of setup, writing, testing, and sharing.</p>
 <p>Learning the pattern means you can switch tools at any time without starting from scratch.</p>
 <p>→ <a href="./workflow.html">See the full workflow</a></p>
 <hr>
@@ -272,9 +285,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="where-do-you-want-to-start" class="level2">
 <h2 class="anchored" data-anchor-id="where-do-you-want-to-start">Where do you want to start?</h2>
 <ul>
-<li><a href="./tools.html">The Tools</a> — Deep dives into every major tool category — IDEs, AI assistants, environments, Git, and packages.</li>
-<li><a href="./workflow.html">How It Connects</a> — See how the tools map to each step of the workflow and what a real project structure looks like.</li>
-<li><a href="./start.html">Get Started</a> — Step-by-step setup guides and AI workflows for VS Code and PyCharm. Your path into real AI-assisted coding.</li>
+<li><a href="./tools.html">The Tools</a>: Deep dives into every major tool category, including IDEs, AI assistants, environments, Git, and packages.</li>
+<li><a href="./workflow.html">How It Connects</a>: See how the tools map to each step of the workflow and what a real project structure looks like.</li>
+<li><a href="./start.html">Get Started</a>: Step-by-step setup guides and AI workflows for VS Code and PyCharm. Your path into real AI-assisted coding.</li>
 </ul>
 
 
@@ -354,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/ncox02\.github\.io\/pyworkflow\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

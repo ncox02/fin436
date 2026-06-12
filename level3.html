@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Level 3: AI in Your Terminal – PyWorkflow</title>
+<title>Level 3: AI in Your Terminal – Python &amp; AI</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -42,13 +42,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-787e033c7b6f65c9dfccb6078e5d2d34.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -74,57 +74,72 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">PyWorkflow</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Overview</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./tools.html"> 
-<span class="menu-text">The Tools</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./workflow.html"> 
-<span class="menu-text">How It Connects</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./start.html"> 
-<span class="menu-text">Get Started</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./level2.html"> 
-<span class="menu-text">Level 2</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./level3.html" aria-current="page"> 
-<span class="menu-text">Level 3+</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./level3.html">Level 3+</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python &amp; AI</a> 
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How It Connects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get Started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./level2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Level 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./level3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Level 3+</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -142,6 +157,8 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#mcp" id="toc-mcp" class="nav-link" data-scroll-target="#mcp">MCP</a></li>
   <li><a href="#claude-code" id="toc-claude-code" class="nav-link" data-scroll-target="#claude-code">Try it out with Claude Code</a></li>
+  <li><a href="#sandbox" id="toc-sandbox" class="nav-link" data-scroll-target="#sandbox">Sandbox</a></li>
+  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference">Quick reference</a></li>
   <li><a href="#statusline" id="toc-statusline" class="nav-link" data-scroll-target="#statusline">01 — Statusline</a></li>
   <li><a href="#superpowers" id="toc-superpowers" class="nav-link" data-scroll-target="#superpowers">02 — Superpowers</a></li>
   <li><a href="#sequential-thinking" id="toc-sequential-thinking" class="nav-link" data-scroll-target="#sequential-thinking">03 — Sequential Thinking</a></li>
@@ -149,8 +166,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#warp" id="toc-warp" class="nav-link" data-scroll-target="#warp">05 — Warp</a></li>
   <li><a href="#mobile" id="toc-mobile" class="nav-link" data-scroll-target="#mobile">06 — Happy Engineering</a></li>
   <li><a href="#skills" id="toc-skills" class="nav-link" data-scroll-target="#skills">07 — Skills</a></li>
-  <li><a href="#sandbox" id="toc-sandbox" class="nav-link" data-scroll-target="#sandbox">Sandbox</a></li>
-  <li><a href="#quick-reference" id="toc-quick-reference" class="nav-link" data-scroll-target="#quick-reference">Quick reference</a></li>
   </ul>
 </nav>
     </div>
@@ -176,11 +191,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>At Level 3, the AI runs in your terminal. You describe a goal; it reads your files, writes code, runs scripts, and iterates on failures until the task is done. You review the result. What makes this more capable than an editor assistant is not what the agent can see — it is that it can execute. In the editor, you run the tests and bring errors back to the AI. Here, the agent runs that loop itself.</p>
+<p>At Level 3, the AI runs in your terminal. You describe a goal; it reads your files, writes code, runs scripts, and iterates on failures until the task is done. You review the result. What makes this more capable than an editor assistant is not what the agent can see; it is that it can execute. In the editor, you run the tests and bring errors back to the AI. Here, the agent runs that loop itself.</p>
 <blockquote class="blockquote">
 <p><strong>Most terminal AI tools require a paid subscription.</strong> Free tiers typically provide access to web-based chat only — not the terminal agent. Check the pricing for whichever tool you use before getting started.</p>
 </blockquote>
-<p>A terminal agent is the right tool when the task requires execution — running tests, iterating across files, working through a multi-step process. For inline suggestions while you’re actively writing code, the IDE is still the natural fit. The two complement each other; most people use both.</p>
+<p>A terminal agent is the right tool when the task requires execution: running tests, iterating across files, working through a multi-step process. For inline suggestions while you’re actively writing code, the IDE is still the natural fit. The two complement each other; most people use both.</p>
 <hr>
 <section id="new-development-cycle" class="level2">
 <h2 class="anchored" data-anchor-id="new-development-cycle">The new development cycle</h2>
@@ -216,7 +231,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="even">
 <td><strong>Share</strong></td>
 <td>AI writes a commit message from your diff; you commit</td>
-<td>AI can stage, write the message, and commit — you review before or after</td>
+<td>AI can stage, write the message, and commit; you review before or after</td>
 </tr>
 <tr class="odd">
 <td><strong>Deploy</strong></td>
@@ -247,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
 └── src/</code></pre>
 <section id="the-context-file" class="level3">
 <h3 class="anchored" data-anchor-id="the-context-file">The context file</h3>
-<p>Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. A context file — a markdown file in your project root — is how you fix that. Write your standing instructions there once; the agent reads it at the start of every session. Keep it factual: project structure, conventions, constraints that apply to every task. Specifics for the current task go in the prompt.</p>
+<p>Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. A context file, a markdown file in your project root, is how you fix that. Write your standing instructions there once; the agent reads it at the start of every session. Keep it factual: project structure, conventions, constraints that apply to every task. Specifics for the current task go in the prompt.</p>
 <p>The folders you list and the directories you grant the agent access to form the same boundary. Start narrow: read and write within the project directory, run test and build commands you already use, no broader filesystem access. An agent with write access to your filesystem and permission to run arbitrary commands can make changes you didn’t intend. Review what it’s done at each step, especially early on.</p>
 </section>
 <section id="the-context-window" class="level3">
@@ -261,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="between-sessions" class="level3">
 <h3 class="anchored" data-anchor-id="between-sessions">Between sessions</h3>
-<p>End sessions before context degrades. Most tools display context usage somewhere — if yours doesn’t, it is worth making it visible. When context approaches 50%, end the session:</p>
+<p>End sessions before context degrades. Most tools display context usage somewhere, and if yours doesn’t, it is worth making it visible. When context approaches 50%, end the session:</p>
 <pre><code>Write a summary of what we've done and what's left to progress.md</code></pre>
 <p>The next session reads that file and continues cleanly. Treat sessions as bounded units of work — end when the immediate task is done, not when the window is full. Avoid open-ended prompts like “clean up the whole codebase.” Break large goals into specific, bounded tasks.</p>
 </section>
@@ -275,79 +290,15 @@ ul.task-list li input[type="checkbox"] {
 <section id="mcp" class="level2">
 <h2 class="anchored" data-anchor-id="mcp">MCP</h2>
 <p>Model Context Protocol is an open standard for connecting AI agents to external tools. Instead of pasting documentation into a prompt or building a one-off integration script, you configure an MCP server once and the agent can call it in any session.</p>
-<p>An MCP server is a small program the agent invokes natively — indistinguishable from a built-in capability once configured. Common uses: pulling current library documentation, querying a database, running a custom analysis, accessing an API. Configure it once; it is available in every session.</p>
+<p>An MCP server is a small program the agent invokes natively, indistinguishable from a built-in capability once configured. Common uses: pulling current library documentation, querying a database, running a custom analysis, accessing an API. Configure it once; it is available in every session.</p>
 <hr>
 </section>
 <section id="claude-code" class="level2">
 <h2 class="anchored" data-anchor-id="claude-code">Try it out with Claude Code</h2>
-<p>The concepts above apply to any terminal AI tool. Claude Code is one of them. If you want to try it, the rest of this page covers an efficient setup — the tool itself plus seven integrations that implement what we’ve discussed.</p>
-<blockquote class="blockquote">
-<p>A project sandbox at the bottom of this page gives you a ready starting point — a folder structure that implements everything discussed, ready to copy into any project.</p>
-</blockquote>
+<p>The concepts above apply to any terminal AI tool. Claude Code is one of them. If you want to try it, this section covers an efficient setup: the tool itself plus seven integrations that implement what we’ve discussed. A project sandbox and quick reference table follow below.</p>
 <p>Install Claude Code and find platform-specific setup instructions at the official documentation:</p>
 <p><strong><a href="https://code.claude.com/docs/en/terminal-guide#windows">Install Claude Code</a></strong></p>
 <p>Navigate to your project and type <code>claude</code> to start a session. Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.</p>
-<hr>
-</section>
-<section id="statusline" class="level2">
-<h2 class="anchored" data-anchor-id="statusline">01 — Statusline</h2>
-<p><em>Make context usage visible — the most critical metric in a session</em></p>
-<p>The statusline adds a persistent bar at the bottom of your terminal showing context window percentage, session cost, model name, elapsed time, and git status. Without it, you notice context degradation when Claude starts making mistakes. With it, you can end sessions before quality drops.</p>
-<p>Find install instructions in the Claude Code documentation or by asking Claude: <code>How do I install the statusline?</code></p>
-<blockquote class="blockquote">
-<p><strong>Windows note:</strong> The setup wizard sometimes fails on Windows. If the guided setup does not complete, install manually: <code>npx cc-statusline@latest</code> in your terminal.</p>
-</blockquote>
-<hr>
-</section>
-<section id="superpowers" class="level2">
-<h2 class="anchored" data-anchor-id="superpowers">02 — Superpowers</h2>
-<p><em>Structured sub-agent workflows — the highest-impact single install</em></p>
-<p>Superpowers is a Claude Code plugin that implements the planning and sub-agent workflow described above. Instead of one session accumulating context until it degrades, your main Claude instance dispatches focused sub-agents — each with its own fresh context window. The orchestrator receives summaries, not full workloads.</p>
-<p>Superpowers enforces the brainstorm → plan → execute workflow: clarify requirements before writing anything, produce a spec, execute against it.</p>
-<p>Install via the Claude Code plugin menu — type <code>/plugin</code> inside a session and find Superpowers in the list.</p>
-<blockquote class="blockquote">
-<p>If you install one thing from this page, install Superpowers.</p>
-</blockquote>
-<hr>
-</section>
-<section id="sequential-thinking" class="level2">
-<h2 class="anchored" data-anchor-id="sequential-thinking">03 — Sequential Thinking</h2>
-<p><em>Structured reasoning before complex tasks</em></p>
-<p>Sequential Thinking is an MCP server that adds explicit chain-of-thought reasoning to Claude Code. Before acting on complex tasks, Claude works through a visible step-by-step reasoning process — understand the problem, identify constraints, consider approaches, then implement.</p>
-<p>Ask Claude to install it: <code>Please install the sequential thinking MCP server</code></p>
-<hr>
-</section>
-<section id="context7" class="level2">
-<h2 class="anchored" data-anchor-id="context7">04 — Context7</h2>
-<p><em>Current library documentation — eliminates hallucinated APIs</em></p>
-<p>Claude Code’s training data has a cutoff date. When you ask it to use a library, it works from training data that may be months out of date — confidently using deprecated methods or renamed APIs. Context7 pulls current, version-specific documentation from live repositories and injects it into Claude’s context at prompt time.</p>
-<p>Install via the Claude Code plugin menu — type <code>/plugin</code> inside a session and find Context7 in the list.</p>
-<hr>
-</section>
-<section id="warp" class="level2">
-<h2 class="anchored" data-anchor-id="warp">05 — Warp</h2>
-<p><em>A better terminal for running Claude Code</em></p>
-<p>Warp is a modern terminal — a replacement for Windows Terminal, Mac Terminal, or the VS Code integrated terminal. You run Claude Code inside Warp.</p>
-<p>Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran.</p>
-<p>Download from <a href="https://warp.dev">Warp</a> — available for Mac, Linux, and Windows. Free to use.</p>
-<hr>
-</section>
-<section id="mobile" class="level2">
-<h2 class="anchored" data-anchor-id="mobile">06 — Happy Engineering</h2>
-<p><em>Full terminal access from your phone</em></p>
-<p>Happy Engineering runs a live terminal session on your computer that you control from your phone’s browser. Setup takes about a minute — no accounts, no configuration, simpler than any remote-access alternative. When you connect from your phone, you are controlling the actual terminal on your machine — every integration you have configured is available. Tasks you start on your phone continue running on your computer.</p>
-<p>Install from <a href="https://happy.engineering">Happy Engineering</a>. Free and open source.</p>
-<hr>
-</section>
-<section id="skills" class="level2">
-<h2 class="anchored" data-anchor-id="skills">07 — Skills</h2>
-<p><em>Reusable workflows for tasks you do repeatedly</em></p>
-<p>Skills are markdown files in <code>.claude/skills/</code> that Claude Code reads when you invoke them. Instead of re-explaining a workflow every session, you encode it once and call it by name.</p>
-<pre><code>.claude/
-  skills/
-    add-module.md    ← invoked with /add-module
-    run-analysis.md  ← invoked with /run-analysis</code></pre>
-<p>Describe the repetitive task in detail and ask Claude to build the skill for you. After a few iterations, it becomes a reliable automation available in every session.</p>
 <hr>
 </section>
 <section id="sandbox" class="level2">
@@ -421,6 +372,67 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<hr>
+</section>
+<section id="statusline" class="level2">
+<h2 class="anchored" data-anchor-id="statusline">01 — Statusline</h2>
+<p><em>Make context usage visible: the most critical metric in a session</em></p>
+<p>The statusline adds a persistent bar at the bottom of your terminal showing context window percentage, session cost, model name, elapsed time, and git status. Without it, you notice context degradation when Claude starts making mistakes. With it, you can end sessions before quality drops.</p>
+<p>Find install instructions in the Claude Code documentation or by asking Claude: <code>How do I install the statusline?</code></p>
+<blockquote class="blockquote">
+<p><strong>Windows note:</strong> The setup wizard sometimes fails on Windows. If the guided setup does not complete, install manually: <code>npx cc-statusline@latest</code> in your terminal.</p>
+</blockquote>
+<hr>
+</section>
+<section id="superpowers" class="level2">
+<h2 class="anchored" data-anchor-id="superpowers">02 — Superpowers</h2>
+<p><em>Structured sub-agent workflows: the highest-impact single install</em></p>
+<p>Superpowers is a Claude Code plugin that implements the planning and sub-agent workflow described above. Instead of one session accumulating context until it degrades, your main Claude instance dispatches focused sub-agents — each with its own fresh context window. The orchestrator receives summaries, not full workloads.</p>
+<p>Superpowers enforces the brainstorm → plan → execute workflow: clarify requirements before writing anything, produce a spec, execute against it.</p>
+<p>Install via the Claude Code plugin menu — type <code>/plugin</code> inside a session and find Superpowers in the list.</p>
+<blockquote class="blockquote">
+<p>If you install one thing from this page, install Superpowers.</p>
+</blockquote>
+<hr>
+</section>
+<section id="sequential-thinking" class="level2">
+<h2 class="anchored" data-anchor-id="sequential-thinking">03 — Sequential Thinking</h2>
+<p><em>Structured reasoning before complex tasks</em></p>
+<p>Sequential Thinking is an MCP server that adds explicit chain-of-thought reasoning to Claude Code. Before acting on complex tasks, Claude works through a visible step-by-step reasoning process — understand the problem, identify constraints, consider approaches, then implement.</p>
+<p>Ask Claude to install it: <code>Please install the sequential thinking MCP server</code></p>
+<hr>
+</section>
+<section id="context7" class="level2">
+<h2 class="anchored" data-anchor-id="context7">04 — Context7</h2>
+<p><em>Current library documentation: eliminates hallucinated APIs</em></p>
+<p>Claude Code’s training data has a cutoff date. When you ask it to use a library, it works from training data that may be months out of date — confidently using deprecated methods or renamed APIs. Context7 pulls current, version-specific documentation from live repositories and injects it into Claude’s context at prompt time.</p>
+<p>Install via the Claude Code plugin menu — type <code>/plugin</code> inside a session and find Context7 in the list.</p>
+<hr>
+</section>
+<section id="warp" class="level2">
+<h2 class="anchored" data-anchor-id="warp">05 — Warp</h2>
+<p><em>A better terminal for running Claude Code</em></p>
+<p>Warp is a modern terminal — a replacement for Windows Terminal, Mac Terminal, or the VS Code integrated terminal. You run Claude Code inside Warp.</p>
+<p>Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block; no scrolling through walls of output to find what Claude ran.</p>
+<p>Download from <a href="https://warp.dev">Warp</a> — available for Mac, Linux, and Windows. Free to use.</p>
+<hr>
+</section>
+<section id="mobile" class="level2">
+<h2 class="anchored" data-anchor-id="mobile">06 — Happy Engineering</h2>
+<p><em>Full terminal access from your phone</em></p>
+<p>Happy Engineering runs a live terminal session on your computer that you control from your phone’s browser. Setup takes about a minute — no accounts, no configuration, simpler than any remote-access alternative. When you connect from your phone, you are controlling the actual terminal on your machine — every integration you have configured is available. Tasks you start on your phone continue running on your computer.</p>
+<p>Install from <a href="https://happy.engineering">Happy Engineering</a>. Free and open source.</p>
+<hr>
+</section>
+<section id="skills" class="level2">
+<h2 class="anchored" data-anchor-id="skills">07 — Skills</h2>
+<p><em>Reusable workflows for tasks you do repeatedly</em></p>
+<p>Skills are markdown files in <code>.claude/skills/</code> that Claude Code reads when you invoke them. Instead of re-explaining a workflow every session, you encode it once and call it by name.</p>
+<pre><code>.claude/
+  skills/
+    add-module.md    ← invoked with /add-module
+    run-analysis.md  ← invoked with /run-analysis</code></pre>
+<p>Describe the repetitive task in detail and ask Claude to build the skill for you. After a few iterations, it becomes a reliable automation available in every session.</p>
 
 
 </section>
@@ -499,7 +511,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/ncox02\.github\.io\/pyworkflow\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
