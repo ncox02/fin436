@@ -43,7 +43,7 @@
   <div class="container">
     <div class="page-eyebrow">Level 2</div>
     <h1 class="page-title">AI in Your Editor</h1>
-    <p class="page-statement">Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two tools: the <strong>Main Editor Window</strong> and the <strong>Copilot Chat Sidebar</strong>. Do not open the terminal or any external agent panel yet.</p>
+    <p class="page-statement">Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two tools: the <strong>Main Editor Window</strong> and the <strong>Copilot Chat Sidebar</strong>.</p>
     <div class="toc">
       <a href="#workflow">New Workflow</a>
       <a href="#exercises">Practice</a>
@@ -91,9 +91,7 @@
 
     </div>
 
-    <blockquote class="l2-quote">"Level 2 is not about memorizing syntax â€” it is about learning how to clearly state your intent to the editor so it does the manual labor."</blockquote>
-
-    <div class="l2-keys">
+    <div class=”l2-keys”>
       <div class="l2-key-item">
         <kbd>Tab</kbd>
         <span>accepts what AI proposes</span>
@@ -149,12 +147,12 @@
               </div>
               <div class="ex-body">
                 <p>Open VS Code. Open the Copilot Chat sidebar. Do not open any files. Send this prompt:</p>
-                <div class="prompt-block"><p>I want to build a Python project that calculates compound interest
+                <div class=”prompt-block”><p>I want to build a Python project that calculates compound interest
 over time for a given principal, rate, and number of years. It
 should also compare different compounding frequencies (annual,
-monthly, daily). Plan this project for me â€” describe the logic,
-the inputs and outputs, and any edge cases I should think about.
-Don't write any code yet.</p></div>
+monthly, daily). Before writing any code, describe the structure
+and logic &mdash; what functions are needed, what they take as input,
+and what they return.</p></div>
                 <p>Read the response. If anything is unclear or missing, ask a follow-up before moving on.</p>
                 <div class="takeaway-block">AI reasons about structure and logic before a single file exists. In a browser, you would have had to re-paste this plan every time you wanted to reference it. Here it stays in context for every exercise that follows.</div>
               </div>
@@ -168,14 +166,15 @@ Don't write any code yet.</p></div>
                   <span class="ex-title">Scaffold Generation</span>
                 </div>
               </div>
-              <div class="ex-body">
+              <div class=”ex-body”>
                 <p>In the same chat session, send this prompt:</p>
-                <div class="prompt-block"><p>Now suggest a folder and file structure for this project. List each
-file with a one-line description of its purpose. Then give me the
-terminal commands to create the folders and empty files.
-Keep it simple â€” no frameworks, just clean Python modules.</p></div>
-                <p>Copy the suggested terminal commands. Use them to set up the project before starting the writing exercises.</p>
-                <div class="takeaway-block">AI generates the skeleton of a project from a plain-English description. You reviewed the plan before committing to any structure â€” that is the right order of operations.</div>
+                <div class=”prompt-block”><p>Now create the folder and file structure for this project. I need
+you to actually create the folders and empty files &mdash; not just
+suggest commands for me to run. Keep it simple: no frameworks,
+just clean Python modules.</p></div>
+                <p>In agent mode, Copilot will create the folders and files directly. To switch: select &ldquo;Agent&rdquo; from the dropdown at the top of the chat panel before sending the prompt.</p>
+                <p>If you are in standard chat mode instead, Copilot will give you terminal commands. Run them in the VS Code integrated terminal (<kbd>Ctrl+`</kbd>).</p>
+                <div class=”takeaway-block”>AI generates and builds the project skeleton from a plain-English description. You reviewed the plan before committing to any structure &mdash; that is the right order of operations.</div>
               </div>
             </div>
 
@@ -512,16 +511,18 @@ Use only pytest. No fixtures.</p></div>
       <div class="insight-callout-header">
         <div class="insight-callout-label">Why Exercises 1 &amp; 2 worked â€” and how it scales</div>
       </div>
-      <div class="insight-callout-body">
-        <p>You just built a small spec and a scaffold. In serious AI-assisted projects, this pattern has a name and a folder structure that reflects it directly:</p>
-        <ul class="insight-folder-list">
+      <div class=”insight-callout-body”>
+        <p>You just described a goal in plain English and got back a structure. That is not a trick; it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.</p>
+        <p>When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints. Those are completely different quality levels &mdash; and the difference compounds over time.</p>
+        <p>In serious AI-assisted codebases, the folder structure reflects this:</p>
+        <ul class=”insight-folder-list”>
           <li><code>spec/</code> <span>what the thing is: goals, constraints, non-goals</span></li>
           <li><code>design/</code> <span>how it is structured: architecture, data model, component map</span></li>
           <li><code>context/</code> <span>what AI needs to know each session: current state, decisions made, open questions</span></li>
           <li><code>tasks/</code> <span>discrete, completable units of work</span></li>
         </ul>
-        <p>When you open a new chat with a vague description, AI is guessing at your intent. When you hand it a precise spec, it is executing against known constraints. Those are completely different quality levels â€” and the difference compounds over time.</p>
-        <p class="insight-callout-closer">This is why you are not constantly backpedaling: the work is in the documents, not the chat history. The habit starts at Exercise 1.</p>
+        <p>You are not there yet &mdash; this is Level 2. But the habit starts here: write down what you are building before you ask AI to build it. The documents are the project. The chat is just execution.</p>
+        <p class=”insight-callout-closer”>If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying. The fix is not a better prompt &mdash; it is better documents.</p>
       </div>
     </div>
 
@@ -653,16 +654,17 @@ Add a comment explaining the compound interest formula.</div>
     <h2>Editor &amp; Context</h2>
 
     <div class="ide-explainer-grid">
-      <div class="callout-card">
+      <div class=”callout-card”>
         <div>
-          <div class="callout-card-title">Your editor, your choice</div>
-          <p>VS Code with GitHub Copilot and PyCharm with JetBrains AI Assistant are the most common starting points. Cursor is a fork of VS Code rebuilt with in-context, inline AI editing as its core purpose rather than a plugin â€” popular and worth a look. Zed, Windsurf, and others follow the same idea. The capability matters; the specific tool is secondary.</p>
+          <div class=”callout-card-title”>Your editor, your choice</div>
+          <p>Everything on this page uses VS Code with GitHub Copilot. If you are using PyCharm, Cursor, or another AI-capable editor, the exercises map directly &mdash; the features have different names but the same purpose. Ask your editor&rsquo;s AI assistant to walk you through the equivalent of each exercise. Refactor, inline edit, explain, and test generation all exist in every major AI editor.</p>
         </div>
       </div>
-      <div class="callout-card">
+      <div class=”callout-card”>
         <div>
-          <div class="callout-card-title">How file context works</div>
-          <p>When you open a file and open the Copilot Chat sidebar, the AI has already read your open file. Type <code>#filename.py</code> in your chat message to pull a specific file into context explicitly. AI sees across files simultaneously â€” something browser chat cannot do without copy-pasting each one. File context becomes meaningful starting at Exercise 5; the earlier exercises work from plain-English descriptions alone.</p>
+          <div class=”callout-card-title”>How file context works</div>
+          <p>When you open a file and open the Copilot Chat sidebar, the AI has already read your open file. For files you want to reference explicitly, open them in VS Code first &mdash; Copilot reads all open files as part of its context. You can also attach specific files using the file attachment button in the chat panel.</p>
+          <p>File context becomes meaningful starting at Exercise 5. The earlier exercises work from plain-English descriptions alone.</p>
         </div>
       </div>
     </div>
@@ -679,7 +681,7 @@ Add a comment explaining the compound interest formula.</div>
     <div class="next-card">
       <p>Level 2 keeps AI inside the editor. It reads your files and proposes changes â€” but it cannot run anything. You still execute code in the terminal and carry results back into the chat manually.</p>
       <p>Level 3 removes that constraint. A terminal agent like Claude Code has access to your full computing environment: it executes scripts, reads the output, installs packages, modifies files, and iterates until a task is complete. Exercise 9 above was the first preview of that boundary. Level 3 is what happens when you remove it entirely.</p>
-      <a href="level3.html" class="btn-primary">Go to Level 3: Claude Advanced &rarr;</a>
+      <a href="level3.html" class="btn-primary">Go to Level 3: AI in Your Terminal &rarr;</a>
     </div>
   </div>
 </section>
@@ -693,7 +695,7 @@ Add a comment explaining the compound interest formula.</div>
       <a href="tools.html">The Tools</a>
       <a href="workflow.html">How It Connects</a>
       <a href="start.html">Get Started</a>
-      <button id="themeToggle" class="theme-toggle">&#9728;&#65039;</button>
+      <button id="themeToggle" class="theme-toggle"></button>
       <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
     </div>
     <p class="footer-note">A clear guide to modern Python development &mdash; tools, workflow, and AI.</p>
