@@ -1,5 +1,9 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "!docs/**"
+    - "!progress.md"
 
 website:
   title: "Python & AI"
