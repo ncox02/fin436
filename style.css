@@ -752,6 +752,38 @@ section { padding: 5rem 0; }
 .callout strong { color: var(--text); font-weight: 500; display: block; margin-bottom: 0.5rem; font-size: 0.9rem; }
 .callout p { font-size: 0.85rem; color: var(--text2); font-weight: 300; line-height: 1.6; }
 
+details.callout-details {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+}
+details.callout-details summary {
+  cursor: pointer;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  list-style: none;
+  user-select: none;
+}
+details.callout-details summary::-webkit-details-marker { display: none; }
+details.callout-details summary::before {
+  content: '▶ ';
+  font-size: 0.7em;
+  color: var(--accent);
+}
+details.callout-details[open] summary::before { content: '▼ '; }
+details.callout-details p {
+  font-size: 0.85rem;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
 /* Analogy block */
 .analogy-block {
   background: linear-gradient(135deg, rgba(123,108,255,0.06), rgba(6,182,212,0.04));

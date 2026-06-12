@@ -178,35 +178,11 @@
 
       <p><code>requirements.txt</code> is how you tell anyone who clones your project which packages to install. It replaces the need to share your <code>.venv</code> folder.</p>
 
-      <div class="callout">
-        <div class="callout-icon"></div>
-        <div>
-          <strong>If your virtual environment stops working (common on Python 3.13)</strong>
-          <p>A known issue with Python 3.13 can break <code>.venv</code> after certain operations. If you see errors about missing modules or an inactive environment, delete it and start over:</p>
-          <p><strong>Windows:</strong></p>
-          <div class="code-block-labeled">
-            <div class="code-block-lang">bash</div>
-            <div class="code-block">
-<code>Remove-Item -Recurse -Force .venv</code><br>
-<code>python -m venv .venv</code><br>
-<code>.venv\Scripts\activate</code><br>
-<code>pip install pytest</code><br>
-<code>pip freeze &gt; requirements.txt</code>
-            </div>
-          </div>
-          <p><strong>Mac:</strong></p>
-          <div class="code-block-labeled">
-            <div class="code-block-lang">bash</div>
-            <div class="code-block">
-<code>rm -rf .venv</code><br>
-<code>python3 -m venv .venv</code><br>
-<code>source .venv/bin/activate</code><br>
-<code>pip install pytest</code><br>
-<code>pip freeze &gt; requirements.txt</code>
-            </div>
-          </div>
-        </div>
-      </div>
+      <details class="callout-details">
+        <summary>Having trouble? Ask AI.</summary>
+        <p>Some commands may not execute as expected. Software changes, packages get updated, and platform differences can cause issues. For example, Python 3.14 introduced changes that affect how virtual environments (<code>.venv</code>) behave on some systems.</p>
+        <p>If something isn't working, paste the error message into Claude or ChatGPT and describe what you were trying to do.</p>
+      </details>
     </div>
   </div>
 
