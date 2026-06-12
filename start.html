@@ -11,14 +11,18 @@
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">py<span>flow</span></a>
   <div class="nav-links">
     <a href="index.html">Overview</a>
     <a href="tools.html">The Tools</a>
     <a href="workflow.html">How It Connects</a>
-    <a href="start.html" class="active">Get Started</a>
-    <a href="level2.html" style="color: var(--accent2);">Level 2</a>
-    <a href="level3.html" style="color: var(--accent2);">Level 3</a>
+    <div class="nav-dropdown">
+      <a href="start.html" class="active">Get Started</a>
+      <div class="nav-dropdown-menu">
+        <a href="start.html">Get Started</a>
+        <a href="level2.html">Level 2</a>
+        <a href="level3.html">Level 3</a>
+      </div>
+    </div>
   </div>
   <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
 </nav>
@@ -27,8 +31,8 @@
   <a href="tools.html">The Tools</a>
   <a href="workflow.html">How It Connects</a>
   <a href="start.html">Get Started</a>
-  <a href="ide-cursor.html">Level 2: AI in Your Editor</a>
-  <a href="level3.html">Level 3: AI in Your Terminal</a>
+  <a href="level2.html">Level 2</a>
+  <a href="level3.html">Level 3</a>
 </div>
 
 <main>
