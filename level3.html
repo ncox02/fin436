@@ -207,36 +207,16 @@
       <div class="int-num">01</div>
       <div>
         <h2>Statusline</h2>
-        <div class="int-sub">Make context usage visible &mdash; the most critical metric in a Claude Code session</div>
+        <div class="int-sub">Make context usage visible &mdash; the most critical metric in a session</div>
       </div>
     </div>
-
-    <p>By default, Claude Code gives you no live view of how much context you've used, what it's costing, or what model is active. The statusline adds a persistent bar at the bottom of your terminal session showing all of this in real time.</p>
-
-    <div class="int-why">
-      <div class="int-why-label">Why it matters</div>
-      <p>Context percentage is the most important number in a Claude Code session. Without it, you'll only notice context degradation when Claude starts making mistakes &mdash; by which point you've already wasted time on low-quality output. With the statusline, you can preemptively end sessions before quality drops.</p>
-    </div>
-
-    <h3 class="sub-section-title">What the statusline shows</h3>
-    <div class="int-features">
-      <div class="int-feature">Model name (e.g. claude-sonnet-4)</div>
-      <div class="int-feature">Context window percentage used &mdash; the critical number</div>
-      <div class="int-feature">Session cost in USD</div>
-      <div class="int-feature">Session elapsed time</div>
-      <div class="int-feature">Current Git branch and working tree status</div>
-    </div>
-
-    <h3 class="sub-section-title">Setup</h3>
-    <p>Run this command in your terminal before starting a Claude Code session:</p>
-    <div class="code-block">npx cc-statusline@latest</div>
-    <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text2); font-weight:300;">This installs and launches the statusline. You can configure which metrics appear in which order. A suggested Line 1 configuration: model &middot; context % &middot; session cost &middot; elapsed time. Line 2: git branch &middot; git worktree status.</p>
-
+    <p>The statusline adds a persistent bar at the bottom of your terminal showing context window percentage, session cost, model name, elapsed time, and git status. Without it, you notice context degradation when Claude starts making mistakes. With it, you can end sessions before quality drops.</p>
+    <p>Find install instructions in the Claude Code documentation or by asking Claude: <code>How do I install the statusline?</code></p>
     <div class="callout">
-      <div class="callout-icon">&#9888;</div>
+      <div class="callout-icon"></div>
       <div>
-        <strong>On /compact: don't rely on it</strong>
-        <p>Claude Code has a <code>/compact</code> command that summarizes the conversation and starts fresh. It's tempting but usually counterproductive &mdash; you lose some context, but the &ldquo;poisoned&rdquo; context from before the compaction still affects quality. It's better to end the session cleanly and start fresh with a written summary (as described in the context section above).</p>
+        <strong>Windows note</strong>
+        <p>The setup wizard sometimes fails on Windows. If the guided setup does not complete, install manually: <code>npx cc-statusline@latest</code> in your terminal.</p>
       </div>
     </div>
   </div>
@@ -252,35 +232,13 @@
         <div class="int-sub">Structured sub-agent workflows &mdash; the most impactful single installation</div>
       </div>
     </div>
-
-    <p>Superpowers is a Claude Code plugin that fundamentally changes how Claude approaches tasks. Instead of one Claude session accumulating context until it degrades, Superpowers enables <strong>sub-agent workflows</strong>: your main Claude instance acts as an orchestrator, dispatching specialized sub-agents to do focused work &mdash; each in its own fresh context window &mdash; and reporting back results.</p>
-
-    <div class="int-why">
-      <div class="int-why-label">Why it matters</div>
-      <p>This solves the context window problem structurally. A sub-agent that writes code, a sub-agent that reviews it, a sub-agent that writes tests &mdash; each starts fresh. The orchestrator only receives the summaries, not the full workload. Superpowers also enforces a planning workflow that dramatically improves output quality: brainstorm first, write a spec, then implement from the spec.</p>
-    </div>
-
-    <h3 class="sub-section-title">The three core commands</h3>
-    <div class="int-features">
-      <div class="int-feature"><strong>superpowers brainstorm</strong> &mdash; start any project or feature. Claude asks clarifying questions, proposes 2&ndash;3 approaches, and produces a spec document for your approval. You review and steer.</div>
-      <div class="int-feature"><strong>superpowers write plan</strong> &mdash; takes your approved spec and turns it into a detailed implementation plan: file by file, function by function, with all the details needed for production-quality code.</div>
-      <div class="int-feature"><strong>superpowers execute plan</strong> &mdash; dispatches sub-agents to implement the plan. Each agent handles a focused piece of work with its own context window. Code reviewers and testers are automatically included.</div>
-    </div>
-
-    <h3 class="sub-section-title">Setup</h3>
-    <div class="code-block"><span class="code-comment"># Inside a Claude Code session, type:</span>
-/plugin
-
-<span class="code-comment"># From the plugin menu, add and install superpowers:</span>
-<span class="code-comment"># Select "superpowers" and install for user scope</span>
-<span class="code-comment"># Also install "code-simplifier" while you're here</span>
-<span class="code-comment"># Exit and restart Claude Code &mdash; Superpowers is now active</span></div>
-
+    <p>Superpowers is a Claude Code plugin that implements the planning and sub-agent workflow described above. Instead of one session accumulating context until it degrades, your main Claude instance dispatches focused sub-agents &mdash; each with its own fresh context window. The orchestrator receives summaries, not full workloads.</p>
+    <p>Superpowers enforces the brainstorm &rarr; plan &rarr; execute workflow: clarify requirements before writing anything, produce a spec, execute against it.</p>
+    <p>Install via the Claude Code plugin menu &mdash; type <code>/plugin</code> inside a session and find Superpowers in the list.</p>
     <div class="callout">
-      <div class="callout-icon">&#128161;</div>
+      <div class="callout-icon"></div>
       <div>
-        <strong>Install this first</strong>
-        <p>If you install one thing from this page, install Superpowers. The shift from ad-hoc requests to plan-driven development with sub-agents is the biggest quality jump available in Claude Code. The brainstorm &rarr; plan &rarr; execute workflow is what serious teams use &mdash; Superpowers gives it to you automatically.</p>
+        <p>If you install one thing from this page, install Superpowers.</p>
       </div>
     </div>
   </div>
@@ -293,27 +251,11 @@
       <div class="int-num">03</div>
       <div>
         <h2>Sequential Thinking</h2>
-        <div class="int-sub">Deeper reasoning for complex problems</div>
+        <div class="int-sub">Structured reasoning before complex tasks</div>
       </div>
     </div>
-
-    <p>Sequential Thinking is an MCP (Model Context Protocol) server that adds structured chain-of-thought reasoning to Claude Code. Before acting on complex tasks, Claude works through a visible step-by-step reasoning process: understand the problem &rarr; identify constraints &rarr; consider approaches &rarr; select and implement. This reasoning is visible to you and catchable when it goes wrong.</p>
-
-    <div class="int-why">
-      <div class="int-why-label">Why it matters</div>
-      <p>On straightforward tasks, Claude Code performs well by default. On complex architectural decisions, multi-step algorithms, or tasks with non-obvious constraints, forcing explicit reasoning before action produces significantly better results. Sequential Thinking combines especially well with Superpowers &mdash; the brainstorm and planning steps benefit most from deep reasoning.</p>
-    </div>
-
-    <div class="int-why" style="background: rgba(251,191,36,0.05); border-color: rgba(251,191,36,0.15);">
-      <div class="int-why-label" style="color: var(--neutral);">What MCP means</div>
-      <p>MCP (Model Context Protocol) is an open standard that lets Claude Code connect to external tools and data sources as if they were built-in capabilities. An MCP server is a small program Claude Code can call. Sequential Thinking, Context7, and others are MCP servers. You add them to Claude Code's configuration once; they're available in every session.</p>
-    </div>
-
-    <h3 class="sub-section-title">Setup</h3>
-    <p>The simplest install: ask Claude Code to do it for you:</p>
-    <div class="code-block"><span class="code-comment"># In a Claude Code session:</span>
-Please install the sequential thinking MCP server</div>
-    <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text2); font-weight:300;">Claude Code will find the correct MCP package, install it, and configure it. Restart your Claude Code session when done. Sequential Thinking is then available in all future sessions.</p>
+    <p>Sequential Thinking is an MCP server that adds explicit chain-of-thought reasoning to Claude Code. Before acting on complex tasks, Claude works through a visible step-by-step reasoning process &mdash; understand the problem, identify constraints, consider approaches, then implement.</p>
+    <p>Ask Claude to install it: <code>Please install the sequential thinking MCP server</code></p>
   </div>
 </section>
 
@@ -324,28 +266,11 @@ Please install the sequential thinking MCP server</div>
       <div class="int-num">04</div>
       <div>
         <h2>Context7</h2>
-        <div class="int-sub">Up-to-date library documentation &mdash; eliminates hallucinated APIs</div>
+        <div class="int-sub">Current library documentation: eliminates hallucinated APIs</div>
       </div>
     </div>
-
-    <p>Claude Code's training data has a cutoff date. When you ask it to use a library &mdash; pandas, FastAPI, SQLAlchemy &mdash; it works from what it learned during training, which may be months or years out of date. The result: Claude confidently uses deprecated methods, renamed functions, or APIs that no longer exist.</p>
-
-    <p>Context7 fixes this. It's an official Claude plugin that pulls current, version-specific documentation from live source repositories and injects it into Claude's context when you ask about a library. Claude answers based on the actual current state of the library, not outdated training data.</p>
-
-    <h3 class="sub-section-title">Setup</h3>
-    <div class="code-block"><span class="code-comment"># Inside a Claude Code session:</span>
-/plugin
-
-<span class="code-comment"># Find Context7 in the plugin list (it's an official plugin)</span>
-<span class="code-comment"># Select it and install for everyone</span>
-<span class="code-comment"># Restart Claude Code &mdash; Context7 is now available</span></div>
-
-    <h3 class="sub-section-title">How to use it</h3>
-    <p>Add <code>use context7</code> to any prompt where you need current documentation:</p>
-    <div class="code-block">Build a FastAPI endpoint that validates JSON input against a Pydantic model. use context7
-
-How do I use pandas GroupBy with multiple aggregation functions in version 2.x? use context7</div>
-    <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text2); font-weight:300;">Context7 resolves the library name, fetches the current documentation for the relevant version, and injects it before Claude answers. No more &ldquo;this method doesn't exist&rdquo; bugs from outdated training data.</p>
+    <p>Claude Code&rsquo;s training data has a cutoff date. When you ask it to use a library, it works from training data that may be months out of date &mdash; confidently using deprecated methods or renamed APIs. Context7 fixes this. It&rsquo;s an official Claude plugin that pulls current, version-specific documentation from live source repositories and injects it into Claude&rsquo;s context when you ask about a library.</p>
+    <p>Install via the Claude Code plugin menu &mdash; type <code>/plugin</code> inside a session and find Context7 in the list.</p>
   </div>
 </section>
 
@@ -359,68 +284,24 @@ How do I use pandas GroupBy with multiple aggregation functions in version 2.x? 
         <div class="int-sub">A better terminal for running Claude Code</div>
       </div>
     </div>
-
-    <p>Warp is a modern terminal application &mdash; a replacement for Mac's Terminal, Windows Terminal, or the terminal built into VS Code. You run Claude Code <em>inside</em> Warp. Warp's own built-in AI is not the point; what matters is Warp's features for managing Claude Code sessions.</p>
-
-    <div class="int-why">
-      <div class="int-why-label">The problem it solves</div>
-      <p>Running Claude Code in a standard terminal means your files and your Claude session are in separate windows. You work in Claude, switch to a file explorer to check what it wrote, switch back. Warp puts them side by side: Claude in one pane, your repo in another. When Claude writes a plan to <code>docs/plan.md</code>, you can click into it and read it while Claude is still working.</p>
-    </div>
-
-    <h3 class="sub-section-title">The features that matter for Claude Code</h3>
-    <div class="depth-items">
-      <div class="depth-item">
-        <h3>Split panes (<kbd>Cmd+D</kbd>)</h3>
-        <p>Press <kbd>Cmd+D</kbd> to split your terminal into two panes. Run Claude Code on the left. Browse your repository files &mdash; or run another Claude Code instance &mdash; on the right. You can keep multiple Claude sessions running simultaneously for parallel tasks.</p>
-      </div>
-      <div class="depth-item">
-        <h3>Tabs (<kbd>Ctrl+T</kbd>)</h3>
-        <p>Create tabs with <kbd>Ctrl+T</kbd>. Each tab can have its own split panes. Use tabs to organize multiple projects or different types of terminal work (Claude Code in one tab, running your server in another).</p>
-      </div>
-      <div class="depth-item">
-        <h3>File panel</h3>
-        <p>Open the file panel to browse your repository inline. When Claude writes a spec or implementation plan to a file, you can read it without leaving the terminal. This is especially valuable when reviewing Superpowers plans before approving execution.</p>
-      </div>
-      <div class="depth-item">
-        <h3>Block-based output</h3>
-        <p>Every command and its output is a &ldquo;block&rdquo; &mdash; a discrete unit you can copy, share, or reference. No more scrolling through walls of output to find what Claude ran. Each action is visually distinct.</p>
-      </div>
-    </div>
-
-    <h3 class="sub-section-title">Setup</h3>
-    <div class="code-block"><span class="code-comment"># Download from warp.dev (free to install)</span>
-<span class="code-comment"># Available for Mac, Linux, and Windows</span>
-<span class="code-comment"># Open Warp, navigate to your project, and run claude as usual</span>
-cd my-project
-claude</div>
-    <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text2); font-weight:300;">Free tier: ~100 AI requests/month using Warp's own AI (which you don't need to use). Claude Code running inside Warp uses your Anthropic account separately from Warp's own AI.</p>
+    <p>Warp is a modern terminal &mdash; a replacement for Windows Terminal, Mac Terminal, or the VS Code integrated terminal. You run Claude Code inside Warp.</p>
+    <p>Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block; no scrolling through walls of output to find what Claude ran.</p>
+    <p>Download from <a href="https://warp.dev">warp.dev</a> &mdash; available for Mac, Linux, and Windows. Free to use.</p>
   </div>
 </section>
 
-<!-- 6. Mobile -->
+<!-- 6. Happy Engineering -->
 <section class="tool-section" id="mobile">
   <div class="container">
     <div class="integration-header">
       <div class="int-num">06</div>
       <div>
-        <h2>Mobile &mdash; Happy Engineering</h2>
-        <div class="int-sub">Control a real terminal session from your phone</div>
+        <h2>Happy Engineering</h2>
+        <div class="int-sub">Full terminal access from your phone</div>
       </div>
     </div>
-
-    <p>The official Claude mobile app can't run local files or access your terminal. It has roughly 10% of Claude Code's capabilities. The real mobile solution is <strong>Happy Engineering</strong> &mdash; an open-source tool that runs a live terminal session on your computer that you control from your phone.</p>
-
-    <div class="int-why">
-      <div class="int-why-label">What this actually is</div>
-      <p>Happy Engineering creates a terminal on your computer that's accessible from a mobile browser. When you connect from your phone, you're controlling the actual terminal on your machine &mdash; not a sandboxed version. This means Superpowers, Context7, Sequential Thinking &mdash; everything you've configured &mdash; is available from your phone. Tasks you start on your phone continue running on your computer. You come home, pick up where you left off.</p>
-    </div>
-
-    <h3 class="sub-section-title">Setup</h3>
-    <div class="code-block"><span class="code-comment"># Visit happy.engineering to see installation instructions</span>
-<span class="code-comment"># Copy the install command, run it in your terminal</span>
-<span class="code-comment"># Complete the brief phone setup</span>
-<span class="code-comment"># Open your computer's terminal session from your phone's browser</span></div>
-    <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text2); font-weight:300;">Free and open source. Requires your computer to be on and connected. Available for iOS, Android, and web. The computer stays running; you pick up the session when you return.</p>
+    <p>Happy Engineering runs a live terminal session on your computer that you control from your phone&rsquo;s browser. Setup takes about a minute &mdash; no accounts, no configuration, simpler than any remote-access alternative. When you connect from your phone, you are controlling the actual terminal on your machine &mdash; every integration you have configured is available. Tasks you start on your phone continue running on your computer.</p>
+    <p>Install from <a href="https://happy.engineering">happy.engineering</a>. Free and open source.</p>
   </div>
 </section>
 
@@ -431,46 +312,22 @@ claude</div>
       <div class="int-num">07</div>
       <div>
         <h2>Skills</h2>
-        <div class="int-sub">Custom reusable workflows for tasks you do repeatedly</div>
+        <div class="int-sub">Reusable workflows for tasks you do repeatedly</div>
       </div>
     </div>
-
-    <p>Skills are reusable instruction sets stored as markdown files in your project. When you invoke a skill, Claude Code loads those instructions and follows them for the current task. Instead of re-explaining the same process every session, you encode it once and invoke it with a single command.</p>
-
-    <div class="int-why">
-      <div class="int-why-label">Why it matters</div>
-      <p>Every project has repetitive tasks: adding a new data source, creating a new model, running a specific analysis pipeline, generating a weekly report. Without skills, you re-explain the process each time or copy-paste from previous sessions. With skills, one command runs the full workflow with all your project's conventions already baked in. As you build up a library of skills, your Claude Code sessions become dramatically more efficient.</p>
-    </div>
-
-    <h3 class="sub-section-title">How skills work</h3>
-    <div class="code-block"><span class="code-comment"># Skills are markdown files in .claude/skills/</span>
-.claude/
+    <p>Skills are markdown files in <code>.claude/skills/</code> that Claude Code reads when you invoke them. Instead of re-explaining a workflow every session, you encode it once and call it by name.</p>
+    <div class="code-block">.claude/
   skills/
-    add-data-source.md   &larr; invoked with /add-data-source
-    run-analysis.md      &larr; invoked with /run-analysis
-    review.md            &larr; invoked with /review</div>
-
-    <h3 class="sub-section-title">Building a skill with Superpowers</h3>
-    <p>Rather than writing skills from scratch, Superpowers can build them for you. Describe the repetitive task in detail &mdash; what it involves, what files it touches, what decisions it requires, what the output looks like &mdash; and ask Superpowers to create a skill:</p>
-    <div class="code-block"><span class="code-comment"># In a Claude Code session with Superpowers installed:</span>
-I want to create a skill for adding a new analysis module to this project.
-Every new module needs: a Python file in src/, a test file in tests/,
-an import added to __init__.py, and a section in README.md.
-Build me a skill called "add-module" that handles all of this.</div>
-    <p style="margin-top:0.75rem; font-size:0.88rem; color:var(--text2); font-weight:300;">Superpowers uses Sequential Thinking to build the skill carefully. On the first run, give feedback on what's not quite right. After a few iterations, the skill becomes a reliable automation you can use every session.</p>
-
-    <h3 class="sub-section-title">Using skills</h3>
-    <div class="code-block"><span class="code-comment"># Invoke any skill with its name:</span>
-/add-module data_cleaning
-/run-analysis quarterly_report
-/review src/analysis.py</div>
+    add-module.md    &larr; invoked with /add-module
+    run-analysis.md  &larr; invoked with /run-analysis</div>
+    <p>Describe the repetitive task in detail and ask Claude to build the skill for you. After a few iterations, it becomes a reliable automation available in every session.</p>
   </div>
 </section>
 
 <!-- Quick reference -->
 <section class="tool-section" id="quick-reference">
   <div class="container">
-    <h2 class="section-title">Quick reference &mdash; all seven</h2>
+    <h2 class="section-title">Quick reference</h2>
 
     <div class="compare-table-wrap">
       <table class="compare-table">
@@ -479,51 +336,51 @@ Build me a skill called "add-module" that handles all of this.</div>
             <th>#</th>
             <th>Integration</th>
             <th>What it adds</th>
-            <th>How to install</th>
+            <th>Where to get it</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>01</td>
             <td>Statusline</td>
-            <td>Visible context %, session cost, model, git branch</td>
-            <td><code>npx cc-statusline@latest</code> in terminal</td>
+            <td>Context %, session cost, model, git branch</td>
+            <td>Claude Code docs</td>
           </tr>
           <tr>
             <td>02</td>
             <td>Superpowers</td>
             <td>Sub-agent workflows: brainstorm &rarr; plan &rarr; execute</td>
-            <td><code>/plugin</code> inside Claude Code &rarr; install superpowers</td>
+            <td><code>/plugin</code> inside Claude Code</td>
           </tr>
           <tr>
             <td>03</td>
             <td>Sequential Thinking</td>
-            <td>Chain-of-thought reasoning before acting on complex tasks</td>
+            <td>Chain-of-thought reasoning before complex tasks</td>
             <td>Ask Claude: &ldquo;install the sequential thinking MCP server&rdquo;</td>
           </tr>
           <tr>
             <td>04</td>
             <td>Context7</td>
-            <td>Current library docs injected at prompt time; no stale APIs</td>
-            <td><code>/plugin</code> inside Claude Code &rarr; install Context7</td>
+            <td>Current library docs at prompt time</td>
+            <td><code>/plugin</code> inside Claude Code</td>
           </tr>
           <tr>
             <td>05</td>
             <td>Warp</td>
-            <td>Split panes, file panel, block output for managing Claude sessions</td>
-            <td>Download from <strong>warp.dev</strong></td>
+            <td>Split panes, block output</td>
+            <td><a href="https://warp.dev">warp.dev</a></td>
           </tr>
           <tr>
             <td>06</td>
             <td>Happy Engineering</td>
-            <td>Full terminal access from your phone; all integrations work remotely</td>
-            <td>Install command from <strong>happy.engineering</strong></td>
+            <td>Full terminal access from your phone</td>
+            <td><a href="https://happy.engineering">happy.engineering</a></td>
           </tr>
           <tr>
             <td>07</td>
             <td>Skills</td>
-            <td>Reusable workflows for repetitive project-specific tasks</td>
-            <td>Create <code>.claude/skills/skillname.md</code> files (use Superpowers to build them)</td>
+            <td>Reusable workflows for repetitive tasks</td>
+            <td>Create <code>.claude/skills/skillname.md</code></td>
           </tr>
         </tbody>
       </table>
@@ -541,7 +398,7 @@ Build me a skill called "add-module" that handles all of this.</div>
       <a href="workflow.html">How It Connects</a>
       <a href="start.html">Get Started</a>
       <!-- ðŸŒ— THEME TOGGLE BUTTON -->
-      <button id="themeToggle" class="theme-toggle">â˜€ï¸</button>
+      <button id="themeToggle" class="theme-toggle"></button>
       <button class="nav-mobile-toggle" onclick="toggleMobileNav()">â˜°</button>
     </div>
     <p class="footer-note">A clear guide to modern Python development &mdash; tools, workflow, and AI.</p>
