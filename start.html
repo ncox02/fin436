@@ -28,7 +28,7 @@
   <a href="workflow.html">How It Connects</a>
   <a href="start.html">Get Started</a>
   <a href="ide-cursor.html">Level 2: AI in Your Editor</a>
-  <a href="level3.html">Level 3: Claude Advanced</a>
+  <a href="level3.html">Level 3: AI in Your Terminal</a>
 </div>
 
 <main>
@@ -160,7 +160,7 @@
   <div class="tryit-step">
     <span class="ts-badge">step 2</span>
     <div class="ts-body">
-      <p><strong>Organize &mdash; Install pytest before writing anything</strong></p>
+      <p><strong>Install packages</strong></p>
       <p>Do this before writing any code so VS Code doesn&rsquo;t show errors as you type:</p>
 
       <div class="code-block-labeled">
@@ -172,6 +172,36 @@
       </div>
 
       <p><code>requirements.txt</code> is how you tell anyone who clones your project which packages to install. It replaces the need to share your <code>.venv</code> folder.</p>
+
+      <div class="callout">
+        <div class="callout-icon"></div>
+        <div>
+          <strong>If your virtual environment stops working (common on Python 3.13)</strong>
+          <p>A known issue with Python 3.13 can break <code>.venv</code> after certain operations. If you see errors about missing modules or an inactive environment, delete it and start over:</p>
+          <p><strong>Windows:</strong></p>
+          <div class="code-block-labeled">
+            <div class="code-block-lang">bash</div>
+            <div class="code-block">
+<code>Remove-Item -Recurse -Force .venv</code><br>
+<code>python -m venv .venv</code><br>
+<code>.venv\Scripts\activate</code><br>
+<code>pip install pytest</code><br>
+<code>pip freeze &gt; requirements.txt</code>
+            </div>
+          </div>
+          <p><strong>Mac:</strong></p>
+          <div class="code-block-labeled">
+            <div class="code-block-lang">bash</div>
+            <div class="code-block">
+<code>rm -rf .venv</code><br>
+<code>python3 -m venv .venv</code><br>
+<code>source .venv/bin/activate</code><br>
+<code>pip install pytest</code><br>
+<code>pip freeze &gt; requirements.txt</code>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -298,6 +328,19 @@ test_tip_calculator.py ...<br>
 
 
 <!-- ============================================================
+     WHAT YOU JUST DID
+     ============================================================ -->
+<section id="summary">
+  <div class="container">
+    <h2 class="section-title">What you just did</h2>
+    <p>You completed the entire software development lifecycle: from an empty folder to a working project on GitHub with automated tests, version history, and a repeatable workflow.</p>
+    <p>Your <code>.venv</code> isolates dependencies. Your <code>pytest</code> suite ensures code correctness. Your Git history is a record you can revert to. Your GitHub repo is your backup and collaboration mechanism.</p>
+    <p>The loop you now run (edit &rarr; test &rarr; commit &rarr; push) is the same loop used to build production systems at scale.</p>
+    <p>Everything that comes next in Levels 2, 3, and 4 builds on this foundation. The next levels show you how to move faster within it.</p>
+  </div>
+</section>
+
+<!-- ============================================================
      LEVEL HUB
      ============================================================ -->
 <section class="alt-bg">
@@ -309,7 +352,7 @@ test_tip_calculator.py ...<br>
       <a href="level2.html" class="qn-card">
         <div class="hub-level-badge hub-level-2">Level 2</div>
         <h3>AI inside your editor</h3>
-        <p>Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code, PyCharm, and Cursor.</p>
+        <p>Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code.</p>
         <div class="hub-card-time">&#9679; ~20 minutes</div>
       </a>
 
@@ -320,12 +363,6 @@ test_tip_calculator.py ...<br>
         <div class="hub-card-time">&#9679; ~25 minutes</div>
       </a>
 
-      <a href="level3.html#level-4-transition" class="qn-card">
-        <div class="hub-level-badge hub-level-4">Level 4</div>
-        <h3>Connected agents</h3>
-        <p>Extend the agent with live connections to docs, databases, and the web via MCP. The agent can look up the exact API it needs mid-task.</p>
-        <div class="hub-card-time">&#9679; ~15 minutes</div>
-      </a>
 
     </div>
   </div>
@@ -350,7 +387,7 @@ test_tip_calculator.py ...<br>
           <div class="stack-plus">+</div>
           <div class="stack-tool">You review diffs and decide what to keep</div>
         </div>
-        <p>The AI can now read and edit your actual project files. You describe a goal; it proposes changes across multiple files at once. You&rsquo;re in the role of reviewer rather than typist. Works in VS Code with Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor.</p>
+        <p>The AI can now read and edit your actual project files. You describe a goal; it proposes changes across multiple files at once. You&rsquo;re in the role of reviewer rather than typist.</p>
         <a href="level2.html" class="btn-primary">Go to Level 2 &rarr;</a>
       </div>
 
@@ -364,7 +401,7 @@ test_tip_calculator.py ...<br>
           <div class="stack-plus">+</div>
           <div class="stack-tool">No IDE required</div>
         </div>
-        <p>Claude Code runs in your terminal and has access to your entire computing environment. You describe what you want; it reads your files, writes code, runs it, and iterates. A different paradigm &mdash; the IDE becomes optional.</p>
+        <p>The AI runs in your terminal with access to your full environment. It reads files, executes code, installs packages, and iterates until the task is done.</p>
         <a href="level3.html" class="btn-primary">Go to Level 3 &rarr;</a>
       </div>
 
@@ -387,7 +424,7 @@ test_tip_calculator.py ...<br>
       <a href="workflow.html">How It Connects</a>
       <a href="start.html">Get Started</a>
       <!-- 🌗 THEME TOGGLE BUTTON -->
-      <button id="themeToggle" class="theme-toggle">☀️</button>
+      <button id="themeToggle" class="theme-toggle"></button>
       <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
     </div>
     <p class="footer-note">A clear guide to modern Python development &mdash; tools, workflow, and AI.</p>
