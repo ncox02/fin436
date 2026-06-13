@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PyCharm – PyWorkflow</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">PyWorkflow</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tools.html"> 
+<span class="menu-text">The Tools</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./workflow.html"> 
+<span class="menu-text">How It Connects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">IDEs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ides">    
+        <li>
+    <a class="dropdown-item" href="./ides.html">
+ <span class="dropdown-text">IDE Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ide-vscode.html">
+ <span class="dropdown-text">VS Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ide-pycharm.html">
+ <span class="dropdown-text">PyCharm</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./level3.html"> 
+<span class="menu-text">Claude Advanced</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./start.html"> 
+<span class="menu-text">Get Started</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-levels" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Levels</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-levels">    
+        <li>
+    <a class="dropdown-item" href="./level2.html">
+ <span class="dropdown-text">Level 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./level3.html">
+ <span class="dropdown-text">Level 3+</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PyCharm</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>JetBrains · Free (Community) · Paid (Pro) · All platforms</strong></p>
+<p>The only IDE built exclusively for Python. No configuration required — it understands Python deeply from the moment you open a project. The professional choice for serious Python development.</p>
+<section id="what-pycharm-actually-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-pycharm-actually-is">What PyCharm actually is</h2>
+<p>PyCharm is a <strong>full IDE</strong> (Integrated Development Environment) built by JetBrains, a company whose entire business is making IDEs — they also make IntelliJ (Java), WebStorm (JavaScript), and others. The key difference from VS Code: PyCharm ships with deep Python understanding built in, not bolted on via extensions.</p>
+<p>When you open a Python project in PyCharm, it immediately indexes your entire codebase, understands your imports, knows what version of every library you’re using, and can reason about your code at a level that takes VS Code + multiple extensions to approximate. This is not a small difference in practice — it’s why many working Python developers prefer PyCharm despite its higher cost and heavier footprint.</p>
+<p><strong>Built-in Python intelligence</strong></p>
+<p>Type checking, import resolution, code navigation, refactoring, and documentation lookup all work immediately — no extensions to install, no configuration. PyCharm knows Python the way Word knows English.</p>
+<p><strong>Integrated environment management</strong></p>
+<p>PyCharm manages virtual environments through a graphical interface. You can create, activate, and install packages into environments without touching the terminal. It detects existing environments automatically.</p>
+<p><strong>Professional debugging</strong></p>
+<p>PyCharm’s debugger is widely considered the best Python debugger available. Set breakpoints, step through code line by line, inspect every variable, and evaluate expressions — all in a visual interface.</p>
+</section>
+<section id="what-python-first-actually-means" class="level2">
+<h2 class="anchored" data-anchor-id="what-python-first-actually-means">What “Python-first” actually means</h2>
+<p>PyCharm’s Python intelligence is qualitatively different from VS Code with extensions. Here’s what that means in practice — features you get that you’d have to work to replicate elsewhere.</p>
+<section id="jump-to-definition-anywhere" class="level3">
+<h3 class="anchored" data-anchor-id="jump-to-definition-anywhere">Jump to definition — anywhere</h3>
+<p>Hold Cmd/Ctrl and click any function name, class, or variable — even ones from installed libraries like pandas or requests. PyCharm opens the actual source code. In VS Code this sometimes works, but PyCharm is consistently reliable, even into compiled extensions and stub files.</p>
+</section>
+<section id="find-usages" class="level3">
+<h3 class="anchored" data-anchor-id="find-usages">Find usages</h3>
+<p>Right-click any function or variable → “Find Usages.” PyCharm shows every place in your entire project where that name is used. Invaluable when refactoring — you know exactly what will break before you change anything.</p>
+</section>
+<section id="safe-rename" class="level3">
+<h3 class="anchored" data-anchor-id="safe-rename">Safe rename</h3>
+<p>Right-click any variable, function, or class → “Refactor → Rename.” PyCharm renames it everywhere — not just in the current file, but across the entire project, including string references and comments where appropriate. No search-and-replace, no missed instances.</p>
+</section>
+<section id="inline-error-detection" class="level3">
+<h3 class="anchored" data-anchor-id="inline-error-detection">Inline error detection</h3>
+<p>PyCharm underlines errors as you type — not just syntax errors, but logical ones: using a variable before it’s assigned, calling a method that doesn’t exist, returning the wrong type, unused imports. These are shown before you ever run the code.</p>
+</section>
+<section id="structural-search-and-replace" class="level3">
+<h3 class="anchored" data-anchor-id="structural-search-and-replace">Structural search and replace</h3>
+<p>A Pro feature: search for code patterns (not text, but actual code structure) and replace them across your entire project. For example: find all functions that return None but have no explicit return statement, and add one. VS Code has no equivalent.</p>
+</section>
+<section id="database-tool-pro" class="level3">
+<h3 class="anchored" data-anchor-id="database-tool-pro">Database tool (Pro)</h3>
+<p>PyCharm Pro includes a full database client — you can connect to PostgreSQL, SQLite, MySQL, and others, browse tables, run queries, and view results, all without leaving the IDE. For data-adjacent Python work this is extremely useful.</p>
+</section>
+</section>
+<section id="ai-in-pycharm" class="level2">
+<h2 class="anchored" data-anchor-id="ai-in-pycharm">AI in PyCharm</h2>
+<p>PyCharm’s AI story is different from VS Code’s. Rather than a marketplace of competing AI extensions, PyCharm has its own AI (JetBrains AI) that integrates deeply with the IDE — and also supports third-party AI tools.</p>
+<p><strong>JetBrains AI Assistant (Pro only) — Native · Deeply integrated</strong></p>
+<p>JetBrains AI is baked into PyCharm Pro. It has access to things no external AI tool can see: your run configurations, your test results, your recent error logs, your project structure. When you ask it “why is this test failing?” it doesn’t just see the code — it sees the actual test output.</p>
+<ul>
+<li>Inline suggestions that understand your full project context</li>
+<li>Chat panel with access to your files, errors, and run history</li>
+<li>AI-powered commit message generation</li>
+<li>Code review suggestions integrated into the diff view</li>
+<li>Rename suggestions with project-aware reasoning</li>
+<li>Context-aware documentation generation</li>
+</ul>
+<p><strong>GitHub Copilot (Community + Pro) — Plugin · Well integrated</strong></p>
+<p>JetBrains has a first-class GitHub Copilot plugin, available for both Community and Pro editions. Install via Settings → Plugins → Marketplace. Provides inline suggestions and a chat panel, similar to the VS Code experience. A strong choice if you already have a Copilot subscription.</p>
+<ul>
+<li>Inline code completion as you type</li>
+<li>Chat panel for questions and explanations</li>
+<li>Slightly less project-aware than JetBrains AI</li>
+<li>Available on Community (free) edition</li>
+</ul>
+<section id="ai-powered-code-completion-jetbrains-ai-copilot" class="level3">
+<h3 class="anchored" data-anchor-id="ai-powered-code-completion-jetbrains-ai-copilot">AI-powered code completion — JetBrains AI · Copilot</h3>
+<p>Suggestions appear inline as you type, grayed out. Accept with Tab. PyCharm’s own completion was already excellent before AI — it understood your types and suggested correct methods. AI completion layers on top of this, predicting entire logical blocks based on context.</p>
+<p><strong>Advantage over VS Code:</strong> PyCharm’s type inference means the AI suggestions are more often type-correct — it knows what methods are actually available on your object, not just what’s statistically common in training data.</p>
+</section>
+<section id="context-aware-chat-jetbrains-ai-copilot-chat" class="level3">
+<h3 class="anchored" data-anchor-id="context-aware-chat-jetbrains-ai-copilot-chat">Context-aware chat — JetBrains AI · Copilot Chat</h3>
+<p>Open the AI chat panel (right sidebar). Unlike browser-based AI, the chat here knows your project structure. You can reference files, ask about errors that just appeared in your run window, or ask questions about code you’re currently looking at without pasting anything.</p>
+<p>What you can reference directly:</p>
+<ul>
+<li>“Explain this function” (with cursor in the function)</li>
+<li>“Why did my last test run fail?” (it reads the test output)</li>
+<li>“What’s the best way to structure this class?” (it sees the class)</li>
+<li>“Generate a docstring for this method”</li>
+</ul>
+</section>
+<section id="ai-powered-refactoring-jetbrains-ai" class="level3">
+<h3 class="anchored" data-anchor-id="ai-powered-refactoring-jetbrains-ai">AI-powered refactoring — JetBrains AI</h3>
+<p>Select a block of code → right-click → “AI Actions” → choose from: Refactor this code, Find potential bugs, Add error handling, Simplify, or Make more Pythonic. The AI rewrites the selection in a preview panel; you accept or reject. Combined with PyCharm’s safe rename and find usages, this is genuinely powerful refactoring.</p>
+</section>
+<section id="ai-test-generation-jetbrains-ai" class="level3">
+<h3 class="anchored" data-anchor-id="ai-test-generation-jetbrains-ai">AI test generation — JetBrains AI</h3>
+<p>Right-click a function → “Generate → Tests with AI.” PyCharm creates a test file (or adds to an existing one), generates test cases including edge cases, and automatically runs them. Because it understands your test framework (pytest, unittest) and your project structure, the generated tests are more likely to be correct out of the box.</p>
+</section>
+<section id="debugger-ai-explanation-jetbrains-ai" class="level3">
+<h3 class="anchored" data-anchor-id="debugger-ai-explanation-jetbrains-ai">Debugger + AI explanation — JetBrains AI</h3>
+<p>PyCharm’s debugger is best in class on its own. With JetBrains AI, when your code hits an exception during debugging, you can ask the AI to explain the current program state — the values of all visible variables, the call stack, and why the error likely occurred. This combination is exceptionally fast for finding complex bugs.</p>
+</section>
+</section>
+<section id="a-real-session-in-pycharm" class="level2">
+<h2 class="anchored" data-anchor-id="a-real-session-in-pycharm">A real session in PyCharm</h2>
+<p><strong>Opening — Open project → everything is ready</strong></p>
+<p>PyCharm detects your <code>.venv</code>, activates it, and begins indexing your project. The indexing (a few seconds) builds a complete map of your codebase — every function, class, import, and variable. After this, everything is instantly navigable.</p>
+<p><strong>Writing — Type a function → AI completes it, IDE validates it</strong></p>
+<p>You start typing a function. As you write, PyCharm shows type-aware autocomplete (what methods are actually available on this object). JetBrains AI or Copilot overlays longer suggestions. If you misuse an API — call a method with the wrong argument type — PyCharm underlines it before you run anything.</p>
+<p><strong>Debugging — Something doesn’t work → set a breakpoint → step through</strong></p>
+<p>Click the gutter next to a line number — a red dot appears (a breakpoint). Run in Debug mode (Shift+F9). Execution pauses at the breakpoint. You can now inspect every variable in scope, step one line at a time, or ask JetBrains AI “why is <code>price</code> None here?” — it reads the current program state and explains.</p>
+<p><strong>Refactoring — Rename a function → it updates everywhere</strong></p>
+<p>You realize <code>calc()</code> should be called <code>calculate_return()</code>. Right-click → Refactor → Rename. PyCharm shows you every place this function is called across all your files. Rename it once; all calls update. The AI can also suggest a better name if you ask.</p>
+<p><strong>Testing — Right-click → Generate Tests with AI → run them</strong></p>
+<p>Select a function you just wrote → right-click → “Generate → Tests.” PyCharm creates a test file. You run all tests with one click. Results appear in a visual panel — green for passing, red for failing, with the failure message shown inline.</p>
+</section>
+<section id="community-vs-professional" class="level2">
+<h2 class="anchored" data-anchor-id="community-vs-professional">Community vs Professional</h2>
+<p>PyCharm comes in two editions. The difference matters — here’s exactly what you gain and lose.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Community (Free)</th>
+<th>Professional (~$100/yr)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python editing &amp; navigation</td>
+<td>Full</td>
+<td>Full</td>
+</tr>
+<tr class="even">
+<td>Debugger</td>
+<td>Full</td>
+<td>Full</td>
+</tr>
+<tr class="odd">
+<td>Git integration</td>
+<td>Full</td>
+<td>Full</td>
+</tr>
+<tr class="even">
+<td>Virtual environment management</td>
+<td>Full</td>
+<td>Full</td>
+</tr>
+<tr class="odd">
+<td>GitHub Copilot (plugin)</td>
+<td>Available</td>
+<td>Available</td>
+</tr>
+<tr class="even">
+<td>JetBrains AI Assistant</td>
+<td>Not available</td>
+<td>Included</td>
+</tr>
+<tr class="odd">
+<td>Jupyter notebook support</td>
+<td>Not available</td>
+<td>Built-in</td>
+</tr>
+<tr class="even">
+<td>Database tools</td>
+<td>Not available</td>
+<td>Full database client</td>
+</tr>
+<tr class="odd">
+<td>Web framework support (Django, Flask)</td>
+<td>Not available</td>
+<td>Full support</td>
+</tr>
+<tr class="even">
+<td>Remote development</td>
+<td>Not available</td>
+<td>SSH, Docker, WSL</td>
+</tr>
+<tr class="odd">
+<td>Student pricing</td>
+<td>N/A (free)</td>
+<td>Free with .edu email</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Students get Professional for free</strong></p>
+<p>JetBrains has a student/educator program — apply at jetbrains.com/student with a .edu email. You get a full license to PyCharm Professional (and all other JetBrains IDEs) at no cost for as long as you’re a student. This includes JetBrains AI. There is almost no reason for a student not to take advantage of this.</p>
+</div>
+</div>
+</section>
+<section id="try-it-out-a-10-minute-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-out-a-10-minute-exercise">Try it out — a 10-minute exercise</h2>
+<p>PyCharm’s AI integration is more visual than VS Code — menus, right-click options, and visual diff views. This exercise walks you through using JetBrains AI (or Copilot if you’re on Community edition) for a simple task, taking advantage of PyCharm’s unique Python depth along the way.</p>
+<p><strong>Before you start</strong></p>
+<p>Open PyCharm with any Python project (or create a new one: File → New Project). Make sure your interpreter is set (bottom-right status bar shows a Python version). Create a file called <code>practice.py</code>. If you have Pro, JetBrains AI is available in the right sidebar. Community users: install GitHub Copilot from Settings → Plugins → Marketplace.</p>
+<p><strong>Step 1 — Write a function with AI completion</strong></p>
+<p>Type this comment and press Enter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate compound interest</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Start typing <code>def</code> — PyCharm’s AI suggests the function. Accept with Tab. Notice PyCharm’s type checking already active: hover over any parameter to see what type it expects. This is PyCharm’s native Python understanding, before any AI is involved.</p>
+<p><strong>Step 2 — Jump to definition</strong></p>
+<p>If the AI used any standard library function (like <code>round()</code> or <code>math.pow()</code>), hold Cmd/Ctrl and click it. PyCharm jumps to the source definition. This works on your own code too — click any function name anywhere in your project and you’ll land at where it was defined. Try it with a library function you don’t recognize.</p>
+<p><strong>Step 3 — Use AI Actions to improve the code</strong></p>
+<p>Select the entire function. Right-click → <strong>AI Actions</strong> → <strong>Suggest Refactoring</strong>. PyCharm shows AI suggestions in a panel on the right. Read them — do they make sense? You can also try: <strong>AI Actions → Add Error Handling</strong> to see what it adds.</p>
+<p>Every suggestion shows a diff (before/after). Accept what you want, reject the rest.</p>
+<p><strong>Step 4 — Run with the debugger</strong></p>
+<p>Add a call to your function at the bottom of the file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> compound_interest(<span class="dv">1000</span>, <span class="fl">0.05</span>, <span class="dv">10</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Click in the grey gutter next to the <code>print</code> line — a red dot appears (breakpoint). Press Shift+F9 to run in debug mode. Execution pauses at the breakpoint. In the bottom panel, you can see <code>result</code>’s actual value. This is the debugger — click the variable name to inspect it.</p>
+<p><strong>Step 5 — Ask AI in the chat panel</strong></p>
+<p>Open the AI chat panel (right sidebar, or View → Tool Windows → AI Assistant). Ask:</p>
+<pre><code>What's the difference between compound_interest and simple_interest? Can you add a simple interest function below this one for comparison?</code></pre>
+<p>The AI can see your open file. It generates the new function. Review it, then click <strong>Insert at Caret</strong> to add it to your file.</p>
+<p><strong>Step 6 — Generate a docstring</strong></p>
+<p>Place your cursor inside one of the functions. Right-click → <strong>AI Actions → Generate Docstring</strong>. PyCharm writes a complete docstring — parameter descriptions, return value, type hints. Read it. Edit anything that isn’t quite right. This is the whole point: AI gets you 80% of the way there, you refine the rest.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>What makes PyCharm’s approach different</strong></p>
+<p>Every AI action in PyCharm is accessible via right-click on selected code. You don’t need to type prompts from scratch — the menu shows you what’s possible. This is intentional: PyCharm is opinionated about workflow. If you find yourself not knowing what to ask AI, right-click your code and see what PyCharm suggests. Often the right action is already listed.</p>
+</div>
+</div>
+</section>
+<section id="honest-pros-cons" class="level2">
+<h2 class="anchored" data-anchor-id="honest-pros-cons">Honest pros &amp; cons</h2>
+<p><strong>Strengths</strong></p>
+<ul>
+<li><strong>Zero configuration for Python</strong> — Open a project, pick an interpreter — everything works. No extension hunting, no configuration files, no searching for why autocomplete isn’t working. For a Python developer, this is a significant quality-of-life advantage.</li>
+<li><strong>Best Python debugger available</strong> — Breakpoints, watch expressions, step-into, step-over, variable inspection, call stack navigation — all in a polished visual interface. This alone can be worth the cost.</li>
+<li><strong>JetBrains AI has unique context access</strong> — No browser-based AI tool has access to your run logs, test results, and project-wide type information simultaneously. JetBrains AI does, which makes its answers noticeably more accurate for project-specific questions.</li>
+<li><strong>Refactoring is genuinely safe</strong> — Rename, extract method, inline variable, move class — these operations are Python-aware and project-wide. In other tools, “rename” is often just search-and-replace. In PyCharm, it actually understands scope.</li>
+</ul>
+<p><strong>Limitations</strong></p>
+<ul>
+<li><strong>Heavy and slow to start</strong> — PyCharm is a JVM application — it takes noticeably longer to launch than VS Code, uses more RAM, and can feel sluggish on older machines. For a quick edit, this is annoying.</li>
+<li><strong>AI features locked behind Professional</strong> — JetBrains AI (the native, deeply integrated option) requires the paid edition. Community users can install Copilot, but they miss the deepest integrations.</li>
+<li><strong>Smaller AI extension ecosystem</strong> — Not every AI tool releases a JetBrains plugin. The ecosystem is smaller than VS Code’s, and some newer AI tools arrive on VS Code first (or only).</li>
+<li><strong>Python-only (mostly)</strong> — If you need to work in JavaScript, Rust, or another language, you need a different JetBrains IDE or switch to VS Code. PyCharm is Python-first by design — which is its strength and limitation.</li>
+</ul>
+<hr>
+<p><a href="./ide-vscode.html">← VS Code</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

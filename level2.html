@@ -182,30 +182,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#standardizing-the-workflow" id="toc-standardizing-the-workflow" class="nav-link active" data-scroll-target="#standardizing-the-workflow">Standardizing the workflow</a></li>
-  <li><a href="#the-exercises" id="toc-the-exercises" class="nav-link" data-scroll-target="#the-exercises">The exercises</a></li>
-  <li><a href="#organize-plan" id="toc-organize-plan" class="nav-link" data-scroll-target="#organize-plan">Organize &amp; plan</a>
+  <li><a href="#the-exercises" id="toc-the-exercises" class="nav-link" data-scroll-target="#the-exercises">The exercises</a>
   <ul class="collapse">
-  <li><a href="#ex1" id="toc-ex1" class="nav-link" data-scroll-target="#ex1">Exercise 1 — Blueprint prompt</a></li>
-  <li><a href="#ex2" id="toc-ex2" class="nav-link" data-scroll-target="#ex2">Exercise 2 — Scaffold generation</a></li>
-  </ul></li>
-  <li><a href="#writing-code" id="toc-writing-code" class="nav-link" data-scroll-target="#writing-code">Writing code</a>
-  <ul class="collapse">
-  <li><a href="#ex3" id="toc-ex3" class="nav-link" data-scroll-target="#ex3">Exercise 3 — Comment-driven generation</a></li>
-  <li><a href="#ex4" id="toc-ex4" class="nav-link" data-scroll-target="#ex4">Exercise 4 — Finish starter code</a></li>
-  <li><a href="#ex5" id="toc-ex5" class="nav-link" data-scroll-target="#ex5">Exercise 5 — Cross-file context</a></li>
-  </ul></li>
-  <li><a href="#understand-debug-refactor" id="toc-understand-debug-refactor" class="nav-link" data-scroll-target="#understand-debug-refactor">Understand, debug &amp; refactor</a>
-  <ul class="collapse">
-  <li><a href="#ex6" id="toc-ex6" class="nav-link" data-scroll-target="#ex6">Exercise 6 — Explain a block</a></li>
-  <li><a href="#ex7" id="toc-ex7" class="nav-link" data-scroll-target="#ex7">Exercise 7 — Spot a bug</a></li>
-  <li><a href="#ex8" id="toc-ex8" class="nav-link" data-scroll-target="#ex8">Exercise 8 — Refactor for performance</a></li>
-  <li><a href="#ex9" id="toc-ex9" class="nav-link" data-scroll-target="#ex9">Exercise 9 — Terminal crash fix</a></li>
-  </ul></li>
-  <li><a href="#test-document-share" id="toc-test-document-share" class="nav-link" data-scroll-target="#test-document-share">Test, document &amp; share</a>
-  <ul class="collapse">
-  <li><a href="#ex10" id="toc-ex10" class="nav-link" data-scroll-target="#ex10">Exercise 10 — Generate a docstring</a></li>
-  <li><a href="#ex11" id="toc-ex11" class="nav-link" data-scroll-target="#ex11">Exercise 11 — Generate pytest cases</a></li>
-  <li><a href="#ex12" id="toc-ex12" class="nav-link" data-scroll-target="#ex12">Exercise 12 — Git commit via sparkle button</a></li>
+  <li><a href="#phase-a-organize-plan" id="toc-phase-a-organize-plan" class="nav-link" data-scroll-target="#phase-a-organize-plan">Phase A: Organize &amp; plan</a></li>
+  <li><a href="#phase-b-writing-code" id="toc-phase-b-writing-code" class="nav-link" data-scroll-target="#phase-b-writing-code">Phase B: Writing code</a></li>
+  <li><a href="#phase-c-understand-debug-refactor" id="toc-phase-c-understand-debug-refactor" class="nav-link" data-scroll-target="#phase-c-understand-debug-refactor">Phase C: Understand, debug &amp; refactor</a></li>
+  <li><a href="#phase-d-test-document-share" id="toc-phase-d-test-document-share" class="nav-link" data-scroll-target="#phase-d-test-document-share">Phase D: Test, document &amp; share</a></li>
   </ul></li>
   <li><a href="#prompt-engineering" id="toc-prompt-engineering" class="nav-link" data-scroll-target="#prompt-engineering">Prompt engineering</a>
   <ul class="collapse">
@@ -267,12 +249,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td><strong>Organize</strong></td>
 <td>In a browser, describe your project in a chat window with no file access</td>
-<td>In the editor, open the chat sidebar and describe what you want to build; AI proposes structure and logic before a single file exists</td>
+<td>In the editor, open the chat sidebar and describe what you want to build — AI proposes structure and logic before a single file exists</td>
 </tr>
 <tr class="even">
 <td><strong>Write</strong></td>
 <td>In a browser, copy code from chat, switch windows, paste manually</td>
-<td>In the editor, ghost text appears inline as you type; press <code>Tab</code> to accept, no switching</td>
+<td>In the editor, ghost text appears inline as you type — press <code>Tab</code> to accept, no switching</td>
 </tr>
 <tr class="odd">
 <td><strong>Test</strong></td>
@@ -291,12 +273,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Level 2 has two keys: <code>Tab</code> accepts what AI proposes. <code>Ctrl+I</code> opens Copilot Chat. Everything else is reading and deciding.</p>
+<p>Level 2 has two keys: <code>Tab</code> accepts what AI proposes. <code>Ctrl+I</code> opens inline chat. <code>Ctrl+Alt+I</code> opens the Copilot Chat sidebar.</p>
 <hr>
 </section>
 <section id="the-exercises" class="level2">
 <h2 class="anchored" data-anchor-id="the-exercises">The exercises</h2>
-<p>Twelve exercises across four phases. Each one proves a specific capability that browser chat cannot match. Do them in order; the compound interest project builds across phases and the terminal does not appear until Exercise 9.</p>
+<p>Twelve exercises across four phases. Each one proves a specific capability that browser chat cannot match. Do them in order — the compound interest project builds across phases and the terminal does not appear until Exercise 9.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -369,13 +351,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <hr>
-</section>
-<section id="organize-plan" class="level2">
-<h2 class="anchored" data-anchor-id="organize-plan">Organize &amp; plan</h2>
+<section id="phase-a-organize-plan" class="level3">
+<h3 class="anchored" data-anchor-id="phase-a-organize-plan">Phase A: Organize &amp; plan</h3>
 <p><em>Before writing a single line of code, use AI to think through structure. This is the habit that separates organized projects from tangled ones.</em></p>
 <hr>
-<section id="ex1" class="level3">
-<h3 class="anchored" data-anchor-id="ex1">Exercise 1 — Blueprint prompt</h3>
+<section id="ex1" class="level4">
+<h4 class="anchored" data-anchor-id="ex1">Exercise 1 — Blueprint prompt</h4>
+<p><strong>Phase:</strong> Organize</p>
 <p><strong>Action:</strong> Open VS Code. Open the Copilot Chat sidebar. Do not open any files yet. Send this prompt:</p>
 <pre><code>I want to build a Python project that calculates compound interest
 over time for a given principal, rate, and number of years. It
@@ -386,8 +368,9 @@ and what they return.</code></pre>
 <p>Read the response. If anything is unclear, ask a follow-up before moving on.</p>
 <hr>
 </section>
-<section id="ex2" class="level3">
-<h3 class="anchored" data-anchor-id="ex2">Exercise 2 — Scaffold generation</h3>
+<section id="ex2" class="level4">
+<h4 class="anchored">Exercise 2 — Scaffold generation</h4>
+<p><strong>Phase:</strong> Organize</p>
 <p><strong>Action:</strong> In the same chat session, send this prompt:</p>
 <pre><code>Now create the folder and file structure for this project. I need
 you to actually create the folders and empty files — not just
@@ -398,8 +381,8 @@ just clean Python modules.</code></pre>
 <p><strong>Takeaway:</strong> AI generates and builds the project skeleton from a plain-English description. You reviewed the plan before committing to any structure — that is the right order of operations.</p>
 <hr>
 <blockquote class="blockquote">
-<h3 id="why-this-works-and-how-to-scale-it" class="anchored">Why this works — and how to scale it</h3>
-<p>You just described a goal in plain English and got back a structure. That is not a trick; it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.</p>
+<h3 id="why-this-works-and-how-to-scale-it" class="anchored" data-anchor-id="ex2">Why this works — and how to scale it</h3>
+<p>You just described a goal in plain English and got back a structure. That is not a trick — it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.</p>
 <p>When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints. Those are completely different quality levels — and the difference compounds over time.</p>
 <p>In serious AI-assisted codebases, the folder structure reflects this:</p>
 <ul>
@@ -414,12 +397,13 @@ just clean Python modules.</code></pre>
 <hr>
 </section>
 </section>
-<section id="writing-code" class="level2">
-<h2 class="anchored" data-anchor-id="writing-code">Writing code</h2>
-<p><em>Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now; you will not need it until Exercise 9.</em></p>
+<section id="phase-b-writing-code" class="level3">
+<h3 class="anchored" data-anchor-id="phase-b-writing-code">Phase B: Writing code</h3>
+<p><em>Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now — you will not need it until Exercise 9.</em></p>
 <hr>
-<section id="ex3" class="level3">
-<h3 class="anchored" data-anchor-id="ex3">Exercise 3 — Comment-driven generation</h3>
+<section id="ex3" class="level4">
+<h4 class="anchored" data-anchor-id="ex3">Exercise 3 — Comment-driven generation</h4>
+<p><strong>Phase:</strong> Write</p>
 <p><strong>Action:</strong> <code>utils.py</code> is the utility file from the project scaffold you created in Exercise 2 — where shared helper functions live that are used across the project.</p>
 <p>Open your <code>utils.py</code> file. Type this comment and press <code>Enter</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate that principal, rate, and years are all positive numbers.</span></span>
@@ -429,11 +413,12 @@ just clean Python modules.</code></pre>
 <pre><code>Write a Python function that validates principal, rate, and years
 are all positive numbers. Raise a ValueError with a descriptive
 message for each invalid case. No external libraries.</code></pre>
-<p><strong>Takeaway:</strong> A clear comment is a specification. The more precisely you describe the intent, the more accurately AI executes it. You described what you wanted; AI wrote the syntax. That is the trade at Level 2.</p>
+<p><strong>Takeaway:</strong> A clear comment is a specification. The more precisely you describe the intent, the more accurately AI executes it. You described what you wanted — AI wrote the syntax. That is the trade at Level 2.</p>
 <hr>
 </section>
-<section id="ex4" class="level3">
-<h3 class="anchored" data-anchor-id="ex4">Exercise 4 — Finish starter code</h3>
+<section id="ex4" class="level4">
+<h4 class="anchored" data-anchor-id="ex4">Exercise 4 — Finish starter code</h4>
+<p><strong>Phase:</strong> Write</p>
 <p><strong>Action:</strong> Create <code>compound.py</code> and paste this starter code:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_compound_interest(principal: <span class="bu">float</span>, rate: <span class="bu">float</span>,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                                years: <span class="bu">int</span>, n: <span class="bu">int</span> <span class="op">=</span> <span class="dv">12</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
@@ -443,7 +428,7 @@ message for each invalid case. No external libraries.</code></pre>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># years: number of years to compound</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n: compounding frequency per year (default: monthly)</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the final balance after the compounding period.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Place your cursor at the end of the last comment line. Press <code>Ctrl+I</code> to open Copilot Chat and send:</p>
+<p>Place your cursor at the end of the last comment line. Press <code>Ctrl+I</code> to open inline chat and send:</p>
 <pre><code>Complete this function based on the comments.</code></pre>
 <p>Review the generated body before accepting.</p>
 <p>(You may also see ghost text appear automatically — if so, press <code>Tab</code> to accept it instead of using <code>Ctrl+I</code>.)</p>
@@ -451,8 +436,9 @@ message for each invalid case. No external libraries.</code></pre>
 <p><strong>Takeaway:</strong> Describing intent in comments before writing code produces accurate completions. <code>Ctrl+I</code> gives you direct control; ghost text is the passive version of the same thing.</p>
 <hr>
 </section>
-<section id="ex5" class="level3">
-<h3 class="anchored" data-anchor-id="ex5">Exercise 5 — Cross-file context</h3>
+<section id="ex5" class="level4">
+<h4 class="anchored" data-anchor-id="ex5">Exercise 5 — Cross-file context</h4>
+<p><strong>Phase:</strong> Write</p>
 <p><strong>Action:</strong> Create a second file called <code>main.py</code>. Open Copilot Chat and send:</p>
 <pre><code>I have a file called #compound.py that contains a function called
 calculate_compound_interest. In #main.py, import that function and
@@ -463,21 +449,23 @@ Print the result formatted to two decimal places.</code></pre>
 <hr>
 </section>
 </section>
-<section id="understand-debug-refactor" class="level2">
-<h2 class="anchored" data-anchor-id="understand-debug-refactor">Understand, debug &amp; refactor</h2>
+<section id="phase-c-understand-debug-refactor" class="level3">
+<h3 class="anchored" data-anchor-id="phase-c-understand-debug-refactor">Phase C: Understand, debug &amp; refactor</h3>
 <p><em>Four exercises that use AI as a reviewer and optimizer. This is where in-editor AI earns its place.</em></p>
 <hr>
-<section id="ex6" class="level3">
-<h3 class="anchored" data-anchor-id="ex6">Exercise 6 — Explain a block</h3>
+<section id="ex6" class="level4">
+<h4 class="anchored" data-anchor-id="ex6">Exercise 6 — Explain a block</h4>
+<p><strong>Phase:</strong> Understand</p>
 <p><strong>Action:</strong> Select the entire <code>calculate_compound_interest</code> function in <code>compound.py</code>. Right-click and choose <strong>Copilot → Explain This</strong>.</p>
 <p>Read the explanation. Then send this follow-up in chat:</p>
 <pre><code>What would happen if rate were passed as 5 instead of 0.05?
 Would this function catch that mistake?</code></pre>
-<p><strong>Takeaway:</strong> AI as an on-demand explainer for your own code. Works on any code you didn’t write too: inherited projects, library internals, examples from online.</p>
+<p><strong>Takeaway:</strong> AI as an on-demand explainer for your own code. Works on any code you didn’t write too — inherited projects, library internals, examples from online.</p>
 <hr>
 </section>
-<section id="ex7" class="level3">
-<h3 class="anchored" data-anchor-id="ex7">Exercise 7 — Spot a bug</h3>
+<section id="ex7" class="level4">
+<h4 class="anchored" data-anchor-id="ex7">Exercise 7 — Spot a bug</h4>
+<p><strong>Phase:</strong> Debug</p>
 <p><strong>Action:</strong> Add this function to <code>compound.py</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_compounding(principal: <span class="bu">float</span>, rate: <span class="bu">float</span>, years: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> {}</span>
@@ -490,12 +478,13 @@ that would produce a wrong result or raise an error? Also identify
 any edge cases I haven't handled. Be specific about where each
 problem is and why it occurs.</code></pre>
 <p>If you see a <strong>Copilot debug icon</strong> appear next to the function, you can click it to trigger an automatic review — this is a newer Copilot feature that may or may not be available depending on your version. The manual prompt above always works.</p>
-<p><strong>Note on the bug:</strong> This function is intended to compare how much your money grows across different compounding frequencies: it should return the <strong>final balance</strong> for each frequency, just like <code>calculate_compound_interest</code>. Instead, it subtracts <code>principal</code> at the end, so it returns only the <strong>interest earned</strong> (the growth above what you started with). The formula should be <code>principal * (1 + rate / n) ** (n * years)</code> with no subtraction. Beyond the intent mismatch, a negative rate also produces a mathematically nonsensical result with no warning because there is no input validation. See what AI catches and what fix it proposes.</p>
+<p><strong>Note on the bug:</strong> This function is intended to compare how much your money grows across different compounding frequencies — it should return the <strong>final balance</strong> for each frequency, just like <code>calculate_compound_interest</code>. Instead, it subtracts <code>principal</code> at the end, so it returns only the <strong>interest earned</strong> (the growth above what you started with). The formula should be <code>principal * (1 + rate / n) ** (n * years)</code> — no subtraction. Beyond the intent mismatch, a negative rate also produces a mathematically nonsensical result with no warning because there is no input validation. See what AI catches and what fix it proposes.</p>
 <p><strong>Takeaway:</strong> AI as a quality check. This kind of structural review would take careful reading and testing to catch manually. It took one prompt.</p>
 <hr>
 </section>
-<section id="ex8" class="level3">
-<h3 class="anchored" data-anchor-id="ex8">Exercise 8 — Refactor for performance</h3>
+<section id="ex8" class="level4">
+<h4 class="anchored" data-anchor-id="ex8">Exercise 8 — Refactor for performance</h4>
+<p><strong>Phase:</strong> Refactor</p>
 <p><strong>Action:</strong> Create <code>pipeline.py</code> and paste this function:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -522,31 +511,34 @@ problem is and why it occurs.</code></pre>
 <p><strong>Takeaway:</strong> AI knows every vectorization idiom in pandas and can identify the performance problem with one right-click. You didn’t need to search documentation or guess at the issue.</p>
 <hr>
 </section>
-<section id="ex9" class="level3">
-<h3 class="anchored" data-anchor-id="ex9">Exercise 9 — Terminal crash fix</h3>
+<section id="ex9" class="level4">
+<h4 class="anchored" data-anchor-id="ex9">Exercise 9 — Terminal crash fix</h4>
+<p><strong>Phase:</strong> Debug</p>
 <p><strong>Action:</strong> This is the first exercise where the terminal appears. Open it in VS Code with <code>Ctrl+`</code>.</p>
 <p>In <code>main.py</code>, deliberately introduce a type error by passing a string instead of a number:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> calculate_compound_interest(<span class="st">"1000"</span>, <span class="fl">0.05</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Run the file. The terminal will show a <code>TypeError</code>. Look for the small <strong>Copilot icon</strong> that appears next to the error output in the terminal panel. Click it and select <strong>Explain using Copilot</strong> or <strong>Fix using Copilot</strong>.</p>
 <p>Read the explanation before applying any fix.</p>
-<p><strong>Takeaway:</strong> The terminal error hook connects execution failures directly to AI without copy-pasting. AI reads the crash log, the stack trace, and your code simultaneously. This is the first preview of what Level 3 looks like: where AI lives in the terminal full-time.</p>
+<p><strong>Takeaway:</strong> The terminal error hook connects execution failures directly to AI without copy-pasting. AI reads the crash log, the stack trace, and your code simultaneously. This is the first preview of what Level 3 looks like — where AI lives in the terminal full-time.</p>
 <hr>
 </section>
 </section>
-<section id="test-document-share" class="level2">
-<h2 class="anchored" data-anchor-id="test-document-share">Test, document &amp; share</h2>
+<section id="phase-d-test-document-share" class="level3">
+<h3 class="anchored" data-anchor-id="phase-d-test-document-share">Phase D: Test, document &amp; share</h3>
 <p><em>Three exercises that close the loop — verification, documentation, and version control. Each uses a native VS Code UI element.</em></p>
 <hr>
-<section id="ex10" class="level3">
-<h3 class="anchored" data-anchor-id="ex10">Exercise 10 — Generate a docstring</h3>
-<p><strong>Action:</strong> Place your cursor inside <code>calculate_compound_interest</code> in <code>compound.py</code>, on the line just below the <code>def</code> line. Open Copilot Chat and type:</p>
+<section id="ex10" class="level4">
+<h4 class="anchored" data-anchor-id="ex10">Exercise 10 — Generate a docstring</h4>
+<p><strong>Phase:</strong> Document</p>
+<p><strong>Action:</strong> Place your cursor inside <code>calculate_compound_interest</code> in <code>compound.py</code>, on the line just below the <code>def</code> line. Open inline chat with <code>Ctrl+I</code> and type:</p>
 <pre><code>/doc</code></pre>
 <p>A Google-style docstring should be generated and inserted at the correct location. Review it — does it accurately describe the parameters and return value?</p>
-<p><strong>Takeaway:</strong> Professional documentation in under 5 seconds. <code>Ctrl+I</code> plus <code>/doc</code> is the full instruction. You described the intent with two keystrokes; AI read the function and wrote the documentation.</p>
+<p><strong>Takeaway:</strong> Professional documentation in under 5 seconds. <code>Ctrl+I</code> plus <code>/doc</code> is the full instruction. You described the intent with two keystrokes — AI read the function and wrote the documentation.</p>
 <hr>
 </section>
-<section id="ex11" class="level3">
-<h3 class="anchored" data-anchor-id="ex11">Exercise 11 — Generate pytest cases</h3>
+<section id="ex11" class="level4">
+<h4 class="anchored" data-anchor-id="ex11">Exercise 11 — Generate pytest cases</h4>
+<p><strong>Phase:</strong> Test</p>
 <p><strong>Action:</strong> Open Copilot Chat and send:</p>
 <pre><code>Write pytest functions for calculate_compound_interest. Cover the
 normal case, edge cases (rate of 0, years of 0), and invalid inputs
@@ -556,13 +548,15 @@ that should raise ValueError. Use only pytest, no fixtures.</code></pre>
 <p>If tests fail with import or module errors, confirm your <code>.venv</code> is active and pytest is installed (<code>pip install pytest</code>).</p>
 <hr>
 </section>
-<section id="ex12" class="level3">
-<h3 class="anchored" data-anchor-id="ex12">Exercise 12 — Git commit via sparkle button</h3>
+<section id="ex12" class="level4">
+<h4 class="anchored" data-anchor-id="ex12">Exercise 12 — Git commit via sparkle button</h4>
+<p><strong>Phase:</strong> Share</p>
 <p><strong>Action:</strong> Stage all your changes using the Source Control panel in VS Code (the branch icon in the left sidebar).</p>
 <p>In the commit message input box at the top of the Source Control panel, look for the <strong>sparkle / Copilot icon</strong>. Click it. AI reads your staged diff and generates a commit message.</p>
 <p>Review the message, edit if needed, then commit.</p>
-<p><strong>Takeaway:</strong> AI writes the commit message by reading what changed, not what you tell it changed. This is the native UI doing what browser chat cannot: reading your diff directly without you copying it out first.</p>
+<p><strong>Takeaway:</strong> AI writes the commit message by reading what actually changed — not what you tell it changed. This is the native UI doing what browser chat cannot: reading your diff directly without you copying it out first.</p>
 <hr>
+</section>
 </section>
 </section>
 <section id="prompt-engineering" class="level2">
@@ -637,7 +631,7 @@ Add a comment explaining the compound interest formula.</code></pre>
 </section>
 <section id="what-comes-next-level-3" class="level2">
 <h2 class="anchored" data-anchor-id="what-comes-next-level-3">What comes next: Level 3</h2>
-<p>Level 2 keeps AI inside the editor. It reads your files and proposes changes, but it cannot run anything. You still execute code in the terminal and carry results back into the chat manually.</p>
+<p>Level 2 keeps AI inside the editor. It reads your files and proposes changes — but it cannot run anything. You still execute code in the terminal and carry results back into the chat manually.</p>
 <p>Level 3 removes that constraint. A terminal agent like Claude Code has access to your full computing environment: it executes scripts, reads the output, installs packages, modifies files, and iterates until a task is complete. Exercise 9 above was the first preview of that boundary. Level 3 is what happens when you remove it entirely.</p>
 
 

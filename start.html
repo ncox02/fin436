@@ -192,10 +192,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-core-loop-going-forward" id="toc-the-core-loop-going-forward" class="nav-link" data-scroll-target="#the-core-loop-going-forward">The core loop going forward</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">What you just did</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">What’s next</a>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Choose your next level</a>
   <ul class="collapse">
   <li><a href="#level-2-ai-inside-your-editor" id="toc-level-2-ai-inside-your-editor" class="nav-link" data-scroll-target="#level-2-ai-inside-your-editor">Level 2: AI inside your editor</a></li>
   <li><a href="#level-3-coding-agent-in-your-terminal" id="toc-level-3-coding-agent-in-your-terminal" class="nav-link" data-scroll-target="#level-3-coding-agent-in-your-terminal">Level 3: Coding agent in your terminal</a></li>
+  <li><a href="#level-4-connected-agents" id="toc-level-4-connected-agents" class="nav-link" data-scroll-target="#level-4-connected-agents">Level 4: Connected agents</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -229,11 +230,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
 <p>Make sure you have:</p>
 <ul>
-<li>Python: <a href="https://python.org">python.org</a></li>
-<li>pip: included with Python; on some systems use <code>pip3</code> and <code>python3</code> instead of <code>pip</code> and <code>python</code></li>
-<li>Git: <a href="https://git-scm.com">git-scm.com</a></li>
-<li>GitHub CLI: <a href="https://cli.github.com">cli.github.com</a></li>
-<li>A GitHub account: <a href="https://github.com">github.com</a></li>
+<li>Python — <a href="https://python.org">python.org</a></li>
+<li>pip — included with Python; on some systems use <code>pip3</code> and <code>python3</code> instead of <code>pip</code> and <code>python</code></li>
+<li>Git — <a href="https://git-scm.com">git-scm.com</a></li>
+<li>GitHub CLI — <a href="https://cli.github.com">cli.github.com</a></li>
+<li>A GitHub account — <a href="https://github.com">github.com</a></li>
 </ul>
 </section>
 <section id="step-1-organize-folder-git-virtual-environment-and-files" class="level3">
@@ -241,47 +242,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="windows" class="level4">
 <h4 class="anchored" data-anchor-id="windows">Windows</h4>
 <p>Press <strong>Windows + X</strong> then <strong>I</strong> to open PowerShell. Type these one at a time:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Desktop             <span class="co"># navigate to your Desktop</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> tip_calculator   <span class="co"># create your project folder</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tip_calculator      <span class="co"># move into it</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .                 <span class="co"># open VS Code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="op">&gt;</span> cd Desktop                               <span class="co"># navigate to your Desktop</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="op">&gt;</span> mkdir tip_calculator             <span class="co"># create your project folder</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="op">&gt;</span> cd tip_calculator                <span class="co"># move into it</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> code .            <span class="co"># open VS Code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="mac" class="level4">
 <h4 class="anchored" data-anchor-id="mac">Mac</h4>
 <p>Open Terminal from Spotlight (<strong>Cmd + Space</strong>, type “Terminal”). Type these one at a time:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Desktop             <span class="co"># navigate to your Desktop</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> tip_calculator   <span class="co"># create your project folder</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tip_calculator      <span class="co"># move into it</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .                 <span class="co"># open VS Code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~</span> % cd Desktop                               <span class="co"># navigate to your Desktop</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">~/Desktop</span> % mkdir tip_calculator             <span class="co"># create your project folder</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">~/Desktop</span> % cd tip_calculator               <span class="co"># move into it</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">~/Desktop/tip_calculator</span> % code .           <span class="co"># open VS Code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
-<p>Switch to the terminal inside VS Code with <strong>Ctrl + `</strong> and use this for everything from here on.</p>
-<p>Tell Git who you are (<em>one-time setup, never needs repeating</em>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@example.com"</span>   <span class="co"># your GitHub email</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span>           <span class="co"># your name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Switch to the terminal inside VS Code with <strong>Ctrl + `</strong> — use this for everything from here on.</p>
+<p>Tell Git who you are — <em>one-time setup, never needs repeating:</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> git config <span class="at">--global</span> user.email <span class="st">"you@example.com"</span>   <span class="co"># your GitHub email</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> git config <span class="at">--global</span> user.name <span class="st">"Your Name"</span>           <span class="co"># your name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then set up your project:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init               <span class="co"># create a local git repository in this folder</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv   <span class="co"># create a virtual environment called .venv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> git init               <span class="co"># create a local git repository in this folder</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> python <span class="at">-m</span> venv .venv   <span class="co"># create a virtual environment called .venv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="windows-activate-venv" class="level4">
 <h4 class="anchored" data-anchor-id="windows-activate-venv">Windows (activate venv)</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span>   <span class="co"># activate it — your prompt will show (.venv)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> .venv\Scripts\activate   <span class="co"># activate it — your prompt will show (.venv)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="mac-activate-venv" class="level4">
 <h4 class="anchored" data-anchor-id="mac-activate-venv">Mac (activate venv)</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate   <span class="co"># activate it — your prompt will show (.venv)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/Desktop/tip_calculator</span> % source .venv/bin/activate   <span class="co"># activate it — your prompt will show (.venv)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create your project files:</p>
 </section>
 <section id="windows-1" class="level4">
 <h4 class="anchored" data-anchor-id="windows-1">Windows</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">New-Item</span> tip_calculator.py        <span class="co"># your main code file</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">New-Item</span> test_tip_calculator.py   <span class="co"># your test file</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">New-Item</span> .gitignore               <span class="co"># tells Git what folders to skip</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> New-Item tip_calculator.py        <span class="co"># your main code file</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> New-Item test_tip_calculator.py   <span class="co"># your test file</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> New-Item .gitignore               <span class="co"># tells Git what folders to skip</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="mac-1" class="level4">
 <h4 class="anchored" data-anchor-id="mac-1">Mac</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> tip_calculator.py        <span class="co"># your main code file</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> test_tip_calculator.py   <span class="co"># your test file</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> .gitignore               <span class="co"># tells Git what folders to skip</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">~/Desktop/tip_calculator</span> % touch tip_calculator.py        <span class="co"># your main code file</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">~/Desktop/tip_calculator</span> % touch test_tip_calculator.py   <span class="co"># your test file</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">~/Desktop/tip_calculator</span> % touch .gitignore               <span class="co"># tells Git what folders to skip</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Open <code>.gitignore</code> in VS Code, paste the following in, and save with <strong>Ctrl + S</strong> (Windows) or <strong>Cmd + S</strong> (Mac):</p>
 <pre><code>.venv/          # your virtual environment — hundreds of files, not needed on GitHub
 __pycache__/    # Python's temp files, auto-created when you run code
@@ -292,52 +293,50 @@ __pycache__/    # Python's temp files, auto-created when you run code
 <section id="step-2-install-packages" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-install-packages">Step 2: Install packages</h3>
 <p>Do this before writing any code so VS Code doesn’t show errors as you type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pytest             <span class="co"># install pytest into your .venv</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt  <span class="co"># save your package list</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> pip install pytest             <span class="co"># install pytest into your .venv</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> pip freeze <span class="op">&gt;</span> requirements.txt  <span class="co"># save your package list</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>requirements.txt</code> is how you tell anyone who clones your project which packages to install. It replaces the need to share your <code>.venv</code> folder.</p>
-<blockquote class="blockquote">
-<p><strong>If your virtual environment stops working (common on Python 3.13)</strong></p>
-<p>A known issue with Python 3.13 can break <code>.venv</code> after certain operations. If you see errors about missing modules or an inactive environment, delete it and start over:</p>
-<p><strong>Windows:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Remove-Item</span> <span class="at">-Recurse</span> <span class="at">-Force</span> .venv</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pytest</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Mac:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> .venv</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv .venv</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pytest</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Having trouble? Ask AI.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some commands may not execute as expected. Software changes, packages get updated, and platform differences can cause issues. For example, Python 3.14 introduced changes that affect how virtual environments (<code>.venv</code>) behave on some systems.</p>
+<p>If something isn’t working, paste the error message into Claude or ChatGPT and describe what you were trying to do.</p>
+</div>
+</div>
 </section>
 <section id="step-3-write-add-your-code-and-tests" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-write-add-your-code-and-tests">Step 3: Write — Add your code and tests</h3>
 <p>pytest is a package that checks whether your code does what you expect. You write a separate test file containing functions that call your real code with specific inputs and assert what the output should be. When you run <code>pytest</code> in the terminal, it finds those functions automatically and runs them all. A dot means a test passed. An <code>F</code> means it failed, and pytest tells you exactly what went wrong.</p>
 <p>Open <code>tip_calculator.py</code> and paste this in, then save:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_tip(bill_amount, tip_percent):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate the tip amount for a bill."""</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> bill_amount <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Bill amount cannot be negative"</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(bill_amount <span class="op">*</span> (tip_percent <span class="op">/</span> <span class="dv">100</span>), <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_tip(bill_amount, tip_percent):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calculate the tip amount for a bill."""</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> bill_amount <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Bill amount cannot be negative"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">round</span>(bill_amount <span class="op">*</span> (tip_percent <span class="op">/</span> <span class="dv">100</span>), <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Open <code>test_tip_calculator.py</code> and paste this in, then save:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tip_calculator <span class="im">import</span> calculate_tip</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_standard_tip():</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> calculate_tip(<span class="dv">100</span>, <span class="dv">20</span>) <span class="op">==</span> <span class="fl">20.0</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_zero_tip():</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> calculate_tip(<span class="dv">50</span>, <span class="dv">0</span>) <span class="op">==</span> <span class="fl">0.0</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_negative_bill_raises_error():</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        calculate_tip(<span class="op">-</span><span class="dv">10</span>, <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tip_calculator <span class="im">import</span> calculate_tip</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_standard_tip():</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> calculate_tip(<span class="dv">100</span>, <span class="dv">20</span>) <span class="op">==</span> <span class="fl">20.0</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_zero_tip():</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> calculate_tip(<span class="dv">50</span>, <span class="dv">0</span>) <span class="op">==</span> <span class="fl">0.0</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_negative_bill_raises_error():</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        calculate_tip(<span class="op">-</span><span class="dv">10</span>, <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="step-4-test-run-pytest" class="level3">
 <h3 class="anchored" data-anchor-id="step-4-test-run-pytest">Step 4: Test — Run pytest</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span>   <span class="co"># runs all test files it finds automatically</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> pytest   <span class="co"># runs all test files it finds automatically</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see:</p>
 <pre><code>collected 3 items
 test_tip_calculator.py ...
@@ -346,41 +345,46 @@ test_tip_calculator.py ...
 </section>
 <section id="step-5-share-push-to-github" class="level3">
 <h3 class="anchored" data-anchor-id="step-5-share-push-to-github">Step 5: Share — Push to GitHub</h3>
-<p>Log in to GitHub from the terminal (<em>one-time setup</em>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> auth login   <span class="co"># follow the prompts, it will open a browser to confirm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Log in to GitHub from the terminal — <em>one-time setup:</em></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> gh auth login   <span class="co"># follow the prompts, it will open a browser to confirm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then create your repo and push your code in one command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gh</span> repo create tip_calculator <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--remote</span><span class="op">=</span>origin <span class="at">--push</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># creates the repo, links it, and pushes your code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> gh repo create tip_calculator <span class="at">--private</span> <span class="at">--source</span><span class="op">=</span>. <span class="at">--remote</span><span class="op">=</span>origin <span class="at">--push</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># creates the repo, links it, and pushes your code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Go to <code>github.com/yourusername/tip_calculator</code> — your files are there.</p>
 </section>
 <section id="the-core-loop-going-forward" class="level3">
 <h3 class="anchored" data-anchor-id="the-core-loop-going-forward">The core loop going forward</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">edit</span> code                                  <span class="co"># make changes in VS Code</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span>                                     <span class="co"># confirm everything still works</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .                                  <span class="co"># stage all changes</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"describe what you changed"</span>  <span class="co"># save a snapshot</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push                                   <span class="co"># send it to GitHub</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> edit code                                  <span class="co"># make changes in VS Code</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> pytest                                     <span class="co"># confirm everything still works</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> git add .                                  <span class="co"># stage all changes</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> git commit <span class="at">-m</span> <span class="st">"describe what you changed"</span>  <span class="co"># save a snapshot</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">.venv</span><span class="kw">)</span> <span class="ex">PS</span> C:<span class="dt">\U</span>sers<span class="dt">\S</span>tudent<span class="dt">\D</span>esktop<span class="dt">\t</span>ip_calculator<span class="op">&gt;</span> git push                                   <span class="co"># send it to GitHub</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Every <code>git commit</code> is a saved snapshot. Every <code>git push</code> sends it to GitHub.</p>
 </section>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">What you just did</h2>
-<p>You completed the entire software development lifecycle: from an empty folder to a working project on GitHub with automated tests, version history, and a repeatable workflow.</p>
-<p>Your <code>.venv</code> isolates dependencies. Your <code>pytest</code> suite ensures code correctness. Your Git history is a record you can revert to. Your GitHub repo is your backup and collaboration mechanism.</p>
-<p>The loop you now run (edit → test → commit → push) is the same loop used to build production systems at scale.</p>
-<p>Everything that comes next in Levels 2, 3, and 4 builds on this foundation. The next levels show you how to move faster within it.</p>
+<p>You completed the entire software development lifecycle. You went from an empty folder to a working project on GitHub with automated tests, version history, and a repeatable workflow.</p>
+<p>This is not a tutorial exercise—this is the real sequence that every professional team follows. Your <code>.venv</code> isolates dependencies. Your <code>pytest</code> suite ensures code correctness. Your Git history is a record you can revert to. Your GitHub repo is your backup and collaboration mechanism.</p>
+<p>The loop you now run—edit → test → commit → push—is the same loop used to build production systems at scale. You’ve just done it end-to-end.</p>
+<p>Everything that comes next in Levels 2, 3, and 4 builds on this foundation. You’ve got the framework. The next levels show you how to move faster within it.</p>
 </section>
 <section id="next-steps" class="level2">
-<h2 class="anchored" data-anchor-id="next-steps">What’s next</h2>
+<h2 class="anchored" data-anchor-id="next-steps">Choose your next level</h2>
 <section id="level-2-ai-inside-your-editor" class="level3">
 <h3 class="anchored" data-anchor-id="level-2-ai-inside-your-editor">Level 2: AI inside your editor</h3>
-<p>Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code.</p>
+<p>Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code. <em>~20 minutes</em></p>
 <p><a href="./level2.html">Go to Level 2</a></p>
 </section>
 <section id="level-3-coding-agent-in-your-terminal" class="level3">
 <h3 class="anchored" data-anchor-id="level-3-coding-agent-in-your-terminal">Level 3: Coding agent in your terminal</h3>
-<p>The AI runs in your terminal with access to your full environment. It reads files, executes code, installs packages, and iterates until the task is done.</p>
+<p>The AI runs in your terminal with access to your full environment. It reads files, executes code, installs packages, and iterates until the task is done. <em>~25 minutes</em></p>
 <p><a href="./level3.html">Go to Level 3</a></p>
+</section>
+<section id="level-4-connected-agents" class="level3">
+<h3 class="anchored" data-anchor-id="level-4-connected-agents">Level 4: Connected agents</h3>
+<p>Extend the agent with live connections to docs, databases, and the web via MCP. The agent can look up the exact API it needs mid-task. <em>~15 minutes</em></p>
+<p><a href="./level3.html#level-4-transition">Go to Level 3 — Level 4 section</a></p>
 
 
 </section>
