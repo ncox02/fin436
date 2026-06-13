@@ -23,10 +23,10 @@ Make sure you have:
 Press **Windows + X** then **I** to open PowerShell. Type these one at a time:
 
 ```bash
-cd Desktop             # navigate to your Desktop
-mkdir tip_calculator   # create your project folder
-cd tip_calculator      # move into it
-code .                 # open VS Code here
+PS C:\Users\Student> cd Desktop                               # navigate to your Desktop
+PS C:\Users\Student\Desktop> mkdir tip_calculator             # create your project folder
+PS C:\Users\Student\Desktop> cd tip_calculator                # move into it
+PS C:\Users\Student\Desktop\tip_calculator> code .            # open VS Code here
 ```
 
 #### Mac
@@ -34,10 +34,10 @@ code .                 # open VS Code here
 Open Terminal from Spotlight (**Cmd + Space**, type "Terminal"). Type these one at a time:
 
 ```bash
-cd Desktop             # navigate to your Desktop
-mkdir tip_calculator   # create your project folder
-cd tip_calculator      # move into it
-code .                 # open VS Code here
+~ % cd Desktop                               # navigate to your Desktop
+~/Desktop % mkdir tip_calculator             # create your project folder
+~/Desktop % cd tip_calculator               # move into it
+~/Desktop/tip_calculator % code .           # open VS Code here
 ```
 
 ---
@@ -47,27 +47,27 @@ Switch to the terminal inside VS Code with **Ctrl + `** — use this for everyth
 Tell Git who you are — *one-time setup, never needs repeating:*
 
 ```bash
-git config --global user.email "you@example.com"   # your GitHub email
-git config --global user.name "Your Name"           # your name
+PS C:\Users\Student\Desktop\tip_calculator> git config --global user.email "you@example.com"   # your GitHub email
+PS C:\Users\Student\Desktop\tip_calculator> git config --global user.name "Your Name"           # your name
 ```
 
 Then set up your project:
 
 ```bash
-git init               # create a local git repository in this folder
-python -m venv .venv   # create a virtual environment called .venv
+PS C:\Users\Student\Desktop\tip_calculator> git init               # create a local git repository in this folder
+PS C:\Users\Student\Desktop\tip_calculator> python -m venv .venv   # create a virtual environment called .venv
 ```
 
 #### Windows (activate venv)
 
 ```bash
-.venv\Scripts\activate   # activate it — your prompt will show (.venv)
+PS C:\Users\Student\Desktop\tip_calculator> .venv\Scripts\activate   # activate it — your prompt will show (.venv)
 ```
 
 #### Mac (activate venv)
 
 ```bash
-source .venv/bin/activate   # activate it — your prompt will show (.venv)
+~/Desktop/tip_calculator % source .venv/bin/activate   # activate it — your prompt will show (.venv)
 ```
 
 Create your project files:
@@ -75,17 +75,17 @@ Create your project files:
 #### Windows
 
 ```bash
-New-Item tip_calculator.py        # your main code file
-New-Item test_tip_calculator.py   # your test file
-New-Item .gitignore               # tells Git what folders to skip
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> New-Item tip_calculator.py        # your main code file
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> New-Item test_tip_calculator.py   # your test file
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> New-Item .gitignore               # tells Git what folders to skip
 ```
 
 #### Mac
 
 ```bash
-touch tip_calculator.py        # your main code file
-touch test_tip_calculator.py   # your test file
-touch .gitignore               # tells Git what folders to skip
+(.venv) ~/Desktop/tip_calculator % touch tip_calculator.py        # your main code file
+(.venv) ~/Desktop/tip_calculator % touch test_tip_calculator.py   # your test file
+(.venv) ~/Desktop/tip_calculator % touch .gitignore               # tells Git what folders to skip
 ```
 
 Open `.gitignore` in VS Code, paste the following in, and save with **Ctrl + S** (Windows) or **Cmd + S** (Mac):
@@ -103,8 +103,8 @@ None of these belong on GitHub. They are local, auto-generated, and irrelevant t
 Do this before writing any code so VS Code doesn't show errors as you type:
 
 ```bash
-pip install pytest             # install pytest into your .venv
-pip freeze > requirements.txt  # save your package list
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> pip install pytest             # install pytest into your .venv
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> pip freeze > requirements.txt  # save your package list
 ```
 
 `requirements.txt` is how you tell anyone who clones your project which packages to install. It replaces the need to share your `.venv` folder.
@@ -115,20 +115,20 @@ pip freeze > requirements.txt  # save your package list
 >
 > **Windows:**
 > ```bash
-> Remove-Item -Recurse -Force .venv
-> python -m venv .venv
-> .venv\Scripts\activate
-> pip install pytest
-> pip freeze > requirements.txt
+> PS C:\Users\Student\Desktop\tip_calculator> Remove-Item -Recurse -Force .venv
+> PS C:\Users\Student\Desktop\tip_calculator> python -m venv .venv
+> PS C:\Users\Student\Desktop\tip_calculator> .venv\Scripts\activate
+> (.venv) PS C:\Users\Student\Desktop\tip_calculator> pip install pytest
+> (.venv) PS C:\Users\Student\Desktop\tip_calculator> pip freeze > requirements.txt
 > ```
 >
 > **Mac:**
 > ```bash
-> rm -rf .venv
-> python3 -m venv .venv
-> source .venv/bin/activate
-> pip install pytest
-> pip freeze > requirements.txt
+> ~/Desktop/tip_calculator % rm -rf .venv
+> ~/Desktop/tip_calculator % python3 -m venv .venv
+> ~/Desktop/tip_calculator % source .venv/bin/activate
+> (.venv) ~/Desktop/tip_calculator % pip install pytest
+> (.venv) ~/Desktop/tip_calculator % pip freeze > requirements.txt
 > ```
 
 ### Step 3: Write — Add your code and tests
@@ -165,7 +165,7 @@ def test_negative_bill_raises_error():
 ### Step 4: Test — Run pytest
 
 ```bash
-pytest   # runs all test files it finds automatically
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> pytest   # runs all test files it finds automatically
 ```
 
 You should see:
@@ -183,13 +183,13 @@ After this runs, two new folders will appear in VS Code's file explorer — `__p
 Log in to GitHub from the terminal — *one-time setup:*
 
 ```bash
-gh auth login   # follow the prompts, it will open a browser to confirm
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> gh auth login   # follow the prompts, it will open a browser to confirm
 ```
 
 Then create your repo and push your code in one command:
 
 ```bash
-gh repo create tip_calculator --private --source=. --remote=origin --push
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> gh repo create tip_calculator --private --source=. --remote=origin --push
 # creates the repo, links it, and pushes your code
 ```
 
@@ -198,11 +198,11 @@ Go to `github.com/yourusername/tip_calculator` — your files are there.
 ### The core loop going forward
 
 ```bash
-edit code                                  # make changes in VS Code
-pytest                                     # confirm everything still works
-git add .                                  # stage all changes
-git commit -m "describe what you changed"  # save a snapshot
-git push                                   # send it to GitHub
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> edit code                                  # make changes in VS Code
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> pytest                                     # confirm everything still works
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> git add .                                  # stage all changes
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> git commit -m "describe what you changed"  # save a snapshot
+(.venv) PS C:\Users\Student\Desktop\tip_calculator> git push                                   # send it to GitHub
 ```
 
 Every `git commit` is a saved snapshot. Every `git push` sends it to GitHub.
