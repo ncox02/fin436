@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="ide-styles.css">
 </head>
 
-<body data-ide="vscode">
+<body>
 
 <nav class="nav">
   <div class="nav-links">
@@ -102,12 +102,8 @@
       </div>
       <div class="l2-key-divider"></div>
       <div class="l2-key-item">
-        <div class="ide-pill-toggle">
-          <button class="ide-pill-btn active" onclick="setIDE('vscode')">VS Code</button>
-          <button class="ide-pill-btn" onclick="setIDE('pycharm')">PyCharm</button>
-        </div>
-        <span class="t-vscode"><kbd>Ctrl+I</kbd> opens inline edit on selected code</span>
-        <span class="t-pycharm"><kbd>Ctrl+\</kbd> opens inline edit on selected code</span>
+        <kbd>Ctrl+I</kbd>
+        <span>opens inline edit on selected code</span>
       </div>
     </div>
 
@@ -441,13 +437,7 @@ output identical — same columns, same structure.</p></div>
               <div class="ex-body">
                 <p>Place your cursor inside <code>calculate_compound_interest</code> in <code>compound.py</code>, on the line just below the <code>def</code> line.</p>
 
-                <div class="ide-pill-toggle">
-                  <button class="ide-pill-btn active" onclick="setIDE('vscode')">VS Code</button>
-                  <button class="ide-pill-btn" onclick="setIDE('pycharm')">PyCharm</button>
-                </div>
-
-                <p class="t-vscode">Open inline edit with <kbd>Ctrl+I</kbd> (Windows) / <kbd>Cmd+I</kbd> (Mac) and type:</p>
-                <p class="t-pycharm">Open inline edit with <kbd>Ctrl+\</kbd> or right-click → <strong>AI Actions</strong>, then type:</p>
+                <p>Open inline edit with <kbd>Ctrl+I</kbd> (Windows) / <kbd>Cmd+I</kbd> (Mac) and type:</p>
 
                 <div class="code-block">/doc</div>
                 <p>A Google-style docstring should be generated and inserted. Review it — does it accurately describe the parameters and return value?</p>
@@ -708,18 +698,6 @@ Add a comment explaining the compound interest formula.</div>
 
 <script src="main.js"></script>
 <script>
-/* ── IDE toggle ── */
-function setIDE(ide) {
-  document.body.setAttribute('data-ide', ide);
-  document.querySelectorAll('.ide-pill-btn').forEach(function(btn) {
-    btn.classList.toggle('active', btn.textContent.trim().toLowerCase().replace(/\s+/g,'') === ide);
-  });
-  localStorage.setItem('preferredIDE_l2', ide);
-}
-(function() {
-  if (localStorage.getItem('preferredIDE_l2') === 'pycharm') setIDE('pycharm');
-})();
-
 /* ── Group accordion ── */
 function toggleGroup(header) {
   header.closest('.group-item').classList.toggle('open');
