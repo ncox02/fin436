@@ -1608,6 +1608,14 @@ td.bad { color: var(--bad); background: var(--bad-bg); }
   color: inherit;
 }
 
+.container a {
+  color: var(--accent2);
+}
+
+.container a:visited {
+  color: var(--accent);
+}
+
 /* ===========================
    HUB LEVEL BADGES (start.html)
    =========================== */
