@@ -154,7 +154,7 @@ Install via the Claude Code plugin menu — type `/plugin` inside a session and 
 
 Warp is a modern terminal — a replacement for Windows Terminal, Mac Terminal, or the VS Code integrated terminal. You run Claude Code inside Warp.
 
-Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran.
+Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran. You can also run multiple instances of Claude Code simultaneously, each in its own pane.
 
 Download from [Warp](https://warp.dev) — available for Mac, Linux, and Windows. Free to use.
 
