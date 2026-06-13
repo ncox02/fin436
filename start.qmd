@@ -109,27 +109,13 @@ Do this before writing any code so VS Code doesn't show errors as you type:
 
 `requirements.txt` is how you tell anyone who clones your project which packages to install. It replaces the need to share your `.venv` folder.
 
-> **If your virtual environment stops working (common on Python 3.13)**
->
-> A known issue with Python 3.13 can break `.venv` after certain operations. If you see errors about missing modules or an inactive environment, delete it and start over:
->
-> **Windows:**
-> ```bash
-> PS C:\Users\Student\Desktop\tip_calculator> Remove-Item -Recurse -Force .venv
-> PS C:\Users\Student\Desktop\tip_calculator> python -m venv .venv
-> PS C:\Users\Student\Desktop\tip_calculator> .venv\Scripts\activate
-> (.venv) PS C:\Users\Student\Desktop\tip_calculator> pip install pytest
-> (.venv) PS C:\Users\Student\Desktop\tip_calculator> pip freeze > requirements.txt
-> ```
->
-> **Mac:**
-> ```bash
-> ~/Desktop/tip_calculator % rm -rf .venv
-> ~/Desktop/tip_calculator % python3 -m venv .venv
-> ~/Desktop/tip_calculator % source .venv/bin/activate
-> (.venv) ~/Desktop/tip_calculator % pip install pytest
-> (.venv) ~/Desktop/tip_calculator % pip freeze > requirements.txt
-> ```
+::: {.callout-note}
+## Having trouble? Ask AI.
+
+Some commands may not execute as expected. Software changes, packages get updated, and platform differences can cause issues. For example, Python 3.14 introduced changes that affect how virtual environments (`.venv`) behave on some systems.
+
+If something isn't working, paste the error message into Claude or ChatGPT and describe what you were trying to do.
+:::
 
 ### Step 3: Write — Add your code and tests
 
