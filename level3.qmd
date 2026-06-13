@@ -2,11 +2,11 @@
 title: "Level 3: AI in Your Terminal"
 ---
 
-At Level 3, the AI runs in your terminal. You describe a goal; it reads your files, writes code, runs scripts, and iterates on failures until the task is done. You review the result. What makes this more capable than an editor assistant is not what the agent can see; it is that it can execute. In the editor, you run the tests and bring errors back to the AI. Here, the agent runs that loop itself.
+At Level 3, the AI runs in your terminal. You describe a goal; it reads your files, writes code, runs scripts, and iterates on failures until the task is done. You review the result. What makes this more capable than an editor assistant is not what the agent can see — it is that it can execute. In the editor, you run the tests and bring errors back to the AI. Here, the agent runs that loop itself.
 
 > **Most terminal AI tools require a paid subscription.** Free tiers typically provide access to web-based chat only — not the terminal agent. Check the pricing for whichever tool you use before getting started.
 
-A terminal agent is the right tool when the task requires execution: running tests, iterating across files, working through a multi-step process. For inline suggestions while you're actively writing code, the IDE is still the natural fit. The two complement each other; most people use both.
+A terminal agent is the right tool when the task requires execution — running tests, iterating across files, working through a multi-step process. For inline suggestions while you're actively writing code, the IDE is still the natural fit. The two complement each other; most people use both.
 
 ---
 
@@ -17,7 +17,7 @@ A terminal agent is the right tool when the task requires execution: running tes
 | **Organize** | Describe the goal in chat; AI proposes structure | Describe the goal; AI reads your existing files and proposes or creates structure |
 | **Write** | AI suggests edits inline; you accept or reject | AI writes to files directly; you review what changed |
 | **Test** | You run tests and bring failures back to AI | AI runs tests, reads the output, and iterates on failures itself |
-| **Share** | AI writes a commit message from your diff; you commit | AI can stage, write the message, and commit; you review before or after |
+| **Share** | AI writes a commit message from your diff; you commit | AI can stage, write the message, and commit — you review before or after |
 | **Deploy** | Not covered | Scripted pipelines can be handed to the agent; it runs them and reports the result |
 
 ---
@@ -47,7 +47,7 @@ my-project/
 
 ### The context file
 
-Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. A context file, a markdown file in your project root, is how you fix that. Write your standing instructions there once; the agent reads it at the start of every session. Keep it factual: project structure, conventions, constraints that apply to every task. Specifics for the current task go in the prompt.
+Every session starts cold. The agent has no memory of previous sessions — no knowledge of your project structure, conventions, or the decisions you made last week. A context file — a markdown file in your project root — is how you fix that. Write your standing instructions there once; the agent reads it at the start of every session. Keep it factual: project structure, conventions, constraints that apply to every task. Specifics for the current task go in the prompt.
 
 The folders you list and the directories you grant the agent access to form the same boundary. Start narrow: read and write within the project directory, run test and build commands you already use, no broader filesystem access. An agent with write access to your filesystem and permission to run arbitrary commands can make changes you didn't intend. Review what it's done at each step, especially early on.
 
@@ -63,7 +63,7 @@ Most tools offer a compaction command to summarize the current context and conti
 
 ### Between sessions
 
-End sessions before context degrades. Most tools display context usage somewhere, and if yours doesn't, it is worth making it visible. When context approaches 50%, end the session:
+End sessions before context degrades. Most tools display context usage somewhere — if yours doesn't, it is worth making it visible. When context approaches 50%, end the session:
 
 ```
 Write a summary of what we've done and what's left to progress.md
@@ -83,60 +83,28 @@ Scope explicitly when executing. Vague file access reliably produces unintended 
 
 Model Context Protocol is an open standard for connecting AI agents to external tools. Instead of pasting documentation into a prompt or building a one-off integration script, you configure an MCP server once and the agent can call it in any session.
 
-An MCP server is a small program the agent invokes natively, indistinguishable from a built-in capability once configured. Common uses: pulling current library documentation, querying a database, running a custom analysis, accessing an API. Configure it once; it is available in every session.
+An MCP server is a small program the agent invokes natively — indistinguishable from a built-in capability once configured. Common uses: pulling current library documentation, querying a database, running a custom analysis, accessing an API. Configure it once; it is available in every session.
 
 
 ---
 
 ## Try it out with Claude Code {#claude-code}
 
-The concepts above apply to any terminal AI tool. Claude Code is one of them. If you want to try it, this section covers an efficient setup: the tool itself plus seven integrations that implement what we've discussed. A project sandbox and quick reference table follow below.
+The concepts above apply to any terminal AI tool. Claude Code is one of them. If you want to try it, the rest of this page covers an efficient setup — the tool itself plus seven integrations that implement what we've discussed.
+
+> A project sandbox at the bottom of this page gives you a ready starting point — a folder structure that implements everything discussed, ready to copy into any project.
 
 Install Claude Code and find platform-specific setup instructions at the official documentation:
 
-**[Install Claude Code](https://code.claude.com/docs/en/terminal-guide#windows)**
+**[Install Claude Code](https://code.claude.com/docs/en/quickstart)**
 
 Navigate to your project and type `claude` to start a session. Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.
 
 ---
 
-## Sandbox {#sandbox}
-
-Create a dedicated folder anywhere on your computer and drop in this structure. It gives you a clean place to experiment without touching any existing project — open it in your terminal and you are ready to go.
-
-```
-my-project/
-├── CLAUDE.md                  ← project context, read every session
-├── progress.md                ← session handoff notes
-├── docs/
-│   └── plans/                 ← implementation plans go here
-├── .claude/
-│   └── skills/                ← custom workflows, invoked with /skill-name
-├── src/
-└── tests/
-```
-
-Full documentation for `CLAUDE.md` and skills is in the [official docs](https://code.claude.com/docs/en/overview).
-
----
-
-## Quick reference {#quick-reference}
-
-| # | Integration | What it adds | Where to get it |
-|---|-------------|--------------|-----------------|
-| 01 | Statusline | Context %, session cost, model, git branch | Claude Code docs |
-| 02 | Superpowers | Sub-agent workflows: brainstorm → plan → execute | `/plugin` inside Claude Code |
-| 03 | Sequential Thinking | Chain-of-thought reasoning before complex tasks | Ask Claude: "install the sequential thinking MCP server" |
-| 04 | Context7 | Current library docs at prompt time | `/plugin` inside Claude Code |
-| 05 | Warp | Split panes, block output | [warp.dev](https://warp.dev) |
-| 06 | Happy Engineering | Full terminal access from your phone | [happy.engineering](https://happy.engineering) |
-| 07 | Skills | Reusable workflows for repetitive tasks | Create `.claude/skills/skillname.md` |
-
----
-
 ## 01 — Statusline {#statusline}
 
-*Make context usage visible: the most critical metric in a session*
+*Make context usage visible — the most critical metric in a session*
 
 The statusline adds a persistent bar at the bottom of your terminal showing context window percentage, session cost, model name, elapsed time, and git status. Without it, you notice context degradation when Claude starts making mistakes. With it, you can end sessions before quality drops.
 
@@ -148,7 +116,7 @@ Find install instructions in the Claude Code documentation or by asking Claude: 
 
 ## 02 — Superpowers {#superpowers}
 
-*Structured sub-agent workflows: the highest-impact single install*
+*Structured sub-agent workflows — the highest-impact single install*
 
 Superpowers is a Claude Code plugin that implements the planning and sub-agent workflow described above. Instead of one session accumulating context until it degrades, your main Claude instance dispatches focused sub-agents — each with its own fresh context window. The orchestrator receives summaries, not full workloads.
 
@@ -172,7 +140,7 @@ Ask Claude to install it: `Please install the sequential thinking MCP server`
 
 ## 04 — Context7 {#context7}
 
-*Current library documentation: eliminates hallucinated APIs*
+*Current library documentation — eliminates hallucinated APIs*
 
 Claude Code's training data has a cutoff date. When you ask it to use a library, it works from training data that may be months out of date — confidently using deprecated methods or renamed APIs. Context7 pulls current, version-specific documentation from live repositories and injects it into Claude's context at prompt time.
 
@@ -186,7 +154,7 @@ Install via the Claude Code plugin menu — type `/plugin` inside a session and 
 
 Warp is a modern terminal — a replacement for Windows Terminal, Mac Terminal, or the VS Code integrated terminal. You run Claude Code inside Warp.
 
-Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block; no scrolling through walls of output to find what Claude ran.
+Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran. You can also run multiple instances of Claude Code simultaneously, each in its own pane.
 
 Download from [Warp](https://warp.dev) — available for Mac, Linux, and Windows. Free to use.
 
@@ -216,3 +184,37 @@ Skills are markdown files in `.claude/skills/` that Claude Code reads when you i
 ```
 
 Describe the repetitive task in detail and ask Claude to build the skill for you. After a few iterations, it becomes a reliable automation available in every session.
+
+---
+
+## Sandbox {#sandbox}
+
+Create a dedicated folder anywhere on your computer and drop in this structure. It gives you a clean place to experiment without touching any existing project — open it in your terminal and you are ready to go.
+
+```
+my-project/
+├── CLAUDE.md                  ← project context, read every session
+├── progress.md                ← session handoff notes
+├── docs/
+│   └── plans/                 ← implementation plans go here
+├── .claude/
+│   └── skills/                ← custom workflows, invoked with /skill-name
+├── src/
+└── tests/
+```
+
+Full documentation for `CLAUDE.md` and skills is in the [official docs](https://code.claude.com/docs/en/features-overview).
+
+---
+
+## Quick reference {#quick-reference}
+
+| # | Integration | What it adds | Where to get it |
+|---|-------------|--------------|-----------------|
+| 01 | Statusline | Context %, session cost, model, git branch | Claude Code docs |
+| 02 | Superpowers | Sub-agent workflows: brainstorm → plan → execute | `/plugin` inside Claude Code |
+| 03 | Sequential Thinking | Chain-of-thought reasoning before complex tasks | Ask Claude: "install the sequential thinking MCP server" |
+| 04 | Context7 | Current library docs at prompt time | `/plugin` inside Claude Code |
+| 05 | Warp | Split panes, block output | [warp.dev](https://warp.dev) |
+| 06 | Happy Engineering | Full terminal access from your phone | [happy.engineering](https://happy.engineering) |
+| 07 | Skills | Reusable workflows for repetitive tasks | Create `.claude/skills/skillname.md` |

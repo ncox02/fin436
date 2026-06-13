@@ -10,19 +10,19 @@ Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two
 
 | Step | Before | After |
 |------|--------|-------|
-| **Organize** | In a browser, describe your project in a chat window with no file access | In the editor, open the chat sidebar and describe what you want to build; AI proposes structure and logic before a single file exists |
-| **Write** | In a browser, copy code from chat, switch windows, paste manually | In the editor, ghost text appears inline as you type; press `Tab` to accept, no switching |
+| **Organize** | In a browser, describe your project in a chat window with no file access | In the editor, open the chat sidebar and describe what you want to build — AI proposes structure and logic before a single file exists |
+| **Write** | In a browser, copy code from chat, switch windows, paste manually | In the editor, ghost text appears inline as you type — press `Tab` to accept, no switching |
 | **Test** | In a browser, copy the error message, open a new chat, re-explain the context | In the editor, click the Copilot icon next to the terminal error and AI reads the crash log directly |
 | **Share** | In a browser, write your own commit message | In the editor, click the sparkle button in the Source Control panel and AI reads your diff and writes it |
 | **Deploy** | Out of scope for this level | — |
 
-Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens Copilot Chat. Everything else is reading and deciding.
+Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens inline chat. `Ctrl+Alt+I` opens the Copilot Chat sidebar. Everything else is reading and deciding.
 
 ---
 
 ## The exercises
 
-Twelve exercises across four phases. Each one proves a specific capability that browser chat cannot match. Do them in order; the compound interest project builds across phases and the terminal does not appear until Exercise 9.
+Twelve exercises across four phases. Each one proves a specific capability that browser chat cannot match. Do them in order — the compound interest project builds across phases and the terminal does not appear until Exercise 9.
 
 | | Exercise | AI capability |
 |--|----------|--------------|
@@ -41,13 +41,14 @@ Twelve exercises across four phases. Each one proves a specific capability that 
 
 ---
 
-## Organize & plan
+### Phase A: Organize & plan
 
 *Before writing a single line of code, use AI to think through structure. This is the habit that separates organized projects from tangled ones.*
 
 ---
 
-### Exercise 1 — Blueprint prompt {#ex1}
+#### Exercise 1 — Blueprint prompt {#ex1}
+**Phase:** Organize
 
 **Action:**
 Open VS Code. Open the Copilot Chat sidebar. Do not open any files yet. Send this prompt:
@@ -65,7 +66,8 @@ Read the response. If anything is unclear, ask a follow-up before moving on.
 
 ---
 
-### Exercise 2 — Scaffold generation {#ex2}
+#### Exercise 2 — Scaffold generation {#ex2}
+**Phase:** Organize
 
 **Action:**
 In the same chat session, send this prompt:
@@ -87,7 +89,7 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 
 > ### Why this works — and how to scale it
 >
-> You just described a goal in plain English and got back a structure. That is not a trick; it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.
+> You just described a goal in plain English and got back a structure. That is not a trick — it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.
 >
 > When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints. Those are completely different quality levels — and the difference compounds over time.
 >
@@ -104,13 +106,14 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 
 ---
 
-## Writing code
+### Phase B: Writing code
 
-*Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now; you will not need it until Exercise 9.*
+*Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now — you will not need it until Exercise 9.*
 
 ---
 
-### Exercise 3 — Comment-driven generation {#ex3}
+#### Exercise 3 — Comment-driven generation {#ex3}
+**Phase:** Write
 
 **Action:**
 `utils.py` is the utility file from the project scaffold you created in Exercise 2 — where shared helper functions live that are used across the project.
@@ -132,11 +135,12 @@ are all positive numbers. Raise a ValueError with a descriptive
 message for each invalid case. No external libraries.
 ```
 
-**Takeaway:** A clear comment is a specification. The more precisely you describe the intent, the more accurately AI executes it. You described what you wanted; AI wrote the syntax. That is the trade at Level 2.
+**Takeaway:** A clear comment is a specification. The more precisely you describe the intent, the more accurately AI executes it. You described what you wanted — AI wrote the syntax. That is the trade at Level 2.
 
 ---
 
-### Exercise 4 — Finish starter code {#ex4}
+#### Exercise 4 — Finish starter code {#ex4}
+**Phase:** Write
 
 **Action:**
 Create `compound.py` and paste this starter code:
@@ -152,7 +156,7 @@ def calculate_compound_interest(principal: float, rate: float,
     # Return the final balance after the compounding period.
 ```
 
-Place your cursor at the end of the last comment line. Press `Ctrl+I` to open Copilot Chat and send:
+Place your cursor at the end of the last comment line. Press `Ctrl+I` to open inline chat and send:
 
 ```
 Complete this function based on the comments.
@@ -168,7 +172,8 @@ Review the generated body before accepting.
 
 ---
 
-### Exercise 5 — Cross-file context {#ex5}
+#### Exercise 5 — Cross-file context {#ex5}
+**Phase:** Write
 
 **Action:**
 Create a second file called `main.py`. Open Copilot Chat and send:
@@ -186,13 +191,14 @@ Review what it generates. Check that the import path is correct and the function
 
 ---
 
-## Understand, debug & refactor
+### Phase C: Understand, debug & refactor
 
 *Four exercises that use AI as a reviewer and optimizer. This is where in-editor AI earns its place.*
 
 ---
 
-### Exercise 6 — Explain a block {#ex6}
+#### Exercise 6 — Explain a block {#ex6}
+**Phase:** Understand
 
 **Action:**
 Select the entire `calculate_compound_interest` function in `compound.py`. Right-click and choose **Copilot → Explain This**.
@@ -204,11 +210,12 @@ What would happen if rate were passed as 5 instead of 0.05?
 Would this function catch that mistake?
 ```
 
-**Takeaway:** AI as an on-demand explainer for your own code. Works on any code you didn't write too: inherited projects, library internals, examples from online.
+**Takeaway:** AI as an on-demand explainer for your own code. Works on any code you didn't write too — inherited projects, library internals, examples from online.
 
 ---
 
-### Exercise 7 — Spot a bug {#ex7}
+#### Exercise 7 — Spot a bug {#ex7}
+**Phase:** Debug
 
 **Action:**
 Add this function to `compound.py`:
@@ -232,13 +239,14 @@ problem is and why it occurs.
 
 If you see a **Copilot debug icon** appear next to the function, you can click it to trigger an automatic review — this is a newer Copilot feature that may or may not be available depending on your version. The manual prompt above always works.
 
-**Note on the bug:** This function is intended to compare how much your money grows across different compounding frequencies: it should return the **final balance** for each frequency, just like `calculate_compound_interest`. Instead, it subtracts `principal` at the end, so it returns only the **interest earned** (the growth above what you started with). The formula should be `principal * (1 + rate / n) ** (n * years)` with no subtraction. Beyond the intent mismatch, a negative rate also produces a mathematically nonsensical result with no warning because there is no input validation. See what AI catches and what fix it proposes.
+**Note on the bug:** This function is intended to compare how much your money grows across different compounding frequencies — it should return the **final balance** for each frequency, just like `calculate_compound_interest`. Instead, it subtracts `principal` at the end, so it returns only the **interest earned** (the growth above what you started with). The formula should be `principal * (1 + rate / n) ** (n * years)` — no subtraction. Beyond the intent mismatch, a negative rate also produces a mathematically nonsensical result with no warning because there is no input validation. See what AI catches and what fix it proposes.
 
 **Takeaway:** AI as a quality check. This kind of structural review would take careful reading and testing to catch manually. It took one prompt.
 
 ---
 
-### Exercise 8 — Refactor for performance {#ex8}
+#### Exercise 8 — Refactor for performance {#ex8}
+**Phase:** Refactor
 
 **Action:**
 Create `pipeline.py` and paste this function:
@@ -274,7 +282,8 @@ Read what AI identifies. You don't need to apply the refactored version — the 
 
 ---
 
-### Exercise 9 — Terminal crash fix {#ex9}
+#### Exercise 9 — Terminal crash fix {#ex9}
+**Phase:** Debug
 
 **Action:**
 This is the first exercise where the terminal appears. Open it in VS Code with `` Ctrl+` ``.
@@ -289,20 +298,21 @@ Run the file. The terminal will show a `TypeError`. Look for the small **Copilot
 
 Read the explanation before applying any fix.
 
-**Takeaway:** The terminal error hook connects execution failures directly to AI without copy-pasting. AI reads the crash log, the stack trace, and your code simultaneously. This is the first preview of what Level 3 looks like: where AI lives in the terminal full-time.
+**Takeaway:** The terminal error hook connects execution failures directly to AI without copy-pasting. AI reads the crash log, the stack trace, and your code simultaneously. This is the first preview of what Level 3 looks like — where AI lives in the terminal full-time.
 
 ---
 
-## Test, document & share
+### Phase D: Test, document & share
 
 *Three exercises that close the loop — verification, documentation, and version control. Each uses a native VS Code UI element.*
 
 ---
 
-### Exercise 10 — Generate a docstring {#ex10}
+#### Exercise 10 — Generate a docstring {#ex10}
+**Phase:** Document
 
 **Action:**
-Place your cursor inside `calculate_compound_interest` in `compound.py`, on the line just below the `def` line. Open Copilot Chat and type:
+Place your cursor inside `calculate_compound_interest` in `compound.py`, on the line just below the `def` line. Open inline chat with `Ctrl+I` and type:
 
 ```
 /doc
@@ -310,11 +320,12 @@ Place your cursor inside `calculate_compound_interest` in `compound.py`, on the 
 
 A Google-style docstring should be generated and inserted at the correct location. Review it — does it accurately describe the parameters and return value?
 
-**Takeaway:** Professional documentation in under 5 seconds. `Ctrl+I` plus `/doc` is the full instruction. You described the intent with two keystrokes; AI read the function and wrote the documentation.
+**Takeaway:** Professional documentation in under 5 seconds. `Ctrl+I` plus `/doc` is the full instruction. You described the intent with two keystrokes — AI read the function and wrote the documentation.
 
 ---
 
-### Exercise 11 — Generate pytest cases {#ex11}
+#### Exercise 11 — Generate pytest cases {#ex11}
+**Phase:** Test
 
 **Action:**
 Open Copilot Chat and send:
@@ -335,7 +346,8 @@ If tests fail with import or module errors, confirm your `.venv` is active and p
 
 ---
 
-### Exercise 12 — Git commit via sparkle button {#ex12}
+#### Exercise 12 — Git commit via sparkle button {#ex12}
+**Phase:** Share
 
 **Action:**
 Stage all your changes using the Source Control panel in VS Code (the branch icon in the left sidebar).
@@ -344,7 +356,7 @@ In the commit message input box at the top of the Source Control panel, look for
 
 Review the message, edit if needed, then commit.
 
-**Takeaway:** AI writes the commit message by reading what changed, not what you tell it changed. This is the native UI doing what browser chat cannot: reading your diff directly without you copying it out first.
+**Takeaway:** AI writes the commit message by reading what actually changed — not what you tell it changed. This is the native UI doing what browser chat cannot: reading your diff directly without you copying it out first.
 
 ---
 
@@ -414,6 +426,6 @@ File context becomes meaningful starting at Exercise 5. The earlier exercises wo
 
 ## What comes next: Level 3
 
-Level 2 keeps AI inside the editor. It reads your files and proposes changes, but it cannot run anything. You still execute code in the terminal and carry results back into the chat manually.
+Level 2 keeps AI inside the editor. It reads your files and proposes changes — but it cannot run anything. You still execute code in the terminal and carry results back into the chat manually.
 
 Level 3 removes that constraint. A terminal agent like Claude Code has access to your full computing environment: it executes scripts, reads the output, installs packages, modifies files, and iterates until a task is complete. Exercise 9 above was the first preview of that boundary. Level 3 is what happens when you remove it entirely.
