@@ -41,13 +41,13 @@ Twelve exercises across four phases. Each one proves a specific capability that 
 
 ---
 
-## Phase A: Organize & plan
+### Phase A: Organize & plan
 
 *Before writing a single line of code, use AI to think through structure. This is the habit that separates organized projects from tangled ones.*
 
 ---
 
-### Exercise 1 — Blueprint prompt {#ex1}
+#### Exercise 1 — Blueprint prompt {#ex1}
 **Phase:** Organize
 
 **Action:**
@@ -66,7 +66,7 @@ Read the response. If anything is unclear, ask a follow-up before moving on.
 
 ---
 
-### Exercise 2 — Scaffold generation {#ex2}
+#### Exercise 2 — Scaffold generation {#ex2}
 **Phase:** Organize
 
 **Action:**
@@ -106,13 +106,13 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 
 ---
 
-## Phase B: Writing code
+### Phase B: Writing code
 
 *Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now — you will not need it until Exercise 9.*
 
 ---
 
-### Exercise 3 — Comment-driven generation {#ex3}
+#### Exercise 3 — Comment-driven generation {#ex3}
 **Phase:** Write
 
 **Action:**
@@ -139,7 +139,7 @@ message for each invalid case. No external libraries.
 
 ---
 
-### Exercise 4 — Finish starter code {#ex4}
+#### Exercise 4 — Finish starter code {#ex4}
 **Phase:** Write
 
 **Action:**
@@ -172,7 +172,7 @@ Review the generated body before accepting.
 
 ---
 
-### Exercise 5 — Cross-file context {#ex5}
+#### Exercise 5 — Cross-file context {#ex5}
 **Phase:** Write
 
 **Action:**
@@ -191,13 +191,13 @@ Review what it generates. Check that the import path is correct and the function
 
 ---
 
-## Phase C: Understand, debug & refactor
+### Phase C: Understand, debug & refactor
 
 *Four exercises that use AI as a reviewer and optimizer. This is where in-editor AI earns its place.*
 
 ---
 
-### Exercise 6 — Explain a block {#ex6}
+#### Exercise 6 — Explain a block {#ex6}
 **Phase:** Understand
 
 **Action:**
@@ -214,7 +214,7 @@ Would this function catch that mistake?
 
 ---
 
-### Exercise 7 — Spot a bug {#ex7}
+#### Exercise 7 — Spot a bug {#ex7}
 **Phase:** Debug
 
 **Action:**
@@ -245,7 +245,7 @@ If you see a **Copilot debug icon** appear next to the function, you can click i
 
 ---
 
-### Exercise 8 — Refactor for performance {#ex8}
+#### Exercise 8 — Refactor for performance {#ex8}
 **Phase:** Refactor
 
 **Action:**
@@ -282,7 +282,7 @@ Read what AI identifies. You don't need to apply the refactored version — the 
 
 ---
 
-### Exercise 9 — Terminal crash fix {#ex9}
+#### Exercise 9 — Terminal crash fix {#ex9}
 **Phase:** Debug
 
 **Action:**
@@ -302,13 +302,13 @@ Read the explanation before applying any fix.
 
 ---
 
-## Phase D: Test, document & share
+### Phase D: Test, document & share
 
 *Three exercises that close the loop — verification, documentation, and version control. Each uses a native VS Code UI element.*
 
 ---
 
-### Exercise 10 — Generate a docstring {#ex10}
+#### Exercise 10 — Generate a docstring {#ex10}
 **Phase:** Document
 
 **Action:**
@@ -324,7 +324,7 @@ A Google-style docstring should be generated and inserted at the correct locatio
 
 ---
 
-### Exercise 11 — Generate pytest cases {#ex11}
+#### Exercise 11 — Generate pytest cases {#ex11}
 **Phase:** Test
 
 **Action:**
@@ -346,7 +346,7 @@ If tests fail with import or module errors, confirm your `.venv` is active and p
 
 ---
 
-### Exercise 12 — Git commit via sparkle button {#ex12}
+#### Exercise 12 — Git commit via sparkle button {#ex12}
 **Phase:** Share
 
 **Action:**
