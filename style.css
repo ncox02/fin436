@@ -1068,6 +1068,8 @@ details.callout-details p {
 .compare-table td:first-child { font-weight: 500; color: var(--text3); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .compare-table tr:last-child td { border-bottom: none; }
 .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+.compare-table a { color: var(--accent2); text-decoration: none; }
+.compare-table a:hover { text-decoration: underline; }
 
 td.good { color: var(--good); background: var(--good-bg); }
 td.neutral { color: var(--text2); }

@@ -118,7 +118,29 @@
   <div class="container">
     <div class="section-label">Let's Try It</div>
     <h2>12 Exercises</h2>
-    <p class="section-intro-sm">Each one proves a specific capability that browser chat cannot match. Do them in order — the compound interest project builds across groups and the terminal does not appear until Exercise 9.</p>
+    <p class="section-intro-sm">Twelve exercises across four phases. Each one proves a specific capability that browser chat cannot match. Do them in order — the compound interest project builds across phases and the terminal does not appear until Exercise 9.</p>
+
+    <div class="compare-table-wrap" style="margin-bottom: 2rem;">
+      <table class="compare-table">
+        <thead>
+          <tr><th></th><th>Exercise</th><th>AI capability</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><a href="#ex1">Blueprint prompt</a></td><td>Copilot Chat plans project structure from a plain-English description</td></tr>
+          <tr><td>2</td><td><a href="#ex2">Scaffold generation</a></td><td>Agent mode creates folders and files directly</td></tr>
+          <tr><td>3</td><td><a href="#ex3">Comment-driven generation</a></td><td>Ghost text completes a function from a comment spec</td></tr>
+          <tr><td>4</td><td><a href="#ex4">Finish starter code</a></td><td>Inline edit completes a function from its comments</td></tr>
+          <tr><td>5</td><td><a href="#ex5">Cross-file context</a></td><td><code>#filename</code> references give the AI access to multiple files at once</td></tr>
+          <tr><td>6</td><td><a href="#ex6">Explain a block</a></td><td>Right-click → Explain generates an on-demand explanation</td></tr>
+          <tr><td>7</td><td><a href="#ex7">Spot a bug</a></td><td>Copilot Chat reviews a function for bugs and edge cases</td></tr>
+          <tr><td>8</td><td><a href="#ex8">Refactor for performance</a></td><td>Right-click → Review identifies a performance problem and the fix</td></tr>
+          <tr><td>9</td><td><a href="#ex9">Terminal crash fix</a></td><td>Terminal error hook connects a crash directly to AI</td></tr>
+          <tr><td>10</td><td><a href="#ex10">Generate a docstring</a></td><td><code>/doc</code> generates documentation in two keystrokes</td></tr>
+          <tr><td>11</td><td><a href="#ex11">Generate pytest cases</a></td><td>Copilot Chat generates a full test suite from a description</td></tr>
+          <tr><td>12</td><td><a href="#ex12">Git commit via sparkle button</a></td><td>Sparkle button generates a commit message from the staged diff</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="group-list">
 
@@ -136,7 +158,7 @@
 
           <div class="ex-list">
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex1">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">01</span>
                 <div class="ex-meta">
@@ -157,7 +179,7 @@ and what they return.</p></div>
               </div>
             </div>
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex2">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">02</span>
                 <div class="ex-meta">
@@ -195,7 +217,7 @@ just clean Python modules.</p></div>
 
           <div class="ex-list">
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex3">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">03</span>
                 <div class="ex-meta">
@@ -216,7 +238,7 @@ message for each invalid case. No external libraries.</p></div>
               </div>
             </div>
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex4">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">04</span>
                 <div class="ex-meta">
@@ -244,7 +266,7 @@ Return a float.</p></div>
               </div>
             </div>
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex5">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">05</span>
                 <div class="ex-meta">
@@ -281,7 +303,7 @@ Print the result formatted to two decimal places.</p></div>
 
           <div class="ex-list">
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex6">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">06</span>
                 <div class="ex-meta">
@@ -298,7 +320,7 @@ Would this function catch that mistake?</p></div>
               </div>
             </div>
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex7">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">07</span>
                 <div class="ex-meta">
@@ -322,7 +344,7 @@ problem is and why it occurs.</p></div>
               </div>
             </div>
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex8">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">08</span>
                 <div class="ex-meta">
@@ -389,7 +411,7 @@ output identical — same columns, same structure.</p></div>
               </div>
             </div>
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex9">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">09</span>
                 <div class="ex-meta">
@@ -425,7 +447,7 @@ output identical — same columns, same structure.</p></div>
 
           <div class="ex-list">
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex10">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">10</span>
                 <div class="ex-meta">
@@ -444,7 +466,7 @@ output identical — same columns, same structure.</p></div>
               </div>
             </div>
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex11">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">11</span>
                 <div class="ex-meta">
@@ -466,7 +488,7 @@ Use only pytest. No fixtures.</p></div>
               </div>
             </div>
 
-            <div class="ex-item">
+            <div class="ex-item" id="ex12">
               <div class="ex-header" onclick="toggleEx(this)">
                 <span class="ex-num">12</span>
                 <div class="ex-meta">
@@ -704,8 +726,36 @@ function toggleGroup(header) {
 
 /* ── Exercise accordion ── */
 function toggleEx(header) {
-  header.closest('.ex-item').classList.toggle('open');
+  var item = header.closest('.ex-item');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.ex-item.open').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
 }
+
+function openExById(id) {
+  var target = document.getElementById(id);
+  if (!target) return;
+  var group = target.closest('.group-item');
+  if (group && !group.classList.contains('open')) group.classList.add('open');
+  document.querySelectorAll('.ex-item.open').forEach(function(el) { el.classList.remove('open'); });
+  target.classList.add('open');
+  setTimeout(function() { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+}
+
+document.querySelectorAll('a[href^="#ex"]').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    var id = this.getAttribute('href').slice(1);
+    if (/^ex\d+$/.test(id) && document.getElementById(id)) {
+      e.preventDefault();
+      openExById(id);
+    }
+  });
+});
+
+(function() {
+  var id = location.hash.slice(1);
+  if (/^ex\d+$/.test(id)) openExById(id);
+})();
 </script>
 
 </body>
