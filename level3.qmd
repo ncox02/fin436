@@ -96,7 +96,7 @@ The concepts above apply to any terminal AI tool. Claude Code is one of them. If
 
 Install Claude Code and find platform-specific setup instructions at the official documentation:
 
-**[Install Claude Code](https://code.claude.com/docs/en/terminal-guide#windows)**
+**[Install Claude Code](https://code.claude.com/docs/en/quickstart)**
 
 Navigate to your project and type `claude` to start a session. Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.
 
