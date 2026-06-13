@@ -725,6 +725,7 @@ section { padding: 5rem 0; }
 .code-block.small { font-size: 0.78rem; padding: 0.75rem 1rem; }
 .code-comment { color: var(--text3); }
 .code-block code { font-family: inherit; }
+.cmd-prompt { color: var(--text3); font-family: 'DM Mono', monospace; user-select: none; }
 
 /* Sub section title */
 .sub-section-title {
