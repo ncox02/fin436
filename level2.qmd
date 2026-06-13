@@ -16,7 +16,7 @@ Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two
 | **Share** | In a browser, write your own commit message | In the editor, click the sparkle button in the Source Control panel and AI reads your diff and writes it |
 | **Deploy** | Out of scope for this level | — |
 
-Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens inline chat. `Ctrl+Alt+I` opens the Copilot Chat sidebar. Everything else is reading and deciding.
+Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens inline chat. `Ctrl+Alt+I` opens the Copilot Chat sidebar.
 
 ---
 
