@@ -16,7 +16,7 @@ Ignore 80% of the buttons on your screen. For Level 2, you are using exactly two
 | **Share** | In a browser, write your own commit message | In the editor, click the sparkle button in the Source Control panel and AI reads your diff and writes it |
 | **Deploy** | Out of scope for this level | — |
 
-Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens Copilot Chat. Everything else is reading and deciding.
+Level 2 has two keys: `Tab` accepts what AI proposes. `Ctrl+I` opens inline chat. `Ctrl+Alt+I` opens the Copilot Chat sidebar. Everything else is reading and deciding.
 
 ---
 
@@ -156,7 +156,7 @@ def calculate_compound_interest(principal: float, rate: float,
     # Return the final balance after the compounding period.
 ```
 
-Place your cursor at the end of the last comment line. Press `Ctrl+I` to open Copilot Chat and send:
+Place your cursor at the end of the last comment line. Press `Ctrl+I` to open inline chat and send:
 
 ```
 Complete this function based on the comments.
@@ -312,7 +312,7 @@ Read the explanation before applying any fix.
 **Phase:** Document
 
 **Action:**
-Place your cursor inside `calculate_compound_interest` in `compound.py`, on the line just below the `def` line. Open Copilot Chat and type:
+Place your cursor inside `calculate_compound_interest` in `compound.py`, on the line just below the `def` line. Open inline chat with `Ctrl+I` and type:
 
 ```
 /doc
