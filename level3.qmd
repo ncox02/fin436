@@ -96,7 +96,7 @@ The concepts above apply to any terminal AI tool. Claude Code is one of them. If
 
 Install Claude Code and find platform-specific setup instructions at the official documentation:
 
-**[Install Claude Code](https://code.claude.com/docs/en/terminal-guide#windows)**
+**[Install Claude Code](https://code.claude.com/docs/en/quickstart)**
 
 Navigate to your project and type `claude` to start a session. Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.
 
@@ -154,7 +154,7 @@ Install via the Claude Code plugin menu — type `/plugin` inside a session and 
 
 Warp is a modern terminal — a replacement for Windows Terminal, Mac Terminal, or the VS Code integrated terminal. You run Claude Code inside Warp.
 
-Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran.
+Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block — no scrolling through walls of output to find what Claude ran. You can also run multiple instances of Claude Code simultaneously, each in its own pane.
 
 Download from [Warp](https://warp.dev) — available for Mac, Linux, and Windows. Free to use.
 
@@ -203,7 +203,7 @@ my-project/
 └── tests/
 ```
 
-Full documentation for `CLAUDE.md` and skills is in the [official docs](https://code.claude.com/docs/en/overview).
+Full documentation for `CLAUDE.md` and skills is in the [official docs](https://code.claude.com/docs/en/features-overview).
 
 ---
 

@@ -11,12 +11,18 @@
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">py<span>flow</span></a>
   <div class="nav-links">
     <a href="index.html" class="active">Overview</a>
     <a href="tools.html">The Tools</a>
     <a href="workflow.html">How It Connects</a>
-    <a href="start.html">Get Started</a>
+    <div class="nav-dropdown">
+      <a href="start.html">Get Started</a>
+      <div class="nav-dropdown-menu">
+        <a href="start.html">Get Started</a>
+        <a href="level2.html">Level 2</a>
+        <a href="level3.html">Level 3</a>
+      </div>
+    </div>
   </div>
   <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
 </nav>
@@ -26,13 +32,15 @@
   <a href="tools.html">The Tools</a>
   <a href="workflow.html">How It Connects</a>
   <a href="start.html">Get Started</a>
+  <a href="level2.html">Level 2</a>
+  <a href="level3.html">Level 3</a>
 </div>
 
 <main>
 
 <section class="hero">
   <div class="hero-eyebrow">Python Development &middot; AI Tools &middot; Modern Workflow</div>
-  <h1 class="hero-title">How code is actually<br><em>written, shared, and built.</em></h1>
+  <h1 class="hero-title">How code is written, shared, and built.</h1>
   <p class="hero-sub">Learn the essential tools of modern Python development and how they work together in a real workflow.</p>
   <div class="hero-ctas">
     <a href="tools.html" class="btn-primary">Explore the tools &rarr;</a>
@@ -42,36 +50,35 @@
 
 <section class="mental-model">
   <div class="container">
-    <div class="mm-label">The core idea</div>
-    <h2 class="mm-headline">Before the details, here's the whole picture.</h2>
-    <p class="mm-body">This is the basic sequence every Python project follows. Once you see it, everything else fits into place.</p>
+    <div class="mm-label">The core workflow</div>
+    <p class="mm-body">This is the basic sequence every Python project follows.</p>
     <div class="workflow-strip">
       <div class="ws-step">
-        <div class="ws-icon">&#128230;</div>
+        <div class="ws-icon"></div>
         <div class="ws-label">Organize</div>
         <div class="ws-sub">Env + packages</div>
       </div>
       <div class="ws-arrow">&rarr;</div>
       <div class="ws-step">
-        <div class="ws-icon">&#9997;</div>
+        <div class="ws-icon"></div>
         <div class="ws-label">Write</div>
         <div class="ws-sub">IDE + AI assistant</div>
       </div>
       <div class="ws-arrow">&rarr;</div>
       <div class="ws-step">
-        <div class="ws-icon">&#129514;</div>
+        <div class="ws-icon"></div>
         <div class="ws-label">Test</div>
         <div class="ws-sub">Run + debug</div>
       </div>
       <div class="ws-arrow">&rarr;</div>
       <div class="ws-step">
-        <div class="ws-icon">&#128257;</div>
+        <div class="ws-icon"></div>
         <div class="ws-label">Share</div>
         <div class="ws-sub">Git + GitHub</div>
       </div>
       <div class="ws-arrow">&rarr;</div>
       <div class="ws-step">
-        <div class="ws-icon">&#128640;</div>
+        <div class="ws-icon"></div>
         <div class="ws-label">Deploy</div>
         <div class="ws-sub">Ship + iterate</div>
       </div>
@@ -81,8 +88,7 @@
 
 <section class="categories">
   <div class="container">
-    <div class="section-label">Five categories. The structure behind every Python setup.</div>
-    <h2 class="section-title">Every tool fits into one of these roles.</h2>
+    <h2 class="section-title">What you'll need</h2>
     <p class="section-intro">No matter how many tools you see, they all do one of five things:</p>
     <div class="cat-grid">
       <div class="cat-card cat-ide">
@@ -126,24 +132,23 @@
 
 <section class="mental-model">
   <div class="container">
-    <div class="mm-label">Three questions that place any tool on the map</div>
-    <h2 class="mm-headline">Now that you know the tools, here's how to think about them together.</h2>
-    <p class="mm-body">Every developer — beginner or expert — is implicitly answering three questions. The tools above each answer one of them. More importantly, understanding these questions means you can evaluate any new tool you encounter, not just the ones on this site.</p>
+    <div class="mm-label">Three questions</div>
+    <p class="mm-body">Every developer, beginner or expert, is implicitly answering three questions. Understanding these questions means you can evaluate any new tool you encounter, not just the ones on this site.</p>
     <div class="workflow-strip">
       <div class="ws-step">
-        <div class="ws-icon">&#9997;</div>
+        <div class="ws-icon"></div>
         <div class="ws-label">Where do I write and review code?</div>
         <div class="ws-sub">An editor or IDE &mdash; VS Code, PyCharm, Cursor, and others</div>
       </div>
       <div class="ws-arrow">&rarr;</div>
       <div class="ws-step">
-        <div class="ws-icon">&#9654;</div>
+        <div class="ws-icon"></div>
         <div class="ws-label">Where do I run things?</div>
         <div class="ws-sub">A terminal &mdash; where code executes, scripts run, and agents live</div>
       </div>
       <div class="ws-arrow">&rarr;</div>
       <div class="ws-step">
-        <div class="ws-icon">&#129504;</div>
+        <div class="ws-icon"></div>
         <div class="ws-label">How much can the AI see and do?</div>
         <div class="ws-sub">This is the levels question &mdash; and it's what determines how powerful your workflow actually is</div>
       </div>
@@ -153,8 +158,8 @@
 
 <section class="levels-section">
   <div class="container">
-    <div class="section-label">Stages of AI-assisted coding</div>
-    <h2 class="section-title">What level are you at?</h2>
+    <div class="section-label">Five levels of AI integration</div>
+    <h2 class="section-title">Five levels of AI integration</h2>
     <p class="section-intro">All of these levels use the same underlying AI model. What changes is how much of your environment the AI can see and act on — and how much you have to do manually in between. Knowing where you are shows you what to learn next. Read more <a href="https://paulgp.substack.com/p/getting-started-with-claude-code" target="_blank">here</a>.</p>
     <div class="levels-list">
 
@@ -171,8 +176,8 @@
         <div class="level-badge">Level 2</div>
         <div class="level-content">
           <h3>AI in your editor</h3>
-          <p>The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn't just suggesting — it's doing. The shift here isn't about a specific tool, it's a pattern: the AI has access to your codebase, and you're in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor — an AI-first editor that pushes this pattern further and is gaining wide popularity among developers.</p>
-          <div class="level-note">The <a href="level2.html" style="color: var(--accent2);">Level 2: AI in Your Editor</a> page demonstrates this workflow in both VS Code and PyCharm.</div>
+          <p>The AI can now read and edit your actual project files. You describe what you want; it proposes changes across multiple files at once. You review the diffs and decide what to keep. The AI isn't just suggesting — it's doing. The shift here isn't about a specific tool, it's a pattern: the AI has access to your codebase, and you're in the role of reviewer rather than typist. This works in VS Code with GitHub Copilot agent mode, and in other editors that support in-context AI.</p>
+          <div class="level-note">&rarr; <a href="level2.html" style="color: var(--accent2);">Level 2: AI in Your Editor</a></div>
         </div>
       </div>
 
@@ -181,7 +186,7 @@
         <div class="level-content">
           <h3>Dedicated coding agents</h3>
           <p>The AI moves out of the editor and into your terminal, where it has access to your <em>full computing environment</em>. This means it can run code and see the output, not just read files. It can execute scripts, install packages, use system tools, read and write anywhere on your filesystem, and iterate on its own until a task is complete. You describe an outcome; it figures out the steps. The IDE is still useful for reviewing what the agent produced, but it's no longer required to run the task. Claude Code is the primary example covered here; OpenAI Codex CLI and Gemini CLI follow the same pattern.</p>
-          <div class="level-note">This is what the <a href="claude-power.html" style="color: var(--accent2);">Claude Advanced</a> section covers.</div>
+          <div class="level-note">&rarr; <a href="level3.html" style="color: var(--accent2);">Level 3+</a></div>
         </div>
       </div>
 
@@ -189,7 +194,7 @@
         <div class="level-badge">Level 4</div>
         <div class="level-content">
           <h3>Connected agents</h3>
-          <p>You extend the agent with live connections to the outside world via MCP (Model Context Protocol) — a standard that lets the agent pull in information from beyond your computer: current library documentation, web search, databases, and other services. Without this, an agent is limited to what it already knows, which can lag months behind. With it, the agent can look up the exact API it needs right now, query your database while it codes, or search the web mid-task. Superpowers, Context7, and Sequential Thinking from the Claude Advanced page are Level 4 tools layered on top of a Level 3 setup.</p>
+          <p>You extend the agent with live connections to the outside world via MCP (Model Context Protocol) — a standard that lets the agent pull in information from beyond your computer: current library documentation, web search, databases, and other services. Without this, an agent is limited to what it already knows, which can lag months behind. With it, the agent can look up the exact API it needs right now, query your database while it codes, or search the web mid-task. Superpowers, Context7, and Sequential Thinking from the Level 3+ page are Level 4 tools layered on top of a Level 3 setup.</p>
         </div>
       </div>
 
@@ -211,7 +216,7 @@
     <div class="insight-inner">
       <div class="insight-quote">"The tools change.<br>The workflow doesn't."</div>
       <div class="insight-body">
-        <p>Once you understand the tools on their own, the next step is seeing how they fit together into a single workflow. No matter which editor, AI assistant, or package manager you use, every project follows the same underlying sequence of setup, writing, testing, and sharing.</p>
+        <p>No matter which editor, AI assistant, or package manager you use, every project follows the same underlying sequence of setup, writing, testing, and sharing.</p>
         <p>Learning the pattern means you can switch tools at any time without starting from scratch.</p>
         <a href="workflow.html" class="btn-primary">See the full workflow &rarr;</a>
       </div>
@@ -224,17 +229,17 @@
     <h2 class="section-title">Where do you want to start?</h2>
     <div class="qn-grid">
       <a href="tools.html" class="qn-card">
-        <div class="qn-icon">&#128295;</div>
+        <div class="qn-icon"></div>
         <h3>The Tools</h3>
-        <p>Deep dives into every major tool category — IDEs, AI assistants, environments, Git, and packages.</p>
+        <p>Deep dives into every major tool category, including IDEs, AI assistants, environments, Git, and packages.</p>
       </a>
       <a href="workflow.html" class="qn-card">
-        <div class="qn-icon">&#128279;</div>
+        <div class="qn-icon"></div>
         <h3>How It Connects</h3>
         <p>See how the tools map to each step of the workflow and what a real project structure looks like.</p>
       </a>
       <a href="start.html" class="qn-card">
-        <div class="qn-icon">&#128640;</div>
+        <div class="qn-icon"></div>
         <h3>Get Started</h3>
         <p>Step-by-step setup guides and AI workflows for VS Code and PyCharm. Your path into real AI-assisted coding.</p>
       </a>
@@ -252,7 +257,7 @@
       <a href="workflow.html">How It Connects</a>
       <a href="start.html">Get Started</a>
       <!-- 🌗 THEME TOGGLE BUTTON -->
-      <button id="themeToggle" class="theme-toggle">☀️</button>
+      <button id="themeToggle" class="theme-toggle"></button>
       <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
     </div>
     <p class="footer-note">A clear guide to modern Python development &mdash; tools, workflow, and AI.</p>

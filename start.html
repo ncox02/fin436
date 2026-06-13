@@ -11,14 +11,18 @@
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="nav-logo">py<span>flow</span></a>
   <div class="nav-links">
     <a href="index.html">Overview</a>
     <a href="tools.html">The Tools</a>
     <a href="workflow.html">How It Connects</a>
-    <a href="start.html" class="active">Get Started</a>
-    <a href="level2.html" style="color: var(--accent2);">Level 2</a>
-    <a href="claude-power.html" style="color: var(--accent2);">Level 3</a>
+    <div class="nav-dropdown">
+      <a href="start.html" class="active">Get Started</a>
+      <div class="nav-dropdown-menu">
+        <a href="start.html">Get Started</a>
+        <a href="level2.html">Level 2</a>
+        <a href="level3.html">Level 3</a>
+      </div>
+    </div>
   </div>
   <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
 </nav>
@@ -27,8 +31,8 @@
   <a href="tools.html">The Tools</a>
   <a href="workflow.html">How It Connects</a>
   <a href="start.html">Get Started</a>
-  <a href="ide-cursor.html">Level 2: AI in Your Editor</a>
-  <a href="claude-power.html">Level 3: Claude Advanced</a>
+  <a href="level2.html">Level 2</a>
+  <a href="level3.html">Level 3</a>
 </div>
 
 <main>
@@ -72,6 +76,7 @@
       <p><strong>Make sure you have:</strong></p>
       <p>
         Python &mdash; <a href="https://python.org" target="_blank" style="color: var(--accent2);">python.org</a><br>
+        pip &mdash; included with Python; on some systems use <code>pip3</code> and <code>python3</code> instead of <code>pip</code> and <code>python</code><br>
         Git &mdash; <a href="https://git-scm.com" target="_blank" style="color: var(--accent2);">git-scm.com</a><br>
         GitHub CLI &mdash; <a href="https://cli.github.com" target="_blank" style="color: var(--accent2);">cli.github.com</a><br>
         A GitHub account &mdash; <a href="https://github.com" target="_blank" style="color: var(--accent2);">github.com</a>
@@ -92,10 +97,10 @@
       <div class="code-block-labeled">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>cd Desktop</code> &nbsp;&larr; navigate to your Desktop<br>
-<code>mkdir tip_calculator</code> &nbsp;&larr; create your project folder<br>
-<code>cd tip_calculator</code> &nbsp;&larr; move into it<br>
-<code>code .</code> &nbsp;&larr; open VS Code here
+<span class="cmd-prompt os-win">PS C:\Users\Student&gt; </span><span class="cmd-prompt os-mac">~ % </span><code>cd Desktop</code> &nbsp;&larr; navigate to your Desktop<br>
+<span class="cmd-prompt os-win">PS C:\Users\Student\Desktop&gt; </span><span class="cmd-prompt os-mac">~/Desktop % </span><code>mkdir tip_calculator</code> &nbsp;&larr; create your project folder<br>
+<span class="cmd-prompt os-win">PS C:\Users\Student\Desktop&gt; </span><span class="cmd-prompt os-mac">~/Desktop % </span><code>cd tip_calculator</code> &nbsp;&larr; move into it<br>
+<span class="cmd-prompt os-win">PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">~/Desktop/tip_calculator % </span><code>code .</code> &nbsp;&larr; open VS Code here
         </div>
       </div>
 
@@ -105,8 +110,8 @@
       <div class="code-block-labeled">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>git config --global user.email "you@example.com"</code> &nbsp;&larr; your GitHub email<br>
-<code>git config --global user.name "Your Name"</code> &nbsp;&larr; your name
+<span class="cmd-prompt os-win">PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">~/Desktop/tip_calculator % </span><code>git config --global user.email "you@example.com"</code> &nbsp;&larr; your GitHub email<br>
+<span class="cmd-prompt os-win">PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">~/Desktop/tip_calculator % </span><code>git config --global user.name "Your Name"</code> &nbsp;&larr; your name
         </div>
       </div>
 
@@ -115,9 +120,9 @@
       <div class="code-block-labeled">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>git init</code> &nbsp;&larr; create a local git repository in this folder<br>
-<code>python -m venv .venv</code> &nbsp;&larr; create a virtual environment called .venv<br>
-<span class="os-win"><code>.venv\Scripts\activate</code> &nbsp;&larr; activate it &mdash; your prompt will show (.venv)</span><span class="os-mac"><code>source .venv/bin/activate</code> &nbsp;&larr; activate it &mdash; your prompt will show (.venv)</span>
+<span class="cmd-prompt os-win">PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">~/Desktop/tip_calculator % </span><code>git init</code> &nbsp;&larr; create a local git repository in this folder<br>
+<span class="cmd-prompt os-win">PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">~/Desktop/tip_calculator % </span><code>python -m venv .venv</code> &nbsp;&larr; create a virtual environment called .venv<br>
+<span class="os-win"><span class="cmd-prompt">PS C:\Users\Student\Desktop\tip_calculator&gt; </span><code>.venv\Scripts\activate</code> &nbsp;&larr; activate it &mdash; your prompt will show (.venv)</span><span class="os-mac"><span class="cmd-prompt">~/Desktop/tip_calculator % </span><code>source .venv/bin/activate</code> &nbsp;&larr; activate it &mdash; your prompt will show (.venv)</span>
         </div>
       </div>
 
@@ -126,18 +131,18 @@
       <div class="code-block-labeled os-win">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>New-Item tip_calculator.py</code> &nbsp;&larr; your main code file<br>
-<code>New-Item test_tip_calculator.py</code> &nbsp;&larr; your test file<br>
-<code>New-Item .gitignore</code> &nbsp;&larr; tells Git what folders to skip
+<span class="cmd-prompt">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><code>New-Item tip_calculator.py</code> &nbsp;&larr; your main code file<br>
+<span class="cmd-prompt">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><code>New-Item test_tip_calculator.py</code> &nbsp;&larr; your test file<br>
+<span class="cmd-prompt">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><code>New-Item .gitignore</code> &nbsp;&larr; tells Git what folders to skip
         </div>
       </div>
 
       <div class="code-block-labeled os-mac">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>touch tip_calculator.py</code> &nbsp;&larr; your main code file<br>
-<code>touch test_tip_calculator.py</code> &nbsp;&larr; your test file<br>
-<code>touch .gitignore</code> &nbsp;&larr; tells Git what folders to skip
+<span class="cmd-prompt">(.venv) ~/Desktop/tip_calculator % </span><code>touch tip_calculator.py</code> &nbsp;&larr; your main code file<br>
+<span class="cmd-prompt">(.venv) ~/Desktop/tip_calculator % </span><code>touch test_tip_calculator.py</code> &nbsp;&larr; your test file<br>
+<span class="cmd-prompt">(.venv) ~/Desktop/tip_calculator % </span><code>touch .gitignore</code> &nbsp;&larr; tells Git what folders to skip
         </div>
       </div>
 
@@ -160,18 +165,24 @@
   <div class="tryit-step">
     <span class="ts-badge">step 2</span>
     <div class="ts-body">
-      <p><strong>Organize &mdash; Install pytest before writing anything</strong></p>
+      <p><strong>Install packages</strong></p>
       <p>Do this before writing any code so VS Code doesn&rsquo;t show errors as you type:</p>
 
       <div class="code-block-labeled">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>pip install pytest</code> &nbsp;&larr; install pytest into your .venv<br>
-<code>pip freeze > requirements.txt</code> &nbsp;&larr; save your package list
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>pip install pytest</code> &nbsp;&larr; install pytest into your .venv<br>
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>pip freeze > requirements.txt</code> &nbsp;&larr; save your package list
         </div>
       </div>
 
       <p><code>requirements.txt</code> is how you tell anyone who clones your project which packages to install. It replaces the need to share your <code>.venv</code> folder.</p>
+
+      <details class="callout-details">
+        <summary>Having trouble? Ask AI.</summary>
+        <p>Some commands may not execute as expected. Software changes, packages get updated, and platform differences can cause issues. For example, Python 3.14 introduced changes that affect how virtual environments (<code>.venv</code>) behave on some systems.</p>
+        <p>If something isn't working, paste the error message into Claude or ChatGPT and describe what you were trying to do.</p>
+      </details>
     </div>
   </div>
 
@@ -225,7 +236,7 @@ def test_negative_bill_raises_error():<br>
       <div class="code-block-labeled">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>pytest</code> &nbsp;&larr; runs all test files it finds automatically
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>pytest</code> &nbsp;&larr; runs all test files it finds automatically
         </div>
       </div>
 
@@ -254,7 +265,7 @@ test_tip_calculator.py ...<br>
       <div class="code-block-labeled">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>gh auth login</code> &nbsp;&larr; follow the prompts, it will open a browser to confirm
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>gh auth login</code> &nbsp;&larr; follow the prompts, it will open a browser to confirm
         </div>
       </div>
 
@@ -263,7 +274,7 @@ test_tip_calculator.py ...<br>
       <div class="code-block-labeled">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>gh repo create tip_calculator --private --source=. --remote=origin --push</code> &nbsp;&larr; creates the repo, links it, and pushes your code
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>gh repo create tip_calculator --private --source=. --remote=origin --push</code> &nbsp;&larr; creates the repo, links it, and pushes your code
         </div>
       </div>
 
@@ -280,11 +291,11 @@ test_tip_calculator.py ...<br>
       <div class="code-block-labeled">
         <div class="code-block-lang">bash</div>
         <div class="code-block">
-<code>edit code</code> &nbsp;&larr; make changes in VS Code<br>
-<code>pytest</code> &nbsp;&larr; confirm everything still works<br>
-<code>git add .</code> &nbsp;&larr; stage all changes<br>
-<code>git commit -m "describe what you changed"</code> &nbsp;&larr; save a snapshot<br>
-<code>git push</code> &nbsp;&larr; send it to GitHub
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>edit code</code> &nbsp;&larr; make changes in VS Code<br>
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>pytest</code> &nbsp;&larr; confirm everything still works<br>
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>git add .</code> &nbsp;&larr; stage all changes<br>
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>git commit -m "describe what you changed"</code> &nbsp;&larr; save a snapshot<br>
+<span class="cmd-prompt os-win">(.venv) PS C:\Users\Student\Desktop\tip_calculator&gt; </span><span class="cmd-prompt os-mac">(.venv) ~/Desktop/tip_calculator % </span><code>git push</code> &nbsp;&larr; send it to GitHub
         </div>
       </div>
 
@@ -298,75 +309,37 @@ test_tip_calculator.py ...<br>
 
 
 <!-- ============================================================
-     LEVEL HUB
+     WHAT YOU JUST DID
      ============================================================ -->
-<section class="alt-bg">
+<section id="summary">
   <div class="container">
-    <div class="section-label">Where to go next</div>
-    <h2 class="section-title">Choose your next level</h2>
+    <h2 class="section-title">What you just did</h2>
+    <p style="margin-bottom: 1.5rem;">You completed the entire software development lifecycle: from an empty folder to a working project on GitHub with automated tests, version history, and a repeatable workflow.</p>
+    <p style="margin-bottom: 1.5rem;">Your <code>.venv</code> isolates dependencies. Your <code>pytest</code> suite ensures code correctness. Your Git history is a record you can revert to. Your GitHub repo is your backup and collaboration mechanism.</p>
+    <p style="margin-bottom: 1.5rem;">The loop you now run (edit &rarr; test &rarr; commit &rarr; push) is the same loop used to build production systems at scale.</p>
+    <p style="margin-bottom: 1.5rem;">Everything that comes next in Levels 2, 3, and 4 builds on this foundation. The next levels show you how to move faster within it.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHAT'S NEXT
+     ============================================================ -->
+<section class="alt-bg" id="next-steps">
+  <div class="container">
+    <h2 class="section-title">What&rsquo;s next</h2>
     <div class="qn-grid">
 
       <a href="level2.html" class="qn-card">
         <div class="hub-level-badge hub-level-2">Level 2</div>
-        <h3>AI inside your editor</h3>
-        <p>Give the AI a goal. It reads your files, proposes changes across multiple files, and you review the diffs. Walkthrough in VS Code, PyCharm, and Cursor.</p>
-        <div class="hub-card-time">&#9679; ~20 minutes</div>
-      </a>
-
-      <a href="claude-power.html" class="qn-card">
-        <div class="hub-level-badge hub-level-3">Level 3</div>
-        <h3>Coding agent in your terminal</h3>
-        <p>The AI runs in your terminal with access to your full environment. It reads files, executes code, installs packages, and iterates until the task is done.</p>
-        <div class="hub-card-time">&#9679; ~25 minutes</div>
-      </a>
-
-      <a href="claude-power.html#level-4-transition" class="qn-card">
-        <div class="hub-level-badge hub-level-4">Level 4</div>
-        <h3>Connected agents</h3>
-        <p>Extend the agent with live connections to docs, databases, and the web via MCP. The agent can look up the exact API it needs mid-task.</p>
-        <div class="hub-card-time">&#9679; ~15 minutes</div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     WHAT'S NEXT — DETAIL CARDS
-     ============================================================ -->
-<section class="setup-section" id="next-steps">
-  <div class="container">
-
-    <div class="stack-cards">
-
-      <div class="stack-card stack-python">
-        <div class="stack-tag">Level 2</div>
         <h3>AI in your editor</h3>
-        <div class="stack-tools">
-          <div class="stack-tool">Reads your whole codebase</div>
-          <div class="stack-plus">+</div>
-          <div class="stack-tool">Edits across multiple files</div>
-          <div class="stack-plus">+</div>
-          <div class="stack-tool">You review diffs and decide what to keep</div>
-        </div>
-        <p>The AI can now read and edit your actual project files. You describe a goal; it proposes changes across multiple files at once. You&rsquo;re in the role of reviewer rather than typist. Works in VS Code with Copilot agent mode, in PyCharm with JetBrains AI, and in Cursor.</p>
-        <a href="level2.html" class="btn-primary">Go to Level 2 &rarr;</a>
-      </div>
+        <p>Give Copilot a goal. It reads your project files and proposes changes across multiple files at once. You review the diffs and decide what to keep &mdash; you&rsquo;re the reviewer, not the typist.</p>
+      </a>
 
-      <div class="stack-card stack-ai">
-        <div class="stack-tag">Level 3</div>
+      <a href="level3.html" class="qn-card">
+        <div class="hub-level-badge hub-level-3">Level 3</div>
         <h3>Claude Code &mdash; terminal agent</h3>
-        <div class="stack-tools">
-          <div class="stack-tool">Full environment access</div>
-          <div class="stack-plus">+</div>
-          <div class="stack-tool">Reads, writes &amp; runs files</div>
-          <div class="stack-plus">+</div>
-          <div class="stack-tool">No IDE required</div>
-        </div>
-        <p>Claude Code runs in your terminal and has access to your entire computing environment. You describe what you want; it reads your files, writes code, runs it, and iterates. A different paradigm &mdash; the IDE becomes optional.</p>
-        <a href="claude-power.html" class="btn-primary">Go to Level 3 &rarr;</a>
-      </div>
+        <p>Run an AI agent directly in your terminal with full access to your environment. It reads files, executes code, installs packages, and iterates on its own until the task is done.</p>
+      </a>
 
     </div>
   </div>
@@ -387,7 +360,7 @@ test_tip_calculator.py ...<br>
       <a href="workflow.html">How It Connects</a>
       <a href="start.html">Get Started</a>
       <!-- 🌗 THEME TOGGLE BUTTON -->
-      <button id="themeToggle" class="theme-toggle">☀️</button>
+      <button id="themeToggle" class="theme-toggle"></button>
       <button class="nav-mobile-toggle" onclick="toggleMobileNav()">☰</button>
     </div>
     <p class="footer-note">A clear guide to modern Python development &mdash; tools, workflow, and AI.</p>
