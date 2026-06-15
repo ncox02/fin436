@@ -91,7 +91,7 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 >
 > You just described a goal in plain English and got back a structure. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.
 >
-> When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints. Those are completely different quality levels — and the difference compounds over time.
+> When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints.
 >
 > In serious AI-assisted codebases, the folder structure reflects this:
 >
