@@ -43,7 +43,7 @@ Twelve exercises across four phases. Each one proves a specific capability that 
 
 ### Phase A: Organize & plan
 
-*Before writing a single line of code, use AI to think through structure. This is the habit that separates organized projects from tangled ones.*
+*Before writing a single line of code, use AI to think through structure.*
 
 ---
 
