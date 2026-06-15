@@ -97,6 +97,6 @@ All levels use the same underlying AI model. The difference is how much structur
 
 ## Where do you want to start?
 
-- [The Tools](tools.qmd): Deep dives into every major tool category, including IDEs, AI assistants, environments, Git, and packages.
+- [The Tools](tools.qmd): Deep dives into IDEs, AI assistants, environments, Git, and packages.
 - [How It Connects](workflow.qmd): See how the tools map to each step of the workflow and what a real project structure looks like.
 - [Get Started](start.qmd): Step-by-step setup guides and AI workflows for VS Code and PyCharm. Your path into real AI-assisted coding.
