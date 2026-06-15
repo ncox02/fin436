@@ -191,8 +191,6 @@ Review what it generates. Check that the import path is correct and the function
 
 ### Phase C: Understand, debug & refactor
 
-*Four exercises that use AI as a reviewer and optimizer. This is where in-editor AI earns its place.*
-
 ---
 
 #### Exercise 6 — Explain a block {#ex6}
