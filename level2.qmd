@@ -102,7 +102,7 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 >
 > You are not there yet. But the habit starts here: write down what you are building before you ask AI to build it.
 >
-> If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying. The fix is not a better prompt — it is better documents.
+> If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying.
 
 ---
 
