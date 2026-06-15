@@ -300,8 +300,6 @@ Read the explanation before applying any fix.
 
 ### Phase D: Test, document & share
 
-*Three exercises that close the loop — verification, documentation, and version control. Each uses a native VS Code UI element.*
-
 ---
 
 #### Exercise 10 — Generate a docstring {#ex10}
