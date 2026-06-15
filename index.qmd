@@ -95,16 +95,6 @@ All levels use the same underlying AI model. The difference is how much structur
 
 ---
 
-> "The tools change. The workflow doesn't."
-
-No matter which editor, AI assistant, or package manager you use, every project follows the same underlying sequence of setup, writing, testing, and sharing.
-
-Learning the pattern means you can switch tools at any time without starting from scratch.
-
-→ [See the full workflow](workflow.qmd)
-
----
-
 ## Where do you want to start?
 
 - [The Tools](tools.qmd): Deep dives into every major tool category, including IDEs, AI assistants, environments, Git, and packages.
