@@ -6,3 +6,6 @@
 docs/superpowers/
 docs/quarto-feedback.txt
 progress.md
+
+# Git worktrees
+.worktrees/
