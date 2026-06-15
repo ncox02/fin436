@@ -1616,6 +1616,11 @@ td.bad { color: var(--bad); background: var(--bad-bg); }
   color: var(--accent);
 }
 
+.container .btn-primary,
+.container .btn-primary:visited {
+  color: #fff;
+}
+
 /* ===========================
    HUB LEVEL BADGES (start.html)
    =========================== */
