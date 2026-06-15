@@ -100,7 +100,7 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 > - **`context/`** — what AI needs to know each session: current state, decisions made, open questions
 > - **`tasks/`** — discrete, completable units of work
 >
-> You are not there yet — this is Level 2. But the habit starts here: write down what you are building before you ask AI to build it. The documents are the project. The chat is just execution.
+> You are not there yet. But the habit starts here: write down what you are building before you ask AI to build it. The documents are the project. The chat is just execution.
 >
 > If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying. The fix is not a better prompt — it is better documents.
 
