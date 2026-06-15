@@ -6,7 +6,7 @@ project:
     - "!progress.md"
 
 website:
-  title: "Python & AI"
+  title: "FIN 436"
   sidebar:
     style: "docked"
     search: false

@@ -43,7 +43,7 @@ Twelve exercises across four phases. Each one proves a specific capability that 
 
 ### Phase A: Organize & plan
 
-*Before writing a single line of code, use AI to think through structure. This is the habit that separates organized projects from tangled ones.*
+*Before writing a single line of code, use AI to think through structure.*
 
 ---
 
@@ -89,9 +89,9 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 
 > ### Why this works — and how to scale it
 >
-> You just described a goal in plain English and got back a structure. That is not a trick — it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.
+> You just described a goal in plain English and got back a structure. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.
 >
-> When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints. Those are completely different quality levels — and the difference compounds over time.
+> When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints.
 >
 > In serious AI-assisted codebases, the folder structure reflects this:
 >
@@ -100,15 +100,13 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 > - **`context/`** — what AI needs to know each session: current state, decisions made, open questions
 > - **`tasks/`** — discrete, completable units of work
 >
-> You are not there yet — this is Level 2. But the habit starts here: write down what you are building before you ask AI to build it. The documents are the project. The chat is just execution.
+> You are not there yet. But the habit starts here: write down what you are building before you ask AI to build it.
 >
-> If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying. The fix is not a better prompt — it is better documents.
+> If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying.
 
 ---
 
 ### Phase B: Writing code
-
-*Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now — you will not need it until Exercise 9.*
 
 ---
 
@@ -192,8 +190,6 @@ Review what it generates. Check that the import path is correct and the function
 ---
 
 ### Phase C: Understand, debug & refactor
-
-*Four exercises that use AI as a reviewer and optimizer. This is where in-editor AI earns its place.*
 
 ---
 
@@ -303,8 +299,6 @@ Read the explanation before applying any fix.
 ---
 
 ### Phase D: Test, document & share
-
-*Three exercises that close the loop — verification, documentation, and version control. Each uses a native VS Code UI element.*
 
 ---
 
