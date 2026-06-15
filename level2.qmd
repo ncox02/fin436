@@ -108,8 +108,6 @@ If you are in standard chat mode instead, Copilot will give you terminal command
 
 ### Phase B: Writing code
 
-*Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now — you will not need it until Exercise 9.*
-
 ---
 
 #### Exercise 3 — Comment-driven generation {#ex3}
