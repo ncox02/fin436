@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Level 2: AI in Your Editor – Python &amp; AI</title>
+<title>Level 2: AI in Your Editor – FIN 436</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Python &amp; AI</a> 
+      <a href="./">FIN 436</a> 
     </div>
       </div>
     <div class="sidebar-menu-container"> 
@@ -353,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <section id="phase-a-organize-plan" class="level3">
 <h3 class="anchored" data-anchor-id="phase-a-organize-plan">Phase A: Organize &amp; plan</h3>
-<p><em>Before writing a single line of code, use AI to think through structure. This is the habit that separates organized projects from tangled ones.</em></p>
+<p><em>Before writing a single line of code, use AI to think through structure.</em></p>
 <hr>
 <section id="ex1" class="level4">
 <h4 class="anchored" data-anchor-id="ex1">Exercise 1 — Blueprint prompt</h4>
@@ -382,8 +382,8 @@ just clean Python modules.</code></pre>
 <hr>
 <blockquote class="blockquote">
 <h3 id="why-this-works-and-how-to-scale-it" class="anchored" data-anchor-id="ex2">Why this works — and how to scale it</h3>
-<p>You just described a goal in plain English and got back a structure. That is not a trick — it is a pattern. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.</p>
-<p>When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints. Those are completely different quality levels — and the difference compounds over time.</p>
+<p>You just described a goal in plain English and got back a structure. AI works best as a consumer of structured context, not as a generator of structure from scratch in every new chat.</p>
+<p>When you open a new chat and give a vague description, the AI is guessing at your intent. When you open a new chat and hand it a precise spec, the AI is executing against known constraints.</p>
 <p>In serious AI-assisted codebases, the folder structure reflects this:</p>
 <ul>
 <li><strong><code>spec/</code></strong> — what the thing is: goals, constraints, non-goals</li>
@@ -391,15 +391,14 @@ just clean Python modules.</code></pre>
 <li><strong><code>context/</code></strong> — what AI needs to know each session: current state, decisions made, open questions</li>
 <li><strong><code>tasks/</code></strong> — discrete, completable units of work</li>
 </ul>
-<p>You are not there yet — this is Level 2. But the habit starts here: write down what you are building before you ask AI to build it. The documents are the project. The chat is just execution.</p>
-<p>If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying. The fix is not a better prompt — it is better documents.</p>
+<p>You are not there yet. But the habit starts here: write down what you are building before you ask AI to build it.</p>
+<p>If you ever feel like you are constantly backpedaling with AI, or moving in the wrong direction instead of making progress, the cause is almost always the same: you started building before you finished specifying.</p>
 </blockquote>
 <hr>
 </section>
 </section>
 <section id="phase-b-writing-code" class="level3">
 <h3 class="anchored" data-anchor-id="phase-b-writing-code">Phase B: Writing code</h3>
-<p><em>Three exercises, each demonstrating a different way AI accelerates writing inside the editor. Keep the terminal panel closed for now — you will not need it until Exercise 9.</em></p>
 <hr>
 <section id="ex3" class="level4">
 <h4 class="anchored" data-anchor-id="ex3">Exercise 3 — Comment-driven generation</h4>
@@ -451,7 +450,6 @@ Print the result formatted to two decimal places.</code></pre>
 </section>
 <section id="phase-c-understand-debug-refactor" class="level3">
 <h3 class="anchored" data-anchor-id="phase-c-understand-debug-refactor">Phase C: Understand, debug &amp; refactor</h3>
-<p><em>Four exercises that use AI as a reviewer and optimizer. This is where in-editor AI earns its place.</em></p>
 <hr>
 <section id="ex6" class="level4">
 <h4 class="anchored" data-anchor-id="ex6">Exercise 6 — Explain a block</h4>
@@ -525,7 +523,6 @@ problem is and why it occurs.</code></pre>
 </section>
 <section id="phase-d-test-document-share" class="level3">
 <h3 class="anchored" data-anchor-id="phase-d-test-document-share">Phase D: Test, document &amp; share</h3>
-<p><em>Three exercises that close the loop — verification, documentation, and version control. Each uses a native VS Code UI element.</em></p>
 <hr>
 <section id="ex10" class="level4">
 <h4 class="anchored" data-anchor-id="ex10">Exercise 10 — Generate a docstring</h4>
