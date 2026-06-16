@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 3: AI in Your Terminal &mdash; pyflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="ide-styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">FIN 436</a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="tools.html">The Tools</a>
+    <a href="workflow.html">How It Connects</a>
+    <div class="nav-dropdown">
+      <a href="start.html" class="active">Get Started</a>
+      <div class="nav-dropdown-menu">
+        <a href="start.html">Get Started</a>
+        <a href="level2.html">Level 2</a>
+        <a href="level3.html">Level 3</a>
+      </div>
+    </div>
+  </div>
+  <button class="nav-mobile-toggle" onclick="toggleMobileNav()">&#9776;</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Overview</a>
+  <a href="tools.html">The Tools</a>
+  <a href="workflow.html">How It Connects</a>
+  <a href="start.html">Get Started</a>
+  <a href="level2.html">Level 2</a>
+  <a href="level3.html">Level 3</a>
+</div>
+
+<main>
+
+<div class="page-hero" style="border-bottom-color: rgba(123,108,255,0.2);">
+  <div class="container">
+    <div class="ide-breadcrumb"><a href="start.html">&larr; Get Started</a></div>
+    <div class="page-eyebrow" style="color: var(--accent2);">Level 3 &mdash; Dedicated Coding Agent</div>
+    <h1 class="page-title">Level 3: AI in Your Terminal</h1>
+    <p class="page-sub">At Level 3, the AI runs in your terminal. You describe a goal; it reads your files, writes code, runs scripts, and iterates on failures until the task is done. You review the result. What makes this more capable than an editor assistant is not what the agent can see; it is that it can execute. In the editor, you run the tests and bring errors back to the AI. Here, the agent runs that loop itself.</p>
+    <div class="toc">
+      <a href="#new-development-cycle">New development cycle</a>
+      <a href="#interaction-loop">Interaction loop</a>
+      <a href="#your-project">Your project</a>
+      <a href="#mcp">MCP</a>
+      <a href="#claude-code">Try it out</a>
+      <a href="#sandbox">Sandbox</a>
+      <a href="#quick-reference">Quick reference</a>
+      <a href="#statusline">1. Statusline</a>
+      <a href="#superpowers">2. Superpowers</a>
+      <a href="#sequential-thinking">3. Sequential Thinking</a>
+      <a href="#context7">4. Context7</a>
+      <a href="#warp">5. Warp</a>
+      <a href="#mobile">6. Happy Engineering</a>
+      <a href="#skills">7. Skills</a>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding-top:1.5rem;">
+  <div class="callout">
+    <div class="callout-icon"></div>
+    <div>
+      <strong>Most terminal AI tools require a paid subscription.</strong>
+      <p>Free tiers typically provide access to web-based chat only &mdash; not the terminal agent. Check the pricing for whichever tool you use before getting started.</p>
+    </div>
+  </div>
+</div>
+
+<!-- New development cycle -->
+<section class="tool-section" id="new-development-cycle">
+  <div class="container">
+    <h2 class="section-title">The new development cycle</h2>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>In the editor</th>
+            <th>In the terminal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Organize</strong></td>
+            <td>Describe the goal in chat; AI proposes structure</td>
+            <td>Describe the goal; AI reads your existing files and proposes or creates structure</td>
+          </tr>
+          <tr>
+            <td><strong>Write</strong></td>
+            <td>AI suggests edits inline; you accept or reject</td>
+            <td>AI writes to files directly; you review what changed</td>
+          </tr>
+          <tr>
+            <td><strong>Test</strong></td>
+            <td>You run tests and bring failures back to AI</td>
+            <td>AI runs tests, reads the output, and iterates on failures itself</td>
+          </tr>
+          <tr>
+            <td><strong>Share</strong></td>
+            <td>AI writes a commit message from your diff; you commit</td>
+            <td>AI can stage, write the message, and commit; you review before or after</td>
+          </tr>
+          <tr>
+            <td><strong>Deploy</strong></td>
+            <td>Not covered</td>
+            <td>Scripted pipelines can be handed to the agent; it runs them and reports the result</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Interaction loop -->
+<section class="tool-section alt-bg" id="interaction-loop">
+  <div class="container">
+    <h2 class="section-title">The interaction loop</h2>
+    <p>Every terminal AI agent works the same way: you describe a goal, the agent reads your files and environment, acts, reads the output, and reports back. You review and continue or redirect.</p>
+    <br>
+    <p>Understanding this loop changes how you write prompts. You are not giving instructions to someone who will ask for clarification &mdash; you are describing a goal for an agent that acts immediately. Keep goals narrow enough to review comfortably.</p>
+  </div>
+</section>
+
+<!-- Your project -->
+<section class="tool-section" id="your-project">
+  <div class="container">
+    <h2 class="section-title">Your project</h2>
+    <blockquote style="border-left:3px solid var(--accent2);padding-left:1rem;font-style:italic;margin:0 0 1.5rem;"><strong>Context engineering is the new prompt engineering.</strong></blockquote>
+    <p>The agent only has access to what you point it at. Your folder structure is not just organization &mdash; it defines what the agent can see, and specific files carry your standing instructions between sessions. A well-structured project makes the agent faster and more reliable from the first prompt.</p>
+
+    <div class="code-block">my-project/
+├── context.md         &larr; standing instructions, read every session
+├── progress.md        &larr; handoff notes between sessions
+├── docs/
+│   └── plans/         &larr; implementation plans
+└── src/</div>
+
+    <h3 class="sub-section-title">The context file</h3>
+    <p>Every session starts cold. The agent has no memory of previous sessions &mdash; no knowledge of your project structure, conventions, or the decisions you made last week. A context file, a markdown file in your project root, is how you fix that. Write your standing instructions there once; the agent reads it at the start of every session. Keep it factual: project structure, conventions, constraints that apply to every task. Specifics for the current task go in the prompt.</p>
+    <p>The folders you list and the directories you grant the agent access to form the same boundary. Start narrow: read and write within the project directory, run test and build commands you already use, no broader filesystem access. An agent with write access to your filesystem and permission to run arbitrary commands can make changes you didn&rsquo;t intend. Review what it&rsquo;s done at each step, especially early on.</p>
+
+    <h3 class="sub-section-title">The context window</h3>
+    <p>The context window is the total amount of text &mdash; instructions, files, code, and conversation history &mdash; that the model can hold at once. As a session runs, everything accumulates there: your instructions, the files the agent read, the code it wrote, the test output, your feedback. This window has a fixed size, passed back and forth with every message. Once it fills, the agent starts dropping the oldest entries to make room.</p>
+    <p>In practice, a session that starts well can become unreliable as context fills. The agent forgets constraints you set earlier, duplicates code it already wrote, or loses track of decisions. This is not a defect in any specific tool &mdash; it is a fundamental property of how these models work.</p>
+    <p>Most tools offer a compaction command to summarize the current context and continue without restarting. This sounds useful but usually isn&rsquo;t. Compaction compresses the window, but degraded reasoning from before the compaction still affects the session. Starting fresh with a written handoff produces better results.</p>
+    <div class="callout">
+      <div class="callout-icon"></div>
+      <div>
+        <strong>Friends don&rsquo;t let friends compact.</strong>
+      </div>
+    </div>
+
+    <h3 class="sub-section-title">Between sessions</h3>
+    <p>End sessions before context degrades. Most tools display context usage somewhere, and if yours doesn&rsquo;t, it is worth making it visible. When context approaches 50%, end the session:</p>
+    <div class="code-block">Write a summary of what we've done and what's left to progress.md</div>
+    <p>The next session reads that file and continues cleanly. Treat sessions as bounded units of work &mdash; end when the immediate task is done, not when the window is full. Avoid open-ended prompts like &ldquo;clean up the whole codebase.&rdquo; Break large goals into specific, bounded tasks.</p>
+
+    <h3 class="sub-section-title">Planning</h3>
+    <p>Ad-hoc prompts produce worse results than structured ones. A structured workflow replaces guessing with agreement: describe the goal, clarify requirements, produce a plan in <code>docs/plans/</code>, then execute against it. Each phase is short. The execution is faster and produces fewer unintended changes.</p>
+    <p>Scope explicitly when executing. Vague file access reliably produces unintended changes &mdash; name the files and constraints before the agent starts writing.</p>
+  </div>
+</section>
+
+<!-- MCP -->
+<section class="tool-section alt-bg" id="mcp">
+  <div class="container">
+    <h2 class="section-title">MCP</h2>
+    <p>Model Context Protocol is an open standard for connecting AI agents to external tools. Instead of pasting documentation into a prompt or building a one-off integration script, you configure an MCP server once and the agent can call it in any session.</p>
+    <p>An MCP server is a small program the agent invokes natively, indistinguishable from a built-in capability once configured. Common uses: pulling current library documentation, querying a database, running a custom analysis, accessing an API. Configure it once; it is available in every session.</p>
+  </div>
+</section>
+
+<!-- Try it out -->
+<section class="tool-section" id="claude-code">
+  <div class="container">
+    <h2 class="section-title">Try it out with Claude Code</h2>
+    <p>The concepts above apply to any terminal AI tool. Claude Code is one of them. If you want to try it, this section covers an efficient setup: the tool itself plus seven integrations that implement what we&rsquo;ve discussed. A project sandbox and quick reference table follow below.</p>
+    <p>Install Claude Code and find platform-specific setup instructions at the official documentation:</p>
+    <p><strong><a href="https://code.claude.com/docs/en/quickstart">Install Claude Code</a></strong></p>
+    <p>Navigate to your project and type <code>claude</code> to start a session. Many developers keep their IDE open to review files while running Claude Code in a terminal alongside it. Claude makes the changes; the IDE shows you what changed.</p>
+  </div>
+</section>
+
+<!-- Sandbox -->
+<section class="tool-section alt-bg" id="sandbox">
+  <div class="container">
+    <h2 class="section-title">Sandbox</h2>
+    <p>Create a dedicated folder anywhere on your computer and drop in this structure. It gives you a clean place to experiment without touching any existing project &mdash; open it in your terminal and you are ready to go.</p>
+    <div class="code-block">my-project/
+├── CLAUDE.md                  &larr; project context, read every session
+├── progress.md                &larr; session handoff notes
+├── docs/
+│   └── plans/                 &larr; implementation plans go here
+├── .claude/
+│   └── skills/                &larr; custom workflows, invoked with /skill-name
+├── src/
+└── tests/</div>
+    <p>Full documentation for <code>CLAUDE.md</code> and skills is in the <a href="https://code.claude.com/docs/en/features-overview">official docs</a>.</p>
+  </div>
+</section>
+
+<!-- 1. Statusline -->
+<section class="tool-section alt-bg" id="statusline">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">01</div>
+      <div>
+        <h2>Statusline</h2>
+        <div class="int-sub">Make context usage visible &mdash; the most critical metric in a session</div>
+      </div>
+    </div>
+    <p>The statusline adds a persistent bar at the bottom of your terminal showing context window percentage, session cost, model name, elapsed time, and git status. Without it, you notice context degradation when Claude starts making mistakes. With it, you can end sessions before quality drops.</p>
+    <p>Find install instructions in the Claude Code documentation or by asking Claude: <code>How do I install the statusline?</code></p>
+    <div class="callout">
+      <div class="callout-icon"></div>
+      <div>
+        <strong>Windows note</strong>
+        <p>The setup wizard sometimes fails on Windows. If the guided setup does not complete, install manually: <code>npx cc-statusline@latest</code> in your terminal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Superpowers -->
+<section class="tool-section" id="superpowers">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">02</div>
+      <div>
+        <h2>Superpowers</h2>
+        <div class="int-sub">Structured sub-agent workflows &mdash; the most impactful single installation</div>
+      </div>
+    </div>
+    <p>Superpowers is a Claude Code plugin that implements the planning and sub-agent workflow described above. Instead of one session accumulating context until it degrades, your main Claude instance dispatches focused sub-agents &mdash; each with its own fresh context window. The orchestrator receives summaries, not full workloads.</p>
+    <p>Superpowers enforces the brainstorm &rarr; plan &rarr; execute workflow: clarify requirements before writing anything, produce a spec, execute against it.</p>
+    <p>Install via the Claude Code plugin menu &mdash; type <code>/plugin</code> inside a session and find Superpowers in the list.</p>
+    <div class="callout">
+      <div class="callout-icon"></div>
+      <div>
+        <p>If you install one thing from this page, install Superpowers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Sequential Thinking -->
+<section class="tool-section alt-bg" id="sequential-thinking">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">03</div>
+      <div>
+        <h2>Sequential Thinking</h2>
+        <div class="int-sub">Structured reasoning before complex tasks</div>
+      </div>
+    </div>
+    <p>Sequential Thinking is an MCP server that adds explicit chain-of-thought reasoning to Claude Code. Before acting on complex tasks, Claude works through a visible step-by-step reasoning process &mdash; understand the problem, identify constraints, consider approaches, then implement.</p>
+    <p>Ask Claude to install it: <code>Please install the sequential thinking MCP server</code></p>
+  </div>
+</section>
+
+<!-- 4. Context7 -->
+<section class="tool-section" id="context7">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">04</div>
+      <div>
+        <h2>Context7</h2>
+        <div class="int-sub">Current library documentation: eliminates hallucinated APIs</div>
+      </div>
+    </div>
+    <p>Claude Code&rsquo;s training data has a cutoff date. When you ask it to use a library, it works from training data that may be months out of date &mdash; confidently using deprecated methods or renamed APIs. Context7 fixes this. It&rsquo;s an official Claude plugin that pulls current, version-specific documentation from live source repositories and injects it into Claude&rsquo;s context when you ask about a library.</p>
+    <p>Install via the Claude Code plugin menu &mdash; type <code>/plugin</code> inside a session and find Context7 in the list.</p>
+  </div>
+</section>
+
+<!-- 5. Warp -->
+<section class="tool-section alt-bg" id="warp">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">05</div>
+      <div>
+        <h2>Warp</h2>
+        <div class="int-sub">A better terminal for running Claude Code</div>
+      </div>
+    </div>
+    <p>Warp is a modern terminal &mdash; a replacement for Windows Terminal, Mac Terminal, or the VS Code integrated terminal. You run Claude Code inside Warp.</p>
+    <p>Split panes let you run Claude on one side and browse your project files on the other. When Claude writes a plan to a file, you can read it while Claude is still working. Each command and its output is a discrete block; no scrolling through walls of output to find what Claude ran. You can also run multiple instances of Claude Code simultaneously, each in its own pane.</p>
+    <p>Download from <a href="https://warp.dev">warp.dev</a> &mdash; available for Mac, Linux, and Windows. Free to use.</p>
+  </div>
+</section>
+
+<!-- 6. Happy Engineering -->
+<section class="tool-section" id="mobile">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">06</div>
+      <div>
+        <h2>Happy Engineering</h2>
+        <div class="int-sub">Full terminal access from your phone</div>
+      </div>
+    </div>
+    <p>Happy Engineering runs a live terminal session on your computer that you control from your phone&rsquo;s browser. Setup takes about a minute &mdash; no accounts, no configuration, simpler than any remote-access alternative. When you connect from your phone, you are controlling the actual terminal on your machine &mdash; every integration you have configured is available. Tasks you start on your phone continue running on your computer.</p>
+    <p>Install from <a href="https://happy.engineering">happy.engineering</a>. Free and open source.</p>
+  </div>
+</section>
+
+<!-- 7. Skills -->
+<section class="tool-section alt-bg" id="skills">
+  <div class="container">
+    <div class="integration-header">
+      <div class="int-num">07</div>
+      <div>
+        <h2>Skills</h2>
+        <div class="int-sub">Reusable workflows for tasks you do repeatedly</div>
+      </div>
+    </div>
+    <p>Skills are markdown files in <code>.claude/skills/</code> that Claude Code reads when you invoke them. Instead of re-explaining a workflow every session, you encode it once and call it by name.</p>
+    <div class="code-block">.claude/
+  skills/
+    add-module.md    &larr; invoked with /add-module
+    run-analysis.md  &larr; invoked with /run-analysis</div>
+    <p>Describe the repetitive task in detail and ask Claude to build the skill for you. After a few iterations, it becomes a reliable automation available in every session.</p>
+  </div>
+</section>
+
+<!-- Quick reference -->
+<section class="tool-section" id="quick-reference">
+  <div class="container">
+    <h2 class="section-title">Quick reference</h2>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Integration</th>
+            <th>What it adds</th>
+            <th>Where to get it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Statusline</td>
+            <td>Context %, session cost, model, git branch</td>
+            <td>Claude Code docs</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>Superpowers</td>
+            <td>Sub-agent workflows: brainstorm &rarr; plan &rarr; execute</td>
+            <td><code>/plugin</code> inside Claude Code</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>Sequential Thinking</td>
+            <td>Chain-of-thought reasoning before complex tasks</td>
+            <td>Ask Claude: &ldquo;install the sequential thinking MCP server&rdquo;</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>Context7</td>
+            <td>Current library docs at prompt time</td>
+            <td><code>/plugin</code> inside Claude Code</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>Warp</td>
+            <td>Split panes, block output</td>
+            <td><a href="https://warp.dev">warp.dev</a></td>
+          </tr>
+          <tr>
+            <td>06</td>
+            <td>Happy Engineering</td>
+            <td>Full terminal access from your phone</td>
+            <td><a href="https://happy.engineering">happy.engineering</a></td>
+          </tr>
+          <tr>
+            <td>07</td>
+            <td>Skills</td>
+            <td>Reusable workflows for repetitive tasks</td>
+            <td>Create <code>.claude/skills/skillname.md</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-nav">
+      <a href="index.html">Overview</a>
+      <a href="tools.html">The Tools</a>
+      <a href="workflow.html">How It Connects</a>
+      <a href="start.html">Get Started</a>
+      <!-- ðŸŒ— THEME TOGGLE BUTTON -->
+      <button id="themeToggle" class="theme-toggle"></button>
+      <button class="nav-mobile-toggle" onclick="toggleMobileNav()">â˜°</button>
+    </div>
+    <p class="footer-note">A clear guide to modern Python development &mdash; tools, workflow, and AI.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

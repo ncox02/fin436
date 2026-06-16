@@ -1,14 +1,27 @@
-# Python & AI
-A guide to the Python and AI development workflow — tools, concepts, and hands-on exercises.
+# FIN 436 — Course Materials
 
-**Live site:** https://ncox02.github.io/pyworkflow/
+Two separate projects for FIN 436.
 
 ---
 
-## Branches
+## 1. Python & AI Workflow Guide
 
-| Branch | Purpose |
-|--------|---------|
-| `main` | Source files — edit here. `.qmd` content pages and site config. |
-| `gh-pages` | Compiled website — do not edit directly. Auto-built from `main` via `quarto publish gh-pages`. |
-| `archive/old-html-site` | Original hand-written HTML site, kept as a reference. Not served anywhere. |
+A guide to the Python and AI development workflow — tools, concepts, and hands-on exercises.
+
+**Live site:** https://ncox02.github.io/fin436/
+
+| Folder / File | Contents |
+|---|---|
+| `html/` | Hand-written HTML version of the site (standalone, open in any browser) |
+| `*.qmd` | Quarto source files used to build the live site |
+
+---
+
+## 2. Web Scraping
+
+A standalone web scraping project, separate from the workflow guide above.
+
+| File | Contents |
+|---|---|
+| `webscraping/WebscrapingAssignmentGenerator.py` | Assignment generator |
+| `webscraping/example.py` | Completed example |
