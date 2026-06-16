@@ -1,4 +1,4 @@
-# FIN 436 — Course Materials
+# FIN 436
 
 Two separate projects for FIN 436.
 
